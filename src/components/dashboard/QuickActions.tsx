@@ -124,11 +124,10 @@ export function QuickActions() {
           )
         })}
 
-        {/* Bottone Aggiungi */}
         <Dialog>
           <DialogTrigger asChild>
             <Button 
-              variant="dashed" 
+              variant="outline" 
               className="flex flex-col h-auto aspect-square p-2 gap-2 rounded-2xl border-2 border-dashed border-muted-foreground/20 hover:border-primary/50 hover:bg-primary/5 hover:text-primary transition-all group"
             >
               <div className="p-2 rounded-xl bg-muted group-hover:bg-primary/10 transition-colors">
