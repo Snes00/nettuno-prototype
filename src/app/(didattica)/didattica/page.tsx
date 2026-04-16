@@ -3,7 +3,7 @@
 import * as React from "react"
 import { 
   BookOpen, 
-  Calendar, 
+  Calendar as CalendarIcon, 
   GraduationCap, 
   Clock, 
   MapPin, 
@@ -14,7 +14,10 @@ import {
   AlertCircle,
   Trophy,
   History,
-  FileCheck
+  FileCheck,
+  ChevronLeft,
+  ChevronRight as ChevronRightIcon,
+  Plus
 } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
@@ -24,7 +27,17 @@ import { Button } from "@/components/ui/button"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { cn } from "@/lib/utils"
 
+// Mock Data per il Calendario
+const DAYS_OF_WEEK = ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom"];
+const CURRENT_MONTH = "Aprile 2026";
+const CALENDAR_DAYS = Array.from({ length: 30 }, (_, i) => ({
+  day: i + 1,
+  events: i === 14 ? ['vacanza'] : i === 21 ? ['esame'] : [1, 5, 8, 12, 19, 25].includes(i) ? ['lezione'] : []
+}));
+
 export default function DidatticaPage() {
+  const [selectedDay, setSelectedDay] = React.useState(16);
+
   return (
     <div className="flex flex-col gap-10 pb-16 animate-in fade-in duration-500">
       {/* Intestazione */}
@@ -40,7 +53,7 @@ export default function DidatticaPage() {
           <TabsTrigger value="corsi" className="rounded-full px-6 font-bold data-[state=active]:bg-[#1A1917] data-[state=active]:text-white">Corsi</TabsTrigger>
           <TabsTrigger value="esami" className="rounded-full px-6 font-bold data-[state=active]:bg-[#1A1917] data-[state=active]:text-white">Esami</TabsTrigger>
           <TabsTrigger value="tesi" className="rounded-full px-6 font-bold data-[state=active]:bg-[#1A1917] data-[state=active]:text-white">Percorso Tesi</TabsTrigger>
-          <TabsTrigger value="agenda" className="rounded-full px-6 font-bold data-[state=active]:bg-[#1A1917] data-[state=active]:text-white">Agenda</TabsTrigger>
+          <TabsTrigger value="calendario" className="rounded-full px-6 font-bold data-[state=active]:bg-[#1A1917] data-[state=active]:text-white">Calendario</TabsTrigger>
         </TabsList>
 
         <TabsContent value="corsi" className="space-y-8 mt-0 focus-visible:outline-none">
@@ -65,7 +78,6 @@ export default function DidatticaPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-            {/* Lista Corsi (Bento White/Flat) */}
             <div className="md:col-span-12 space-y-6">
               <h3 className="text-xs font-black uppercase tracking-widest text-[#4A4947] px-2">I tuoi corsi del semestre</h3>
               
@@ -147,7 +159,6 @@ export default function DidatticaPage() {
         </TabsContent>
 
         <TabsContent value="esami" className="mt-0 focus-visible:outline-none space-y-8">
-           {/* Widget Esami (Bento Green) */}
            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="bg-[#DCFCE7] rounded-[2.5rem] p-8 flex flex-col justify-between border-none">
                  <div className="flex justify-between items-start">
@@ -156,7 +167,7 @@ export default function DidatticaPage() {
                        <h2 className="text-3xl font-bold tracking-tight text-[#166534]">Anatomia Artistica</h2>
                     </div>
                     <div className="h-12 w-12 rounded-full bg-[#166534]/10 flex items-center justify-center">
-                       <Calendar className="h-6 w-6 text-[#166534]" />
+                       <CalendarIcon className="h-6 w-6 text-[#166534]" />
                     </div>
                  </div>
                  <div className="mt-10 flex items-center justify-between">
@@ -199,7 +210,6 @@ export default function DidatticaPage() {
               </div>
             </div>
 
-            {/* Stepper Tesi (Bento Style) */}
             <div className="relative pt-10 pb-4">
               <div className="absolute top-[5.5rem] left-0 w-full h-1 bg-[#F1EFE9] rounded-full hidden md:block" />
               <div className="absolute top-[5.5rem] left-0 w-[45%] h-1 bg-[#1A1917] rounded-full hidden md:block transition-all duration-1000" />
@@ -237,20 +247,104 @@ export default function DidatticaPage() {
           </div>
         </TabsContent>
         
-        <TabsContent value="agenda" className="mt-0 focus-visible:outline-none">
-           <div className="bg-[#FEF9C3] rounded-[2.5rem] p-8 flex flex-col md:flex-row items-center justify-between border-none">
-              <div className="flex items-center gap-6">
-                 <div className="h-16 w-16 rounded-full bg-amber-500/10 flex items-center justify-center shrink-0">
-                    <Calendar className="h-8 w-8 text-amber-600" />
+        <TabsContent value="calendario" className="mt-0 focus-visible:outline-none">
+           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+              {/* Calendario Principale (Bento White) */}
+              <div className="lg:col-span-8 bg-white border border-[#E5E2DA] rounded-[2.5rem] p-8 space-y-8 shadow-none">
+                 <div className="flex items-center justify-between">
+                    <h2 className="text-2xl font-bold tracking-tight text-[#1A1917]">{CURRENT_MONTH}</h2>
+                    <div className="flex gap-2">
+                       <Button variant="outline" size="icon" className="rounded-xl h-10 w-10 border-[#E5E2DA]">
+                          <ChevronLeft className="h-4 w-4" />
+                       </Button>
+                       <Button variant="outline" size="icon" className="rounded-xl h-10 w-10 border-[#E5E2DA]">
+                          <ChevronRightIcon className="h-4 w-4" />
+                       </Button>
+                    </div>
                  </div>
-                 <div className="space-y-1">
-                    <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-amber-700">Agenda Didattica</h2>
-                    <p className="text-amber-700/60 font-medium">Nessun evento previsto per oggi.</p>
+
+                 <div className="grid grid-cols-7 gap-1">
+                    {DAYS_OF_WEEK.map((d) => (
+                       <div key={d} className="text-center text-[10px] font-black uppercase tracking-widest text-[#4A4947]/40 py-2">
+                          {d}
+                       </div>
+                    ))}
+                    {/* Spazi vuoti per l'inizio del mese (es: Aprile 2026 inizia di Mercoledì = 2 spazi vuoti) */}
+                    <div className="aspect-square" />
+                    <div className="aspect-square" />
+                    
+                    {CALENDAR_DAYS.map((d) => (
+                       <button
+                          key={d.day}
+                          onClick={() => setSelectedDay(d.day)}
+                          className={cn(
+                             "aspect-square relative rounded-2xl flex items-center justify-center transition-all group",
+                             selectedDay === d.day ? "bg-[#1A1917] text-white" : "hover:bg-[#F1EFE9] text-[#1A1917]"
+                          )}
+                       >
+                          <span className="text-sm font-bold">{d.day}</span>
+                          <div className="absolute bottom-2 flex gap-1">
+                             {d.events.includes('lezione') && <div className={cn("h-1 w-1 rounded-full", selectedDay === d.day ? "bg-emerald-400" : "bg-[#166534]")} />}
+                             {d.events.includes('esame') && <div className={cn("h-1 w-1 rounded-full", selectedDay === d.day ? "bg-purple-400" : "bg-[#7c3aed]")} />}
+                             {d.events.includes('vacanza') && <div className={cn("h-1 w-1 rounded-full", selectedDay === d.day ? "bg-amber-400" : "bg-amber-500")} />}
+                          </div>
+                       </button>
+                    ))}
                  </div>
               </div>
-              <Button className="w-full md:w-auto bg-amber-600 text-white rounded-full px-8 h-12 font-bold shadow-none hover:bg-amber-700 mt-4 md:mt-0">
-                 Sincronizza Calendario
-              </Button>
+
+              {/* Dettagli Giorno (Bento Yellow) */}
+              <div className="lg:col-span-4 bg-[#FEF9C3] rounded-[2.5rem] p-8 flex flex-col gap-8 border-none">
+                 <div className="space-y-1">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-amber-700/60">Giorno Selezionato</span>
+                    <h3 className="text-3xl font-bold tracking-tight text-amber-700">{selectedDay} Aprile 2026</h3>
+                 </div>
+
+                 <div className="space-y-4">
+                    {selectedDay === 16 ? (
+                       <div className="bg-white/40 rounded-2xl p-6 flex flex-col gap-4">
+                          <div className="flex items-center gap-3">
+                             <div className="h-8 w-8 rounded-xl bg-[#166534]/10 flex items-center justify-center">
+                                <BookOpen className="h-4 w-4 text-[#166534]" />
+                             </div>
+                             <div>
+                                <p className="text-sm font-bold text-amber-900">Pittura I</p>
+                                <p className="text-xs text-amber-800/60">09:00 - 13:00 • Aula Magno</p>
+                             </div>
+                          </div>
+                          <div className="h-px bg-amber-900/5 w-full" />
+                          <div className="flex items-center gap-3">
+                             <div className="h-8 w-8 rounded-xl bg-purple-500/10 flex items-center justify-center">
+                                <AlertCircle className="h-4 w-4 text-purple-600" />
+                             </div>
+                             <div>
+                                <p className="text-sm font-bold text-amber-900">Consegna Draft Tesi</p>
+                                <p className="text-xs text-amber-800/60">Entro le ore 23:59</p>
+                             </div>
+                          </div>
+                       </div>
+                    ) : selectedDay === 22 ? (
+                       <div className="bg-white/40 rounded-2xl p-6 flex items-center gap-3">
+                          <div className="h-8 w-8 rounded-xl bg-red-500/10 flex items-center justify-center">
+                             <CalendarIcon className="h-4 w-4 text-red-600" />
+                          </div>
+                          <div>
+                             <p className="text-sm font-bold text-amber-900">Appello d'Esame</p>
+                             <p className="text-xs text-amber-800/60">Anatomia Artistica • Aula 4</p>
+                          </div>
+                       </div>
+                    ) : (
+                       <div className="bg-white/40 rounded-2xl p-10 flex flex-col items-center text-center gap-4 opacity-60 italic">
+                          <CalendarIcon className="h-8 w-8 text-amber-700/40" />
+                          <p className="text-sm font-bold text-amber-900/60">Nessun evento previsto</p>
+                       </div>
+                    )}
+                 </div>
+
+                 <Button className="mt-auto w-full bg-amber-600 text-white rounded-full h-12 font-bold shadow-none hover:bg-amber-700 gap-2">
+                    <Plus className="h-4 w-4" /> Aggiungi Nota
+                 </Button>
+              </div>
            </div>
         </TabsContent>
       </Tabs>
