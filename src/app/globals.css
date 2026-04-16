@@ -40,7 +40,7 @@
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
   
-  /* Refined Radius Geometry (Refactoring UI inspired) */
+  /* Refined Radius Geometry */
   --radius: 1.5rem;          /* Outer R: 24px */
   --radius-inner: 0.75rem;   /* Inner R: 12px */
   
@@ -54,29 +54,29 @@
   --shadow-none: none;
 
   /* Spacing Scale (8-Point Grid) */
-  --spacing-safe: 2rem;      /* 32px Side Margins */
-  --spacing-gutter: 1.5rem;  /* 24px Gutter */
-  --spacing-bento: 1.5rem;   /* 24px Bento Padding */
+  --spacing-safe: 2rem;
+  --spacing-gutter: 1.5rem;
+  --spacing-bento: 1.5rem;
 }
 
 :root {
   /* Bento Warm Light Palette */
-  --background: #F8F5F0;     /* Warm Paper Background */
+  --background: #F8F5F0;     /* Warm Paper */
   --foreground: #1A1917;
   
   --card: #FFFFFF;
   --card-foreground: #1A1917;
   
-  --primary: #1A1917;        /* Solid Black for primary actions */
+  --primary: #1A1917;
   --primary-foreground: #FFFFFF;
   
-  --secondary: #EBE8E2;      /* Muted Warm Secondary */
+  --secondary: #EBE8E2;
   --secondary-foreground: #4A4947;
   
   --muted: #F1EFE9;
   --muted-foreground: #7C7A77;
   
-  --accent: #FFD6E8;         /* Soft Pastel Pink for highlights */
+  --accent: #FFD6E8;
   --accent-foreground: #1A1917;
   
   --destructive: #FF4D4D;
@@ -86,41 +86,48 @@
   --input: #E5E2DA;
   --ring: #1A1917;
 
-  /* Bento Specific Colors */
-  --bento-pink: #FEE2E2;     /* Tasse */
-  --bento-green: #DCFCE7;    /* Presenza */
-  --bento-yellow: #FEF9C3;   /* Avvisi */
-  --bento-blue: #DBEAFE;     /* Messaggi */
-  --bento-purple: #F3E8FF;   /* Didattica */
+  /* Bento Specific Colors (Light) */
+  --bento-pink: #FEE2E2;
+  --bento-green: #DCFCE7;
+  --bento-yellow: #FEF9C3;
+  --bento-blue: #DBEAFE;
+  --bento-purple: #F3E8FF;
   
-  --sidebar: #1A1917;        /* Deep Charcoal for Sidebar */
+  --sidebar: #FFFFFF;
 }
 
 .dark {
-  /* Bento Dark Palette */
-  --background: #0D0D0D;
-  --foreground: #F8F5F0;
+  /* Bento Deep Dark Palette */
+  --background: #0A0A0A;     /* Deep Graphite */
+  --foreground: #F5F5F0;     /* Ivory White */
   
-  --card: #141414;
-  --card-foreground: #F8F5F0;
+  --card: #141414;           /* Elevated Surface */
+  --card-foreground: #F5F5F0;
   
-  --primary: #F8F5F0;
-  --primary-foreground: #0D0D0D;
+  --primary: #F5F5F0;        /* Inverted Actions */
+  --primary-foreground: #0A0A0A;
   
-  --secondary: #1C1C1C;
+  --secondary: #1F1F1F;
   --secondary-foreground: #A1A1AA;
   
-  --muted: #1C1C1C;
+  --muted: #1A1A1A;
   --muted-foreground: #71717A;
   
   --accent: #2A1F2D;
-  --accent-foreground: #F8F5F0;
+  --accent-foreground: #F5F5F0;
   
   --border: #262626;
   --input: #262626;
-  --ring: #F8F5F0;
+  --ring: #F5F5F0;
 
-  --sidebar: #050505;
+  /* Bento Specific Colors (Dark - Deep Saturation) */
+  --bento-pink: #2D1616;     /* Deep Crimson Tint */
+  --bento-green: #0F2013;    /* Deep Forest Tint */
+  --bento-yellow: #261F0F;   /* Deep Gold Tint */
+  --bento-blue: #111B2D;     /* Deep Navy Tint */
+  --bento-purple: #1C122D;   /* Deep Royal Tint */
+
+  --sidebar: #141414;        /* Dark sidebar in dark mode to avoid glare */
 }
 
 @layer base {
