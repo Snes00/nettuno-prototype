@@ -31,21 +31,20 @@ import { Badge } from "@/components/ui/badge"
 
 // Pool di tutte le azioni possibili
 const ALL_ACTIONS = [
-  { id: "appelli", label: "Appelli", icon: Calendar, color: "text-blue-500", bg: "bg-blue-500/10" },
-  { id: "materiali", label: "Materiali", icon: BookOpen, color: "text-emerald-500", bg: "bg-emerald-500/10" },
-  { id: "libretto", label: "Libretto", icon: GraduationCap, color: "text-purple-500", bg: "bg-purple-500/10" },
-  { id: "tasse", label: "Tasse", icon: CreditCard, color: "text-amber-500", bg: "bg-amber-500/10" },
+  { id: "esami", label: "I tuoi esami", icon: GraduationCap, color: "text-blue-500", bg: "bg-blue-500/10" },
+  { id: "presenze", label: "Presenze", icon: Zap, color: "text-emerald-500", bg: "bg-emerald-500/10" },
+  { id: "piano", label: "Piano di Studi", icon: BookOpen, color: "text-purple-500", bg: "bg-purple-500/10" },
+  { id: "tasse", label: "Tasse e Pagamenti", icon: CreditCard, color: "text-amber-500", bg: "bg-amber-500/10" },
+  { id: "calendario", label: "Calendario", icon: Calendar, color: "text-indigo-500", bg: "bg-indigo-500/10" },
   { id: "certificati", label: "Certificati", icon: FileText, color: "text-rose-500", bg: "bg-rose-500/10" },
   { id: "messaggi", label: "Messaggi", icon: MessageSquare, color: "text-cyan-500", bg: "bg-cyan-500/10" },
-  { id: "orario", label: "Orario", icon: Clock, color: "text-indigo-500", bg: "bg-indigo-500/10" },
-  { id: "impostazioni", label: "Impostazioni", icon: Settings, color: "text-slate-500", bg: "bg-slate-500/10" },
+  { id: "orario", label: "Orario Lezioni", icon: Clock, color: "text-slate-500", bg: "bg-slate-500/10" },
   { id: "preferiti", label: "Preferiti", icon: Heart, color: "text-pink-500", bg: "bg-pink-500/10" },
-  { id: "rapido", label: "Task Rapido", icon: Zap, color: "text-yellow-500", bg: "bg-yellow-500/10" },
   { id: "valutazioni", label: "Valutazioni", icon: Star, color: "text-orange-500", bg: "bg-orange-500/10" },
 ]
 
 // Azioni di base (ID)
-const BASE_ACTION_IDS = ["appelli", "materiali", "libretto", "tasse"]
+const BASE_ACTION_IDS = ["esami", "presenze", "piano", "tasse", "calendario"]
 
 export function QuickActions() {
   const [activeActions, setActiveActions] = React.useState<string[]>([])

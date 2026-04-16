@@ -42,104 +42,140 @@
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
+  --radius-xl: calc(var(--radius) * 1.5);
+  --radius-2xl: calc(var(--radius) * 2);
+  --radius-3xl: calc(var(--radius) * 2.5);
+  --radius-4xl: calc(var(--radius) * 3);
+  
+  /* Animazioni e ombre personalizzate */
+  --shadow-premium: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 0 20px -5px var(--primary);
 }
 
 :root {
-  /* Nova Light Theme - Optimized for 4.5:1 Contrast */
-  --background: oklch(0.985 0.005 260); /* Very light blue-ish white */
-  --foreground: oklch(0.18 0.03 260);    /* Deep navy black for high contrast */
+  /* Premium Light - Soft & Elegant */
+  --background: oklch(0.99 0.005 240);
+  --foreground: oklch(0.15 0.02 240);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.03 260);
+  --card-foreground: oklch(0.15 0.02 240);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.03 260);
+  --popover-foreground: oklch(0.15 0.02 240);
   
-  --primary: oklch(0.5 0.18 260);       /* Nova Blue - Dark enough for 4.5:1 on light bg */
-  --primary-foreground: oklch(0.99 0 0);
+  --primary: oklch(0.55 0.2 250);       /* Vibrant Mediterranean Blue */
+  --primary-foreground: oklch(1 0 0);
   
-  --secondary: oklch(0.95 0.01 260);
-  --secondary-foreground: oklch(0.3 0.05 260);
+  --secondary: oklch(0.96 0.01 240);
+  --secondary-foreground: oklch(0.2 0.02 240);
   
-  --muted: oklch(0.96 0.01 260);
-  --muted-foreground: oklch(0.45 0.04 260);
+  --muted: oklch(0.97 0.01 240);
+  --muted-foreground: oklch(0.5 0.03 240);
   
-  --accent: oklch(0.94 0.02 260);
-  --accent-foreground: oklch(0.3 0.05 260);
+  --accent: oklch(0.94 0.03 250);
+  --accent-foreground: oklch(0.2 0.02 240);
   
-  --destructive: oklch(0.55 0.2 25);
-  --destructive-foreground: oklch(0.99 0 0);
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(1 0 0);
   
-  --border: oklch(0.9 0.01 260);
-  --input: oklch(0.9 0.01 260);
-  --ring: oklch(0.5 0.18 260);
+  --border: oklch(0.92 0.01 240);
+  --input: oklch(0.92 0.01 240);
+  --ring: oklch(0.55 0.2 250);
   
-  --radius: 0.75rem; /* Nova Professional Radius */
+  --radius: 1rem;
 
-  --chart-1: oklch(0.5 0.18 260);
-  --chart-2: oklch(0.6 0.15 200);
-  --chart-3: oklch(0.7 0.12 150);
-  --chart-4: oklch(0.8 0.1 100);
-  --chart-5: oklch(0.9 0.08 50);
+  --chart-1: oklch(0.55 0.2 250);
+  --chart-2: oklch(0.65 0.15 200);
+  --chart-3: oklch(0.75 0.12 160);
+  --chart-4: oklch(0.85 0.1 120);
+  --chart-5: oklch(0.95 0.05 80);
 
-  --sidebar: oklch(0.99 0.005 260);
-  --sidebar-foreground: oklch(0.18 0.03 260);
-  --sidebar-primary: oklch(0.5 0.18 260);
-  --sidebar-primary-foreground: oklch(0.99 0 0);
-  --sidebar-accent: oklch(0.94 0.02 260);
-  --sidebar-accent-foreground: oklch(0.3 0.05 260);
-  --sidebar-border: oklch(0.9 0.01 260);
-  --sidebar-ring: oklch(0.5 0.18 260);
+  --sidebar: oklch(0.99 0.005 240);
+  --sidebar-foreground: oklch(0.15 0.02 240);
+  --sidebar-primary: oklch(0.55 0.2 250);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.94 0.03 250);
+  --sidebar-accent-foreground: oklch(0.2 0.02 240);
+  --sidebar-border: oklch(0.92 0.01 240);
+  --sidebar-ring: oklch(0.55 0.2 250);
 }
 
 .dark {
-  /* Nova Dark Theme - High Performance Navy */
-  --background: oklch(0.12 0.02 260);    /* Deep Nova Navy */
-  --foreground: oklch(0.98 0.01 260);
-  --card: oklch(0.15 0.025 260);
-  --card-foreground: oklch(0.98 0.01 260);
-  --popover: oklch(0.15 0.025 260);
-  --popover-foreground: oklch(0.98 0.01 260);
+  /* Ultra Deep Dark - OLED Optimized */
+  --background: oklch(0.08 0.01 240);    /* Pure depth */
+  --foreground: oklch(0.95 0.01 240);
+  --card: oklch(0.12 0.015 240);        /* Visible card contrast */
+  --card-foreground: oklch(0.95 0.01 240);
+  --popover: oklch(0.12 0.015 240);
+  --popover-foreground: oklch(0.95 0.01 240);
   
-  --primary: oklch(0.65 0.15 260);      /* Brighter Blue for Dark Mode accessibility */
-  --primary-foreground: oklch(0.1 0.02 260);
+  --primary: oklch(0.65 0.18 250);      /* Glowing Primary */
+  --primary-foreground: oklch(0.05 0.01 240);
   
-  --secondary: oklch(0.2 0.03 260);
-  --secondary-foreground: oklch(0.98 0.01 260);
+  --secondary: oklch(0.18 0.02 240);
+  --secondary-foreground: oklch(0.95 0.01 240);
   
-  --muted: oklch(0.2 0.03 260);
-  --muted-foreground: oklch(0.7 0.03 260);
+  --muted: oklch(0.18 0.02 240);
+  --muted-foreground: oklch(0.6 0.02 240);
   
-  --accent: oklch(0.25 0.04 260);
-  --accent-foreground: oklch(0.98 0.01 260);
+  --accent: oklch(0.22 0.03 250);
+  --accent-foreground: oklch(0.95 0.01 240);
   
-  --destructive: oklch(0.6 0.18 25);
-  --destructive-foreground: oklch(0.98 0.01 260);
+  --destructive: oklch(0.55 0.18 25);
+  --destructive-foreground: oklch(0.95 0.01 240);
   
-  --border: oklch(0.25 0.03 260);
-  --input: oklch(0.25 0.03 260);
-  --ring: oklch(0.65 0.15 260);
+  --border: oklch(0.18 0.02 240);
+  --input: oklch(0.18 0.02 240);
+  --ring: oklch(0.65 0.18 250);
 
-  --sidebar: oklch(0.1 0.02 260);
-  --sidebar-foreground: oklch(0.98 0.01 260);
-  --sidebar-primary: oklch(0.65 0.15 260);
-  --sidebar-primary-foreground: oklch(0.1 0.02 260);
-  --sidebar-accent: oklch(0.2 0.03 260);
-  --sidebar-accent-foreground: oklch(0.98 0.01 260);
-  --sidebar-border: oklch(0.2 0.03 260);
-  --sidebar-ring: oklch(0.65 0.15 260);
+  --sidebar: oklch(0.08 0.01 240);
+  --sidebar-foreground: oklch(0.95 0.01 240);
+  --sidebar-primary: oklch(0.65 0.18 250);
+  --sidebar-primary-foreground: oklch(0.05 0.01 240);
+  --sidebar-accent: oklch(0.18 0.02 240);
+  --sidebar-accent-foreground: oklch(0.95 0.01 240);
+  --sidebar-border: oklch(0.18 0.02 240);
+  --sidebar-ring: oklch(0.65 0.18 250);
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border outline-ring/50 selection:bg-primary/20 selection:text-primary;
   }
   body {
-    @apply bg-background text-foreground transition-colors duration-300;
+    @apply bg-background text-foreground transition-all duration-500 ease-in-out;
+    font-feature-settings: "cv02", "cv03", "cv04", "ss01";
   }
   html {
-    @apply font-sans antialiased;
+    @apply font-sans antialiased scroll-smooth;
+  }
+  
+  /* Miglioramento Tipografia */
+  h1, h2, h3, h4 {
+    @apply tracking-tighter font-black;
+  }
+  
+  /* Custom Scrollbar Premium */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/20 rounded-full hover:bg-muted-foreground/40 transition-colors;
+  }
+}
+
+@layer components {
+  /* Utility per l'estetica Nettuno */
+  .glass-card {
+    @apply bg-white/70 dark:bg-card/70 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-premium;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-br from-primary to-primary/60 bg-clip-text text-transparent;
+  }
+  
+  .touch-target {
+    @apply min-h-[48px] min-w-[48px] flex items-center justify-center;
   }
 }
