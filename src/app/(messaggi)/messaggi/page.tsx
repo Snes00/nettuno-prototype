@@ -13,13 +13,24 @@ import {
   MoreVertical,
   Filter,
   Send,
-  Mail
+  Mail,
+  ChevronLeft,
+  Image as ImageIcon,
+  Smile,
+  MoreHorizontal
 } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Card } from "@/components/ui/card"
+import { 
+  Dialog, 
+  DialogContent, 
+  DialogHeader, 
+  DialogTitle,
+  DialogTrigger
+} from "@/components/ui/dialog"
 import { cn } from "@/lib/utils"
 
 const MESSAGGI = [
@@ -33,7 +44,12 @@ const MESSAGGI = [
     letto: false,
     importante: true,
     allegati: true,
-    tipo: "segreteria"
+    tipo: "segreteria",
+    conversazione: [
+      { id: 101, testo: "Gentile studente, ti confermiamo che la tua proposta di piano di studi è stata approvata dalla commissione didattica.", ora: "10:45", io: false },
+      { id: 102, testo: "Grazie mille per la conferma. Entro quando devo inviare la copia firmata?", ora: "11:02", io: true },
+      { id: 103, testo: "Puoi caricarla direttamente nell'area Amministrazione entro il 30 Aprile.", ora: "11:15", io: false }
+    ]
   },
   {
     id: 2,
@@ -45,7 +61,10 @@ const MESSAGGI = [
     letto: true,
     importante: false,
     allegati: false,
-    tipo: "docenti"
+    tipo: "docenti",
+    conversazione: [
+      { id: 201, testo: "Si avvisano gli studenti che il ricevimento di questo giovedì è posticipato alle ore 16:00 causa impegni istituzionali.", ora: "Ieri 15:30", io: false }
+    ]
   },
   {
     id: 3,
@@ -57,7 +76,10 @@ const MESSAGGI = [
     letto: false,
     importante: false,
     allegati: true,
-    tipo: "avvisi"
+    tipo: "avvisi",
+    conversazione: [
+      { id: 301, testo: "È stato pubblicato il nuovo bando per la mobilità internazionale Erasmus+ per l'anno accademico 2026/27.", ora: "12 Apr 09:00", io: false }
+    ]
   },
   {
     id: 4,
@@ -69,13 +91,20 @@ const MESSAGGI = [
     letto: true,
     importante: true,
     allegati: true,
-    tipo: "docenti"
+    tipo: "docenti",
+    conversazione: [
+      { id: 401, testo: "Ho caricato in piattaforma le slide relative alla lezione sull'osteologia del tronco. Potete trovarle anche nel drive condiviso.", ora: "11 Apr 18:20", io: false },
+      { id: 402, testo: "Professoressa, ho difficoltà ad accedere al link del drive.", ora: "11 Apr 20:10", io: true },
+      { id: 403, testo: "Prova ad accedere con la mail istituzionale, ho ristretto i permessi.", ora: "12 Apr 08:30", io: false }
+    ]
   }
 ]
 
 export default function MessaggiPage() {
   const [activeTab, setActiveTab] = React.useState("tutti")
   const [searchQuery, setSearchQuery] = React.useState("")
+  const [selectedMsg, setSelectedMsg] = React.useState<any>(null)
+  const [replyText, setReplyText] = React.useState("")
 
   const filteredMessages = MESSAGGI.filter(m => {
     const matchTab = activeTab === "tutti" || m.tipo === activeTab
@@ -139,6 +168,7 @@ export default function MessaggiPage() {
             filteredMessages.map((msg) => (
               <Card 
                 key={msg.id} 
+                onClick={() => setSelectedMsg(msg)}
                 className={cn(
                   "p-4 border-none shadow-sm cursor-pointer transition-all hover:bg-white dark:hover:bg-muted/50 group relative overflow-hidden",
                   !msg.letto && "bg-white dark:bg-muted/30"
@@ -201,7 +231,7 @@ export default function MessaggiPage() {
                   </div>
 
                   {/* Azioni Rapide (Desktop o Hover) */}
-                  <div className="flex flex-col gap-2 md:opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="hidden md:flex flex-col gap-2 md:opacity-0 group-hover:opacity-100 transition-opacity">
                     <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-amber-500">
                       <Star className={cn("h-4 w-4", msg.importante && "fill-amber-500 text-amber-500")} />
                     </Button>
@@ -221,9 +251,107 @@ export default function MessaggiPage() {
         </div>
       </ScrollArea>
 
+      {/* CHAT VIEW (Dialog Overlay) */}
+      <Dialog open={!!selectedMsg} onOpenChange={() => setSelectedMsg(null)}>
+        <DialogContent className="max-w-2xl h-[90vh] md:h-[80vh] flex flex-col p-0 gap-0 overflow-hidden rounded-3xl border-none shadow-2xl">
+          {selectedMsg && (
+            <>
+              {/* Header Chat */}
+              <div className="p-4 border-b bg-muted/20 flex items-center gap-3">
+                <Button variant="ghost" size="icon" onClick={() => setSelectedMsg(null)} className="md:hidden">
+                  <ChevronLeft className="h-5 w-5" />
+                </Button>
+                <div className={cn(
+                  "h-10 w-10 rounded-xl flex items-center justify-center shrink-0",
+                  selectedMsg.tipo === "segreteria" ? "bg-amber-100 text-amber-600 dark:bg-amber-900/30" :
+                  selectedMsg.tipo === "docenti" ? "bg-blue-100 text-blue-600 dark:bg-blue-900/30" :
+                  "bg-rose-100 text-rose-600 dark:bg-rose-900/30"
+                )}>
+                  {selectedMsg.tipo === "segreteria" ? <Building2 className="h-5 w-5" /> :
+                   selectedMsg.tipo === "docenti" ? <User className="h-5 w-5" /> :
+                   <Megaphone className="h-5 w-5" />}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h2 className="text-sm font-bold truncate leading-none mb-1">{selectedMsg.mittente}</h2>
+                  <p className="text-[10px] text-muted-foreground truncate">{selectedMsg.ruolo} • Online</p>
+                </div>
+                <Button variant="ghost" size="icon" className="rounded-full">
+                  <MoreVertical className="h-4 w-4" />
+                </Button>
+              </div>
+
+              {/* Area Messaggi Chat */}
+              <ScrollArea className="flex-1 p-4 bg-muted/5">
+                <div className="space-y-6">
+                  <div className="flex flex-col items-center py-4">
+                    <Badge variant="outline" className="text-[10px] font-medium bg-muted/50 border-none px-4 py-1">
+                      Inizio della conversazione
+                    </Badge>
+                  </div>
+                  
+                  {selectedMsg.conversazione.map((chat: any) => (
+                    <div 
+                      key={chat.id} 
+                      className={cn(
+                        "flex flex-col max-w-[85%] animate-in fade-in slide-in-from-bottom-2 duration-300",
+                        chat.io ? "ml-auto items-end" : "mr-auto items-start"
+                      )}
+                    >
+                      <div className={cn(
+                        "p-4 rounded-2xl text-sm shadow-sm",
+                        chat.io 
+                          ? "bg-primary text-primary-foreground rounded-tr-none" 
+                          : "bg-white dark:bg-muted/80 text-foreground rounded-tl-none border border-muted"
+                      )}>
+                        {chat.testo}
+                      </div>
+                      <span className="text-[10px] text-muted-foreground mt-1.5 px-1">{chat.ora}</span>
+                    </div>
+                  ))}
+                </div>
+              </ScrollArea>
+
+              {/* Input Risposta */}
+              <div className="p-4 bg-background border-t">
+                <div className="flex items-end gap-2 bg-muted/30 rounded-2xl p-2 focus-within:bg-muted/50 transition-colors border-2 border-transparent focus-within:border-primary/20">
+                  <Button variant="ghost" size="icon" className="h-9 w-9 text-muted-foreground rounded-xl">
+                    <Paperclip className="h-5 w-5" />
+                  </Button>
+                  <textarea 
+                    placeholder="Scrivi una risposta..."
+                    className="flex-1 bg-transparent border-none focus:ring-0 resize-none py-2 px-1 text-sm max-h-32 min-h-[40px] outline-none"
+                    value={replyText}
+                    onChange={(e) => setReplyText(e.target.value)}
+                    rows={1}
+                  />
+                  <div className="flex gap-1">
+                    <Button variant="ghost" size="icon" className="h-9 w-9 text-muted-foreground rounded-xl hidden sm:flex">
+                      <Smile className="h-5 w-5" />
+                    </Button>
+                    <Button 
+                      size="icon" 
+                      className={cn(
+                        "h-9 w-9 rounded-xl shadow-md transition-all shrink-0",
+                        replyText.trim() ? "bg-primary text-primary-foreground scale-100" : "bg-muted text-muted-foreground scale-90"
+                      )}
+                      disabled={!replyText.trim()}
+                    >
+                      <Send className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+                <p className="text-[9px] text-muted-foreground text-center mt-2 font-medium">
+                  Premi Invio per spedire il messaggio
+                </p>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+
       {/* Floating Action Button (Nuovo Messaggio) */}
       <Button 
-        className="fixed bottom-20 right-6 md:bottom-10 md:right-10 h-14 w-14 rounded-2xl shadow-2xl hover:scale-110 transition-transform active:scale-95 bg-primary text-primary-foreground"
+        className="fixed bottom-24 right-6 md:bottom-10 md:right-10 h-14 w-14 rounded-2xl shadow-2xl hover:scale-110 transition-transform active:scale-95 bg-primary text-primary-foreground z-40"
       >
         <PlusIcon className="h-6 w-6" />
       </Button>
