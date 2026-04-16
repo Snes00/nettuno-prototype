@@ -62,12 +62,8 @@ export function BottomNav() {
       </nav>
 
       {/* Desktop Sidebar - Bento Solid Block */}
-      <nav className="hidden fixed left-6 top-6 bottom-6 w-24 md:w-64 bg-[#1A1917] rounded-[2.5rem] md:flex flex-col p-6 gap-2 z-40 transition-all">
-        <div className="flex items-center justify-center md:justify-start px-4 py-6 mb-4">
-           <div className="h-10 w-10 rounded-2xl bg-white flex items-center justify-center font-black text-[#1A1917]">N</div>
-           <span className="hidden md:block ml-3 text-white font-black text-xl tracking-tighter">Nettuno</span>
-        </div>
-        
+      {/* top-24 per lasciare spazio all'header ed evitare overlap con il logo Nettuno */}
+      <nav className="hidden fixed left-6 top-24 bottom-6 w-24 md:w-64 bg-[#1A1917] rounded-[2.5rem] md:flex flex-col p-6 gap-2 z-40 transition-all shadow-none">
         <div className="space-y-2">
           {items.map((item) => {
             const Icon = item.icon;

@@ -77,20 +77,20 @@ export function QuickActions() {
   const currentActions = ALL_ACTIONS.filter(a => activeActions.includes(a.id))
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+    <div className="space-y-4">
+      <div className="flex flex-col gap-3">
         {currentActions.map((action) => {
           const Icon = action.icon
           return (
             <Button 
               key={action.id}
               variant="outline" 
-              className="flex items-center justify-start h-14 w-full p-3 gap-3 rounded-2xl border-none bg-[#F1EFE9] hover:bg-[#EBE8E2] transition-all group shadow-none"
+              className="flex items-center justify-start h-14 w-full p-3 gap-4 rounded-2xl border-none bg-[#F1EFE9] hover:bg-[#EBE8E2] transition-all group shadow-none"
             >
               <div className={cn("p-2 rounded-xl shrink-0 transition-transform group-hover:scale-110", action.bg, action.color)}>
                 <Icon className="h-5 w-5" />
               </div>
-              <span className="text-xs font-bold text-[#1A1917] truncate">{action.label}</span>
+              <span className="text-sm font-bold text-[#1A1917]">{action.label}</span>
             </Button>
           )
         })}
@@ -99,12 +99,12 @@ export function QuickActions() {
           <DialogTrigger asChild>
             <Button 
               variant="outline" 
-              className="flex items-center justify-start h-14 w-full p-3 gap-3 rounded-2xl border-2 border-dashed border-[#E5E2DA] hover:border-[#1A1917]/20 bg-transparent hover:bg-white/50 transition-all group shadow-none"
+              className="flex items-center justify-start h-14 w-full p-3 gap-4 rounded-2xl border-2 border-dashed border-[#E5E2DA] hover:border-[#1A1917]/20 bg-transparent hover:bg-white/50 transition-all group shadow-none"
             >
               <div className="p-2 rounded-xl bg-[#EBE8E2] text-[#4A4947] group-hover:bg-[#1A1917]/10 transition-colors shrink-0">
                 <Plus className="h-5 w-5" />
               </div>
-              <span className="text-xs font-bold text-[#4A4947]">Aggiungi</span>
+              <span className="text-sm font-bold text-[#4A4947]">Aggiungi</span>
             </Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-md rounded-[2.5rem] border-none shadow-2xl bg-[#F8F5F0]">
@@ -144,9 +144,14 @@ export function QuickActions() {
       </div>
       
       <div className="flex justify-center pt-2">
-        <Button variant="ghost" size="sm" className="text-[10px] font-black uppercase tracking-[0.2em] text-[#4A4947]/40 hover:bg-transparent">
-           <Settings2 className="h-3 w-3 mr-2" /> Gestione Avanzata
-        </Button>
+        <Dialog>
+           <DialogTrigger asChild>
+              <Button variant="ghost" size="sm" className="text-[10px] font-black uppercase tracking-[0.2em] text-[#4A4947]/40 hover:bg-transparent">
+                 <Settings2 className="h-3 w-3 mr-2" /> Modifica
+              </Button>
+           </DialogTrigger>
+           {/* Riutilizziamo lo stesso Dialog per coerenza UX */}
+        </Dialog>
       </div>
     </div>
   )
