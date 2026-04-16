@@ -76,10 +76,9 @@ export default function DidatticaPage() {
           <TabsTrigger value="calendario" className="rounded-full px-6 font-bold data-[state=active]:bg-[#1A1917] data-[state=active]:text-white">Calendario</TabsTrigger>
         </TabsList>
 
-        {/* Tab Calendario con Timeline */}
         <TabsContent value="calendario" className="mt-0 focus-visible:outline-none">
            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-              {/* Calendario "Pallini" */}
+              {/* Calendario Principale */}
               <div className="lg:col-span-8 bg-white border border-[#E5E2DA] rounded-[2.5rem] p-8 space-y-10 shadow-none">
                  <div className="flex items-center justify-between">
                     <h2 className="text-2xl font-bold tracking-tight text-[#1A1917]">{CURRENT_MONTH}</h2>
@@ -106,7 +105,6 @@ export default function DidatticaPage() {
                        const eventi = EVENTI_CALENDARIO[day];
                        const isSelected = selectedDay === day;
                        
-                       // Priorità colore pallino: Esame > Lezione > Vacanza > Nota
                        let statusClass = "bg-white border-[#F1EFE9] text-[#1A1917]";
                        if (eventi) {
                           if (eventi.some(e => e.tipo === 'esame')) statusClass = "bg-[#F3E8FF] border-transparent text-[#7c3aed]";
@@ -151,58 +149,46 @@ export default function DidatticaPage() {
                  </div>
               </div>
 
-              {/* Dettagli Giorno (Bento Yellow) - Design Timeline */}
-              <div className="lg:col-span-4 bg-[#FEF9C3] rounded-[2.5rem] p-8 flex flex-col gap-8 border-none min-h-[500px]">
+              {/* Dettagli Giorno (Bento White - Clean Timeline) */}
+              <div className="lg:col-span-4 bg-white border border-[#E5E2DA] rounded-[2.5rem] p-8 flex flex-col gap-8 shadow-none min-h-[500px]">
                  <div className="space-y-1">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-amber-700/60">Programma del giorno</span>
-                    <h3 className="text-3xl font-bold tracking-tight text-amber-700">{selectedDay} Aprile 2026</h3>
+                    <span className="text-[10px] font-black uppercase tracking-widest text-[#4A4947]/40">Programma del giorno</span>
+                    <h3 className="text-3xl font-bold tracking-tight text-[#1A1917]">{selectedDay} Aprile 2026</h3>
                  </div>
 
-                 <div className="flex-1 relative">
+                 <div className="flex-1 space-y-4">
                     {eventiDelGiorno.length > 0 ? (
-                       <div className="space-y-6 relative z-10">
-                          {/* Linea Timeline verticale */}
-                          <div className="absolute left-6 top-2 bottom-2 w-px bg-amber-900/10 hidden sm:block" />
-                          
-                          {eventiDelGiorno.map((evento, idx) => (
-                             <div key={idx} className="relative pl-0 sm:pl-12 animate-in fade-in slide-in-from-left-2 duration-300" style={{ animationDelay: `${idx * 100}ms` }}>
-                                {/* Pallino timeline */}
-                                <div className={cn(
-                                   "absolute left-4 top-4 h-4 w-4 rounded-full border-4 border-[#FEF9C3] hidden sm:block",
-                                   evento.bgClass
-                                )} />
-                                
-                                <div className="bg-white/60 rounded-3xl p-5 hover:bg-white/80 transition-colors group cursor-pointer">
-                                   <div className="flex justify-between items-start mb-2">
-                                      <span className="text-[10px] font-black uppercase tracking-widest opacity-40 text-amber-900">
-                                         {evento.ora}
-                                      </span>
-                                      <div className={cn("p-1.5 rounded-lg", evento.bgClass)}>
-                                         <evento.icona className={cn("h-3.5 w-3.5", evento.textClass)} />
-                                      </div>
-                                   </div>
-                                   <h4 className="text-base font-bold text-amber-950 leading-snug">{evento.titolo}</h4>
-                                   <p className="text-xs text-amber-900/50 font-medium mt-1">{evento.dettagli}</p>
-                                </div>
+                       eventiDelGiorno.map((evento, idx) => (
+                          <div key={idx} className={cn(
+                             "rounded-2xl p-5 transition-all hover:scale-[1.02] cursor-pointer border border-transparent shadow-none",
+                             evento.bgClass
+                          )}>
+                             <div className="flex justify-between items-start mb-2">
+                                <span className={cn("text-[10px] font-black uppercase tracking-widest opacity-60", evento.textClass)}>
+                                   {evento.ora}
+                                </span>
+                                <evento.icona className={cn("h-4 w-4", evento.textClass)} />
                              </div>
-                          ))}
-                       </div>
+                             <h4 className={cn("text-base font-bold leading-snug", evento.textClass)}>{evento.titolo}</h4>
+                             <p className={cn("text-xs font-medium mt-1 opacity-70", evento.textClass)}>{evento.dettagli}</p>
+                          </div>
+                       ))
                     ) : (
-                       <div className="h-full flex flex-col items-center justify-center text-center p-10 gap-4 opacity-30">
-                          <CalendarIcon className="h-12 w-12 text-amber-900" />
-                          <p className="text-sm font-bold text-amber-900 uppercase tracking-widest">Nessun impegno</p>
+                       <div className="h-full flex flex-col items-center justify-center text-center p-10 gap-4 opacity-20">
+                          <CalendarIcon className="h-12 w-12 text-[#1A1917]" />
+                          <p className="text-sm font-bold text-[#1A1917] uppercase tracking-widest">Nessun impegno</p>
                        </div>
                     )}
                  </div>
 
                  <Button className="w-full bg-[#1A1917] text-white rounded-full h-14 font-bold shadow-none hover:bg-black gap-2 mt-4">
-                    <Plus className="h-5 w-5" /> Aggiungi Impegno
+                    <Plus className="h-5 w-5" /> Aggiungi Nota
                  </Button>
               </div>
            </div>
         </TabsContent>
 
-        {/* Tab Corsi (Ripristinata con stile bento) */}
+        {/* CONTENUTI CORSI, ESAMI, TESI */}
         <TabsContent value="corsi" className="space-y-8 mt-0 focus-visible:outline-none">
           <div className="bg-[#F3E8FF] rounded-[2.5rem] p-8 flex flex-col md:flex-row gap-8 items-center justify-between">
             <div className="flex items-center gap-6">
@@ -256,7 +242,7 @@ export default function DidatticaPage() {
                       <p className="text-[10px] font-bold text-[#7C7A77]">Soglia: {corso.soglia}%</p>
                     </div>
                     <div className="flex flex-col gap-2">
-                       <Button className="rounded-xl font-bold bg-[#1A1917] text-white">Materiali</Button>
+                       <Button className="rounded-xl font-bold bg-[#1A1917] text-white shadow-none">Materiali</Button>
                     </div>
                   </div>
                 </AccordionContent>
@@ -287,7 +273,7 @@ export default function DidatticaPage() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
               {[{ step: 1, label: "Titolo", status: "completed" }, { step: 2, label: "Draft", status: "active" }, { step: 3, label: "Approvazione", status: "pending" }, { step: 4, label: "Prenotazione", status: "pending" }].map((s) => (
                 <div key={s.step} className="flex flex-col items-center md:items-start gap-4">
-                  <div className={cn("h-12 w-12 rounded-2xl flex items-center justify-center border-4 border-white transition-all", s.status === "completed" ? "bg-[#1A1917] text-white" : s.status === "active" ? "bg-white border-[#1A1917] text-[#1A1917]" : "bg-[#F1EFE9] text-[#7C7A77]")}>
+                  <div className={cn("h-12 w-12 rounded-2xl flex items-center justify-center border-4 border-white transition-all shadow-none", s.status === "completed" ? "bg-[#1A1917] text-white" : s.status === "active" ? "bg-white border-[#1A1917] text-[#1A1917]" : "bg-[#F1EFE9] text-[#7C7A77]")}>
                     {s.status === "completed" ? <FileCheck className="h-5 w-5" /> : s.step}
                   </div>
                   <h5 className="font-bold text-[#1A1917]">{s.label}</h5>
