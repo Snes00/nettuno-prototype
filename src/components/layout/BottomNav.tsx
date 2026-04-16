@@ -38,9 +38,9 @@ export function BottomNav() {
 
   return (
     <>
-      {/* Mobile Bottom Nav - Borderless */}
-      <nav className="fixed bottom-0 left-0 right-0 z-50 flex h-20 items-center justify-around bg-white md:hidden px-4">
-        <div className="flex w-full h-14 items-center justify-around bg-white border-none rounded-full px-2 shadow-none">
+      {/* Mobile Bottom Nav - Borderless & Adaptive */}
+      <nav className="fixed bottom-0 left-0 right-0 z-50 flex h-20 items-center justify-around bg-background md:hidden px-4">
+        <div className="flex w-full h-14 items-center justify-around bg-card border-none rounded-full px-2 shadow-none transition-colors">
           {items.map((item) => {
             const Icon = item.icon;
             const isActive = pathname === item.href;
@@ -51,7 +51,7 @@ export function BottomNav() {
                 href={item.href}
                 className={cn(
                   "flex items-center justify-center h-10 w-10 rounded-full transition-all",
-                  isActive ? "bg-[#1A1917] text-white scale-110" : "text-[#1A1917]/30 hover:text-[#1A1917]"
+                  isActive ? "bg-foreground text-background scale-110" : "text-muted-foreground hover:text-foreground"
                 )}
               >
                 <Icon className={cn("h-5 w-5", isActive && "stroke-[2.5px]")} />
@@ -61,8 +61,8 @@ export function BottomNav() {
         </div>
       </nav>
 
-      {/* Desktop Sidebar - Borderless Mode */}
-      <nav className="hidden fixed left-6 top-28 bottom-6 w-24 md:w-72 bg-white border-none rounded-[1.5rem] md:flex flex-col p-6 gap-2 z-[60] transition-all shadow-none">
+      {/* Desktop Sidebar - Borderless & Adaptive Mode */}
+      <nav className="hidden fixed left-6 top-28 bottom-6 w-24 md:w-72 bg-card border-none rounded-[1.5rem] md:flex flex-col p-6 gap-2 z-[60] transition-all shadow-none">
         <div className="space-y-3">
           {items.map((item) => {
             const Icon = item.icon;
@@ -75,8 +75,8 @@ export function BottomNav() {
                 className={cn(
                   "group flex items-center justify-center md:justify-start gap-4 px-4 py-5 rounded-2xl transition-all",
                   isActive 
-                    ? "bg-[#1A1917] text-white font-bold" 
-                    : "text-[#1A1917]/40 hover:bg-[#F1EFE9] hover:text-[#1A1917]"
+                    ? "bg-foreground text-background font-bold" 
+                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
                 )}
               >
                 <Icon className={cn("h-6 w-6 shrink-0 transition-transform group-hover:scale-110", isActive && "stroke-[2.5px]")} />
@@ -86,15 +86,15 @@ export function BottomNav() {
           })}
         </div>
         
-        <div className="mt-auto hidden md:block p-8 rounded-2xl bg-[#F8F5F0] border-none">
+        <div className="mt-auto hidden md:block p-8 rounded-2xl bg-muted/50 border-none transition-colors">
            <div className="flex justify-between items-center mb-4">
-              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#1A1917]/30">Progresso</p>
-              <span className="text-[10px] text-[#1A1917] font-black">23%</span>
+              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">Progresso</p>
+              <span className="text-[10px] text-foreground font-black">23%</span>
            </div>
-           <div className="h-2 w-full bg-white rounded-full overflow-hidden border-none shadow-none">
-              <div className="h-full w-[23%] bg-[#1A1917]" />
+           <div className="h-2 w-full bg-background rounded-full overflow-hidden border-none shadow-none">
+              <div className="h-full w-[23%] bg-foreground" />
            </div>
-           <p className="text-[10px] text-[#1A1917]/50 mt-4 font-bold uppercase tracking-tight">42 / 180 CFU</p>
+           <p className="text-[10px] text-muted-foreground mt-4 font-bold uppercase tracking-tight opacity-50">42 / 180 CFU</p>
         </div>
       </nav>
     </>
