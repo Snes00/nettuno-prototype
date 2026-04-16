@@ -5,17 +5,18 @@ import {
   MapPin, 
   ChevronRight,
   Calendar,
-  Bell
+  Bell,
+  ArrowRight
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { QuickActions } from "@/components/dashboard/QuickActions";
 import { cn } from "@/lib/utils";
 
 const AVVISI = [
-  { id: 1, titolo: "Lezione annullata", descrizione: "La lezione di Anatomia Artistica è annullata per domani.", colore: "text-[#991b1b]", bg: "bg-[#FEE2E2]", iconBg: "bg-[#991b1b]/10", icon: AlertCircle },
-  { id: 2, titolo: "Tassa in scadenza", descrizione: "Seconda rata in scadenza il 30 Aprile. Regolarizza subito.", colore: "text-amber-700", bg: "bg-amber-50", iconBg: "bg-amber-100", icon: Bell },
-  { id: 3, titolo: "Variazione Aula", descrizione: "Pittura I si terrà in Aula 4 invece che in Aula Magna.", colore: "text-blue-700", bg: "bg-blue-50", iconBg: "bg-blue-100", icon: MapPin },
-  { id: 4, titolo: "Seminario Erasmus", descrizione: "Incontro informativo per borse 2026/27, ore 15:00.", colore: "text-purple-700", bg: "bg-purple-50", iconBg: "bg-purple-100", icon: Calendar },
+  { id: 1, titolo: "Lezione annullata", descrizione: "Anatomia Artistica annullata per domani.", ora: "10:30", icon: AlertCircle, color: "text-red-600" },
+  { id: 2, titolo: "Tassa in scadenza", descrizione: "Seconda rata entro il 30 Aprile.", ora: "Ieri", icon: Bell, color: "text-amber-600" },
+  { id: 3, titolo: "Variazione Aula", descrizione: "Pittura I spostata in Aula 4.", ora: "2gg fa", icon: MapPin, color: "text-blue-600" },
+  { id: 4, titolo: "Seminario Erasmus", descrizione: "Incontro informativo ore 15:00.", ora: "12 Apr", icon: Calendar, color: "text-purple-600" },
 ];
 
 export default function DashboardPage() {
@@ -51,9 +52,9 @@ export default function DashboardPage() {
                    <span className="flex items-center gap-1.5"><MapPin className="h-4 w-4" /> Aula Magno</span>
                 </div>
              </div>
-             <Button className="bg-[#166534] text-white rounded-full px-8 h-14 font-bold shadow-none hover:bg-[#166534]/90">
+             <button className="bg-[#166534] text-white rounded-full px-8 h-14 font-bold shadow-none hover:bg-[#166534]/90 transition-all active:scale-95">
                 Prendi Presenza
-             </Button>
+             </button>
           </div>
         </div>
 
@@ -65,22 +66,52 @@ export default function DashboardPage() {
            <QuickActions />
         </div>
 
-        {/* Sezione Avvisi - Griglia 2x2 su mobile/tablet, lista su desktop */}
-        <div className="md:col-span-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-           {AVVISI.map((avviso) => (
-             <div key={avviso.id} className={cn("rounded-[2rem] p-6 flex flex-col gap-4 transition-all hover:scale-[1.02]", avviso.bg)}>
-                <div className="flex items-center justify-between">
-                   <div className={cn("h-10 w-10 rounded-full flex items-center justify-center", avviso.iconBg)}>
-                      <avviso.icon className={cn("h-5 w-5", avviso.colore)} />
-                   </div>
-                   <span className="text-[10px] font-bold uppercase tracking-widest opacity-40">Oggi</span>
-                </div>
-                <div>
-                   <h3 className={cn("font-bold text-lg leading-tight mb-1", avviso.colore)}>{avviso.titolo}</h3>
-                   <p className={cn("text-xs font-medium opacity-70 leading-relaxed", avviso.colore)}>{avviso.descrizione}</p>
-                </div>
-             </div>
-           ))}
+        {/* Centro Avvisi (Bento Pink) - Contenitore Unico */}
+        <div className="md:col-span-12 bg-[#FEE2E2] rounded-[2.5rem] p-8 flex flex-col gap-6">
+           <div className="flex justify-between items-center px-2">
+              <div className="flex items-center gap-2">
+                 <AlertCircle className="h-5 w-5 text-[#991b1b]" />
+                 <span className="text-[10px] font-black uppercase tracking-widest text-[#991b1b]/60">Centro Avvisi</span>
+              </div>
+              <Badge className="bg-[#991b1b] text-white border-none rounded-full px-3">4 nuovi</Badge>
+           </div>
+
+           <div className="bg-white/40 rounded-[1.5rem] overflow-hidden">
+              <table className="w-full text-left border-collapse">
+                 <thead>
+                    <tr className="border-b border-[#991b1b]/5 text-[10px] font-black uppercase tracking-widest text-[#991b1b]/40">
+                       <th className="px-6 py-4 font-black">Avviso</th>
+                       <th className="px-6 py-4 font-black hidden md:table-cell">Dettaglio</th>
+                       <th className="px-6 py-4 font-black text-right">Data</th>
+                    </tr>
+                 </thead>
+                 <tbody>
+                    {AVVISI.map((avviso) => (
+                       <tr key={avviso.id} className="group cursor-pointer hover:bg-white/40 transition-colors border-b border-[#991b1b]/5 last:border-0">
+                          <td className="px-6 py-4">
+                             <div className="flex items-center gap-3">
+                                <avviso.icon className={cn("h-4 w-4", avviso.color)} />
+                                <span className="font-bold text-[#991b1b] text-sm md:text-base">{avviso.titolo}</span>
+                             </div>
+                          </td>
+                          <td className="px-6 py-4 hidden md:table-cell">
+                             <span className="text-sm text-[#991b1b]/60 font-medium">{avviso.descrizione}</span>
+                          </td>
+                          <td className="px-6 py-4 text-right">
+                             <span className="text-xs font-bold text-[#991b1b]/40">{avviso.ora}</span>
+                          </td>
+                       </tr>
+                    ))}
+                 </tbody>
+              </table>
+           </div>
+
+           <div className="flex justify-center md:justify-end mt-2">
+              <Button className="rounded-full bg-[#991b1b] text-white hover:bg-[#991b1b]/90 font-bold px-8 h-12 gap-2 shadow-none">
+                 Vedi tutti gli avvisi (12)
+                 <ArrowRight className="h-4 w-4" />
+              </Button>
+           </div>
         </div>
 
       </div>
