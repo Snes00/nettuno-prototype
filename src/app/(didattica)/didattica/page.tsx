@@ -27,16 +27,26 @@ import { Button } from "@/components/ui/button"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { cn } from "@/lib/utils"
 
-// Mock Data per il Calendario
+// Mock Data Evoluti per il Calendario
 const DAYS_OF_WEEK = ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom"];
 const CURRENT_MONTH = "Aprile 2026";
-const CALENDAR_DAYS = Array.from({ length: 30 }, (_, i) => ({
-  day: i + 1,
-  events: i === 14 ? ['vacanza'] : i === 21 ? ['esame'] : [1, 5, 8, 12, 19, 25].includes(i) ? ['lezione'] : []
-}));
+
+const EVENTI_CALENDARIO: Record<number, { tipo: 'lezione' | 'esame' | 'vacanza' | 'nota', titolo: string, dettagli: string, icona: any, colorClass: string, bgClass: string, textClass: string }> = {
+  1: { tipo: 'lezione', titolo: "Pittura I", dettagli: "09:00 - 13:00 • Aula Magno", icona: BookOpen, colorClass: "bg-[#DCFCE7]", bgClass: "bg-[#DCFCE7]", textClass: "text-[#166534]" },
+  5: { tipo: 'lezione', titolo: "Anatomia Artistica", dettagli: "11:00 - 14:00 • Aula 4", icona: BookOpen, colorClass: "bg-[#DCFCE7]", bgClass: "bg-[#DCFCE7]", textClass: "text-[#166534]" },
+  6: { tipo: 'vacanza', titolo: "Pasquetta", dettagli: "Sospensione Didattica", icona: CalendarIcon, colorClass: "bg-[#FEF9C3]", bgClass: "bg-[#FEF9C3]", textClass: "text-amber-700" },
+  8: { tipo: 'lezione', titolo: "Estetica", dettagli: "14:00 - 17:00 • Aula Magna", icona: BookOpen, colorClass: "bg-[#DCFCE7]", bgClass: "bg-[#DCFCE7]", textClass: "text-[#166534]" },
+  12: { tipo: 'lezione', titolo: "Pittura I", dettagli: "09:00 - 13:00 • Aula Magno", icona: BookOpen, colorClass: "bg-[#DCFCE7]", bgClass: "bg-[#DCFCE7]", textClass: "text-[#166534]" },
+  15: { tipo: 'lezione', titolo: "Tecniche Incisione", dettagli: "10:00 - 13:00 • Lab 2", icona: BookOpen, colorClass: "bg-[#DCFCE7]", bgClass: "bg-[#DCFCE7]", textClass: "text-[#166534]" },
+  16: { tipo: 'nota', titolo: "Revisione Progetto", dettagli: "Incontro Prof. Rossi ore 15:00", icona: Plus, colorClass: "bg-[#DBEAFE]", bgClass: "bg-[#DBEAFE]", textClass: "text-blue-700" },
+  22: { tipo: 'esame', titolo: "Esame Anatomia", dettagli: "Appello Scritto • Aula 4", icona: GraduationCap, colorClass: "bg-[#F3E8FF]", bgClass: "bg-[#F3E8FF]", textClass: "text-[#7c3aed]" },
+  25: { tipo: 'vacanza', titolo: "Festa Liberazione", dettagli: "Accademia Chiusa", icona: CalendarIcon, colorClass: "bg-[#FEF9C3]", bgClass: "bg-[#FEF9C3]", textClass: "text-amber-700" },
+};
 
 export default function DidatticaPage() {
   const [selectedDay, setSelectedDay] = React.useState(16);
+
+  const eventoDelGiorno = EVENTI_CALENDARIO[selectedDay];
 
   return (
     <div className="flex flex-col gap-10 pb-16 animate-in fade-in duration-500">
@@ -56,9 +66,10 @@ export default function DidatticaPage() {
           <TabsTrigger value="calendario" className="rounded-full px-6 font-bold data-[state=active]:bg-[#1A1917] data-[state=active]:text-white">Calendario</TabsTrigger>
         </TabsList>
 
+        {/* CONTENUTI CORSI, ESAMI, TESI (Invariati per brevità ma preservati) */}
         <TabsContent value="corsi" className="space-y-8 mt-0 focus-visible:outline-none">
-          {/* Riepilogo Presenze Generale (Bento Purple) */}
-          <div className="bg-[#F3E8FF] rounded-[2.5rem] p-8 flex flex-col md:flex-row gap-8 items-center justify-between border-none">
+           {/* ... Contenuto Corsi già implementato ... */}
+           <div className="bg-[#F3E8FF] rounded-[2.5rem] p-8 flex flex-col md:flex-row gap-8 items-center justify-between border-none">
             <div className="flex items-center gap-6">
               <div className="h-16 w-16 rounded-full bg-[#7c3aed]/10 flex items-center justify-center shrink-0">
                 <History className="h-8 w-8 text-[#7c3aed]" />
@@ -246,11 +257,11 @@ export default function DidatticaPage() {
             </div>
           </div>
         </TabsContent>
-        
+
         <TabsContent value="calendario" className="mt-0 focus-visible:outline-none">
            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-              {/* Calendario Principale (Bento White) */}
-              <div className="lg:col-span-8 bg-white border border-[#E5E2DA] rounded-[2.5rem] p-8 space-y-8 shadow-none">
+              {/* Calendario "Pallini" (Bento White) */}
+              <div className="lg:col-span-8 bg-white border border-[#E5E2DA] rounded-[2.5rem] p-8 space-y-10 shadow-none">
                  <div className="flex items-center justify-between">
                     <h2 className="text-2xl font-bold tracking-tight text-[#1A1917]">{CURRENT_MONTH}</h2>
                     <div className="flex gap-2">
@@ -263,86 +274,102 @@ export default function DidatticaPage() {
                     </div>
                  </div>
 
-                 <div className="grid grid-cols-7 gap-1">
+                 <div className="grid grid-cols-7 gap-2 md:gap-4">
                     {DAYS_OF_WEEK.map((d) => (
                        <div key={d} className="text-center text-[10px] font-black uppercase tracking-widest text-[#4A4947]/40 py-2">
                           {d}
                        </div>
                     ))}
-                    {/* Spazi vuoti per l'inizio del mese (es: Aprile 2026 inizia di Mercoledì = 2 spazi vuoti) */}
+                    {/* Padding per l'inizio del mese */}
                     <div className="aspect-square" />
                     <div className="aspect-square" />
                     
-                    {CALENDAR_DAYS.map((d) => (
-                       <button
-                          key={d.day}
-                          onClick={() => setSelectedDay(d.day)}
-                          className={cn(
-                             "aspect-square relative rounded-2xl flex items-center justify-center transition-all group",
-                             selectedDay === d.day ? "bg-[#1A1917] text-white" : "hover:bg-[#F1EFE9] text-[#1A1917]"
-                          )}
-                       >
-                          <span className="text-sm font-bold">{d.day}</span>
-                          <div className="absolute bottom-2 flex gap-1">
-                             {d.events.includes('lezione') && <div className={cn("h-1 w-1 rounded-full", selectedDay === d.day ? "bg-emerald-400" : "bg-[#166534]")} />}
-                             {d.events.includes('esame') && <div className={cn("h-1 w-1 rounded-full", selectedDay === d.day ? "bg-purple-400" : "bg-[#7c3aed]")} />}
-                             {d.events.includes('vacanza') && <div className={cn("h-1 w-1 rounded-full", selectedDay === d.day ? "bg-amber-400" : "bg-amber-500")} />}
-                          </div>
-                       </button>
-                    ))}
+                    {Array.from({ length: 30 }, (_, i) => i + 1).map((day) => {
+                       const evento = EVENTI_CALENDARIO[day];
+                       const isSelected = selectedDay === day;
+                       
+                       return (
+                          <button
+                             key={day}
+                             onClick={() => setSelectedDay(day)}
+                             className={cn(
+                                "aspect-square rounded-full flex items-center justify-center transition-all relative border-2",
+                                isSelected 
+                                   ? "bg-[#1A1917] border-[#1A1917] text-white scale-110 z-10 shadow-lg" 
+                                   : evento 
+                                      ? `${evento.bgClass} border-transparent ${evento.textClass}` 
+                                      : "bg-white border-[#F1EFE9] text-[#1A1917] hover:border-[#1A1917]/20"
+                             )}
+                          >
+                             <span className="text-sm font-bold tracking-tighter">{day}</span>
+                          </button>
+                       );
+                    })}
+                 </div>
+
+                 {/* Legenda Pallini */}
+                 <div className="flex flex-wrap gap-6 pt-6 border-t border-[#F1EFE9]">
+                    <div className="flex items-center gap-2">
+                       <div className="h-3 w-3 rounded-full bg-[#DCFCE7]" />
+                       <span className="text-[10px] font-bold uppercase tracking-widest text-[#4A4947]/60">Lezione</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                       <div className="h-3 w-3 rounded-full bg-[#F3E8FF]" />
+                       <span className="text-[10px] font-bold uppercase tracking-widest text-[#4A4947]/60">Esame</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                       <div className="h-3 w-3 rounded-full bg-[#FEF9C3]" />
+                       <span className="text-[10px] font-bold uppercase tracking-widest text-[#4A4947]/60">Vacanza</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                       <div className="h-3 w-3 rounded-full bg-[#DBEAFE]" />
+                       <span className="text-[10px] font-bold uppercase tracking-widest text-[#4A4947]/60">Nota</span>
+                    </div>
                  </div>
               </div>
 
               {/* Dettagli Giorno (Bento Yellow) */}
-              <div className="lg:col-span-4 bg-[#FEF9C3] rounded-[2.5rem] p-8 flex flex-col gap-8 border-none">
+              <div className="lg:col-span-4 bg-[#FEF9C3] rounded-[2.5rem] p-8 flex flex-col gap-8 border-none min-h-[400px]">
                  <div className="space-y-1">
                     <span className="text-[10px] font-black uppercase tracking-widest text-amber-700/60">Giorno Selezionato</span>
                     <h3 className="text-3xl font-bold tracking-tight text-amber-700">{selectedDay} Aprile 2026</h3>
                  </div>
 
-                 <div className="space-y-4">
-                    {selectedDay === 16 ? (
-                       <div className="bg-white/40 rounded-2xl p-6 flex flex-col gap-4">
-                          <div className="flex items-center gap-3">
-                             <div className="h-8 w-8 rounded-xl bg-[#166534]/10 flex items-center justify-center">
-                                <BookOpen className="h-4 w-4 text-[#166534]" />
+                 <div className="flex-1 flex flex-col gap-4">
+                    {eventoDelGiorno ? (
+                       <div className="bg-white/60 rounded-3xl p-6 flex flex-col gap-6 animate-in slide-in-from-bottom-2 duration-300">
+                          <div className="flex items-center gap-4">
+                             <div className={cn("h-12 w-12 rounded-2xl flex items-center justify-center shrink-0", eventoDelGiorno.bgClass)}>
+                                <eventoDelGiorno.icona className={cn("h-6 w-6", eventoDelGiorno.textClass)} />
                              </div>
                              <div>
-                                <p className="text-sm font-bold text-amber-900">Pittura I</p>
-                                <p className="text-xs text-amber-800/60">09:00 - 13:00 • Aula Magno</p>
+                                <p className={cn("text-xs font-black uppercase tracking-widest opacity-60", eventoDelGiorno.textClass)}>
+                                   {eventoDelGiorno.tipo}
+                                </p>
+                                <h4 className="text-xl font-bold text-amber-950 leading-tight">{eventoDelGiorno.titolo}</h4>
                              </div>
                           </div>
-                          <div className="h-px bg-amber-900/5 w-full" />
-                          <div className="flex items-center gap-3">
-                             <div className="h-8 w-8 rounded-xl bg-purple-500/10 flex items-center justify-center">
-                                <AlertCircle className="h-4 w-4 text-purple-600" />
+                          
+                          <div className="space-y-4">
+                             <div className="h-px bg-amber-900/10 w-full" />
+                             <div className="flex items-center gap-2 text-sm font-bold text-amber-900/80">
+                                <Clock className="h-4 w-4 opacity-40" />
+                                {eventoDelGiorno.dettagli}
                              </div>
-                             <div>
-                                <p className="text-sm font-bold text-amber-900">Consegna Draft Tesi</p>
-                                <p className="text-xs text-amber-800/60">Entro le ore 23:59</p>
-                             </div>
-                          </div>
-                       </div>
-                    ) : selectedDay === 22 ? (
-                       <div className="bg-white/40 rounded-2xl p-6 flex items-center gap-3">
-                          <div className="h-8 w-8 rounded-xl bg-red-500/10 flex items-center justify-center">
-                             <CalendarIcon className="h-4 w-4 text-red-600" />
-                          </div>
-                          <div>
-                             <p className="text-sm font-bold text-amber-900">Appello d'Esame</p>
-                             <p className="text-xs text-amber-800/60">Anatomia Artistica • Aula 4</p>
                           </div>
                        </div>
                     ) : (
-                       <div className="bg-white/40 rounded-2xl p-10 flex flex-col items-center text-center gap-4 opacity-60 italic">
-                          <CalendarIcon className="h-8 w-8 text-amber-700/40" />
-                          <p className="text-sm font-bold text-amber-900/60">Nessun evento previsto</p>
+                       <div className="flex-1 flex flex-col items-center justify-center text-center p-10 gap-4 opacity-40">
+                          <div className="h-20 w-20 rounded-full border-2 border-dashed border-amber-900/20 flex items-center justify-center">
+                             <CalendarIcon className="h-8 w-8 text-amber-900" />
+                          </div>
+                          <p className="text-sm font-bold text-amber-900 uppercase tracking-widest">Libero</p>
                        </div>
                     )}
                  </div>
 
-                 <Button className="mt-auto w-full bg-amber-600 text-white rounded-full h-12 font-bold shadow-none hover:bg-amber-700 gap-2">
-                    <Plus className="h-4 w-4" /> Aggiungi Nota
+                 <Button className="w-full bg-amber-600 text-white rounded-full h-14 font-bold shadow-none hover:bg-amber-700 gap-2">
+                    <Plus className="h-5 w-5" /> Aggiungi Nota
                  </Button>
               </div>
            </div>
