@@ -8,38 +8,38 @@ import Link from "next/link";
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background transition-all">
-      <div className="container flex h-16 items-center justify-between px-6 md:px-12">
-        <div className="flex items-center gap-2">
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center transition-transform">
-               <Sparkles className="h-4 w-4 text-primary-foreground" />
+    <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-md transition-all">
+      <div className="max-w-[1280px] mx-auto flex h-20 items-center justify-between px-6 md:px-8">
+        <div className="flex items-center gap-4">
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="h-10 w-10 rounded-xl bg-primary flex items-center justify-center transition-transform group-hover:rotate-12">
+               <Sparkles className="h-5 w-5 text-primary-foreground" />
             </div>
-            <span className="text-xl md:text-2xl font-bold tracking-tight">
+            <span className="text-2xl font-black tracking-tighter">
               Nettuno
             </span>
           </Link>
         </div>
 
-        <div className="hidden flex-1 items-center justify-center px-10 md:flex">
-          <div className="relative w-full max-w-lg">
-            <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+        <div className="hidden flex-1 items-center justify-center px-12 md:flex">
+          <div className="relative w-full max-w-xl">
+            <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground/60" />
             <Input
-              placeholder="Cerca qualsiasi cosa..."
-              className="w-full pl-12 h-10 bg-muted border-none rounded-lg focus-visible:ring-1 focus-visible:ring-primary transition-all"
+              placeholder="Cerca esami, materiali, avvisi..."
+              className="w-full pl-12 h-12 bg-muted border-none rounded-xl focus-visible:ring-1 focus-visible:ring-primary transition-all font-medium"
             />
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
-          <Button variant="ghost" size="icon" className="md:hidden rounded-lg">
+        <div className="flex items-center gap-3">
+          <Button variant="ghost" size="icon" className="md:hidden rounded-xl h-11 w-11">
             <Search className="h-5 w-5" />
           </Button>
-          <Button variant="ghost" size="icon" className="relative rounded-lg">
+          <Button variant="ghost" size="icon" className="relative rounded-xl h-11 w-11 hover:bg-muted">
             <Bell className="h-5 w-5" />
-            <span className="absolute top-2.5 right-2.5 h-2 w-2 rounded-full bg-primary border-2 border-background"></span>
+            <span className="absolute top-3 right-3 h-2 w-2 rounded-full bg-primary border-2 border-background"></span>
           </Button>
-          <div className="h-6 w-px bg-border mx-1 hidden sm:block" />
+          <div className="h-8 w-px bg-border mx-2 hidden sm:block" />
           <SettingsDialog />
         </div>
       </div>

@@ -39,14 +39,24 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
+  
+  /* Pixel-Perfect Radius Geometry (8-Point Grid) */
+  --radius: 2.5rem;          /* Outer R: 40px */
+  --radius-inner: 1rem;      /* Inner R: 16px (Outer - Padding 24px) */
+  
+  --radius-sm: calc(var(--radius-inner) * 0.5);
+  --radius-md: var(--radius-inner);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) * 1.5);
   --radius-2xl: calc(var(--radius) * 2);
   --radius-3xl: calc(var(--radius) * 3);
   
   --shadow-none: none;
+
+  /* Spacing Scale (8-Point Grid) */
+  --spacing-safe: 2rem;      /* 32px Side Margins */
+  --spacing-gutter: 1.5rem;  /* 24px Gutter */
+  --spacing-bento: 2rem;     /* 32px Bento Padding */
 }
 
 :root {
@@ -75,8 +85,6 @@
   --border: #E5E2DA;
   --input: #E5E2DA;
   --ring: #1A1917;
-  
-  --radius: 1.5rem;          /* Very rounded corners */
 
   /* Bento Specific Colors */
   --bento-pink: #FEE2E2;     /* Tasse */
@@ -126,6 +134,10 @@
 
 @layer components {
   .bento-card {
-    @apply rounded-[2rem] p-8 border-none flex flex-col justify-between transition-all duration-300 hover:scale-[1.01];
+    @apply rounded-[var(--radius)] p-[var(--spacing-bento)] border-none flex flex-col justify-between transition-all duration-300 hover:scale-[1.01];
+  }
+  
+  .bento-inner-card {
+    @apply rounded-[var(--radius-inner)] p-6;
   }
 }

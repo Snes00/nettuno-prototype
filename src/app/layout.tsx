@@ -34,10 +34,11 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          <div className="relative flex min-h-screen flex-col">
+          <div className="relative flex min-h-screen flex-col overflow-x-hidden">
             <Header />
             <div className="flex-1 md:pl-72 transition-all">
-              <main className="container pb-32 pt-6 px-6 md:pb-8 md:px-12">
+              {/* Main Container: 12-Column Layout, Max-Width 1280px, Centered */}
+              <main className="max-w-[1280px] mx-auto pb-32 pt-10 px-6 md:pb-12 md:px-8">
                 {children}
               </main>
             </div>
