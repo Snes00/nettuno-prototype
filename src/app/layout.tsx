@@ -38,7 +38,7 @@ export default function RootLayout({
             <Header />
             <div className="flex-1 md:pl-72 transition-all">
               {/* Main Container: 12-Column Layout, Max-Width 1280px, Centered */}
-              <main className="max-w-[1280px] mx-auto pb-32 pt-10 px-6 md:pb-12 md:px-8">
+              <main className="max-w-[1280px] mx-auto pb-32 pt-32 px-6 md:pb-12 md:px-8">
                 {children}
               </main>
             </div>

@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-none bg-background transition-all h-24 flex items-center">
+    <header className="fixed top-0 left-0 right-0 z-50 w-full border-none bg-background transition-all h-24 flex items-center">
       <div className="w-full flex items-center justify-between px-6 md:px-10"> 
         
         {/* Logo - Floating on background */}
