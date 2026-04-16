@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 
 const items = [
   {
-    label: "Home",
+    label: "Dashboard",
     href: "/",
     icon: Home,
   },
@@ -17,7 +17,7 @@ const items = [
     icon: BookOpen,
   },
   {
-    label: "Admin",
+    label: "Amministrazione",
     href: "/amministrazione",
     icon: FolderOpen,
   },
@@ -27,7 +27,7 @@ const items = [
     icon: Mail,
   },
   {
-    label: "Profilo",
+    label: "Area Personale",
     href: "/area-personale",
     icon: User,
   },
