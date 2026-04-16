@@ -23,7 +23,6 @@ const AVVISI = [
 export default function DashboardPage() {
   return (
     <div className="flex flex-col gap-8 animate-in fade-in duration-500">
-      {/* Intestazione */}
       <section className="space-y-1">
         <h1 className="text-4xl md:text-5xl font-black tracking-tighter text-[#1A1917]">Dashboard</h1>
         <p className="text-[#7C7A77] text-base md:text-lg font-medium tracking-tight">
@@ -31,11 +30,8 @@ export default function DashboardPage() {
         </p>
       </section>
 
-      {/* Grid Bento 12 Colonne */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-        
-        {/* Lezione Imminente (Bento Green) */}
-        <div className="md:col-span-8 bg-[#DCFCE7] rounded-[1.5rem] p-8 md:p-10 min-h-[320px] flex flex-col justify-between group">
+        <div className="md:col-span-8 bg-[#DCFCE7] rounded-[1.5rem] p-8 md:p-10 min-h-[320px] flex flex-col justify-between group border-none shadow-none">
           <div className="flex justify-between items-start">
              <div className="space-y-1">
                 <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#166534]/60">Lezione Imminente</span>
@@ -49,8 +45,8 @@ export default function DashboardPage() {
              <div className="space-y-2 w-full">
                 <p className="text-lg font-bold text-[#166534]">Prof. Alessandro Rossi</p>
                 <div className="flex flex-wrap gap-4 text-sm font-bold text-[#166534]/70">
-                   <span className="flex items-center gap-2"><Clock className="h-4 w-4" /> 09:00 - 13:00</span>
-                   <span className="flex items-center gap-2"><MapPin className="h-4 w-4" /> Aula Magno</span>
+                   <span className="flex items-center gap-2 bg-white/30 px-3 py-1.5 rounded-xl"><Clock className="h-4 w-4" /> 09:00 - 13:00</span>
+                   <span className="flex items-center gap-2 bg-white/30 px-3 py-1.5 rounded-xl"><MapPin className="h-4 w-4" /> Aula Magno</span>
                 </div>
              </div>
              <button className="w-full md:w-auto bg-[#166534] text-white rounded-xl px-8 h-12 font-black text-base shadow-none hover:bg-[#166534]/90 transition-all active:scale-95 shrink-0">
@@ -59,17 +55,15 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* Azioni Rapide (Bento White) */}
-        <div className="md:col-span-4 bg-white border border-[#E5E2DA] rounded-[1.5rem] p-8 md:p-10 flex flex-col gap-6">
-           <div className="flex justify-between items-center">
+        <div className="md:col-span-4 bg-white rounded-[1.5rem] p-8 md:p-10 flex flex-col gap-6 border-none shadow-none">
+           <div className="flex justify-between items-center px-1">
               <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#4A4947]">Azioni Rapide</span>
            </div>
            <QuickActions />
         </div>
 
-        {/* Centro Avvisi (Bento Pink) */}
-        <div className="md:col-span-12 bg-[#FEE2E2] rounded-[1.5rem] p-8 md:p-10 flex flex-col gap-6">
-           <div className="flex justify-between items-center px-1">
+        <div className="md:col-span-12 bg-[#FEE2E2] rounded-[1.5rem] p-8 md:p-10 flex flex-col gap-6 border-none shadow-none">
+           <div className="flex justify-between items-center px-2">
               <div className="flex items-center gap-3">
                  <AlertCircle className="h-5 w-5 text-[#991b1b]" />
                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#991b1b]/60">Centro Avvisi</span>
@@ -77,7 +71,7 @@ export default function DashboardPage() {
               <Badge className="bg-[#991b1b] text-white border-none rounded-full px-3 h-7 font-black">4 Nuovi</Badge>
            </div>
 
-           <div className="bg-white/40 rounded-xl overflow-hidden border border-[#991b1b]/5">
+           <div className="bg-white/40 rounded-xl overflow-hidden border-none shadow-none">
               <table className="w-full text-left border-collapse">
                  <thead>
                     <tr className="border-b border-[#991b1b]/5 text-[10px] font-black uppercase tracking-[0.2em] text-[#991b1b]/40">
@@ -111,7 +105,6 @@ export default function DashboardPage() {
               </Button>
            </div>
         </div>
-
       </div>
     </div>
   );

@@ -28,26 +28,26 @@ export function Header() {
             </Link>
           </div>
 
-          {/* Search Bar */}
+          {/* Search Bar - Borderless */}
           <div className="hidden flex-1 items-center justify-end px-12 lg:flex">
             <div className="relative w-full max-w-sm">
               <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#1A1917]/30" />
               <Input
                 placeholder="Cerca..."
-                className="w-full pl-12 h-12 bg-white border border-[#E5E2DA] rounded-2xl focus-visible:ring-2 focus-visible:ring-primary/10 transition-all font-medium text-sm"
+                className="w-full pl-12 h-12 bg-white border-none rounded-2xl focus-visible:ring-2 focus-visible:ring-primary/10 transition-all font-medium text-sm shadow-none"
               />
             </div>
           </div>
 
-          {/* Action Icons */}
+          {/* Action Icons - Borderless */}
           <div className="flex items-center gap-3">
-            <Button variant="ghost" size="icon" className="lg:hidden rounded-2xl h-14 w-14 bg-white border border-[#E5E2DA]">
+            <Button variant="ghost" size="icon" className="lg:hidden rounded-2xl h-14 w-14 bg-white border-none shadow-none">
               <Search className="h-6 w-6" />
             </Button>
             
             <Button 
               variant="ghost" 
-              className="h-14 w-14 rounded-2xl text-[#1A1917]/40 hover:text-[#1A1917] bg-white border border-[#E5E2DA] hover:bg-[#F1EFE9] relative transition-all flex items-center justify-center p-0"
+              className="h-14 w-14 rounded-2xl text-[#1A1917]/40 hover:text-[#1A1917] bg-white border-none hover:bg-[#F1EFE9] relative transition-all flex items-center justify-center p-0 shadow-none"
             >
               <Bell className="h-7 w-7" />
               <span className="absolute top-4 right-4 h-2.5 w-2.5 rounded-full bg-primary border-2 border-white"></span>
@@ -62,7 +62,7 @@ export function Header() {
         </div>
       </div>
 
-      {/* Sfumatura Gradiente (Fade-out) */}
+      {/* Sfumatura Gradiente */}
       <div className="h-16 w-full bg-gradient-to-b from-background to-transparent" />
     </header>
   );
