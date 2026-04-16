@@ -62,7 +62,7 @@ export function BottomNav() {
       </nav>
 
       {/* Desktop Sidebar - Bento White Mode */}
-      <nav className="hidden fixed left-6 top-28 bottom-6 w-24 md:w-72 bg-white border border-[#E5E2DA] rounded-[1.5rem] md:flex flex-col p-6 gap-2 z-40 transition-all shadow-none">
+      <nav className="hidden fixed left-6 top-28 bottom-6 w-24 md:w-72 bg-white border border-[#E5E2DA] rounded-[1.5rem] md:flex flex-col p-6 gap-2 z-[60] transition-all shadow-none">
         <div className="space-y-3">
           {items.map((item) => {
             const Icon = item.icon;
