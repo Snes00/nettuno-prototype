@@ -65,8 +65,8 @@ export function BottomNav() {
         })}
       </nav>
 
-      {/* Desktop Floating Side Dock - Material 3 Style */}
-      <nav className="hidden fixed left-4 top-4 bottom-4 w-64 rounded-[2rem] bg-secondary md:flex flex-col p-6 gap-2 z-40">
+      {/* Desktop Floating Side Dock - Adjusted Top to avoid Header overlap */}
+      <nav className="hidden fixed left-4 top-20 bottom-4 w-64 rounded-[2rem] bg-secondary md:flex flex-col p-6 gap-2 z-40">
         <div className="px-4 py-4 mb-2">
            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/60">Menu Principale</p>
         </div>
