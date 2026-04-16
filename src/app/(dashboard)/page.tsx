@@ -4,9 +4,9 @@ import {
   Clock, 
   MapPin, 
   ChevronRight,
-  ArrowUpRight
+  ArrowUpRight,
+  Plus
 } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { QuickActions } from "@/components/dashboard/QuickActions";
@@ -14,103 +14,92 @@ import { cn } from "@/lib/utils";
 
 export default function DashboardPage() {
   return (
-    <div className="flex flex-col gap-8 pb-12">
-      {/* Intestazione Flat */}
-      <section className="px-1 space-y-1">
-        <h1 className="text-3xl md:text-5xl font-bold tracking-tight">Dashboard</h1>
-        <p className="text-muted-foreground text-base md:text-lg font-medium">
-          Bentvenuto, studente. Ecco cosa succede oggi.
-        </p>
+    <div className="flex flex-col gap-8 pb-12 animate-in fade-in duration-500">
+      {/* Intestazione Bento */}
+      <section className="px-1 flex justify-between items-end">
+        <div className="space-y-1">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-[#1A1917]">Dashboard</h1>
+          <p className="text-[#7C7A77] text-base md:text-lg font-medium">
+            Good morning, Dr. Olivia.
+          </p>
+        </div>
+        <div className="flex gap-2">
+           <Button variant="outline" className="rounded-full h-12 w-12 p-0 bg-white border-none shadow-sm">
+              <Plus className="h-6 w-6" />
+           </Button>
+        </div>
       </section>
 
-      {/* Widget OGGI - Flat Design */}
-      <section className="space-y-4">
-        <div className="flex items-center justify-between px-1">
-          <h2 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Lezione Imminente</h2>
-          <Badge variant="secondary" className="rounded-md px-3 bg-primary/10 text-primary border-none">In Corso</Badge>
-        </div>
+      {/* Grid Bento Principal */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
         
-        <Card className="relative overflow-hidden rounded-2xl border bg-primary text-primary-foreground shadow-none">
-          <CardHeader className="p-6 pb-2">
-            <div className="flex justify-between items-start">
-              <div className="space-y-1">
-                <CardTitle className="text-2xl md:text-4xl font-bold tracking-tight">
-                  Pittura e Arti Visive I
-                </CardTitle>
-                <CardDescription className="text-primary-foreground/80 text-sm md:text-base font-medium">
-                  Prof. Alessandro Rossi
-                </CardDescription>
-              </div>
-              <div className="h-12 w-12 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
-                <BookOpen className="h-6 w-6 text-white" />
-              </div>
-            </div>
-          </CardHeader>
-          
-          <CardContent className="p-6 pt-4">
-            <div className="flex flex-wrap gap-4">
-              <div className="flex items-center gap-2 bg-white/10 rounded-lg px-4 py-2">
-                <Clock className="h-4 w-4 text-white/70" />
-                <span className="text-sm font-semibold">09:00 - 13:00</span>
-              </div>
-              <div className="flex items-center gap-2 bg-white/10 rounded-lg px-4 py-2">
-                <MapPin className="h-4 w-4 text-white/70" />
-                <span className="text-sm font-semibold">Aula Magno, Piano 1</span>
-              </div>
-            </div>
-          </CardContent>
-          
-          <CardFooter className="p-6 pt-0">
-            <Button className="w-full bg-white text-primary hover:bg-white/90 font-bold h-12 rounded-xl transition-all shadow-none">
-              Prendi Presenza
-            </Button>
-          </CardFooter>
-        </Card>
-      </section>
-
-      {/* AVVISI e AZIONI RAPIDE */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Avvisi Critici */}
-        <section className="lg:col-span-1 space-y-4">
-          <div className="flex items-center justify-between px-1">
-            <h2 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Avvisi Critici</h2>
+        {/* Card Lezione (Gialla) */}
+        <div className="md:col-span-8 bg-[#FEF9C3] rounded-[2.5rem] p-8 min-h-[320px] flex flex-col justify-between group cursor-pointer transition-all hover:opacity-90">
+          <div className="flex justify-between items-start">
+             <div className="space-y-1">
+                <span className="text-[10px] font-black uppercase tracking-widest text-[#854d0e]/60">Lezione Imminente</span>
+                <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-[#854d0e]">Pittura e Arti <br />Visive I</h2>
+             </div>
+             <div className="h-12 w-12 rounded-full bg-[#854d0e]/10 flex items-center justify-center">
+                <BookOpen className="h-6 w-6 text-[#854d0e]" />
+             </div>
           </div>
-          
-          <div className="flex flex-col gap-3">
-            {[
-              { id: 1, text: "Lezione di Anatomia Artistica annullata per domani.", type: "urgent" },
-              { id: 2, text: "Scadenza rata Tassa Regionale: 20 Aprile.", type: "warning" },
-              { id: 3, text: "Nuovi materiali disponibili per il corso di Fotografia.", type: "info" }
-            ].map((avviso) => (
-              <div key={avviso.id} className="flex gap-4 p-4 rounded-xl border bg-card hover:bg-muted/50 transition-colors group cursor-pointer relative shadow-none">
-                <div className={cn(
-                  "mt-0.5 shrink-0 rounded-lg p-2",
-                  avviso.type === 'urgent' ? 'bg-red-500/10 text-red-600' :
-                  avviso.type === 'warning' ? 'bg-amber-500/10 text-amber-600' :
-                  'bg-blue-500/10 text-blue-600'
-                )}>
-                  <AlertCircle className="h-4 w-4" />
+          <div className="flex items-end justify-between">
+             <div className="space-y-1">
+                <p className="text-lg font-bold text-[#854d0e]">Prof. Alessandro Rossi</p>
+                <div className="flex gap-4 text-sm font-semibold text-[#854d0e]/70">
+                   <span className="flex items-center gap-1.5"><Clock className="h-4 w-4" /> 09:00 - 13:00</span>
+                   <span className="flex items-center gap-1.5"><MapPin className="h-4 w-4" /> Aula Magno</span>
                 </div>
-                <div className="space-y-1">
-                  <p className="text-sm leading-tight font-bold pr-4">{avviso.text}</p>
-                </div>
-                <ChevronRight className="absolute right-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              </div>
-            ))}
-          </div>
-          <Button variant="link" className="px-1 h-auto text-primary font-bold text-xs uppercase tracking-wider">Vedi tutti gli avvisi</Button>
-        </section>
-
-        {/* Azioni Rapide Dinamiche */}
-        <div className="lg:col-span-2 space-y-4">
-          <div className="flex items-center justify-between px-1">
-            <h2 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Azioni Rapide</h2>
-            <ArrowUpRight className="h-4 w-4 text-muted-foreground/40" />
-          </div>
-          <div className="rounded-2xl border bg-muted/20 p-2 shadow-none">
-             <QuickActions />
+             </div>
+             <Button className="bg-[#854d0e] text-white rounded-full px-8 h-14 font-bold shadow-none">
+                Prendi Presenza
+             </Button>
           </div>
         </div>
+
+        {/* Card Status (Rosa) */}
+        <div className="md:col-span-4 bg-[#FEE2E2] rounded-[2.5rem] p-8 flex flex-col justify-between group cursor-pointer hover:opacity-90">
+           <div className="flex justify-between items-start">
+              <span className="text-[10px] font-black uppercase tracking-widest text-[#991b1b]/60">Tasse & Ammin</span>
+              <ArrowUpRight className="h-6 w-6 text-[#991b1b]" />
+           </div>
+           <div className="space-y-1">
+              <p className="text-4xl font-bold text-[#991b1b]">€ 380</p>
+              <p className="text-sm font-bold text-[#991b1b]/70 italic leading-tight">Seconda rata in scadenza <br />il 20 Aprile 2026</p>
+           </div>
+           <Button variant="outline" className="w-full rounded-full border-[#991b1b]/20 text-[#991b1b] font-bold h-12 bg-white/20">
+              Vedi Carriera
+           </Button>
+        </div>
+
+        {/* Card Avvisi (Azzurra) */}
+        <div className="md:col-span-4 bg-[#DBEAFE] rounded-[2.5rem] p-8 flex flex-col gap-6 group cursor-pointer hover:opacity-90">
+           <div className="flex justify-between items-center">
+              <span className="text-[10px] font-black uppercase tracking-widest text-[#1e40af]/60">Avvisi Critici</span>
+              <Badge className="bg-[#1e40af]/10 text-[#1e40af] border-none text-[10px] font-bold">New</Badge>
+           </div>
+           <div className="space-y-4">
+              <p className="text-xl font-bold text-[#1e40af] leading-tight pr-4">Lezione di Anatomia Artistica annullata per domani.</p>
+              <div className="h-px w-full bg-[#1e40af]/10" />
+              <p className="text-sm font-bold text-[#1e40af]/70">Nuovi materiali disponibili per Fotografia.</p>
+           </div>
+           <div className="mt-auto">
+              <span className="text-xs font-bold text-[#1e40af] underline decoration-2 underline-offset-4">Vedi tutti (12)</span>
+           </div>
+        </div>
+
+        {/* Card Quick Actions (Grigia) */}
+        <div className="md:col-span-8 bg-[#FFFFFF] border-none rounded-[2.5rem] p-8 flex flex-col gap-6">
+           <div className="flex justify-between items-center">
+              <span className="text-[10px] font-black uppercase tracking-widest text-[#4A4947]">Azioni Rapide</span>
+              <span className="text-[10px] font-bold text-[#4A4947]/40 uppercase tracking-widest">Personalizza</span>
+           </div>
+           <div className="bg-transparent">
+              <QuickActions />
+           </div>
+        </div>
+
       </div>
     </div>
   );

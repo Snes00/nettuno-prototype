@@ -46,95 +46,86 @@
   --radius-2xl: calc(var(--radius) * 2);
   --radius-3xl: calc(var(--radius) * 3);
   
-  /* Rimozione totale delle ombre */
-  --shadow-premium: none;
-  --shadow-glow: none;
+  --shadow-none: none;
 }
 
 :root {
-  /* Material 3 Light - Tonal Palette */
-  --background: oklch(0.98 0.005 240);    /* Surface */
-  --foreground: oklch(0.15 0.02 240);     /* On Surface */
-  --card: oklch(0.95 0.01 240);           /* Surface Container (Tonal elevation) */
-  --card-foreground: oklch(0.15 0.02 240);
-  --popover: oklch(0.95 0.01 240);
-  --popover-foreground: oklch(0.15 0.02 240);
+  /* Bento Warm Light Palette */
+  --background: #F8F5F0;     /* Warm Paper Background */
+  --foreground: #1A1917;
   
-  --primary: oklch(0.45 0.15 250);        /* Primary */
-  --primary-foreground: oklch(1 0 0);
+  --card: #FFFFFF;
+  --card-foreground: #1A1917;
   
-  --secondary: oklch(0.9 0.02 240);       /* Surface Variant */
-  --secondary-foreground: oklch(0.2 0.02 240);
+  --primary: #1A1917;        /* Solid Black for primary actions */
+  --primary-foreground: #FFFFFF;
   
-  --muted: oklch(0.92 0.01 240);
-  --muted-foreground: oklch(0.45 0.03 240);
+  --secondary: #EBE8E2;      /* Muted Warm Secondary */
+  --secondary-foreground: #4A4947;
   
-  --accent: oklch(0.88 0.04 250);
-  --accent-foreground: oklch(0.2 0.02 240);
+  --muted: #F1EFE9;
+  --muted-foreground: #7C7A77;
   
-  --destructive: oklch(0.55 0.22 25);
-  --destructive-foreground: oklch(1 0 0);
+  --accent: #FFD6E8;         /* Soft Pastel Pink for highlights */
+  --accent-foreground: #1A1917;
   
-  --border: oklch(0.9 0.01 240);          /* Outline */
-  --input: oklch(0.9 0.01 240);
-  --ring: oklch(0.45 0.15 250);
+  --destructive: #FF4D4D;
+  --destructive-foreground: #FFFFFF;
   
-  --radius: 1rem;
+  --border: #E5E2DA;
+  --input: #E5E2DA;
+  --ring: #1A1917;
+  
+  --radius: 1.5rem;          /* Very rounded corners */
 
-  --sidebar: oklch(0.95 0.01 240);        /* Navigation Rail Surface */
-  --sidebar-foreground: oklch(0.15 0.02 240);
-  --sidebar-primary: oklch(0.45 0.15 250);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.9 0.02 240);
-  --sidebar-accent-foreground: oklch(0.2 0.02 240);
-  --sidebar-border: oklch(0.9 0.01 240);
+  /* Bento Specific Colors */
+  --bento-pink: #FEE2E2;     /* Tasse */
+  --bento-green: #DCFCE7;    /* Presenza */
+  --bento-yellow: #FEF9C3;   /* Avvisi */
+  --bento-blue: #DBEAFE;     /* Messaggi */
+  --bento-purple: #F3E8FF;   /* Didattica */
+  
+  --sidebar: #1A1917;        /* Deep Charcoal for Sidebar */
 }
 
 .dark {
-  /* Material 3 Dark - Tonal Palette */
-  --background: oklch(0.1 0.01 240);
-  --foreground: oklch(0.95 0.01 240);
-  --card: oklch(0.15 0.02 240);          /* Tonal elevation for cards */
-  --card-foreground: oklch(0.95 0.01 240);
-  --popover: oklch(0.15 0.02 240);
-  --popover-foreground: oklch(0.95 0.01 240);
+  /* Bento Dark Palette */
+  --background: #0D0D0D;
+  --foreground: #F8F5F0;
   
-  --primary: oklch(0.7 0.12 250);
-  --primary-foreground: oklch(0.1 0.01 240);
+  --card: #141414;
+  --card-foreground: #F8F5F0;
   
-  --secondary: oklch(0.2 0.02 240);
-  --secondary-foreground: oklch(0.95 0.01 240);
+  --primary: #F8F5F0;
+  --primary-foreground: #0D0D0D;
   
-  --muted: oklch(0.2 0.02 240);
-  --muted-foreground: oklch(0.65 0.02 240);
+  --secondary: #1C1C1C;
+  --secondary-foreground: #A1A1AA;
   
-  --accent: oklch(0.25 0.03 250);
-  --accent-foreground: oklch(0.95 0.01 240);
+  --muted: #1C1C1C;
+  --muted-foreground: #71717A;
   
-  --destructive: oklch(0.55 0.18 25);
-  --destructive-foreground: oklch(0.95 0.01 240);
+  --accent: #2A1F2D;
+  --accent-foreground: #F8F5F0;
   
-  --border: oklch(0.25 0.02 240);
-  --input: oklch(0.25 0.02 240);
-  --ring: oklch(0.7 0.12 250);
+  --border: #262626;
+  --input: #262626;
+  --ring: #F8F5F0;
 
-  --sidebar: oklch(0.12 0.015 240);
+  --sidebar: #050505;
 }
 
 @layer base {
   * {
-    @apply border-border/40 selection:bg-primary/20 selection:text-primary shadow-none!;
+    @apply border-border/60 selection:bg-primary/20 selection:text-primary shadow-none!;
   }
   body {
     @apply bg-background text-foreground transition-all duration-300;
   }
-  html {
-    @apply font-sans antialiased;
-  }
 }
 
 @layer components {
-  .touch-target {
-    @apply min-h-[48px] min-w-[48px] flex items-center justify-center;
+  .bento-card {
+    @apply rounded-[2rem] p-8 border-none flex flex-col justify-between transition-all duration-300 hover:scale-[1.01];
   }
 }
