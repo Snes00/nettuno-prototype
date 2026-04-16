@@ -37,7 +37,7 @@ export default function RootLayout({
           <div className="relative flex min-h-screen flex-col">
             <Header />
             <div className="flex-1 md:pl-72 transition-all">
-              <main className="container pb-32 pt-6 md:pb-8 md:px-12">
+              <main className="container pb-32 pt-6 px-6 md:pb-8 md:px-12">
                 {children}
               </main>
             </div>
