@@ -45,7 +45,6 @@ const EVENTI_CALENDARIO: Record<number, Evento[]> = {
   1: [{ tipo: 'lezione', titolo: "Pittura I", dettagli: "Aula Magno", ora: "09:00 - 13:00", icona: BookOpen, colorClass: "text-[#166534] dark:text-foreground", bgClass: "bg-[#DCFCE7] dark:bg-[var(--bento-green)]", textClass: "text-[#166534] dark:text-foreground" }],
   5: [{ tipo: 'lezione', titolo: "Anatomia Artistica", dettagli: "Aula 4", ora: "11:00 - 14:00", icona: BookOpen, colorClass: "text-[#166534] dark:text-foreground", bgClass: "bg-[#DCFCE7] dark:bg-[var(--bento-green)]", textClass: "text-[#166534] dark:text-foreground" }],
   6: [{ tipo: 'vacanza', titolo: "Pasquetta", dettagli: "Sospensione Didattica", ora: "Tutto il giorno", icona: CalendarIcon, colorClass: "text-amber-700 dark:text-foreground", bgClass: "bg-[#FEF9C3] dark:bg-[var(--bento-yellow)]", textClass: "text-amber-700 dark:text-foreground" }],
-  8: [{ tipo: 'lezione', titolo: "Estetica", dettagli: "Aula Magna", ora: "14:00 - 17:00", icona: BookOpen, colorClass: "text-[#166534] dark:text-foreground", bgClass: "bg-[#DCFCE7] dark:bg-[var(--bento-green)]", textClass: "text-[#166534] dark:text-foreground" }],
   16: [
     { tipo: 'lezione', titolo: "Pittura I", dettagli: "Aula Magno", ora: "09:00 - 13:00", icona: BookOpen, colorClass: "text-[#166534] dark:text-foreground", bgClass: "bg-[#DCFCE7] dark:bg-[var(--bento-green)]", textClass: "text-[#166534] dark:text-foreground" },
     { tipo: 'nota', titolo: "Revisione Progetto", dettagli: "Studio Prof. Rossi", ora: "15:30", icona: Plus, colorClass: "text-blue-700 dark:text-foreground", bgClass: "bg-[#DBEAFE] dark:bg-[var(--bento-blue)]", textClass: "text-blue-700 dark:text-foreground" }
@@ -74,8 +73,143 @@ export default function DidatticaPage() {
           <TabsTrigger value="calendario" className="rounded-full px-6 font-bold data-[state=active]:bg-foreground data-[state=active]:text-background">Calendario</TabsTrigger>
         </TabsList>
 
+        {/* Tab CORSI */}
+        <TabsContent value="corsi" className="space-y-8 mt-0 focus-visible:outline-none">
+          <div className="bg-[var(--bento-purple)] rounded-[1.5rem] p-8 flex flex-col md:flex-row gap-8 items-center justify-between border-none transition-colors">
+            <div className="flex items-center gap-6">
+              <div className="h-16 w-16 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+                <History className="h-8 w-8 text-foreground" />
+              </div>
+              <div className="space-y-1">
+                <span className="text-[10px] font-black uppercase tracking-widest opacity-60">Status Presenze</span>
+                <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground leading-none">Sei in regola con la frequenza</h2>
+              </div>
+            </div>
+            <div className="w-full md:w-64 space-y-2">
+              <div className="flex justify-between text-xs font-bold text-foreground">
+                <span>Media presenze</span>
+                <span>84%</span>
+              </div>
+              <Progress value={84} className="h-3 bg-white/10 [&>div]:bg-foreground rounded-full" />
+            </div>
+          </div>
+
+          <Accordion type="single" collapsible className="space-y-4">
+            {[
+              { id: "pittura-1", titolo: "Pittura e Arti Visive I", docenza: "Prof. Alessandro Rossi", presenze: 82, soglia: 75, orario: "Mar 09:00", aula: "Aula Magno" },
+              { id: "anatomia", titolo: "Anatomia Artistica", docenza: "Prof.ssa Elena Bianchi", presenze: 68, soglia: 75, orario: "Mer 11:00", aula: "Aula 4" },
+              { id: "estetica", titolo: "Estetica", docenza: "Prof. Marco Verdi", presenze: 95, soglia: 75, orario: "Gio 14:00", aula: "Teatro" },
+            ].map((corso) => (
+              <AccordionItem key={corso.id} value={corso.id} className="border-none rounded-[1.5rem] bg-card overflow-hidden shadow-none">
+                <AccordionTrigger className="px-8 py-6 hover:no-underline group">
+                  <div className="flex flex-col md:flex-row items-start md:items-center justify-between w-full pr-4 text-left gap-4">
+                    <div className="flex items-center gap-4">
+                      <div className={cn("h-12 w-12 rounded-xl flex items-center justify-center", corso.presenze < corso.soglia ? "bg-red-500/20 text-red-500" : "bg-[var(--bento-green)] text-foreground")}>
+                        <BookOpen className="h-6 w-6" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-lg text-foreground tracking-tight">{corso.titolo}</h4>
+                        <p className="text-xs font-medium text-muted-foreground">{corso.docenza}</p>
+                      </div>
+                    </div>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="px-8 pb-8">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-muted/20">
+                    <div className="space-y-3">
+                      <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Dettagli</p>
+                      <div className="flex items-center gap-2 text-sm font-bold text-foreground"><Clock className="h-4 w-4 opacity-40" /> {corso.orario}</div>
+                      <div className="flex items-center gap-2 text-sm font-bold text-foreground"><MapPin className="h-4 w-4 opacity-40" /> {corso.aula}</div>
+                    </div>
+                    <div className="space-y-3">
+                      <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Monitoraggio</p>
+                      <Progress value={corso.presenze} className="h-2 rounded-full" />
+                      <p className="text-[10px] font-bold text-muted-foreground">Soglia: {corso.soglia}%</p>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                       <Button className="rounded-xl font-black bg-foreground text-background shadow-none">Materiali</Button>
+                    </div>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </TabsContent>
+
+        {/* Tab ESAMI - RIPRISTINATA */}
+        <TabsContent value="esami" className="mt-0 space-y-8 focus-visible:outline-none">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-[var(--bento-green)] rounded-[1.5rem] p-8 flex flex-col justify-between border-none shadow-none min-h-[240px]">
+               <div className="flex justify-between items-start">
+                  <div className="space-y-1">
+                    <span className="text-[10px] font-black uppercase tracking-widest opacity-60">Prossimo Appello</span>
+                    <h2 className="text-3xl font-bold tracking-tight text-foreground leading-tight">Anatomia Artistica</h2>
+                  </div>
+                  <CalendarIcon className="h-7 w-7 text-foreground" />
+               </div>
+               <div className="flex justify-between items-center">
+                  <div className="text-sm font-bold text-foreground opacity-80">22 Aprile • 09:00</div>
+                  <Button className="bg-foreground text-background rounded-full px-8 h-12 font-black shadow-none">Prenotati</Button>
+               </div>
+            </div>
+            <div className="bg-card rounded-[1.5rem] p-8 flex justify-between items-center border-none shadow-none">
+               <div className="space-y-1">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Ultimo Esito</span>
+                  <h2 className="text-3xl font-bold tracking-tight text-foreground">Storia dell'Arte</h2>
+                  <p className="text-xs font-bold text-muted-foreground flex items-center gap-1.5"><CheckCircle2 className="h-3 w-3 text-[var(--bento-green)]" /> Verbalizzato il 12 Mar</p>
+               </div>
+               <div className="h-16 w-16 rounded-full bg-[var(--bento-green)] flex items-center justify-center font-black text-foreground text-2xl">30</div>
+            </div>
+          </div>
+        </TabsContent>
+
+        {/* Tab TESI - RIPRISTINATA */}
+        <TabsContent value="tesi" className="mt-0 focus-visible:outline-none">
+          <div className="bg-card rounded-[1.5rem] p-10 space-y-10 border-none shadow-none">
+            <div className="flex justify-between items-center">
+               <div className="space-y-2">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Status Laurea</span>
+                  <h2 className="text-4xl font-black tracking-tighter text-foreground">Percorso Tesi</h2>
+                  <p className="text-muted-foreground font-medium">Sessione Estiva • Luglio 2026</p>
+               </div>
+               <div className="h-20 w-20 rounded-3xl bg-[var(--bento-purple)] flex items-center justify-center shrink-0">
+                  <GraduationCap className="h-10 w-10 text-foreground" />
+               </div>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+              {[
+                { step: 1, label: "Titolo", status: "completed", desc: "Approvata" },
+                { step: 2, label: "Draft", status: "active", desc: "In corso" },
+                { step: 3, label: "Approvazione", status: "pending", desc: "In attesa" },
+                { step: 4, label: "Prenotazione", status: "pending", desc: "Bloccata" }
+              ].map((s) => (
+                <div key={s.step} className="flex flex-col gap-4">
+                  <div className={cn(
+                    "h-14 w-14 rounded-2xl flex items-center justify-center text-lg font-black transition-all shadow-none",
+                    s.status === "completed" ? "bg-foreground text-background" : 
+                    s.status === "active" ? "bg-[var(--bento-purple)] text-foreground" : 
+                    "bg-muted/50 text-muted-foreground"
+                  )}>
+                    {s.status === "completed" ? <FileCheck className="h-6 w-6" /> : s.step}
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-foreground leading-none mb-1">{s.label}</h5>
+                    <p className="text-[10px] font-bold text-muted-foreground uppercase">{s.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="pt-8 border-t border-muted/20 flex justify-end">
+               <Button className="rounded-full bg-foreground text-background px-10 h-14 font-black shadow-none">Dettagli Burocratici</Button>
+            </div>
+          </div>
+        </TabsContent>
+
+        {/* Tab CALENDARIO */}
         <TabsContent value="calendario" className="mt-0 focus-visible:outline-none">
-           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
               <div className="lg:col-span-8 bg-card rounded-[1.5rem] p-8 space-y-10 border-none shadow-none">
                  <div className="flex items-center justify-between">
                     <h2 className="text-2xl font-bold tracking-tight text-foreground">{CURRENT_MONTH}</h2>
@@ -167,58 +301,6 @@ export default function DidatticaPage() {
                  </Button>
               </div>
            </div>
-        </TabsContent>
-
-        {/* Tab Corsi Dark Mode */}
-        <TabsContent value="corsi" className="space-y-8 mt-0 focus-visible:outline-none">
-          <div className="bg-[var(--bento-purple)] rounded-[1.5rem] p-8 flex flex-col md:flex-row gap-8 items-center justify-between border-none">
-            <div className="flex items-center gap-6">
-              <div className="h-16 w-16 rounded-full bg-white/10 flex items-center justify-center shrink-0">
-                <History className="h-8 w-8 text-foreground" />
-              </div>
-              <div className="space-y-1">
-                <span className="text-[10px] font-black uppercase tracking-widest opacity-60">Status Presenze</span>
-                <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">In regola con la frequenza</h2>
-              </div>
-            </div>
-            <div className="w-full md:w-64 space-y-2">
-              <div className="flex justify-between text-xs font-bold text-foreground">
-                <span>Media presenze</span>
-                <span>84%</span>
-              </div>
-              <Progress value={84} className="h-3 bg-white/10 [&>div]:bg-foreground rounded-full" />
-            </div>
-          </div>
-
-          <Accordion type="single" collapsible className="space-y-4">
-            {[
-              { id: "pittura-1", titolo: "Pittura e Arti Visive I", docenza: "Prof. Alessandro Rossi", presenze: 82, soglia: 75, orario: "Mar 09:00", aula: "Aula Magno" },
-              { id: "anatomia", titolo: "Anatomia Artistica", docenza: "Prof.ssa Elena Bianchi", presenze: 68, soglia: 75, orario: "Mer 11:00", aula: "Aula 4" },
-            ].map((corso) => (
-              <AccordionItem key={corso.id} value={corso.id} className="border-none rounded-[1.5rem] bg-card overflow-hidden shadow-none">
-                <AccordionTrigger className="px-8 py-6 hover:no-underline group">
-                  <div className="flex items-center gap-4 text-left">
-                    <div className={cn("h-12 w-12 rounded-xl flex items-center justify-center", corso.presenze < corso.soglia ? "bg-red-500/20 text-red-500" : "bg-[var(--bento-green)] text-foreground")}>
-                      <BookOpen className="h-6 w-6" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-lg text-foreground tracking-tight">{corso.titolo}</h4>
-                      <p className="text-xs font-medium text-muted-foreground">{corso.docenza}</p>
-                    </div>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent className="px-8 pb-8">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-muted/20">
-                    <div className="space-y-3">
-                      <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Dettagli</p>
-                      <div className="flex items-center gap-2 text-sm font-bold text-foreground"><Clock className="h-4 w-4 opacity-40" /> {corso.orario}</div>
-                      <div className="flex items-center gap-2 text-sm font-bold text-foreground"><MapPin className="h-4 w-4 opacity-40" /> {corso.aula}</div>
-                    </div>
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
         </TabsContent>
       </Tabs>
     </div>
