@@ -4,6 +4,7 @@ import { Bell, Search, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { SettingsDialog } from "@/components/layout/SettingsDialog";
+import { NotificationsDialog } from "@/components/layout/NotificationsDialog";
 import Link from "next/link";
 
 export function Header() {
@@ -45,13 +46,7 @@ export function Header() {
               <Search className="h-6 w-6" />
             </Button>
             
-            <Button 
-              variant="ghost" 
-              className="h-14 w-14 rounded-2xl text-muted-foreground hover:text-foreground bg-card dark:bg-white/5 border-none hover:bg-muted dark:hover:bg-white/10 relative transition-all flex items-center justify-center p-0 shadow-none"
-            >
-              <Bell className="h-7 w-7" />
-              <span className="absolute top-4 right-4 h-2.5 w-2.5 rounded-full bg-primary border-2 border-background"></span>
-            </Button>
+            <NotificationsDialog />
             
             <div className="h-10 w-px bg-border mx-2 hidden sm:block" />
             

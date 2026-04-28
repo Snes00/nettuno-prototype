@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Instrument_Sans } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/layout/Header";
-import { BottomNav } from "@/components/layout/BottomNav";
 import { ThemeProvider } from "@/components/theme-provider";
+import { AppShell } from "@/components/layout/AppShell";
 
 const instrumentSans = Instrument_Sans({
   variable: "--font-instrument-sans",
@@ -27,23 +26,14 @@ export default function RootLayout({
       className={`${instrumentSans.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full bg-background font-sans">
+      <body className="min-h-full bg-background font-sans overflow-x-hidden">
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
           enableSystem={false}
           disableTransitionOnChange
         >
-          <div className="relative flex min-h-screen flex-col overflow-x-hidden">
-            <Header />
-            <div className="flex-1 md:pl-72 transition-all">
-              {/* Main Container: 12-Column Layout, Max-Width 1280px, Centered */}
-              <main className="max-w-[1280px] mx-auto pb-32 pt-32 px-6 md:pb-12 md:px-8">
-                {children}
-              </main>
-            </div>
-            <BottomNav />
-          </div>
+          <AppShell>{children}</AppShell>
         </ThemeProvider>
       </body>
     </html>

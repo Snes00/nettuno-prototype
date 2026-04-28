@@ -42,14 +42,14 @@ const DAYS_OF_WEEK = ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom"];
 const CURRENT_MONTH = "Aprile 2026";
 
 const EVENTI_CALENDARIO: Record<number, Evento[]> = {
-  1: [{ tipo: 'lezione', titolo: "Pittura I", dettagli: "Aula Magno", ora: "09:00 - 13:00", icona: BookOpen, colorClass: "text-[#166534] dark:text-foreground", bgClass: "bg-[#DCFCE7] dark:bg-[var(--bento-green)]", textClass: "text-[#166534] dark:text-foreground" }],
-  5: [{ tipo: 'lezione', titolo: "Anatomia Artistica", dettagli: "Aula 4", ora: "11:00 - 14:00", icona: BookOpen, colorClass: "text-[#166534] dark:text-foreground", bgClass: "bg-[#DCFCE7] dark:bg-[var(--bento-green)]", textClass: "text-[#166534] dark:text-foreground" }],
-  6: [{ tipo: 'vacanza', titolo: "Pasquetta", dettagli: "Sospensione Didattica", ora: "Tutto il giorno", icona: CalendarIcon, colorClass: "text-amber-700 dark:text-foreground", bgClass: "bg-[#FEF9C3] dark:bg-[var(--bento-yellow)]", textClass: "text-amber-700 dark:text-foreground" }],
+  1: [{ tipo: 'lezione', titolo: "Pittura I", dettagli: "Aula Magno", ora: "09:00 - 13:00", icona: BookOpen, colorClass: "text-emerald-700 dark:text-foreground", bgClass: "bg-[var(--bento-green)]", textClass: "text-emerald-900 dark:text-foreground" }],
+  5: [{ tipo: 'lezione', titolo: "Anatomia Artistica", dettagli: "Aula 4", ora: "11:00 - 14:00", icona: BookOpen, colorClass: "text-emerald-700 dark:text-foreground", bgClass: "bg-[var(--bento-green)]", textClass: "text-emerald-900 dark:text-foreground" }],
+  6: [{ tipo: 'vacanza', titolo: "Pasquetta", dettagli: "Sospensione Didattica", ora: "Tutto il giorno", icona: CalendarIcon, colorClass: "text-amber-700 dark:text-foreground", bgClass: "bg-[var(--bento-yellow)]", textClass: "text-amber-900 dark:text-foreground" }],
   16: [
-    { tipo: 'lezione', titolo: "Pittura I", dettagli: "Aula Magno", ora: "09:00 - 13:00", icona: BookOpen, colorClass: "text-[#166534] dark:text-foreground", bgClass: "bg-[#DCFCE7] dark:bg-[var(--bento-green)]", textClass: "text-[#166534] dark:text-foreground" },
-    { tipo: 'nota', titolo: "Revisione Progetto", dettagli: "Studio Prof. Rossi", ora: "15:30", icona: Plus, colorClass: "text-blue-700 dark:text-foreground", bgClass: "bg-[#DBEAFE] dark:bg-[var(--bento-blue)]", textClass: "text-blue-700 dark:text-foreground" }
+    { tipo: 'lezione', titolo: "Pittura I", dettagli: "Aula Magno", ora: "09:00 - 13:00", icona: BookOpen, colorClass: "text-emerald-700 dark:text-foreground", bgClass: "bg-[var(--bento-green)]", textClass: "text-emerald-900 dark:text-foreground" },
+    { tipo: 'nota', titolo: "Revisione Progetto", dettagli: "Studio Prof. Rossi", ora: "15:30", icona: Plus, colorClass: "text-blue-700 dark:text-foreground", bgClass: "bg-[var(--bento-blue)]", textClass: "text-blue-900 dark:text-foreground" }
   ],
-  22: [{ tipo: 'esame', titolo: "Esame Anatomia", dettagli: "Appello Scritto • Aula 4", ora: "09:00", icona: GraduationCap, colorClass: "text-[#7c3aed] dark:text-foreground", bgClass: "bg-[#F3E8FF] dark:bg-[var(--bento-purple)]", textClass: "text-[#7c3aed] dark:text-foreground" }],
+  22: [{ tipo: 'esame', titolo: "Esame Anatomia", dettagli: "Appello Scritto • Aula 4", ora: "09:00", icona: GraduationCap, colorClass: "text-purple-700 dark:text-foreground", bgClass: "bg-[var(--bento-purple)]", textClass: "text-purple-900 dark:text-foreground" }],
 };
 
 export default function DidatticaPage() {
@@ -66,11 +66,19 @@ export default function DidatticaPage() {
       </section>
 
       <Tabs defaultValue="corsi" className="w-full">
-        <TabsList className="bg-card border-none p-1 h-14 rounded-full mb-10 w-full md:w-auto flex overflow-x-auto no-scrollbar justify-start md:justify-center">
-          <TabsTrigger value="corsi" className="rounded-full px-6 font-bold data-[state=active]:bg-foreground data-[state=active]:text-background">Corsi</TabsTrigger>
-          <TabsTrigger value="esami" className="rounded-full px-6 font-bold data-[state=active]:bg-foreground data-[state=active]:text-background">Esami</TabsTrigger>
-          <TabsTrigger value="tesi" className="rounded-full px-6 font-bold data-[state=active]:bg-foreground data-[state=active]:text-background">Percorso Tesi</TabsTrigger>
-          <TabsTrigger value="calendario" className="rounded-full px-6 font-bold data-[state=active]:bg-foreground data-[state=active]:text-background">Calendario</TabsTrigger>
+        <TabsList className="flex w-full overflow-x-auto h-auto p-1.5 bg-muted/40 rounded-[1.5rem] mb-10 border-none no-scrollbar">
+          <TabsTrigger value="corsi" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-bold text-sm transition-all">
+            Corsi
+          </TabsTrigger>
+          <TabsTrigger value="esami" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-bold text-sm transition-all">
+            Esami
+          </TabsTrigger>
+          <TabsTrigger value="tesi" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-bold text-sm transition-all">
+            Percorso Tesi
+          </TabsTrigger>
+          <TabsTrigger value="calendario" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-bold text-sm transition-all">
+            Calendario
+          </TabsTrigger>
         </TabsList>
 
         {/* Tab CORSI */}
