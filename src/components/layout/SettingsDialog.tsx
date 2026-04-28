@@ -18,7 +18,8 @@ import {
   Bug,
   CalendarCheck,
   Eye,
-  Lock
+  Lock,
+  ChevronRight
 } from "lucide-react"
 import { useTheme } from "next-themes"
 import { usePathname } from "next/navigation"
