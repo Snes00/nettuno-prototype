@@ -65,22 +65,43 @@ export function SettingsDialog() {
   const SecurityView = () => (
     <div className="space-y-6 animate-in slide-in-from-right-4 duration-200">
       <Button variant="ghost" onClick={() => setView("main")} className="mb-2 p-0 h-auto hover:bg-transparent text-muted-foreground font-black text-[10px] uppercase tracking-widest">
-        ← Torna indietro
+        ← Torna alle impostazioni
       </Button>
-      <div className="space-y-4">
-        <h3 className="text-xl font-black tracking-tight">Sicurezza Account</h3>
-        <div className="p-5 rounded-2xl bg-muted/30 space-y-4">
-          <div className="flex items-center justify-between">
+      <div className="space-y-6">
+        <h3 className="text-xl font-black tracking-tight text-foreground">Sicurezza e Privacy</h3>
+        
+        <div className="space-y-2">
+          {/* 2FA */}
+          <div className="p-5 rounded-2xl bg-muted/30 flex items-center justify-between">
             <div className="flex flex-col">
-              <span className="text-sm font-bold">Autenticazione a due fattori (2FA)</span>
-              <span className="text-[10px] font-medium text-muted-foreground">Proteggi l'accesso con un codice extra</span>
+              <span className="text-sm font-bold text-foreground">Autenticazione 2FA</span>
+              <span className="text-[10px] font-medium text-muted-foreground uppercase">Extra protezione</span>
             </div>
             <Switch checked={is2FAActive} onCheckedChange={setIs2FAActive} />
           </div>
-          <Separator className="bg-border/40" />
-          <Button variant="ghost" className="w-full justify-between h-10 p-0 hover:bg-transparent" onClick={() => setView("devices")}>
-            <span className="text-sm font-bold">Gestisci Dispositivi</span>
-            <Badge className="bg-foreground text-background text-[10px]">{devices.length}</Badge>
+
+          {/* Password */}
+          <Button variant="ghost" className="w-full justify-between h-16 rounded-2xl bg-muted/30 px-5 hover:bg-muted/50 border-none transition-all">
+            <div className="flex items-center gap-3">
+              <KeyRound className="h-5 w-5 opacity-60" />
+              <div className="text-left">
+                <p className="text-sm font-bold text-foreground leading-none">Cambia Password</p>
+                <p className="text-[10px] font-medium text-muted-foreground mt-1 uppercase">Ultima modifica: 3 mesi fa</p>
+              </div>
+            </div>
+            <ChevronRight className="h-4 w-4 opacity-20" />
+          </Button>
+
+          {/* Dispositivi */}
+          <Button variant="ghost" className="w-full justify-between h-16 rounded-2xl bg-muted/30 px-5 hover:bg-muted/50 border-none transition-all" onClick={() => setView("devices")}>
+            <div className="flex items-center gap-3">
+              <Smartphone className="h-5 w-5 opacity-60" />
+              <div className="text-left">
+                <p className="text-sm font-bold text-foreground leading-none">Dispositivi Connessi</p>
+                <p className="text-[10px] font-medium text-muted-foreground mt-1 uppercase">{devices.length} Sessioni attive</p>
+              </div>
+            </div>
+            <ChevronRight className="h-4 w-4 opacity-20" />
           </Button>
         </div>
       </div>
