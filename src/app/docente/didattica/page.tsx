@@ -46,6 +46,9 @@ export default function DocenteDidatticaPage() {
           <TabsTrigger value="corsi" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-bold text-sm transition-all">
             Corsi
           </TabsTrigger>
+          <TabsTrigger value="studenti" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-bold text-sm transition-all">
+            Situazione Studenti
+          </TabsTrigger>
           <TabsTrigger value="esami" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-bold text-sm transition-all">
             Esami
           </TabsTrigger>
@@ -119,6 +122,69 @@ export default function DocenteDidatticaPage() {
               </AccordionItem>
             ))}
           </Accordion>
+        </TabsContent>
+
+        {/* Tab SITUAZIONE STUDENTI */}
+        <TabsContent value="studenti" className="space-y-8 mt-0 focus-visible:outline-none">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-card rounded-[1.5rem] p-8 border-none shadow-none space-y-4">
+               <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Media Voti Classe</p>
+               <h3 className="text-4xl font-black text-foreground tracking-tighter">27.4</h3>
+               <div className="flex items-center gap-2 text-emerald-500 font-bold text-xs">
+                  <span>+1.2 rispetto a ieri</span>
+               </div>
+            </div>
+            <div className="bg-card rounded-[1.5rem] p-8 border-none shadow-none space-y-4">
+               <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Frequenza Media</p>
+               <h3 className="text-4xl font-black text-foreground tracking-tighter">82%</h3>
+               <Progress value={82} className="h-1.5" />
+            </div>
+            <div className="bg-card rounded-[1.5rem] p-8 border-none shadow-none space-y-4">
+               <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Studenti a Rischio</p>
+               <h3 className="text-4xl font-black text-red-500 tracking-tighter">3</h3>
+               <p className="text-xs font-bold text-muted-foreground">Frequenza sotto il 75%</p>
+            </div>
+          </div>
+
+          <div className="bg-card rounded-[1.5rem] p-8 space-y-6">
+             <div className="flex items-center justify-between">
+                <h3 className="text-xl font-black tracking-tight uppercase">Elenco Studenti Attivi</h3>
+                <div className="flex gap-2">
+                   <Button variant="outline" size="sm" className="rounded-xl font-bold">Filtra per Corso</Button>
+                   <Button variant="outline" size="sm" className="rounded-xl font-bold">Esporta Lista</Button>
+                </div>
+             </div>
+             <div className="space-y-2">
+                {[
+                  { nome: "Marco Bianchi", corso: "Pittura I", media: 28.5, presenze: 90 },
+                  { nome: "Sofia Rossi", media: 24.2, corso: "Anatomia II", presenze: 72 },
+                  { nome: "Luca Verdi", media: 29.8, corso: "Pittura I", presenze: 95 },
+                  { nome: "Elena Neri", media: 22.5, corso: "Anatomia II", presenze: 60 },
+                ].map((s, idx) => (
+                  <div key={idx} className="flex items-center justify-between p-4 rounded-2xl hover:bg-muted/30 transition-colors">
+                    <div className="flex items-center gap-4">
+                      <div className="h-10 w-10 rounded-xl bg-muted flex items-center justify-center font-bold text-xs">
+                        {s.nome.split(' ').map(n => n[0]).join('')}
+                      </div>
+                      <div>
+                        <p className="font-bold text-foreground leading-none mb-1">{s.nome}</p>
+                        <p className="text-[10px] font-bold text-muted-foreground uppercase">{s.corso}</p>
+                      </div>
+                    </div>
+                    <div className="flex gap-8 items-center">
+                       <div className="text-right hidden sm:block">
+                          <p className="text-[10px] font-black uppercase text-muted-foreground">Media</p>
+                          <p className="font-black text-foreground">{s.media}</p>
+                       </div>
+                       <div className="text-right">
+                          <p className="text-[10px] font-black uppercase text-muted-foreground">Presenze</p>
+                          <p className={cn("font-black", s.presenze < 75 ? "text-red-500" : "text-foreground")}>{s.presenze}%</p>
+                       </div>
+                    </div>
+                  </div>
+                ))}
+             </div>
+          </div>
         </TabsContent>
 
         {/* Tab ESAMI */}
