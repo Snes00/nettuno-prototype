@@ -7,7 +7,7 @@ import {
   HelpCircle, 
   Mail, 
   Phone, 
-  Instagram, 
+  Camera, 
   Globe,
   Calendar,
   Clock,
@@ -130,7 +130,7 @@ export default function DocenteAreaPersonalePage() {
              <div className="pt-6 border-t border-muted/20 space-y-4">
                 <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Social Abapa</p>
                 <div className="flex gap-4">
-                   <button className="h-12 w-12 rounded-xl bg-muted/30 flex items-center justify-center hover:bg-muted transition-colors"><Instagram className="h-5 w-5" /></button>
+                   <button className="h-12 w-12 rounded-xl bg-muted/30 flex items-center justify-center hover:bg-muted transition-colors"><Camera className="h-5 w-5" /></button>
                    <button className="h-12 w-12 rounded-xl bg-muted/30 flex items-center justify-center hover:bg-muted transition-colors"><Globe className="h-5 w-5" /></button>
                 </div>
              </div>
