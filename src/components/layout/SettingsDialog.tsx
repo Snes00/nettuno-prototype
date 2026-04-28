@@ -188,6 +188,33 @@ export function SettingsDialog() {
                   </div>
                 </div>
 
+                {/* Sezione Lingua */}
+                <div className="space-y-4">
+                  <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/60 px-1">Lingua di sistema</h4>
+                  <div className="grid grid-cols-2 gap-3">
+                    <Button 
+                      variant="outline" 
+                      className={cn(
+                        "justify-center h-12 rounded-xl text-xs font-black transition-all border-none shadow-none",
+                        lang === "it" ? "bg-foreground text-background" : "bg-muted/40 text-foreground hover:bg-muted/60"
+                      )}
+                      onClick={() => setLang("it")}
+                    >
+                      ITALIANO
+                    </Button>
+                    <Button 
+                      variant="outline" 
+                      className={cn(
+                        "justify-center h-12 rounded-xl text-xs font-black transition-all border-none shadow-none",
+                        lang === "en" ? "bg-foreground text-background" : "bg-muted/40 text-foreground hover:bg-muted/60"
+                      )}
+                      onClick={() => setLang("en")}
+                    >
+                      ENGLISH
+                    </Button>
+                  </div>
+                </div>
+
                 {/* Sezione Notifiche */}
                 <div className="space-y-4">
                   <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/60 px-1 flex items-center gap-2">
