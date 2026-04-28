@@ -66,7 +66,7 @@ export function SettingsDialog() {
         </Button>
       </DialogTrigger>
       
-      <DialogContent className="sm:max-w-[480px] h-[90vh] sm:h-auto rounded-[1.5rem] p-0 overflow-hidden border-none bg-background shadow-none animate-in zoom-in-95 duration-200">
+      <DialogContent className="sm:max-w-[480px] h-[90vh] sm:h-[85vh] flex flex-col rounded-[1.5rem] p-0 overflow-hidden border-none bg-background shadow-none animate-in zoom-in-95 duration-200">
         <DialogHeader className="p-8 border-b border-border/40 shrink-0">
           <div className="flex items-center gap-3 mb-1">
             <div className="h-10 w-10 rounded-xl bg-foreground text-background flex items-center justify-center">
