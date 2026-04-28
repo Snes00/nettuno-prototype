@@ -9,7 +9,12 @@ import {
   Send,
   Mail,
   Users,
-  Briefcase
+  Briefcase,
+  Paperclip,
+  Image as ImageIcon,
+  FileText,
+  MoreHorizontal,
+  Plus
 } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -20,6 +25,7 @@ import {
   DialogHeader, 
   DialogTitle,
 } from "@/components/ui/dialog"
+import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 
 const MESSAGGI_DOCENTE = [
@@ -34,6 +40,8 @@ const MESSAGGI_DOCENTE = [
     tipo: "studenti",
     conversazione: [
       { id: 101, testo: "Gentile Professore, le scrivo per chiederle se fosse possibile fissare un breve incontro online per revisionare il mio progetto finale.", ora: "09:30", io: false },
+      { id: 102, testo: "Certamente Marco. Possiamo vederci su Teams domani alle 15:00? Hai già una bozza da mostrarmi?", ora: "10:15", io: true },
+      { id: 103, testo: "Sì, ho preparato un PDF con i primi bozzetti. Lo allego qui sotto.", ora: "10:20", io: false, allegato: { nome: "bozzetti_finale.pdf", tipo: "pdf", size: "2.4 MB" } },
     ]
   },
   {
@@ -174,10 +182,10 @@ export default function DocenteMessaggiPage() {
       </div>
 
       <Dialog open={!!selectedMsg} onOpenChange={() => setSelectedMsg(null)}>
-        <DialogContent className="max-w-2xl h-[85vh] p-0 overflow-hidden rounded-[2rem] border-none bg-background shadow-none">
+        <DialogContent className="max-w-2xl h-[85vh] p-0 overflow-hidden rounded-[2rem] border-none bg-background shadow-none flex flex-col">
           {selectedMsg && (
             <>
-              <div className="p-8 border-b border-muted/20 bg-card flex items-center justify-between">
+              <div className="p-6 md:p-8 border-b border-muted/20 bg-card flex items-center justify-between shrink-0">
                 <div className="flex items-center gap-4">
                    <div className={cn(
                      "h-12 w-12 rounded-2xl flex items-center justify-center",
@@ -190,33 +198,54 @@ export default function DocenteMessaggiPage() {
                      <p className="text-[10px] font-bold uppercase text-muted-foreground">{selectedMsg.ruolo}</p>
                    </div>
                 </div>
+                <Button variant="ghost" size="icon" className="rounded-xl"><MoreHorizontal className="h-5 w-5" /></Button>
               </div>
 
-              <ScrollArea className="flex-1 p-8">
+              <ScrollArea className="flex-1 p-6 md:p-8">
                 <div className="space-y-8">
                   {selectedMsg.conversazione.map((chat: any) => (
                     <div key={chat.id} className={cn("flex flex-col", chat.io ? "items-end" : "items-start")}>
                       <div className={cn(
-                        "p-6 rounded-2xl max-w-[80%] font-medium text-sm",
-                        chat.io ? "bg-foreground text-background rounded-tr-none" : "bg-card text-foreground rounded-tl-none"
+                        "p-5 rounded-2xl max-w-[85%] font-medium text-sm leading-relaxed",
+                        chat.io ? "bg-foreground text-background rounded-tr-none" : "bg-card text-foreground rounded-tl-none border border-border/40"
                       )}>
                         {chat.testo}
+                        
+                        {chat.allegato && (
+                          <div className={cn(
+                            "mt-4 p-3 rounded-xl flex items-center gap-3 border",
+                            chat.io ? "bg-white/10 border-white/20" : "bg-muted/50 border-border/40"
+                          )}>
+                            <div className="h-10 w-10 rounded-lg bg-background/20 flex items-center justify-center">
+                               <FileText className="h-5 w-5" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                               <p className="text-xs font-bold truncate">{chat.allegato.nome}</p>
+                               <p className="text-[10px] opacity-60 font-bold uppercase">{chat.allegato.size}</p>
+                            </div>
+                          </div>
+                        )}
                       </div>
-                      <span className="text-[10px] text-muted-foreground mt-2 font-bold">{chat.ora}</span>
+                      <span className="text-[10px] text-muted-foreground mt-2 font-bold uppercase tracking-widest px-1">{chat.ora}</span>
                     </div>
                   ))}
                 </div>
               </ScrollArea>
 
-              <div className="p-8 bg-card border-t border-muted/20">
-                <div className="flex gap-4">
+              <div className="p-6 md:p-8 bg-card border-t border-muted/20 shrink-0">
+                <div className="flex items-center gap-4 bg-background rounded-2xl p-2 pl-4 border border-border/40 focus-within:ring-2 focus-within:ring-primary/10 transition-all">
+                  <Button variant="ghost" size="icon" className="rounded-xl text-muted-foreground shrink-0"><Plus className="h-5 w-5" /></Button>
                   <textarea 
-                    className="flex-1 bg-background rounded-xl p-4 text-sm resize-none focus:outline-none border-none h-14"
-                    placeholder="Rispondi..."
+                    className="flex-1 bg-transparent rounded-xl py-2 text-sm resize-none focus:outline-none border-none min-h-[40px] max-h-[120px]"
+                    placeholder="Scrivi una risposta..."
+                    rows={1}
                   />
-                  <Button className="h-14 w-14 rounded-xl bg-foreground text-background">
-                    <Send className="h-6 w-6" />
-                  </Button>
+                  <div className="flex items-center gap-1 pr-2">
+                    <Button variant="ghost" size="icon" className="rounded-xl text-muted-foreground shrink-0"><ImageIcon className="h-5 w-5" /></Button>
+                    <Button className="h-12 w-12 rounded-xl bg-foreground text-background shrink-0">
+                      <Send className="h-5 w-5" />
+                    </Button>
+                  </div>
                 </div>
               </div>
             </>
