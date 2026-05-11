@@ -33,7 +33,28 @@ import {
 } from "@/components/ui/dialog"
 import { cn } from "@/lib/utils"
 
-const MESSAGGI = [
+type ChatMessage = {
+  id: number;
+  testo: string;
+  ora: string;
+  io: boolean;
+};
+
+type ConversazioneStudente = {
+  id: number;
+  mittente: string;
+  ruolo: string;
+  oggetto: string;
+  anteprima: string;
+  data: string;
+  letto: boolean;
+  importante: boolean;
+  allegati: boolean;
+  tipo: string;
+  conversazione: ChatMessage[];
+};
+
+const MESSAGGI: ConversazioneStudente[] = [
   {
     id: 1,
     mittente: "Segreteria Studenti",
@@ -86,7 +107,7 @@ const MESSAGGI = [
 export default function MessaggiPage() {
   const [activeTab, setActiveTab] = React.useState("tutti")
   const [searchQuery, setSearchQuery] = React.useState("")
-  const [selectedMsg, setSelectedMsg] = React.useState<any>(null)
+  const [selectedMsg, setSelectedMsg] = React.useState<ConversazioneStudente | null>(null)
   const [replyText, setReplyText] = React.useState("")
 
   const filteredMessages = MESSAGGI.filter(m => {
@@ -218,7 +239,7 @@ export default function MessaggiPage() {
 
               <ScrollArea className="flex-1 p-8">
                 <div className="space-y-8">
-                  {selectedMsg.conversazione.map((chat: any) => (
+                  {selectedMsg.conversazione.map((chat) => (
                     <div key={chat.id} className={cn("flex flex-col", chat.io ? "items-end" : "items-start")}>
                       <div className={cn(
                         "p-6 rounded-2xl max-w-[80%] font-medium text-sm",

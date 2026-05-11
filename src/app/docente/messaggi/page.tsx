@@ -28,7 +28,33 @@ import {
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 
-const MESSAGGI_DOCENTE = [
+type Allegato = {
+  nome: string;
+  tipo: string;
+  size: string;
+};
+
+type ChatMessage = {
+  id: number;
+  testo: string;
+  ora: string;
+  io: boolean;
+  allegato?: Allegato;
+};
+
+type ConversazioneDocente = {
+  id: number;
+  mittente: string;
+  ruolo: string;
+  oggetto: string;
+  anteprima: string;
+  data: string;
+  letto: boolean;
+  tipo: string;
+  conversazione: ChatMessage[];
+};
+
+const MESSAGGI_DOCENTE: ConversazioneDocente[] = [
   {
     id: 1,
     mittente: "Marco Bianchi",
@@ -75,7 +101,7 @@ const MESSAGGI_DOCENTE = [
 export default function DocenteMessaggiPage() {
   const [activeTab, setActiveTab] = React.useState("tutti")
   const [searchQuery, setSearchQuery] = React.useState("")
-  const [selectedMsg, setSelectedMsg] = React.useState<any>(null)
+  const [selectedMsg, setSelectedMsg] = React.useState<ConversazioneDocente | null>(null)
 
   const filteredMessages = MESSAGGI_DOCENTE.filter(m => {
     const matchTab = activeTab === "tutti" || m.tipo === activeTab
@@ -203,7 +229,7 @@ export default function DocenteMessaggiPage() {
 
               <ScrollArea className="flex-1 p-6 md:p-8">
                 <div className="space-y-8">
-                  {selectedMsg.conversazione.map((chat: any) => (
+                  {selectedMsg.conversazione.map((chat) => (
                     <div key={chat.id} className={cn("flex flex-col", chat.io ? "items-end" : "items-start")}>
                       <div className={cn(
                         "p-5 rounded-2xl max-w-[85%] font-medium text-sm leading-relaxed",

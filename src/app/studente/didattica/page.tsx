@@ -17,7 +17,8 @@ import {
   FileCheck,
   ChevronLeft,
   ChevronRight as ChevronRightIcon,
-  Plus
+  Plus,
+  type LucideIcon
 } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
@@ -32,7 +33,7 @@ type Evento = {
   titolo: string;
   dettagli: string;
   ora: string;
-  icona: any;
+  icona: LucideIcon;
   colorClass: string;
   bgClass: string;
   textClass: string;
