@@ -16,9 +16,8 @@ const studentItems = [
 const teacherItems = [
   { label: "Dashboard", href: "/docente/dashboard", icon: Home },
   { label: "Didattica", href: "/docente/didattica", icon: GraduationCap },
-  { label: "Amministrazione", href: "/docente/amministrazione", icon: FolderOpen },
-  { label: "Messaggi", href: "/docente/messaggi", icon: Mail },
   { label: "Area Personale", href: "/docente/area-personale", icon: User },
+  { label: "Impostazioni", href: "/docente/area-personale/impostazioni", icon: Settings2 },
 ];
 
 export function BottomNav() {
@@ -55,15 +54,14 @@ export function BottomNav() {
       </nav>
 
       {/* Desktop Sidebar - Borderless & Adaptive Mode */}
-      <nav className="hidden fixed left-6 top-28 bottom-6 w-24 md:w-72 bg-card border-none rounded-[1.5rem] md:flex flex-col p-6 gap-2 z-[60] transition-all shadow-none">
-        <div className="mb-6 px-4 py-2 rounded-xl bg-muted/30 flex items-center gap-3">
-          <div className={cn(
-            "h-2 w-2 rounded-full animate-pulse",
-            isDocente ? "bg-bento-pink" : "bg-bento-blue"
-          )} />
-          <span className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">Portal {roleLabel}</span>
+      <nav className="hidden fixed left-6 top-6 bottom-6 w-24 md:w-72 bg-card border-none rounded-[1.5rem] md:flex flex-col p-6 gap-2 z-[60] transition-all shadow-none overflow-hidden">
+        {/* Logo LD for Teacher Sidebar */}
+        <div className="mb-8 px-4 py-2">
+           <div className="h-14 w-14 rounded-2xl bg-foreground text-background flex items-center justify-center font-black text-xl shadow-none">
+              LD
+           </div>
         </div>
-        
+
         <div className="space-y-3">
           {items.map((item) => {
             const Icon = item.icon;
@@ -76,33 +74,15 @@ export function BottomNav() {
                 className={cn(
                   "group flex items-center justify-center md:justify-start gap-4 px-4 py-5 rounded-2xl transition-all",
                   isActive 
-                    ? "bg-foreground text-background font-bold" 
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                    ? "bg-foreground text-background font-bold shadow-lg shadow-foreground/10" 
+                    : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
                 )}
               >
                 <Icon className={cn("h-6 w-6 shrink-0 transition-transform group-hover:scale-110", isActive && "stroke-[2.5px]")} />
-                <span className="hidden md:block text-sm font-bold tracking-tight">{item.label}</span>
+                <span className="hidden md:block text-sm font-black tracking-tighter uppercase">{item.label}</span>
               </Link>
             );
           })}
-        </div>
-        
-        <div className="mt-auto hidden md:block p-8 rounded-2xl bg-muted/50 border-none transition-colors">
-           <div className="flex justify-between items-center mb-4">
-              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">
-                {isDocente ? "Carico Didattico" : "Progresso"}
-              </p>
-              <span className="text-[10px] text-foreground font-black">{isDocente ? "60%" : "23%"}</span>
-           </div>
-           <div className="h-2 w-full bg-background rounded-full overflow-hidden border-none shadow-none">
-              <div className={cn(
-                "h-full transition-all duration-1000",
-                isDocente ? "w-[60%] bg-foreground" : "w-[23%] bg-foreground"
-              )} />
-           </div>
-           <p className="text-[10px] text-muted-foreground mt-4 font-bold uppercase tracking-tight opacity-50">
-             {isDocente ? "3 / 5 Corsi Completati" : "42 / 180 CFU"}
-           </p>
         </div>
       </nav>
     </>

@@ -30,98 +30,72 @@ const DAYS_OF_WEEK = ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom"];
 const CURRENT_MONTH = "Aprile 2026";
 
 export default function DocenteDidatticaPage() {
-  const [selectedDay, setSelectedDay] = React.useState(16);
-
   return (
-    <div className="flex flex-col gap-10 pb-16 animate-in fade-in duration-500">
-      <section className="px-1 space-y-1">
-        <h1 className="text-4xl md:text-5xl font-black tracking-tighter text-foreground">Didattica</h1>
-        <p className="text-muted-foreground text-base md:text-lg font-medium tracking-tight">
-          Gestione corsi, appelli d'esame e monitoraggio studenti.
-        </p>
+    <div className="flex flex-col gap-8 pb-16 animate-in fade-in duration-500">
+      {/* Header Didattica */}
+      <section className="flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <Link href="/docente/dashboard" className="h-12 w-12 rounded-full bg-muted/30 flex items-center justify-center hover:bg-muted/50 transition-all">
+            <ChevronLeft className="h-6 w-6" />
+          </Link>
+          <h1 className="text-4xl md:text-5xl font-black tracking-tighter text-foreground uppercase">Didattica</h1>
+        </div>
+        <div className="h-12 w-12 rounded-full bg-muted/30 flex items-center justify-center">
+           <Bell className="h-6 w-6" />
+        </div>
       </section>
 
       <Tabs defaultValue="corsi" className="w-full">
         <TabsList className="flex w-full overflow-x-auto h-auto p-1.5 bg-muted/40 rounded-[1.5rem] mb-10 border-none no-scrollbar">
-          <TabsTrigger value="corsi" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-bold text-sm transition-all">
+          <TabsTrigger value="corsi" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-black text-[10px] uppercase transition-all">
             Corsi
           </TabsTrigger>
-          <TabsTrigger value="studenti" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-bold text-sm transition-all">
-            Situazione Studenti
+          <TabsTrigger value="orario" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-black text-[10px] uppercase transition-all">
+            Orario Lezioni
           </TabsTrigger>
-          <TabsTrigger value="esami" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-bold text-sm transition-all">
+          <TabsTrigger value="appelli" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-black text-[10px] uppercase transition-all">
+            Crea Appelli
+          </TabsTrigger>
+          <TabsTrigger value="esami" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-black text-[10px] uppercase transition-all">
             Esami
           </TabsTrigger>
-          <TabsTrigger value="tesi" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-bold text-sm transition-all">
+          <TabsTrigger value="tesi" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-black text-[10px] uppercase transition-all">
             Tesi
-          </TabsTrigger>
-          <TabsTrigger value="calendario" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-bold text-sm transition-all">
-            Calendario
           </TabsTrigger>
         </TabsList>
 
         {/* Tab CORSI */}
-        <TabsContent value="corsi" className="space-y-8 mt-0 focus-visible:outline-none">
-          <div className="bg-[var(--bento-blue)] rounded-[1.5rem] p-8 flex flex-col md:flex-row gap-8 items-center justify-between border-none transition-colors">
-            <div className="flex items-center gap-6">
-              <div className="h-16 w-16 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-blue-900">
-                <Users className="h-8 w-8" />
-              </div>
-              <div className="space-y-1 text-blue-900">
-                <span className="text-[10px] font-black uppercase tracking-widest opacity-60">Status Cattedra</span>
-                <h2 className="text-2xl md:text-3xl font-bold tracking-tight leading-none">3 Corsi Attivi • 142 Studenti</h2>
-              </div>
-            </div>
-            <div className="w-full md:w-64 space-y-2">
-              <div className="flex justify-between text-xs font-bold text-blue-900">
-                <span>Completamento programmi</span>
-                <span>65%</span>
-              </div>
-              <Progress value={65} className="h-3 bg-white/10 [&>div]:bg-blue-900 rounded-full" />
-            </div>
-          </div>
-
-          <Accordion type="single" collapsible className="space-y-4">
+        <TabsContent value="corsi" className="mt-0 focus-visible:outline-none">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
-              { id: "anatomia-2", titolo: "Anatomia Artistica II", studenti: 45, orario: "Lun 14:00", aula: "Aula 12", completamento: 70 },
-              { id: "disegno", titolo: "Disegno per la Scultura", studenti: 32, orario: "Mar 09:00", aula: "Laboratorio 3", completamento: 45 },
-              { id: "morfologia", titolo: "Morfologia dei Componenti", studenti: 65, orario: "Ven 11:00", aula: "Aula Magno", completamento: 80 },
+              { id: "web-1", titolo: "Web Design 1", triennio: "Triennio", iscritti: 30, lezione: "Lunedì / 14:00" },
+              { id: "web-2", titolo: "Web Design 2", triennio: "Triennio", iscritti: 40, lezione: "Martedì / 09:00" },
             ].map((corso) => (
-              <AccordionItem key={corso.id} value={corso.id} className="border-none rounded-[1.5rem] bg-card overflow-hidden shadow-none">
-                <AccordionTrigger className="px-8 py-6 hover:no-underline group">
-                  <div className="flex flex-col md:flex-row items-start md:items-center justify-between w-full pr-4 text-left gap-4">
-                    <div className="flex items-center gap-4">
-                      <div className="h-12 w-12 rounded-xl bg-muted/50 flex items-center justify-center text-foreground">
-                        <BookOpen className="h-6 w-6" />
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-lg text-foreground tracking-tight">{corso.titolo}</h4>
-                        <p className="text-xs font-medium text-muted-foreground">{corso.studenti} Studenti iscritti</p>
-                      </div>
-                    </div>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent className="px-8 pb-8">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-muted/20">
-                    <div className="space-y-3">
-                      <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Logistica</p>
-                      <div className="flex items-center gap-2 text-sm font-bold text-foreground"><Clock className="h-4 w-4 opacity-40" /> {corso.orario}</div>
-                      <div className="flex items-center gap-2 text-sm font-bold text-foreground"><MapPin className="h-4 w-4 opacity-40" /> {corso.aula}</div>
-                    </div>
-                    <div className="space-y-3">
-                      <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Avanzamento Programma</p>
-                      <Progress value={corso.completamento} className="h-2 rounded-full" />
-                      <p className="text-[10px] font-bold text-muted-foreground">{corso.completamento}% completato</p>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                       <Button className="rounded-xl font-black bg-foreground text-background shadow-none">Gestisci Registro</Button>
-                       <Button variant="ghost" className="rounded-xl font-bold text-xs">Comunicazione alla classe</Button>
-                    </div>
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
+              <div key={corso.id} className="bg-card rounded-[2rem] p-8 space-y-8 border-none shadow-none group relative overflow-hidden">
+                <div className="space-y-1">
+                   <h3 className="text-3xl font-black tracking-tighter leading-none uppercase">{corso.titolo}</h3>
+                   <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">{corso.triennio}</p>
+                </div>
+                
+                <div className="space-y-4">
+                   <div className="space-y-1">
+                      <p className="text-[10px] font-black uppercase text-muted-foreground opacity-60">Studenti</p>
+                      <p className="text-sm font-black">{corso.iscritti} Iscritti</p>
+                   </div>
+                   <div className="space-y-1">
+                      <p className="text-[10px] font-black uppercase text-muted-foreground opacity-60">Prossima Lezione</p>
+                      <p className="text-sm font-black">{corso.lezione}</p>
+                   </div>
+                </div>
+
+                <div className="flex justify-end pt-4">
+                   <Link href={`/docente/didattica/${corso.id}`} className="text-xs font-black uppercase tracking-widest hover:underline flex items-center gap-2">
+                      Vai al registro <ChevronRightIcon className="h-4 w-4" />
+                   </Link>
+                </div>
+              </div>
             ))}
-          </Accordion>
+          </div>
         </TabsContent>
 
         {/* Tab SITUAZIONE STUDENTI */}
@@ -188,73 +162,39 @@ export default function DocenteDidatticaPage() {
         </TabsContent>
 
         {/* Tab ESAMI */}
-        <TabsContent value="esami" className="mt-0 space-y-8 focus-visible:outline-none">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-[var(--bento-pink)] rounded-[1.5rem] p-8 flex flex-col justify-between border-none shadow-none min-h-[280px]">
-               <div className="flex justify-between items-start">
-                  <div className="space-y-1">
-                    <span className="text-[10px] font-black uppercase tracking-widest opacity-60">Nuovo Appello</span>
-                    <h2 className="text-3xl font-bold tracking-tight text-foreground leading-tight">Configura Esame</h2>
-                  </div>
-                  <Plus className="h-7 w-7 text-foreground" />
-               </div>
-               <Button className="w-full bg-foreground text-background rounded-xl h-14 font-black shadow-none text-base">Crea Appello</Button>
-            </div>
-
-            <div className="bg-card rounded-[1.5rem] p-8 flex flex-col justify-between border-none shadow-none min-h-[280px]">
-               <div className="flex justify-between items-start">
-                  <div className="space-y-1">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Firma Verbali</span>
-                    <h2 className="text-3xl font-bold tracking-tight text-foreground leading-tight">3 Verbali Pendenti</h2>
-                  </div>
-                  <FileSignature className="h-7 w-7 text-muted-foreground" />
-               </div>
-               <Button variant="outline" className="w-full rounded-xl h-14 font-black shadow-none text-base border-2">Firma Digitalmente</Button>
-            </div>
-
-            <div className="bg-card rounded-[1.5rem] p-8 flex flex-col justify-between border-none shadow-none min-h-[280px]">
-               <div className="flex justify-between items-start">
-                  <div className="space-y-1">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Appello in corso</span>
-                    <h2 className="text-3xl font-bold tracking-tight text-foreground leading-tight">Anatomia I</h2>
-                    <p className="text-xs font-bold text-muted-foreground flex items-center gap-1.5"><Users className="h-3 w-3" /> 18 Studenti in attesa</p>
-                  </div>
-                  <Badge className="bg-bento-green text-foreground border-none font-black">LIVE</Badge>
-               </div>
-               <Button className="w-full bg-foreground text-background rounded-xl h-14 font-black shadow-none text-base">Inizia Appello</Button>
-            </div>
-          </div>
-
-          <div className="bg-card rounded-[1.5rem] p-8 space-y-6">
-             <div className="flex items-center justify-between">
-                <h3 className="text-xl font-black tracking-tight uppercase">Cronologia Appelli</h3>
-                <div className="relative w-full max-w-xs">
-                  <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground opacity-50" />
-                  <Input placeholder="Cerca appello..." className="pl-10 rounded-xl h-10 bg-muted/30 border-none shadow-none text-sm font-medium" />
-                </div>
-             </div>
-             <div className="space-y-2">
-                {[
-                  { titolo: "Estetica", data: "12 Mar 2026", iscritti: 45, status: "Verbalizzato" },
-                  { titolo: "Storia dell'Arte", data: "05 Mar 2026", iscritti: 38, status: "Verbalizzato" },
-                  { titolo: "Pittura II", data: "28 Feb 2026", iscritti: 12, status: "Verbalizzato" },
-                ].map((esame, idx) => (
-                  <div key={idx} className="flex items-center justify-between p-4 rounded-2xl hover:bg-muted/30 transition-colors group">
-                    <div className="flex items-center gap-4">
-                      <div className="h-10 w-10 rounded-xl bg-muted flex items-center justify-center">
-                        <CheckCircle2 className="h-5 w-5 text-muted-foreground" />
-                      </div>
-                      <div>
-                        <p className="font-bold text-foreground leading-none mb-1">{esame.titolo}</p>
-                        <p className="text-[10px] font-bold text-muted-foreground uppercase">{esame.data} • {esame.iscritti} Iscritti</p>
-                      </div>
+        <TabsContent value="esami" className="mt-0 focus-visible:outline-none">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+            {/* Colonna Appelli */}
+            <div className="md:col-span-7 bg-card rounded-[2rem] p-8 space-y-8">
+               <h3 className="text-xl font-black tracking-tighter uppercase px-2">Appelli</h3>
+               <div className="space-y-4">
+                  {[
+                    { id: "web-1", titolo: "Web 1", iscritti: 30, ora: "14:00", data: "15/05/2026", aula: "Aula 12" },
+                    { id: "web-2", titolo: "Web 2", iscritti: 40, ora: "09:00", data: "16/05/2026", aula: "Aula 15" },
+                  ].map((appello) => (
+                    <div key={appello.id} className="p-6 bg-muted/30 rounded-2xl space-y-4 group cursor-pointer hover:bg-muted/50 transition-all">
+                       <div className="flex justify-between items-start">
+                          <h4 className="text-xl font-black uppercase tracking-tighter">{appello.titolo}</h4>
+                          <span className="text-[10px] font-black uppercase opacity-40">{appello.aula}</span>
+                       </div>
+                       <div className="flex justify-between text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                          <span>{appello.iscritti} Studenti prenotati</span>
+                          <span>{appello.data} • {appello.ora}</span>
+                       </div>
                     </div>
-                    <Button variant="ghost" size="icon" className="rounded-xl opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Download className="h-4 w-4" />
-                    </Button>
-                  </div>
-                ))}
-             </div>
+                  ))}
+               </div>
+            </div>
+
+            {/* Colonna Verbali */}
+            <div className="md:col-span-5 bg-card rounded-[2rem] p-8 flex flex-col justify-between min-h-[400px]">
+               <h3 className="text-3xl font-black tracking-tighter uppercase">Verbali</h3>
+               <div className="flex justify-end">
+                  <Link href="/docente/didattica/esami/verbali" className="text-xs font-black uppercase tracking-widest hover:underline flex items-center gap-2">
+                    Vai ai verbali <ChevronRightIcon className="h-4 w-4" />
+                  </Link>
+               </div>
+            </div>
           </div>
         </TabsContent>
 
@@ -304,87 +244,62 @@ export default function DocenteDidatticaPage() {
           </div>
         </TabsContent>
 
-        {/* Tab CALENDARIO */}
-        <TabsContent value="calendario" className="mt-0 focus-visible:outline-none">
-           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-              <div className="lg:col-span-8 bg-card rounded-[1.5rem] p-8 space-y-10 border-none shadow-none">
-                 <div className="flex items-center justify-between">
-                    <h2 className="text-2xl font-bold tracking-tight text-foreground">{CURRENT_MONTH}</h2>
-                    <div className="flex gap-2">
-                       <Button variant="outline" size="icon" className="rounded-xl h-10 w-10 bg-muted/20 border-none">
-                          <ChevronLeft className="h-4 w-4" />
-                       </Button>
-                       <Button variant="outline" size="icon" className="rounded-xl h-10 w-10 bg-muted/20 border-none">
-                          <ChevronRightIcon className="h-4 w-4" />
-                       </Button>
-                    </div>
-                 </div>
-
-                 <div className="grid grid-cols-7 gap-2 md:gap-4">
+        {/* Tab ORARIO LEZIONI */}
+        <TabsContent value="orario" className="mt-0 focus-visible:outline-none">
+           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+              {/* Griglia Oraria */}
+              <div className="lg:col-span-8 bg-card rounded-[2rem] p-8 space-y-10 border-none shadow-none">
+                 <div className="grid grid-cols-7 gap-2">
                     {DAYS_OF_WEEK.map((d) => (
-                       <div key={d} className="text-center text-[10px] font-black uppercase tracking-widest text-muted-foreground py-2">
+                       <div key={d} className="text-center text-[10px] font-black uppercase tracking-widest text-muted-foreground py-4">
                           {d}
                        </div>
                     ))}
-                    <div className="aspect-square" />
-                    <div className="aspect-square" />
-                    
-                    {Array.from({ length: 30 }, (_, i) => i + 1).map((day) => {
-                       const isSelected = selectedDay === day;
-                       const hasEvents = [1, 5, 12, 16, 22, 28].includes(day);
-                       
-                       return (
-                          <button
-                             key={day}
-                             onClick={() => setSelectedDay(day)}
-                             className={cn(
-                                "aspect-square rounded-full flex items-center justify-center transition-all relative border-none",
-                                isSelected 
-                                   ? "bg-foreground text-background scale-110 z-10 shadow-lg" 
-                                   : hasEvents ? "bg-bento-blue text-foreground hover:bg-muted" : "bg-muted/10 text-foreground hover:bg-muted"
-                             )}
-                          >
-                             <span className="text-sm font-bold tracking-tighter">{day}</span>
-                             {hasEvents && !isSelected && (
-                                <div className="absolute top-1 right-1 h-1.5 w-1.5 rounded-full bg-blue-500" />
-                             )}
-                          </button>
-                       );
-                    })}
-                 </div>
-              </div>
-
-              <div className="lg:col-span-4 bg-card rounded-[1.5rem] p-8 flex flex-col gap-8 border-none shadow-none min-h-[500px]">
-                 <div className="space-y-1">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Programma</span>
-                    <h3 className="text-3xl font-bold tracking-tight text-foreground">{selectedDay} Aprile</h3>
-                 </div>
-
-                 <div className="flex-1 space-y-4">
-                    {[
-                      { ora: "09:00 - 13:00", titolo: "Anatomia Artistica II", aula: "Aula 12", tipo: "Lezione" },
-                      { ora: "15:00 - 17:00", titolo: "Ricevimento Tesisti", aula: "Studio Docenti", tipo: "Ricevimento" },
-                    ].map((evento, idx) => (
-                      <div key={idx} className="p-5 rounded-2xl bg-muted/30 space-y-2">
-                         <div className="flex justify-between items-center">
-                            <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">{evento.ora}</span>
-                            <Badge variant="outline" className="text-[10px] font-black">{evento.tipo}</Badge>
-                         </div>
-                         <h4 className="font-bold text-foreground">{evento.titolo}</h4>
-                         <p className="text-xs font-medium text-muted-foreground flex items-center gap-1"><MapPin className="h-3 w-3" /> {evento.aula}</p>
-                      </div>
+                    {/* Griglia placeholder */}
+                    {Array.from({ length: 35 }, (_, i) => (
+                       <div key={i} className="aspect-square rounded-xl bg-muted/20 border border-muted/5 flex items-center justify-center relative">
+                          {i === 17 && <div className="absolute inset-2 bg-foreground/10 rounded-lg animate-pulse" />}
+                       </div>
                     ))}
                  </div>
-
-                 <div className="space-y-3">
-                   <Button className="w-full bg-foreground text-background rounded-xl h-14 font-black text-base shadow-none">
-                      <Download className="h-5 w-5 mr-2" /> Scarica Registro
-                   </Button>
-                   <Button variant="outline" className="w-full rounded-xl h-14 font-black text-base border-2">
-                      <Plus className="h-5 w-5 mr-2" /> Segna Impegno
-                   </Button>
-                 </div>
               </div>
+
+              {/* I Tuoi Impegni */}
+              <div className="lg:col-span-4 space-y-8">
+                <div className="bg-card rounded-[2rem] p-8 space-y-8 min-h-[400px]">
+                   <h3 className="text-xl font-black tracking-tighter uppercase px-2">I tuoi impegni</h3>
+                   <div className="p-6 bg-muted/30 rounded-2xl space-y-4">
+                      <div className="space-y-1">
+                         <p className="text-[10px] font-black uppercase text-muted-foreground opacity-60">Materia</p>
+                         <p className="text-sm font-black uppercase">Web Design 1</p>
+                      </div>
+                      <div className="space-y-1">
+                         <p className="text-[10px] font-black uppercase text-muted-foreground opacity-60">Aula</p>
+                         <p className="text-sm font-black uppercase">Aula 12</p>
+                      </div>
+                      <div className="space-y-1">
+                         <p className="text-[10px] font-black uppercase text-muted-foreground opacity-60">Orario</p>
+                         <p className="text-sm font-black uppercase">14:00 - 18:00</p>
+                      </div>
+                      <Button className="w-full rounded-xl bg-foreground text-background font-black text-[10px] uppercase h-10 shadow-none">Mappa</Button>
+                   </div>
+                </div>
+              </div>
+           </div>
+
+           {/* Footer Orario */}
+           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+              <div className="bg-card rounded-2xl p-6 flex items-center justify-between">
+                 <div className="space-y-1">
+                    <p className="text-sm font-black uppercase tracking-tight">Calendario Didattico</p>
+                    <p className="text-[10px] font-bold text-muted-foreground uppercase opacity-50">PDF Scaricabile</p>
+                 </div>
+                 <Download className="h-5 w-5 text-muted-foreground" />
+              </div>
+              <button className="bg-card rounded-2xl p-6 flex items-center justify-center gap-4 hover:bg-muted/50 transition-all group">
+                 <span className="text-sm font-black uppercase tracking-tight">Scarica report annuale</span>
+                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-2" />
+              </button>
            </div>
         </TabsContent>
       </Tabs>

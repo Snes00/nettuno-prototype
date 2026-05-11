@@ -15,61 +15,47 @@ const ACTIONS = [
   { 
     label: "Crea appelli", 
     icon: PlusCircle, 
-    color: "bg-bento-pink", 
-    textColor: "text-foreground",
-    href: "/docente/didattica" 
-  },
-  { 
-    label: "Presenze", 
-    icon: Users, 
-    color: "bg-bento-green", 
-    textColor: "text-foreground",
+    color: "bg-muted/30", 
     href: "/docente/didattica" 
   },
   { 
     label: "Orario lezioni", 
     icon: Calendar, 
-    color: "bg-bento-yellow", 
-    textColor: "text-foreground",
+    color: "bg-muted/30", 
     href: "/docente/didattica" 
-  },
-  { 
-    label: "Profilo", 
-    icon: User, 
-    color: "bg-bento-blue", 
-    textColor: "text-foreground",
-    href: "/docente/area-personale" 
-  },
-  { 
-    label: "Personalizza", 
-    icon: Settings2, 
-    color: "bg-bento-purple", 
-    textColor: "text-foreground",
-    href: "/docente/area-personale" 
   },
 ];
 
 export function TeacherQuickActions() {
   return (
-    <div className="grid grid-cols-1 gap-3">
-      {ACTIONS.map((action) => {
-        const Icon = action.icon;
-        return (
-          <Link
-            key={action.label}
-            href={action.href}
-            className="group flex items-center justify-between p-4 rounded-2xl bg-muted/30 hover:bg-muted/50 transition-all active:scale-[0.98]"
-          >
-            <div className="flex items-center gap-4">
-              <div className={cn("h-10 w-10 rounded-xl flex items-center justify-center transition-transform group-hover:rotate-6", action.color)}>
-                <Icon className={cn("h-5 w-5", action.textColor)} />
-              </div>
-              <span className="text-sm font-bold tracking-tight text-foreground">{action.label}</span>
-            </div>
-            <ChevronRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all" />
-          </Link>
-        );
-      })}
+    <div className="relative h-full">
+      <div className="grid grid-cols-2 gap-3">
+        {ACTIONS.map((action) => {
+          const Icon = action.icon;
+          return (
+            <Link
+              key={action.label}
+              href={action.href}
+              className="group aspect-square flex flex-col items-center justify-center p-4 rounded-2xl bg-card border-none hover:bg-muted/50 transition-all active:scale-[0.95]"
+            >
+              <Icon className="h-8 w-8 text-foreground mb-3" />
+              <span className="text-[10px] font-black uppercase tracking-tighter text-center leading-tight">
+                {action.label}
+              </span>
+            </Link>
+          );
+        })}
+        
+        {/* Slot Vuoto */}
+        <div className="aspect-square rounded-2xl border-2 border-dashed border-muted flex items-center justify-center opacity-40">
+           {/* Empty slot as per wireframe */}
+        </div>
+      </div>
+      
+      {/* Icona Matita per Modifica */}
+      <button className="absolute bottom-0 right-0 h-10 w-10 rounded-full bg-foreground text-background flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
+         <Settings2 className="h-5 w-5" />
+      </button>
     </div>
   );
 }
