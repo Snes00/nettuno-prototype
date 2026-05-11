@@ -1,6 +1,6 @@
 "use client";
 
-import { Home, BookOpen, FolderOpen, Mail, User, GraduationCap, Sparkles } from "lucide-react";
+import { Home, BookOpen, FolderOpen, Mail, User, GraduationCap, Sparkles, Settings } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -11,12 +11,14 @@ const studentItems = [
   { label: "Amministrazione", href: "/studente/amministrazione", icon: FolderOpen },
   { label: "Messaggi", href: "/studente/messaggi", icon: Mail },
   { label: "Area Personale", href: "/studente/area-personale", icon: User },
+  { label: "Impostazioni", href: "/studente/impostazioni", icon: Settings },
 ];
 
 const teacherItems = [
   { label: "Dashboard", href: "/docente/dashboard", icon: Home },
   { label: "Didattica", href: "/docente/didattica", icon: GraduationCap },
   { label: "Area Personale", href: "/docente/area-personale", icon: User },
+  { label: "Impostazioni", href: "/docente/impostazioni", icon: Settings },
 ];
 
 export function BottomNav() {
