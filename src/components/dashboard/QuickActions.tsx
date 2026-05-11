@@ -3,7 +3,6 @@
 import * as React from "react"
 import { 
   Plus, 
-  X, 
   Calendar, 
   BookOpen, 
   GraduationCap, 
@@ -14,7 +13,7 @@ import {
   Heart,
   Zap,
   Star,
-  Settings
+  Pencil
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { 
@@ -25,7 +24,6 @@ import {
   DialogTrigger,
   DialogFooter
 } from "@/components/ui/dialog"
-import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 
 const ALL_ACTIONS = [
@@ -147,7 +145,7 @@ export function QuickActions() {
         <Dialog>
            <DialogTrigger asChild>
               <Button variant="ghost" size="sm" className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/60 hover:bg-transparent">
-                 <Settings className="h-3 w-3 mr-2" /> Modifica
+                 <Pencil className="h-3 w-3 mr-2" /> Modifica
               </Button>
            </DialogTrigger>
         </Dialog>

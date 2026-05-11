@@ -3,7 +3,6 @@ import {
   BookOpen, 
   Clock, 
   MapPin, 
-  ChevronRight,
   Calendar,
   Bell,
   ArrowRight

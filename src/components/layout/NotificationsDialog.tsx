@@ -9,7 +9,6 @@ import {
   Calendar, 
   MessageSquare, 
   CreditCard,
-  X,
   Clock
 } from "lucide-react"
 

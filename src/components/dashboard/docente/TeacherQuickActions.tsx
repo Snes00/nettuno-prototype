@@ -2,14 +2,10 @@
 
 import { 
   PlusCircle, 
-  Users, 
   Calendar, 
-  User, 
-  Settings,
-  ChevronRight
+  Pencil
 } from "lucide-react";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 
 const ACTIONS = [
   { 
@@ -54,7 +50,7 @@ export function TeacherQuickActions() {
       
       {/* Icona Matita per Modifica */}
       <button className="absolute bottom-0 right-0 h-10 w-10 rounded-full bg-foreground text-background flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
-         <Settings className="h-5 w-5" />
+         <Pencil className="h-5 w-5" />
       </button>
     </div>
   );

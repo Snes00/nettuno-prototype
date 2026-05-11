@@ -5,12 +5,9 @@ import {
   Search, 
   User, 
   Building2, 
-  Megaphone,
   Send,
   Mail,
   Users,
-  Briefcase,
-  Paperclip,
   Image as ImageIcon,
   FileText,
   MoreHorizontal,
@@ -22,10 +19,8 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { 
   Dialog, 
   DialogContent, 
-  DialogHeader, 
   DialogTitle,
 } from "@/components/ui/dialog"
-import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 
 type Allegato = {

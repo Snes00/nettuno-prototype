@@ -3,21 +3,16 @@
 import * as React from "react";
 import { 
   User, 
-  Settings, 
   CreditCard, 
   ShieldCheck, 
-  FileText, 
   LogOut, 
   ChevronRight,
   QrCode,
   Download,
   Share2,
   MapPin,
-  Mail,
-  Phone,
-  Sparkles
+  Mail
 } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { 
@@ -27,7 +22,6 @@ import {
   DialogTitle, 
   DialogTrigger 
 } from "@/components/ui/dialog";
-import { cn } from "@/lib/utils";
 
 export default function AreaPersonalePage() {
   const [showQR, setShowQR] = React.useState(false);

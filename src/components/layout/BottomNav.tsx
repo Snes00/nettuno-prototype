@@ -1,6 +1,6 @@
 "use client";
 
-import { Home, BookOpen, FolderOpen, Mail, User, Users, Calendar, ClipboardCheck, FileText, UserCheck, GraduationCap, Settings } from "lucide-react";
+import { Home, BookOpen, FolderOpen, Mail, User, GraduationCap, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -17,7 +17,6 @@ const teacherItems = [
   { label: "Dashboard", href: "/docente/dashboard", icon: Home },
   { label: "Didattica", href: "/docente/didattica", icon: GraduationCap },
   { label: "Area Personale", href: "/docente/area-personale", icon: User },
-  { label: "Impostazioni", href: "/docente/area-personale/impostazioni", icon: Settings },
 ];
 
 export function BottomNav() {
@@ -26,7 +25,6 @@ export function BottomNav() {
   // Determina il ruolo in base al percorso
   const isDocente = pathname.startsWith("/docente");
   const items = isDocente ? teacherItems : studentItems;
-  const roleLabel = isDocente ? "Docente" : "Studente";
 
   return (
     <>
@@ -55,10 +53,10 @@ export function BottomNav() {
 
       {/* Desktop Sidebar - Borderless & Adaptive Mode */}
       <nav className="hidden fixed left-6 top-6 bottom-6 w-24 md:w-72 bg-card border-none rounded-[1.5rem] md:flex flex-col p-6 gap-2 z-[60] transition-all shadow-none overflow-hidden">
-        {/* Logo LD for Teacher Sidebar */}
+        {/* Platform Logo */}
         <div className="mb-8 px-4 py-2">
-           <div className="h-14 w-14 rounded-2xl bg-foreground text-background flex items-center justify-center font-black text-xl shadow-none">
-              LD
+           <div className="h-14 w-14 rounded-2xl bg-foreground text-background flex items-center justify-center transition-transform hover:rotate-12 shadow-none shrink-0">
+              <Sparkles className="h-7 w-7" />
            </div>
         </div>
 
