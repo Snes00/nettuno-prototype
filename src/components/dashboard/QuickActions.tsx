@@ -14,7 +14,7 @@ import {
   Heart,
   Zap,
   Star,
-  Settings2
+  Settings
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { 
@@ -147,7 +147,7 @@ export function QuickActions() {
         <Dialog>
            <DialogTrigger asChild>
               <Button variant="ghost" size="sm" className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/60 hover:bg-transparent">
-                 <Settings2 className="h-3 w-3 mr-2" /> Modifica
+                 <Settings className="h-3 w-3 mr-2" /> Modifica
               </Button>
            </DialogTrigger>
         </Dialog>

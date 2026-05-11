@@ -1,6 +1,6 @@
 "use client";
 
-import { Home, BookOpen, FolderOpen, Mail, User, Users, Calendar, ClipboardCheck, FileText, UserCheck, GraduationCap } from "lucide-react";
+import { Home, BookOpen, FolderOpen, Mail, User, Users, Calendar, ClipboardCheck, FileText, UserCheck, GraduationCap, Settings } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -17,7 +17,7 @@ const teacherItems = [
   { label: "Dashboard", href: "/docente/dashboard", icon: Home },
   { label: "Didattica", href: "/docente/didattica", icon: GraduationCap },
   { label: "Area Personale", href: "/docente/area-personale", icon: User },
-  { label: "Impostazioni", href: "/docente/area-personale/impostazioni", icon: Settings2 },
+  { label: "Impostazioni", href: "/docente/area-personale/impostazioni", icon: Settings },
 ];
 
 export function BottomNav() {

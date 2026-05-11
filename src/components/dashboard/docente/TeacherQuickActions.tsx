@@ -5,7 +5,7 @@ import {
   Users, 
   Calendar, 
   User, 
-  Settings2,
+  Settings,
   ChevronRight
 } from "lucide-react";
 import Link from "next/link";
@@ -54,7 +54,7 @@ export function TeacherQuickActions() {
       
       {/* Icona Matita per Modifica */}
       <button className="absolute bottom-0 right-0 h-10 w-10 rounded-full bg-foreground text-background flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
-         <Settings2 className="h-5 w-5" />
+         <Settings className="h-5 w-5" />
       </button>
     </div>
   );
