@@ -41,6 +41,92 @@ import { Separator } from "@/components/ui/separator"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { cn } from "@/lib/utils"
 
+interface SecurityViewProps {
+  setView: (view: "main" | "security" | "devices" | "bug") => void
+  is2FAActive: boolean
+  setIs2FAActive: (active: boolean) => void
+  devices: { id: number; name: string; location: string; active: boolean }[]
+}
+
+const SecurityView = ({ setView, is2FAActive, setIs2FAActive, devices }: SecurityViewProps) => (
+  <div className="space-y-6 animate-in slide-in-from-right-4 duration-200">
+    <Button variant="ghost" onClick={() => setView("main")} className="mb-2 p-0 h-auto hover:bg-transparent text-muted-foreground font-black text-[10px] uppercase tracking-widest">
+      ← Torna alle impostazioni
+    </Button>
+    <div className="space-y-6">
+      <h3 className="text-xl font-black tracking-tight text-foreground">Sicurezza e Privacy</h3>
+      
+      <div className="space-y-2">
+        {/* 2FA */}
+        <div className="p-5 rounded-2xl bg-muted/30 flex items-center justify-between">
+          <div className="flex flex-col">
+            <span className="text-sm font-bold text-foreground">Autenticazione 2FA</span>
+            <span className="text-[10px] font-medium text-muted-foreground uppercase">Extra protezione</span>
+          </div>
+          <Switch checked={is2FAActive} onCheckedChange={setIs2FAActive} />
+        </div>
+
+        {/* Password */}
+        <Button variant="ghost" className="w-full justify-between h-16 rounded-2xl bg-muted/30 px-5 hover:bg-muted/50 border-none transition-all">
+          <div className="flex items-center gap-3">
+            <KeyRound className="h-5 w-5 opacity-60" />
+            <div className="text-left">
+              <p className="text-sm font-bold text-foreground leading-none">Cambia Password</p>
+              <p className="text-[10px] font-medium text-muted-foreground mt-1 uppercase">Ultima modifica: 3 mesi fa</p>
+            </div>
+          </div>
+          <ChevronRight className="h-4 w-4 opacity-20" />
+        </Button>
+
+        {/* Dispositivi */}
+        <Button variant="ghost" className="w-full justify-between h-16 rounded-2xl bg-muted/30 px-5 hover:bg-muted/50 border-none transition-all" onClick={() => setView("devices")}>
+          <div className="flex items-center gap-3">
+            <Smartphone className="h-5 w-5 opacity-60" />
+            <div className="text-left">
+              <p className="text-sm font-bold text-foreground leading-none">Dispositivi Connessi</p>
+              <p className="text-[10px] font-medium text-muted-foreground mt-1 uppercase">{devices.length} Sessioni attive</p>
+            </div>
+          </div>
+          <ChevronRight className="h-4 w-4 opacity-20" />
+        </Button>
+      </div>
+    </div>
+  </div>
+)
+
+interface DevicesViewProps {
+  setView: (view: "main" | "security" | "devices" | "bug") => void
+  devices: { id: number; name: string; location: string; active: boolean }[]
+  setDevices: (devices: { id: number; name: string; location: string; active: boolean }[]) => void
+}
+
+const DevicesView = ({ setView, devices, setDevices }: DevicesViewProps) => (
+  <div className="space-y-6 animate-in slide-in-from-right-4 duration-200">
+    <Button variant="ghost" onClick={() => setView("security")} className="mb-2 p-0 h-auto hover:bg-transparent text-muted-foreground font-black text-[10px] uppercase tracking-widest">
+      ← Indietro
+    </Button>
+    <div className="space-y-4">
+      <h3 className="text-xl font-black tracking-tight">Dispositivi Connessi</h3>
+      <div className="space-y-3">
+        {devices.map(device => (
+          <div key={device.id} className="p-4 rounded-2xl bg-muted/30 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <Smartphone className={cn("h-5 w-5", device.active ? "text-emerald-500" : "text-muted-foreground")} />
+              <div>
+                <p className="text-sm font-bold">{device.name}</p>
+                <p className="text-[10px] text-muted-foreground uppercase font-black">{device.location} {device.active && "• In uso"}</p>
+              </div>
+            </div>
+            {!device.active && (
+              <Button variant="ghost" size="sm" className="text-destructive text-[10px] font-black" onClick={() => setDevices(devices.filter(d => d.id !== device.id))}>RIMUOVI</Button>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+)
+
 export function SettingsDialog() {
   const { theme, setTheme } = useTheme()
   const pathname = usePathname()
@@ -60,81 +146,6 @@ export function SettingsDialog() {
     ricevimenti: true,
     avvisi: true
   })
-
-  // Componente per la vista Sicurezza
-  const SecurityView = () => (
-    <div className="space-y-6 animate-in slide-in-from-right-4 duration-200">
-      <Button variant="ghost" onClick={() => setView("main")} className="mb-2 p-0 h-auto hover:bg-transparent text-muted-foreground font-black text-[10px] uppercase tracking-widest">
-        ← Torna alle impostazioni
-      </Button>
-      <div className="space-y-6">
-        <h3 className="text-xl font-black tracking-tight text-foreground">Sicurezza e Privacy</h3>
-        
-        <div className="space-y-2">
-          {/* 2FA */}
-          <div className="p-5 rounded-2xl bg-muted/30 flex items-center justify-between">
-            <div className="flex flex-col">
-              <span className="text-sm font-bold text-foreground">Autenticazione 2FA</span>
-              <span className="text-[10px] font-medium text-muted-foreground uppercase">Extra protezione</span>
-            </div>
-            <Switch checked={is2FAActive} onCheckedChange={setIs2FAActive} />
-          </div>
-
-          {/* Password */}
-          <Button variant="ghost" className="w-full justify-between h-16 rounded-2xl bg-muted/30 px-5 hover:bg-muted/50 border-none transition-all">
-            <div className="flex items-center gap-3">
-              <KeyRound className="h-5 w-5 opacity-60" />
-              <div className="text-left">
-                <p className="text-sm font-bold text-foreground leading-none">Cambia Password</p>
-                <p className="text-[10px] font-medium text-muted-foreground mt-1 uppercase">Ultima modifica: 3 mesi fa</p>
-              </div>
-            </div>
-            <ChevronRight className="h-4 w-4 opacity-20" />
-          </Button>
-
-          {/* Dispositivi */}
-          <Button variant="ghost" className="w-full justify-between h-16 rounded-2xl bg-muted/30 px-5 hover:bg-muted/50 border-none transition-all" onClick={() => setView("devices")}>
-            <div className="flex items-center gap-3">
-              <Smartphone className="h-5 w-5 opacity-60" />
-              <div className="text-left">
-                <p className="text-sm font-bold text-foreground leading-none">Dispositivi Connessi</p>
-                <p className="text-[10px] font-medium text-muted-foreground mt-1 uppercase">{devices.length} Sessioni attive</p>
-              </div>
-            </div>
-            <ChevronRight className="h-4 w-4 opacity-20" />
-          </Button>
-        </div>
-      </div>
-    </div>
-  )
-
-  // Componente per la vista Dispositivi
-  const DevicesView = () => (
-    <div className="space-y-6 animate-in slide-in-from-right-4 duration-200">
-      <Button variant="ghost" onClick={() => setView("security")} className="mb-2 p-0 h-auto hover:bg-transparent text-muted-foreground font-black text-[10px] uppercase tracking-widest">
-        ← Indietro
-      </Button>
-      <div className="space-y-4">
-        <h3 className="text-xl font-black tracking-tight">Dispositivi Connessi</h3>
-        <div className="space-y-3">
-          {devices.map(device => (
-            <div key={device.id} className="p-4 rounded-2xl bg-muted/30 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <Smartphone className={cn("h-5 w-5", device.active ? "text-emerald-500" : "text-muted-foreground")} />
-                <div>
-                  <p className="text-sm font-bold">{device.name}</p>
-                  <p className="text-[10px] text-muted-foreground uppercase font-black">{device.location} {device.active && "• In uso"}</p>
-                </div>
-              </div>
-              {!device.active && (
-                <Button variant="ghost" size="sm" className="text-destructive text-[10px] font-black" onClick={() => setDevices(devices.filter(d => d.id !== device.id))}>RIMUOVI</Button>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  )
 
   return (
     <Dialog onOpenChange={(open) => !open && setView("main")}>
@@ -224,7 +235,7 @@ export function SettingsDialog() {
                     <div className="flex items-center justify-between">
                       <div className="flex flex-col text-foreground">
                         <Label className="text-sm font-bold">Centro notifiche</Label>
-                        <span className="text-[10px] font-medium text-muted-foreground">Avvisi istantanei nell'app</span>
+                        <span className="text-[10px] font-medium text-muted-foreground">Avvisi istantanei nell&apos;app</span>
                       </div>
                       <Switch checked={notifications.push} />
                     </div>
@@ -261,7 +272,7 @@ export function SettingsDialog() {
                 <div className="space-y-3">
                   <Button variant="ghost" className="w-full justify-start h-14 rounded-2xl hover:bg-destructive/10 text-destructive px-5 gap-4 transition-all border-none font-black uppercase tracking-widest text-xs">
                     <LogOut className="h-5 w-5" />
-                    Esci dall'account
+                    Esci dall&apos;account
                   </Button>
                   
                   <Button variant="ghost" className="w-full justify-start h-14 rounded-2xl hover:bg-muted/40 text-muted-foreground hover:text-foreground px-5 gap-4 transition-all border-none font-black uppercase tracking-widest text-xs">
@@ -272,8 +283,21 @@ export function SettingsDialog() {
               </div>
             )}
 
-            {view === "security" && <SecurityView />}
-            {view === "devices" && <DevicesView />}
+            {view === "security" && (
+              <SecurityView 
+                setView={setView} 
+                is2FAActive={is2FAActive} 
+                setIs2FAActive={setIs2FAActive} 
+                devices={devices} 
+              />
+            )}
+            {view === "devices" && (
+              <DevicesView 
+                setView={setView} 
+                devices={devices} 
+                setDevices={setDevices} 
+              />
+            )}
           </div>
         </ScrollArea>
 

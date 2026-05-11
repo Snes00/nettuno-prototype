@@ -28,7 +28,7 @@ export default function DocenteAreaPersonalePage() {
       <section className="px-1 space-y-1">
         <h1 className="text-4xl md:text-5xl font-black tracking-tighter text-foreground">Area Personale</h1>
         <p className="text-muted-foreground text-base md:text-lg font-medium tracking-tight">
-          Gestisci il tuo profilo, imposta la disponibilità per il ricevimento e configura l'account.
+          Gestisci il tuo profilo, imposta la disponibilità per il ricevimento e configura l&apos;account.
         </p>
       </section>
 

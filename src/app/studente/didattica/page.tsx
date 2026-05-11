@@ -163,7 +163,7 @@ export default function DidatticaPage() {
             <div className="bg-card rounded-[1.5rem] p-8 flex justify-between items-center border-none shadow-none">
                <div className="space-y-1">
                   <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Ultimo Esito</span>
-                  <h2 className="text-3xl font-bold tracking-tight text-foreground">Storia dell'Arte</h2>
+                  <h2 className="text-3xl font-bold tracking-tight text-foreground">Storia dell&apos;Arte</h2>
                   <p className="text-xs font-bold text-muted-foreground flex items-center gap-1.5"><CheckCircle2 className="h-3 w-3 text-[var(--bento-green)]" /> Verbalizzato il 12 Mar</p>
                </div>
                <div className="h-16 w-16 rounded-full bg-[var(--bento-green)] flex items-center justify-center font-black text-foreground text-2xl">30</div>

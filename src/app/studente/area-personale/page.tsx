@@ -171,7 +171,7 @@ export default function AreaPersonalePage() {
         className="w-full h-16 rounded-[1.5rem] bg-card text-red-500 hover:bg-red-500/10 border-none transition-all font-black text-lg gap-4 shadow-none"
       >
         <LogOut className="h-6 w-6" />
-        Esci dall'account
+        Esci dall&apos;account
       </Button>
     </div>
   );
