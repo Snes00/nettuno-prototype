@@ -12,7 +12,8 @@ import {
   Smartphone,
   KeyRound,
   Bug,
-  ChevronRight
+  ChevronRight,
+  ArrowLeft
 } from "lucide-react"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
@@ -161,8 +162,13 @@ export default function DocenteImpostazioniPage() {
 
           {view === "security" && (
             <div className="space-y-8 animate-in slide-in-from-right-4 duration-200">
-              <Button variant="ghost" onClick={() => setView("main")} className="mb-4 p-0 h-auto hover:bg-transparent text-muted-foreground font-black text-[10px] uppercase tracking-widest">
-                ← Torna alle impostazioni
+              <Button 
+                variant="outline" 
+                size="icon" 
+                onClick={() => setView("main")} 
+                className="h-12 w-12 rounded-full border-none bg-muted/30 hover:bg-muted/50 text-foreground transition-all mb-4"
+              >
+                <ArrowLeft className="h-6 w-6" />
               </Button>
               <div className="space-y-8">
                 <h3 className="text-3xl font-black tracking-tight text-foreground uppercase leading-none">Sicurezza e Privacy</h3>
@@ -207,8 +213,13 @@ export default function DocenteImpostazioniPage() {
 
           {view === "devices" && (
             <div className="space-y-8 animate-in slide-in-from-right-4 duration-200">
-              <Button variant="ghost" onClick={() => setView("security")} className="mb-4 p-0 h-auto hover:bg-transparent text-muted-foreground font-black text-[10px] uppercase tracking-widest">
-                ← Indietro
+              <Button 
+                variant="outline" 
+                size="icon" 
+                onClick={() => setView("security")} 
+                className="h-12 w-12 rounded-full border-none bg-muted/30 hover:bg-muted/50 text-foreground transition-all mb-4"
+              >
+                <ArrowLeft className="h-6 w-6" />
               </Button>
               <div className="space-y-6">
                 <h3 className="text-3xl font-black tracking-tight uppercase leading-none">Dispositivi Connessi</h3>

@@ -12,7 +12,8 @@ import {
   Smartphone,
   KeyRound,
   Bug,
-  ChevronRight
+  ChevronRight,
+  ArrowLeft
 } from "lucide-react"
 import { useTheme } from "next-themes"
 import { usePathname } from "next/navigation"
@@ -42,8 +43,13 @@ interface SecurityViewProps {
 
 const SecurityView = ({ setView, is2FAActive, setIs2FAActive, devices }: SecurityViewProps) => (
   <div className="space-y-6 animate-in slide-in-from-right-4 duration-200">
-    <Button variant="ghost" onClick={() => setView("main")} className="mb-2 p-0 h-auto hover:bg-transparent text-muted-foreground font-black text-[10px] uppercase tracking-widest">
-      ← Torna alle impostazioni
+    <Button 
+      variant="outline" 
+      size="icon" 
+      onClick={() => setView("main")} 
+      className="h-11 w-11 rounded-full border-none bg-muted/30 hover:bg-muted/50 text-foreground transition-all mb-2"
+    >
+      <ArrowLeft className="h-5 w-5" />
     </Button>
     <div className="space-y-6">
       <h3 className="text-xl font-black tracking-tight text-foreground">Sicurezza e Privacy</h3>
@@ -94,8 +100,13 @@ interface DevicesViewProps {
 
 const DevicesView = ({ setView, devices, setDevices }: DevicesViewProps) => (
   <div className="space-y-6 animate-in slide-in-from-right-4 duration-200">
-    <Button variant="ghost" onClick={() => setView("security")} className="mb-2 p-0 h-auto hover:bg-transparent text-muted-foreground font-black text-[10px] uppercase tracking-widest">
-      ← Indietro
+    <Button 
+      variant="outline" 
+      size="icon" 
+      onClick={() => setView("security")} 
+      className="h-11 w-11 rounded-full border-none bg-muted/30 hover:bg-muted/50 text-foreground transition-all mb-2"
+    >
+      <ArrowLeft className="h-5 w-5" />
     </Button>
     <div className="space-y-4">
       <h3 className="text-xl font-black tracking-tight">Dispositivi Connessi</h3>
