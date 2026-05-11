@@ -25,7 +25,7 @@ export default function LandingPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl animate-in fade-in slide-in-from-bottom-12 delay-200 duration-1000 fill-mode-both">
         
         {/* Studente */}
-        <Link href="/studente/dashboard" className="group">
+        <Link href="/login?role=studente" className="group">
           <div className="bento-card h-[400px] bg-card hover:bg-muted/30 border border-border/40 cursor-pointer overflow-hidden relative">
             <div className="z-10 relative h-full flex flex-col justify-between">
               <div>
@@ -45,7 +45,7 @@ export default function LandingPage() {
         </Link>
 
         {/* Docente */}
-        <Link href="/docente/dashboard" className="group">
+        <Link href="/login?role=docente" className="group">
           <div className="bento-card h-[400px] bg-card hover:bg-muted/30 border border-border/40 cursor-pointer overflow-hidden relative">
             <div className="z-10 relative h-full flex flex-col justify-between">
               <div>
