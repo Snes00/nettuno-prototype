@@ -10,16 +10,11 @@ import {
   Camera, 
   Globe,
   Calendar,
-  Clock,
   ChevronRight,
-  ShieldCheck,
-  Bell,
-  Eye,
   LogOut
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { cn } from "@/lib/utils"
 import Link from "next/link"
 
 export default function DocenteAreaPersonalePage() {

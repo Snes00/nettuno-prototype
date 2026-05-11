@@ -3,33 +3,19 @@
 import * as React from "react"
 import { 
   Search, 
-  Star, 
-  Archive, 
-  Trash2, 
-  Paperclip, 
   User, 
   Building2, 
   Megaphone,
-  MoreVertical,
-  Filter,
   Send,
-  Mail,
-  ChevronLeft,
-  Image as ImageIcon,
-  Smile,
-  MoreHorizontal
+  Mail
 } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Card } from "@/components/ui/card"
 import { 
   Dialog, 
   DialogContent, 
-  DialogHeader, 
   DialogTitle,
-  DialogTrigger
 } from "@/components/ui/dialog"
 import { cn } from "@/lib/utils"
 
@@ -108,7 +94,6 @@ export default function MessaggiPage() {
   const [activeTab, setActiveTab] = React.useState("tutti")
   const [searchQuery, setSearchQuery] = React.useState("")
   const [selectedMsg, setSelectedMsg] = React.useState<ConversazioneStudente | null>(null)
-  const [replyText, setReplyText] = React.useState("")
 
   const filteredMessages = MESSAGGI.filter(m => {
     const matchTab = activeTab === "tutti" || m.tipo === activeTab

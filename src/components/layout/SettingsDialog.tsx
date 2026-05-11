@@ -5,20 +5,13 @@ import {
   Settings, 
   Moon, 
   Sun, 
-  Languages, 
-  Accessibility, 
   Bell, 
   ShieldCheck, 
-  FileText, 
   LogOut, 
-  ExternalLink,
   Info,
   Smartphone,
   KeyRound,
   Bug,
-  CalendarCheck,
-  Eye,
-  Lock,
   ChevronRight
 } from "lucide-react"
 import { useTheme } from "next-themes"
@@ -34,7 +27,6 @@ import {
   DialogTrigger,
   DialogFooter
 } from "@/components/ui/dialog"
-import { Badge } from "@/components/ui/badge"
 import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
@@ -140,7 +132,7 @@ export function SettingsDialog() {
   ])
   const [view, setView] = React.useState<"main" | "security" | "devices" | "bug">("main")
 
-  const [notifications, setNotifications] = React.useState({
+  const [notifications] = React.useState({
     push: true,
     email: false,
     ricevimenti: true,

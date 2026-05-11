@@ -7,12 +7,7 @@ import {
   GraduationCap, 
   Clock, 
   MapPin, 
-  ChevronRight, 
-  FileText, 
-  Mail,
   CheckCircle2,
-  AlertCircle,
-  Trophy,
   History,
   FileCheck,
   ChevronLeft,
@@ -21,7 +16,6 @@ import {
   type LucideIcon
 } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { Button } from "@/components/ui/button"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"

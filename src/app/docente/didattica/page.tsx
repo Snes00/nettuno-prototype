@@ -3,21 +3,10 @@
 import * as React from "react"
 import Link from "next/link"
 import { 
-  BookOpen, 
-  Calendar as CalendarIcon, 
   GraduationCap, 
-  Clock, 
-  MapPin, 
-  FileText, 
-  CheckCircle2,
-  Users,
-  Plus,
   Download,
-  ClipboardCheck,
-  FileSignature,
   ChevronLeft,
   ChevronRight as ChevronRightIcon,
-  Search,
   Bell,
   ArrowRight
 } from "lucide-react"
@@ -25,12 +14,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { Button } from "@/components/ui/button"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 
 const DAYS_OF_WEEK = ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom"];
-const CURRENT_MONTH = "Aprile 2026";
 
 export default function DocenteDidatticaPage() {
   return (

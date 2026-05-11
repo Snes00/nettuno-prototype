@@ -6,14 +6,10 @@ import {
   ChevronRight,
   Calendar,
   Bell,
-  ArrowRight,
-  QrCode,
   Users
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { TeacherQuickActions } from "@/components/dashboard/docente/TeacherQuickActions";
-import { cn } from "@/lib/utils";
 
 const AVVISI = [
   { id: 1, titolo: "Appello Straordinario", descrizione: "Richiesta apertura appello per Pittura II.", ora: "11:15", icon: AlertCircle, color: "text-[#991b1b]" },
