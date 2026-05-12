@@ -1,31 +1,37 @@
-# Componenti UI
+# Componenti UI — Sistema "Strato" (v2.0)
+
+## 📐 Griglia e Geometria
+Il sistema Strato si basa sul concetto di **Deep Bento**.
+- **Corner Radius Esterno**: `1.5rem` (24px) per le sezioni principali e card.
+- **Corner Radius Interno**: `0.75rem` (12px) per elementi UI interni (input, bottoni piccoli, avatar).
+- **Radius Dialog/Hero**: `2.5rem` (40px) per un look ultra-moderno e morbido.
 
 ## 🔘 Bottoni (Buttons)
-Basati sul componente `Button` di shadcn/ui.
+Basati sul componente `Button` di shadcn/ui ma con logica cromatica Strato.
 
-### 1. Primary (Default)
-- **Stile**: Sfondo `foreground`, testo `background`.
-- **Uso**: Azioni principali (Accedi, Invia, Conferma).
-- **Radius**: `rounded-2xl` o `rounded-full` (se icon-only).
+### 1. Primary
+- **Colore**: `bg-primary` (Violet-500/400), testo `text-primary-foreground`.
+- **Uso**: Azioni determinanti, navigazione attiva, login.
+- **Micro-interazione**: `active:scale-95 transition-all`.
 
-### 2. Ghost / Muted
-- **Stile**: Sfondo trasparente o `muted/30`.
-- **Uso**: Azioni secondarie, navigazione, pulsanti 'Indietro'.
+### 2. Destructive / Critical
+- **Colore**: `bg-role-critical` o `bg-destructive` (Coral), testo contrastante.
+- **Uso**: Logout, cancellazioni, avvisi urgenti.
 
-### 3. Circular (Back Button)
-- **Specifiche**: `h-11 w-11 rounded-full bg-muted/30`.
-- **Icona**: `ArrowLeft` (h-5 w-5).
+### 3. Ghost / Surface
+- **Colore**: `bg-muted/30` o trasparente.
+- **Uso**: Pulsanti 'Indietro', azioni secondarie.
 
-## ⌨️ Input
-- **Stile**: `h-14`, `rounded-2xl`, `bg-muted/30`, `border-none`.
-- **Placeholder**: Testo `muted-foreground`, font `bold`.
-- **Focus**: `ring-foreground` (minimo).
+## ⌨️ Form Elements
+- **Input**: Altezza `h-16` per touch-target ottimale, `rounded-[1.25rem]`, `bg-card` o `bg-muted/30`.
+- **Label**: `uppercase font-black text-[10px] tracking-widest`.
+- **Focus**: Ring sottile `primary/20`.
 
-## 🗂️ Card
-- **Bento Style**: Grandi raccordi (`rounded-[2rem]`), senza bordi, sfondo `bg-card`.
-- **Padding**: `p-8` o `p-10`.
-- **Hover**: `hover:bg-muted/50` o leggera traslazione (`active:scale-95`).
+## 🗂️ Cards (Bento Boxes)
+- **Standard**: `bg-card`, border `border-border/40` (o borderless se su sfondo canvas).
+- **Semantic**: Possono assumere il colore del ruolo (es. `bg-role-success`).
+- **Feedback**: `hover:scale-[1.01] duration-300`.
 
 ## 📑 Navigazione
-- **Mobile Bottom Nav**: `h-20` (altezza totale), icone centrate.
-- **Desktop Sidebar**: `w-72`, `fixed`, posizionata a `top-28` per non sovrapporsi al logo globale.
+- **Mobile Bottom Nav**: Floating dock `h-14` contenuto in un safe-area container `h-24`.
+- **Sidebar**: Larghezza `w-72`, `rounded-[2rem]`, staccata dai bordi della pagina (Floating Sidebar).

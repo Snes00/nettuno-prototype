@@ -15,7 +15,10 @@ import {
   Smartphone,
   Info,
   Moon,
-  Sun
+  Sun,
+  Layout,
+  Layers,
+  Component
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -23,309 +26,246 @@ import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
+import { Badge } from "@/components/ui/badge"
 import { useTheme } from "next-themes"
+import { cn } from "@/lib/utils"
 
 export default function DesignSystemPage() {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = React.useState(false)
   
-  // Palette State (Predefiniti estratti da globals.css)
-  const [colors, setColors] = React.useState({
-    background: "#F8F5F0",
-    foreground: "#1A1917",
-    card: "#FFFFFF",
-    muted: "#F1EFE9",
-    mutedFg: "#7C7A77",
-    accent: "#FFD6E8",
-    border: "#E5E2DA",
-  })
+  // Strato v2.0 Global Tokens
+  const stratoTokens = {
+    light: {
+      background: "#EEEDF2",
+      foreground: "#14131A",
+      card: "#FFFFFF",
+      primary: "#6547E8",
+      destructive: "#F03C6C",
+      border: "#E4E2EC",
+      roleInfo: "#EBF8FF",
+      roleSuccess: "#EDFAEE",
+      roleWarning: "#FEFAEE",
+      roleAccent: "#F1EFFE",
+    },
+    dark: {
+      background: "#0F0E14",
+      foreground: "#E4E2EC",
+      card: "#1E1C2A",
+      primary: "#8470EF",
+      destructive: "#F56E90",
+      border: "#2E2C3A",
+      roleInfo: "#043450",
+      roleSuccess: "#144D1B",
+      roleWarning: "#573006",
+      roleAccent: "#2E1A72",
+    }
+  }
 
   React.useEffect(() => {
     setMounted(true)
-    // In un'app reale caricheremmo qui i valori attuali dalle variabili CSS
   }, [])
-
-  const updateColor = (key: keyof typeof colors, value: string) => {
-    setColors(prev => ({ ...prev, [key]: value }))
-  }
-
-  const resetPalette = () => {
-    setColors({
-      background: "#F8F5F0",
-      foreground: "#1A1917",
-      card: "#FFFFFF",
-      muted: "#F1EFE9",
-      mutedFg: "#7C7A77",
-      accent: "#FFD6E8",
-      border: "#E5E2DA",
-    })
-  }
 
   if (!mounted) return null
 
+  const currentPalette = theme === "dark" ? stratoTokens.dark : stratoTokens.light
+
   return (
-    <div className="min-h-screen bg-background text-foreground p-6 md:p-12 animate-in fade-in duration-700">
-      {/* Dynamic Style Override for Preview */}
+    <div className="min-h-screen bg-background text-foreground animate-in fade-in duration-700">
+      
+      {/* Dynamic Style Override for System Playground */}
       <style jsx global>{`
         :root {
-          --preview-bg: ${colors.background};
-          --preview-fg: ${colors.foreground};
-          --preview-card: ${colors.card};
-          --preview-muted: ${colors.muted};
-          --preview-muted-fg: ${colors.mutedFg};
-          --preview-accent: ${colors.accent};
-          --preview-border: ${colors.border};
+          --ds-bg: ${currentPalette.background};
+          --ds-fg: ${currentPalette.foreground};
+          --ds-card: ${currentPalette.card};
+          --ds-primary: ${currentPalette.primary};
+          --ds-destructive: ${currentPalette.destructive};
+          --ds-border: ${currentPalette.border};
+          --ds-info: ${currentPalette.roleInfo};
+          --ds-success: ${currentPalette.roleSuccess};
+          --ds-warning: ${currentPalette.roleWarning};
+          --ds-accent: ${currentPalette.roleAccent};
         }
       `}</style>
 
-      <div className="max-w-7xl mx-auto space-y-12">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+      {/* Hero Header */}
+      <header className="border-b border-border/10 bg-card/50 backdrop-blur-md sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
           <div className="flex items-center gap-6">
             <Link href="/">
-              <Button variant="outline" size="icon" className="h-12 w-12 rounded-full border-none bg-muted/30">
+              <Button variant="ghost" size="icon" className="h-12 w-12 rounded-full hover:bg-muted active:scale-90 transition-all">
                 <ArrowLeft className="h-6 w-6" />
               </Button>
             </Link>
-            <div>
-              <h1 className="text-4xl font-black tracking-tighter uppercase leading-none">Design System Lab</h1>
-              <p className="text-muted-foreground font-medium mt-1 uppercase text-[10px] tracking-widest">Single Source of Truth • Prototipazione Live</p>
+            <div className="flex items-center gap-4">
+               <div className="h-12 w-12 rounded-2xl bg-primary text-primary-foreground flex items-center justify-center shadow-lg shadow-primary/20">
+                  <Layers className="h-6 w-6" />
+               </div>
+               <div>
+                  <h1 className="text-2xl font-black tracking-tighter uppercase leading-none">Strato v2.0</h1>
+                  <p className="text-muted-foreground font-black mt-1 uppercase text-[9px] tracking-[0.2em]">Living Design System • ABAP Portal</p>
+               </div>
             </div>
           </div>
-          <div className="flex gap-3">
-             <Button variant="outline" className="rounded-2xl h-12 gap-2 font-black text-xs uppercase border-none bg-muted/30" onClick={resetPalette}>
-               <RefreshCw className="h-4 w-4" /> Reset
-             </Button>
-             <Button className="rounded-2xl h-12 gap-2 font-black text-xs uppercase bg-foreground text-background">
-               <Save className="h-4 w-4" /> Salva Palette
-             </Button>
+          <div className="flex items-center gap-4">
+             <div className="flex bg-muted/40 p-1 rounded-xl">
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  onClick={() => setTheme("light")}
+                  className={cn("rounded-lg font-black text-[9px] uppercase px-4", theme === "light" && "bg-background shadow-sm")}
+                >
+                  <Sun className="h-3.5 w-3.5 mr-2" /> Light
+                </Button>
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  onClick={() => setTheme("dark")}
+                  className={cn("rounded-lg font-black text-[9px] uppercase px-4", theme === "dark" && "bg-background shadow-sm")}
+                >
+                  <Moon className="h-3.5 w-3.5 mr-2" /> Dark
+                </Button>
+             </div>
           </div>
         </div>
+      </header>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          {/* Sidebar Editor */}
-          <aside className="lg:col-span-4 space-y-8">
-            <div className="bg-card rounded-[2rem] p-8 space-y-8">
-              <div className="flex items-center gap-3">
-                <Palette className="h-5 w-5 text-muted-foreground" />
-                <h2 className="text-xl font-black tracking-tighter uppercase">Palette Editor</h2>
-              </div>
-              
-              <div className="space-y-6">
-                {Object.entries(colors).map(([key, value]) => (
-                  <div key={key} className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">{key}</Label>
-                      <span className="text-[10px] font-mono text-muted-foreground uppercase">{value}</span>
-                    </div>
-                    <div className="flex gap-3">
-                      <div 
-                        className="h-10 w-10 rounded-xl border border-border/40 shrink-0" 
-                        style={{ backgroundColor: value }}
-                      />
-                      <Input 
-                        type="color" 
-                        value={value} 
-                        onChange={(e) => updateColor(key as keyof typeof colors, e.target.value)}
-                        className="h-10 p-1 bg-transparent border-none cursor-pointer"
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
+      <main className="max-w-7xl mx-auto p-6 md:p-12 space-y-20">
+        
+        {/* Foundations Section */}
+        <section className="space-y-12">
+          <div className="space-y-2">
+            <h2 className="text-4xl font-black tracking-tighter uppercase">Foundations</h2>
+            <p className="text-muted-foreground font-medium text-lg">La logica cromatica semantica di Nettuno Strato.</p>
+          </div>
 
-              <Separator className="bg-border/40" />
-              
-              <div className="space-y-4">
-                <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Tema Attivo</Label>
-                <div className="flex gap-2">
-                  <Button 
-                    variant={theme === "light" ? "default" : "outline"} 
-                    className="flex-1 rounded-xl h-12 border-none"
-                    onClick={() => setTheme("light")}
-                  >
-                    <Sun className="h-4 w-4 mr-2" /> Light
-                  </Button>
-                  <Button 
-                    variant={theme === "dark" ? "default" : "outline"} 
-                    className="flex-1 rounded-xl h-12 border-none"
-                    onClick={() => setTheme("dark")}
-                  >
-                    <Moon className="h-4 w-4 mr-2" /> Dark
-                  </Button>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+            {[
+              { name: "Canvas", hex: currentPalette.background, label: "background" },
+              { name: "Slate", hex: currentPalette.foreground, label: "foreground" },
+              { name: "Surface", hex: currentPalette.card, label: "card" },
+              { name: "Violet", hex: currentPalette.primary, label: "primary" },
+              { name: "Coral", hex: currentPalette.destructive, label: "destructive" },
+            ].map((c) => (
+              <div key={c.name} className="space-y-3 group">
+                <div className="aspect-[1.5/1] rounded-[1.5rem] shadow-sm transition-all group-hover:scale-[1.02] border border-border/10" style={{ backgroundColor: c.hex }} />
+                <div className="px-1">
+                  <p className="font-black text-xs uppercase tracking-tight leading-none">{c.name}</p>
+                  <p className="text-[10px] font-mono text-muted-foreground uppercase mt-1.5">{c.hex}</p>
                 </div>
               </div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8">
+            {[
+              { name: "Info", hex: currentPalette.roleInfo, role: "Cyan" },
+              { name: "Success", hex: currentPalette.roleSuccess, role: "Lime" },
+              { name: "Warning", hex: currentPalette.roleWarning, role: "Amber" },
+              { name: "Accent", hex: currentPalette.roleAccent, role: "Electric" },
+            ].map((c) => (
+              <div key={c.name} className="flex items-center gap-5 p-6 bg-card rounded-[1.5rem] border border-border/40">
+                <div className="h-14 w-14 rounded-2xl shrink-0 shadow-inner" style={{ backgroundColor: c.hex }} />
+                <div>
+                   <p className="font-black text-sm uppercase tracking-tight">{c.name}</p>
+                   <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest mt-0.5">{c.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Interactive Lab */}
+        <section className="space-y-12">
+          <div className="flex items-center justify-between">
+            <div className="space-y-2">
+              <h2 className="text-4xl font-black tracking-tighter uppercase">Lab & Componenti</h2>
+              <p className="text-muted-foreground font-medium text-lg">Test dei componenti atomici con i nuovi token.</p>
             </div>
-          </aside>
+            <Badge variant="outline" className="rounded-full px-4 h-8 font-black text-[10px] uppercase tracking-widest border-border/40">v2.0.4 Stable</Badge>
+          </div>
 
-          {/* Preview Canvas */}
-          <main className="lg:col-span-8 space-y-12">
-            <Tabs defaultValue="components" className="w-full">
-              <TabsList className="bg-card h-14 rounded-2xl p-1 gap-1 border-none mb-8">
-                <TabsTrigger value="components" className="rounded-xl font-black text-[10px] uppercase gap-2 flex-1 data-[state=active]:bg-background transition-all">
-                  <Box className="h-4 w-4" /> Componenti
-                </TabsTrigger>
-                <TabsTrigger value="typography" className="rounded-xl font-black text-[10px] uppercase gap-2 flex-1 data-[state=active]:bg-background transition-all">
-                  <Type className="h-4 w-4" /> Tipografia
-                </TabsTrigger>
-              </TabsList>
-
-              <TabsContent value="components" className="space-y-12 mt-0">
-                {/* Preview Area (Simula il design system in tempo reale) */}
-                <div 
-                  className="rounded-[2.5rem] p-12 space-y-12 border-none transition-all duration-500 shadow-2xl"
-                  style={{ 
-                    backgroundColor: 'var(--preview-bg)', 
-                    color: 'var(--preview-fg)' 
-                  }}
-                >
-                  {/* Sezione Bottoni */}
-                  <section className="space-y-6">
-                    <h3 className="text-[10px] font-black uppercase tracking-[0.2em] opacity-40">Buttons & States</h3>
-                    <div className="flex flex-wrap gap-4">
-                      <Button className="rounded-2xl h-14 px-8 font-black text-xs uppercase tracking-widest shadow-none transition-all active:scale-95" 
-                        style={{ backgroundColor: 'var(--preview-fg)', color: 'var(--preview-bg)' }}>
-                        Primary Action
-                      </Button>
-                      <Button variant="outline" className="rounded-2xl h-14 px-8 font-black text-xs uppercase tracking-widest border-none transition-all"
-                        style={{ backgroundColor: 'var(--preview-muted)', color: 'var(--preview-fg)' }}>
-                        Secondary
-                      </Button>
-                      <Button size="icon" className="h-14 w-14 rounded-full border-none transition-all"
-                        style={{ backgroundColor: 'var(--preview-muted)', color: 'var(--preview-fg)' }}>
-                        <ArrowLeft className="h-6 w-6" />
-                      </Button>
-                    </div>
-                  </section>
-
-                  {/* Sezione Card */}
-                  <section className="space-y-6">
-                    <h3 className="text-[10px] font-black uppercase tracking-[0.2em] opacity-40">Cards & Containers</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="p-8 rounded-[2rem] space-y-4 shadow-none transition-all border border-transparent hover:border-preview-border"
-                        style={{ backgroundColor: 'var(--preview-card)' }}>
-                        <div className="h-12 w-12 rounded-xl flex items-center justify-center"
-                          style={{ backgroundColor: 'var(--preview-muted)' }}>
-                          <Sparkles className="h-6 w-6" />
-                        </div>
-                        <h4 className="text-xl font-black tracking-tighter uppercase leading-none">Bento Element</h4>
-                        <p className="text-sm font-medium opacity-60">
-                          Questo elemento utilizza le variabili dinamiche per l&apos;anteprima dei colori.
-                        </p>
-                      </div>
-                      
-                      <div className="p-8 rounded-[2rem] space-y-6 flex flex-col justify-between"
-                        style={{ backgroundColor: 'var(--preview-muted)' }}>
-                        <div className="space-y-1">
-                          <p className="text-[10px] font-black uppercase tracking-widest opacity-40">Ruolo Attivo</p>
-                          <h4 className="text-2xl font-black tracking-tighter uppercase">Preview Muted</h4>
-                        </div>
-                        <Button className="rounded-xl h-12 w-full font-black text-[10px] uppercase tracking-widest"
-                          style={{ backgroundColor: 'var(--preview-fg)', color: 'var(--preview-bg)' }}>
-                          Interazione
-                        </Button>
-                      </div>
-                    </div>
-                  </section>
-
-                  {/* Sezione Form Elements */}
-                  <section className="space-y-6">
-                    <h3 className="text-[10px] font-black uppercase tracking-[0.2em] opacity-40">Form Elements</h3>
-                    <div className="grid gap-4 max-w-sm">
-                      <div className="space-y-2">
-                        <Label className="text-[10px] font-black uppercase tracking-widest opacity-40 ml-1">Label Esempio</Label>
-                        <Input 
-                          placeholder="Placeholder text..." 
-                          className="h-14 px-6 rounded-2xl border-none font-bold"
-                          style={{ backgroundColor: 'var(--preview-muted)' }}
-                        />
-                      </div>
-                    </div>
-                  </section>
-                </div>
-              </TabsContent>
-
-              <TabsContent value="typography" className="space-y-12 mt-0">
-                <div 
-                  className="rounded-[2.5rem] p-12 space-y-16 border-none transition-all duration-500 shadow-2xl"
-                  style={{ 
-                    backgroundColor: 'var(--preview-bg)', 
-                    color: 'var(--preview-fg)' 
-                  }}
-                >
-                  <div className="space-y-4">
-                    <p className="text-[10px] font-black uppercase tracking-[0.2em] opacity-40">Heading 1 - text-4xl font-black</p>
-                    <h1 className="text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none">
-                      Nettuno Design System
-                    </h1>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            
+            {/* Component Preview Canvas */}
+            <div className="lg:col-span-12 rounded-[3rem] p-10 md:p-16 space-y-16 border-none shadow-none" style={{ backgroundColor: 'var(--ds-bg)', color: 'var(--ds-fg)' }}>
+               
+               {/* Typo Scale */}
+               <div className="space-y-8">
+                  <p className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40">Typographic Hierarchy</p>
+                  <div className="space-y-6">
+                     <h1 className="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-[0.9]">Visual Identity</h1>
+                     <h2 className="text-2xl md:text-3xl font-black tracking-tight uppercase">Accademia di Belle Arti</h2>
+                     <p className="text-lg md:text-xl font-medium leading-relaxed max-w-2xl opacity-80">
+                        Il sistema Strato utilizza Instrument Sans per bilanciare autorità editoriale e leggibilità digitale.
+                     </p>
                   </div>
-                  
-                  <div className="space-y-4">
-                    <p className="text-[10px] font-black uppercase tracking-[0.2em] opacity-40">Heading 2 - text-2xl font-black</p>
-                    <h2 className="text-2xl md:text-3xl font-black tracking-tighter uppercase">
-                      Universal Design per l&apos;Accademia
-                    </h2>
-                  </div>
+               </div>
 
-                  <div className="space-y-4">
-                    <p className="text-[10px] font-black uppercase tracking-[0.2em] opacity-40">Body Text - text-base font-medium</p>
-                    <p className="text-base md:text-xl font-medium leading-relaxed max-w-2xl">
-                      Il corpo del testo utilizza Instrument Sans Medium. La leggibilità è garantita da una spaziatura di interlinea generosa e un contrasto ottimizzato secondo gli standard WCAG AA.
-                    </p>
-                  </div>
-
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                    <div className="space-y-2">
-                      <p className="text-[10px] font-black uppercase tracking-[0.2em] opacity-40">Metadata</p>
-                      <p className="text-[10px] font-black uppercase tracking-[0.2em]">Codice: 102938</p>
+               {/* Bento Cards Preview */}
+               <div className="space-y-8">
+                  <p className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40">Bento Pattern (Radius 24px)</p>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="p-8 rounded-[2rem] space-y-8 transition-all hover:scale-[1.02] cursor-pointer" style={{ backgroundColor: 'var(--ds-card)' }}>
+                       <div className="h-12 w-12 rounded-xl flex items-center justify-center text-primary-foreground shadow-lg" style={{ backgroundColor: 'var(--ds-primary)' }}>
+                          <Layout className="h-6 w-6" />
+                       </div>
+                       <h3 className="text-2xl font-black tracking-tight uppercase">Structure</h3>
                     </div>
-                    <div className="space-y-2">
-                      <p className="text-[10px] font-black uppercase tracking-[0.2em] opacity-40">Status</p>
-                      <p className="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-500">Approvato</p>
+                    
+                    <div className="p-8 rounded-[2rem] space-y-8 transition-all hover:scale-[1.02] cursor-pointer shadow-xl shadow-primary/5" style={{ backgroundColor: 'var(--ds-primary)', color: 'var(--ds-bg)' }}>
+                       <div className="h-12 w-12 rounded-xl flex items-center justify-center bg-background/20">
+                          <Component className="h-6 w-6" />
+                       </div>
+                       <h3 className="text-2xl font-black tracking-tight uppercase">Primary</h3>
+                    </div>
+
+                    <div className="p-8 rounded-[2rem] space-y-8 transition-all hover:scale-[1.02] cursor-pointer" style={{ backgroundColor: 'var(--ds-success)' }}>
+                       <div className="h-12 w-12 rounded-xl flex items-center justify-center bg-foreground/5">
+                          <ShieldCheck className="h-6 w-6" />
+                       </div>
+                       <h3 className="text-2xl font-black tracking-tight uppercase">Secure</h3>
                     </div>
                   </div>
-                </div>
-              </TabsContent>
-            </Tabs>
+               </div>
 
-            {/* Export CSS */}
-            <div className="bg-card rounded-[2rem] p-8 space-y-6">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <Palette className="h-5 w-5 text-muted-foreground" />
-                  <h2 className="text-xl font-black tracking-tighter uppercase">Export Config</h2>
-                </div>
-                <Button variant="ghost" className="text-[10px] font-black uppercase tracking-widest" onClick={() => {
-                  const css = `
-:root {
-  --background: ${colors.background};
-  --foreground: ${colors.foreground};
-  --card: ${colors.card};
-  --muted: ${colors.muted};
-  --muted-foreground: ${colors.mutedFg};
-  --accent: ${colors.accent};
-  --border: ${colors.border};
-}`
-                  navigator.clipboard.writeText(css)
-                  alert("CSS Copiato negli appunti!")
-                }}>Copia CSS</Button>
-              </div>
-              <pre className="bg-muted/30 p-6 rounded-xl text-xs font-mono overflow-x-auto">
-                {`/* Applica queste variabili in globals.css */
-:root {
-  --background: ${colors.background};
-  --foreground: ${colors.foreground};
-  --card: ${colors.card};
-  --muted: ${colors.muted};
-  --muted-foreground: ${colors.mutedFg};
-  --accent: ${colors.accent};
-  --border: ${colors.border};
-}`}
-              </pre>
+               {/* Buttons & Forms */}
+               <div className="space-y-8">
+                  <p className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40">Interaction Atoms</p>
+                  <div className="flex flex-wrap gap-6 items-end">
+                    <Button className="h-16 px-10 rounded-[1.5rem] font-black uppercase tracking-widest text-xs shadow-2xl shadow-primary/20 active:scale-95 transition-all" style={{ backgroundColor: 'var(--ds-primary)', color: 'var(--ds-bg)' }}>
+                       Primary Button
+                    </Button>
+                    
+                    <Button variant="outline" className="h-16 px-10 rounded-[1.5rem] font-black uppercase tracking-widest text-xs border-none active:scale-95 transition-all" style={{ backgroundColor: 'var(--ds-destructive)', color: 'var(--ds-bg)' }}>
+                       Critical Action
+                    </Button>
+
+                    <div className="flex-1 min-w-[300px] space-y-3">
+                       <Label className="text-[9px] font-black uppercase tracking-widest opacity-40 ml-2">Input Prototype</Label>
+                       <Input 
+                         placeholder="Scrivi qui..." 
+                         className="h-16 px-6 rounded-2xl border-none font-bold text-base shadow-sm"
+                         style={{ backgroundColor: 'var(--ds-card)' }}
+                       />
+                    </div>
+                  </div>
+               </div>
+
             </div>
-          </main>
-        </div>
-      </div>
+          </div>
+        </section>
+
+        {/* Documentation Footer */}
+        <footer className="pt-20 border-t border-border/10 flex flex-col items-center text-center gap-6">
+           <div className="h-16 w-16 rounded-[1.5rem] bg-foreground text-background flex items-center justify-center">
+              <Sparkles className="h-8 w-8" />
+           </div>
+           <p className="text-sm font-black uppercase tracking-[0.4em] opacity-40">Single Source of Truth • 2026</p>
+        </footer>
+
+      </main>
     </div>
   )
 }
