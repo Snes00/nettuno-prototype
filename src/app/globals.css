@@ -38,17 +38,17 @@
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
 
-  /* Semantic Role Colors */
-  --color-role-blue: var(--role-blue);
-  --color-role-blue-fg: var(--role-blue-fg);
-  --color-role-pink: var(--role-pink);
-  --color-role-pink-fg: var(--role-pink-fg);
-  --color-state-success: var(--state-success);
-  --color-state-success-fg: var(--state-success-fg);
-  --color-state-warning: var(--state-warning);
-  --color-state-warning-fg: var(--state-warning-fg);
-  --color-state-error: var(--state-error);
-  --color-state-error-fg: var(--state-error-fg);
+  /* Semantic Role Variables */
+  --color-role-info: var(--role-info);
+  --color-role-info-fg: var(--role-info-fg);
+  --color-role-success: var(--role-success);
+  --color-role-success-fg: var(--role-success-fg);
+  --color-role-warning: var(--role-warning);
+  --color-role-warning-fg: var(--role-warning-fg);
+  --color-role-critical: var(--role-critical);
+  --color-role-critical-fg: var(--role-critical-fg);
+  --color-role-accent: var(--role-accent);
+  --color-role-accent-fg: var(--role-accent-fg);
   
   /* Refined Radius Geometry */
   --radius: 1.5rem;
@@ -82,19 +82,17 @@
   --input: #E5E2DA;
   --ring: #1A1917;
 
-  /* Role Accents (Light) */
-  --role-blue: #DBEAFE;
-  --role-blue-fg: #1E40AF;
-  --role-pink: #FEE2E2;
-  --role-pink-fg: #991B1B;
-  
-  /* States (Light) */
-  --state-success: #DCFCE7;
-  --state-success-fg: #166534;
-  --state-warning: #FEF9C3;
-  --state-warning-fg: #854D0E;
-  --state-error: #FEE2E2;
-  --state-error-fg: #991B1B;
+  /* Semantic Roles (Light) */
+  --role-info: #DBEAFE;       /* Blue Tint */
+  --role-info-fg: #1E40AF;    /* Deep Blue */
+  --role-success: #DCFCE7;    /* Green Tint */
+  --role-success-fg: #166534; /* Deep Green */
+  --role-warning: #FEF9C3;    /* Yellow Tint */
+  --role-warning-fg: #854D0E; /* Deep Gold */
+  --role-critical: #FEE2E2;   /* Red Tint */
+  --role-critical-fg: #991B1B;/* Deep Red */
+  --role-accent: #F3E8FF;     /* Purple Tint */
+  --role-accent-fg: #6B21A8;  /* Deep Purple */
 
   --sidebar: #FFFFFF;
   --sidebar-foreground: #1A1917;
@@ -124,26 +122,24 @@
   --muted-foreground: #A1A1AA;
   --accent: #27272A;
   --accent-foreground: #F5F5F0;
-  --destructive: #7F1D1D;
-  --destructive-foreground: #F5F5F0;
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
   
   --border: #27272A;
   --input: #27272A;
   --ring: #F5F5F0;
 
-  /* Role Accents (Dark) */
-  --role-blue: #111B2D;
-  --role-blue-fg: #60A5FA;
-  --role-pink: #2D1616;
-  --role-pink-fg: #F87171;
-  
-  /* States (Dark) */
-  --state-success: #0F2013;
-  --state-success-fg: #4ADE80;
-  --state-warning: #261F0F;
-  --state-warning-fg: #FACC15;
-  --state-error: #2D1616;
-  --state-error-fg: #F87171;
+  /* Semantic Roles (Dark) */
+  --role-info: #111B2D;       /* Deep Navy */
+  --role-info-fg: #60A5FA;    /* Light Blue */
+  --role-success: #0F2013;    /* Deep Forest */
+  --role-success-fg: #4ADE80; /* Light Green */
+  --role-warning: #261F0F;    /* Deep Gold Tint */
+  --role-warning-fg: #FACC15; /* Bright Yellow */
+  --role-critical: #2D1616;   /* Deep Crimson */
+  --role-critical-fg: #F87171;/* Light Red */
+  --role-accent: #1C122D;     /* Deep Royal */
+  --role-accent-fg: #C084FC;  /* Light Purple */
 
   --sidebar: #18181B;
   --sidebar-foreground: #F5F5F0;
