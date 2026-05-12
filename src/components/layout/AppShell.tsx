@@ -8,8 +8,9 @@ import { cn } from "@/lib/utils";
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isLandingPage = pathname === "/";
+  const isLoginPage = pathname === "/login";
 
-  if (isLandingPage) {
+  if (isLandingPage || isLoginPage) {
     return <main className="min-h-screen">{children}</main>;
   }
 
