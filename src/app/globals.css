@@ -10,23 +10,21 @@
   --font-sans: var(--font-instrument-sans);
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --font-heading: var(--font-instrument-sans);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
+  
   --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
   --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
   --color-muted-foreground: var(--muted-foreground);
@@ -39,95 +37,122 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+
+  /* Semantic Role Colors */
+  --color-role-blue: var(--role-blue);
+  --color-role-blue-fg: var(--role-blue-fg);
+  --color-role-pink: var(--role-pink);
+  --color-role-pink-fg: var(--role-pink-fg);
+  --color-state-success: var(--state-success);
+  --color-state-success-fg: var(--state-success-fg);
+  --color-state-warning: var(--state-warning);
+  --color-state-warning-fg: var(--state-warning-fg);
+  --color-state-error: var(--state-error);
+  --color-state-error-fg: var(--state-error-fg);
   
   /* Refined Radius Geometry */
-  --radius: 1.5rem;          /* Outer R: 24px */
-  --radius-inner: 0.75rem;   /* Inner R: 12px */
+  --radius: 1.5rem;
+  --radius-inner: 0.75rem;
   
-  --radius-sm: calc(var(--radius-inner) * 0.6);
-  --radius-md: var(--radius-inner);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.5);
-  --radius-2xl: calc(var(--radius) * 2);
-  --radius-3xl: calc(var(--radius) * 3);
-  
-  --shadow-none: none;
-
-  /* Spacing Scale (8-Point Grid) */
-  --spacing-safe: 2rem;
-  --spacing-gutter: 1.5rem;
   --spacing-bento: 1.5rem;
 }
 
 :root {
-  /* Bento Warm Light Palette */
-  --background: #F8F5F0;     /* Warm Paper */
+  /* Surface */
+  --background: #F8F5F0;
   --foreground: #1A1917;
-  
   --card: #FFFFFF;
   --card-foreground: #1A1917;
+  --popover: #FFFFFF;
+  --popover-foreground: #1A1917;
   
+  /* Brand/Actions */
   --primary: #1A1917;
   --primary-foreground: #FFFFFF;
-  
-  --secondary: #EBE8E2;
-  --secondary-foreground: #4A4947;
-  
+  --secondary: #F1EFE9;
+  --secondary-foreground: #1A1917;
   --muted: #F1EFE9;
   --muted-foreground: #7C7A77;
-  
-  --accent: #FFD6E8;
+  --accent: #F1EFE9;
   --accent-foreground: #1A1917;
-  
-  --destructive: #FF4D4D;
+  --destructive: #EF4444;
   --destructive-foreground: #FFFFFF;
   
   --border: #E5E2DA;
   --input: #E5E2DA;
   --ring: #1A1917;
 
-  /* Bento Specific Colors (Light) */
-  --bento-pink: #FEE2E2;
-  --bento-green: #DCFCE7;
-  --bento-yellow: #FEF9C3;
-  --bento-blue: #DBEAFE;
-  --bento-purple: #F3E8FF;
+  /* Role Accents (Light) */
+  --role-blue: #DBEAFE;
+  --role-blue-fg: #1E40AF;
+  --role-pink: #FEE2E2;
+  --role-pink-fg: #991B1B;
   
+  /* States (Light) */
+  --state-success: #DCFCE7;
+  --state-success-fg: #166534;
+  --state-warning: #FEF9C3;
+  --state-warning-fg: #854D0E;
+  --state-error: #FEE2E2;
+  --state-error-fg: #991B1B;
+
   --sidebar: #FFFFFF;
+  --sidebar-foreground: #1A1917;
+  --sidebar-primary: #1A1917;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #F1EFE9;
+  --sidebar-accent-foreground: #1A1917;
+  --sidebar-border: #E5E2DA;
+  --sidebar-ring: #1A1917;
 }
 
 .dark {
-  /* Bento Deep Dark Palette */
-  --background: #0A0A0A;     /* Deep Graphite */
-  --foreground: #F5F5F0;     /* Ivory White */
-  
-  --card: #141414;           /* Elevated Surface */
+  /* Surface */
+  --background: #09090B;
+  --foreground: #F5F5F0;
+  --card: #18181B;
   --card-foreground: #F5F5F0;
+  --popover: #18181B;
+  --popover-foreground: #F5F5F0;
   
-  --primary: #F5F5F0;        /* Inverted Actions */
-  --primary-foreground: #0A0A0A;
-  
-  --secondary: #1F1F1F;
-  --secondary-foreground: #A1A1AA;
-  
-  --muted: #1A1A1A;
-  --muted-foreground: #71717A;
-  
-  --accent: #2A1F2D;
+  /* Brand/Actions */
+  --primary: #F5F5F0;
+  --primary-foreground: #09090B;
+  --secondary: #27272A;
+  --secondary-foreground: #F5F5F0;
+  --muted: #27272A;
+  --muted-foreground: #A1A1AA;
+  --accent: #27272A;
   --accent-foreground: #F5F5F0;
+  --destructive: #7F1D1D;
+  --destructive-foreground: #F5F5F0;
   
-  --border: #262626;
-  --input: #262626;
+  --border: #27272A;
+  --input: #27272A;
   --ring: #F5F5F0;
 
-  /* Bento Specific Colors (Dark - Deep Saturation) */
-  --bento-pink: #2D1616;     /* Deep Crimson Tint */
-  --bento-green: #0F2013;    /* Deep Forest Tint */
-  --bento-yellow: #261F0F;   /* Deep Gold Tint */
-  --bento-blue: #111B2D;     /* Deep Navy Tint */
-  --bento-purple: #1C122D;   /* Deep Royal Tint */
+  /* Role Accents (Dark) */
+  --role-blue: #111B2D;
+  --role-blue-fg: #60A5FA;
+  --role-pink: #2D1616;
+  --role-pink-fg: #F87171;
+  
+  /* States (Dark) */
+  --state-success: #0F2013;
+  --state-success-fg: #4ADE80;
+  --state-warning: #261F0F;
+  --state-warning-fg: #FACC15;
+  --state-error: #2D1616;
+  --state-error-fg: #F87171;
 
-  --sidebar: #141414;        /* Dark sidebar in dark mode to avoid glare */
+  --sidebar: #18181B;
+  --sidebar-foreground: #F5F5F0;
+  --sidebar-primary: #F5F5F0;
+  --sidebar-primary-foreground: #09090B;
+  --sidebar-accent: #27272A;
+  --sidebar-accent-foreground: #F5F5F0;
+  --sidebar-border: #27272A;
+  --sidebar-ring: #F5F5F0;
 }
 
 @layer base {
