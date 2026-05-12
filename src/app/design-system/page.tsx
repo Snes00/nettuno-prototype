@@ -18,7 +18,16 @@ import {
   Sun,
   Layout,
   Layers,
-  Component
+  Component,
+  Code,
+  Download,
+  Share2,
+  Trash2,
+  CheckCheck,
+  Clock,
+  Bell,
+  MessageSquare,
+  CreditCard
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -34,64 +43,100 @@ export default function DesignSystemPage() {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = React.useState(false)
   
-  // Strato v2.0 Global Tokens
-  const stratoTokens = {
-    light: {
-      background: "#EEEDF2",
-      foreground: "#14131A",
-      card: "#FFFFFF",
-      primary: "#6547E8",
-      destructive: "#F03C6C",
-      border: "#E4E2EC",
-      roleInfo: "#EBF8FF",
-      roleSuccess: "#EDFAEE",
-      roleWarning: "#FEFAEE",
-      roleAccent: "#F1EFFE",
-    },
-    dark: {
-      background: "#0F0E14",
-      foreground: "#E4E2EC",
-      card: "#1E1C2A",
-      primary: "#8470EF",
-      destructive: "#F56E90",
-      border: "#2E2C3A",
-      roleInfo: "#043450",
-      roleSuccess: "#144D1B",
-      roleWarning: "#573006",
-      roleAccent: "#2E1A72",
-    }
-  }
+  // Strato v2.0 Tokens - State for interactive editor
+  const [tokens, setTokens] = React.useState({
+    background: theme === "dark" ? "#0F0E14" : "#EEEDF2",
+    foreground: theme === "dark" ? "#E4E2EC" : "#14131A",
+    card: theme === "dark" ? "#1E1C2A" : "#FFFFFF",
+    primary: theme === "dark" ? "#8470EF" : "#6547E8",
+    destructive: theme === "dark" ? "#F56E90" : "#F03C6C",
+    border: theme === "dark" ? "#2E2C3A" : "#E4E2EC",
+    info: theme === "dark" ? "#043450" : "#EBF8FF",
+    infoFg: theme === "dark" ? "#80CBF5" : "#065180",
+    success: theme === "dark" ? "#144D1B" : "#EDFAEE",
+    successFg: theme === "dark" ? "#8CDA95" : "#1D6E26",
+    warning: theme === "dark" ? "#573006" : "#FEFAEE",
+    warningFg: theme === "dark" ? "#EEC070" : "#7A480A",
+    accent: theme === "dark" ? "#2E1A72" : "#F1EFFE",
+    accentFg: theme === "dark" ? "#C9C0F8" : "#5035C8",
+  })
+
+  // Sincronizza i token quando cambia il tema di sistema, ma solo se l'utente non li ha modificati? 
+  // Per semplicità nel lab, resettiamo al cambio tema per mostrare i default di Strato.
+  React.useEffect(() => {
+    setTokens({
+      background: theme === "dark" ? "#0F0E14" : "#EEEDF2",
+      foreground: theme === "dark" ? "#E4E2EC" : "#14131A",
+      card: theme === "dark" ? "#1E1C2A" : "#FFFFFF",
+      primary: theme === "dark" ? "#8470EF" : "#6547E8",
+      destructive: theme === "dark" ? "#F56E90" : "#F03C6C",
+      border: theme === "dark" ? "#2E2C3A" : "#E4E2EC",
+      info: theme === "dark" ? "#043450" : "#EBF8FF",
+      infoFg: theme === "dark" ? "#80CBF5" : "#065180",
+      success: theme === "dark" ? "#144D1B" : "#EDFAEE",
+      successFg: theme === "dark" ? "#8CDA95" : "#1D6E26",
+      warning: theme === "dark" ? "#573006" : "#FEFAEE",
+      warningFg: theme === "dark" ? "#EEC070" : "#7A480A",
+      accent: theme === "dark" ? "#2E1A72" : "#F1EFFE",
+      accentFg: theme === "dark" ? "#C9C0F8" : "#5035C8",
+    })
+  }, [theme])
 
   React.useEffect(() => {
     setMounted(true)
   }, [])
 
-  if (!mounted) return null
+  const updateToken = (key: keyof typeof tokens, value: string) => {
+    setTokens(prev => ({ ...prev, [key]: value }))
+  }
 
-  const currentPalette = theme === "dark" ? stratoTokens.dark : stratoTokens.light
+  const resetToStrato = () => {
+    setTokens({
+      background: theme === "dark" ? "#0F0E14" : "#EEEDF2",
+      foreground: theme === "dark" ? "#E4E2EC" : "#14131A",
+      card: theme === "dark" ? "#1E1C2A" : "#FFFFFF",
+      primary: theme === "dark" ? "#8470EF" : "#6547E8",
+      destructive: theme === "dark" ? "#F56E90" : "#F03C6C",
+      border: theme === "dark" ? "#2E2C3A" : "#E4E2EC",
+      info: theme === "dark" ? "#043450" : "#EBF8FF",
+      infoFg: theme === "dark" ? "#80CBF5" : "#065180",
+      success: theme === "dark" ? "#144D1B" : "#EDFAEE",
+      successFg: theme === "dark" ? "#8CDA95" : "#1D6E26",
+      warning: theme === "dark" ? "#573006" : "#FEFAEE",
+      warningFg: theme === "dark" ? "#EEC070" : "#7A480A",
+      accent: theme === "dark" ? "#2E1A72" : "#F1EFFE",
+      accentFg: theme === "dark" ? "#C9C0F8" : "#5035C8",
+    })
+  }
+
+  if (!mounted) return null
 
   return (
     <div className="min-h-screen bg-background text-foreground animate-in fade-in duration-700">
       
-      {/* Dynamic Style Override for System Playground */}
+      {/* Dynamic Style Override for Preview */}
       <style jsx global>{`
         :root {
-          --ds-bg: ${currentPalette.background};
-          --ds-fg: ${currentPalette.foreground};
-          --ds-card: ${currentPalette.card};
-          --ds-primary: ${currentPalette.primary};
-          --ds-destructive: ${currentPalette.destructive};
-          --ds-border: ${currentPalette.border};
-          --ds-info: ${currentPalette.roleInfo};
-          --ds-success: ${currentPalette.roleSuccess};
-          --ds-warning: ${currentPalette.roleWarning};
-          --ds-accent: ${currentPalette.roleAccent};
+          --preview-bg: ${tokens.background};
+          --preview-fg: ${tokens.foreground};
+          --preview-card: ${tokens.card};
+          --preview-primary: ${tokens.primary};
+          --preview-destructive: ${tokens.destructive};
+          --preview-border: ${tokens.border};
+          --preview-info: ${tokens.info};
+          --preview-info-fg: ${tokens.infoFg};
+          --preview-success: ${tokens.success};
+          --preview-success-fg: ${tokens.successFg};
+          --preview-warning: ${tokens.warning};
+          --preview-warning-fg: ${tokens.warningFg};
+          --preview-accent: ${tokens.accent};
+          --preview-accent-fg: ${tokens.accentFg};
         }
       `}</style>
 
-      {/* Hero Header */}
+      {/* Header */}
       <header className="border-b border-border/10 bg-card/50 backdrop-blur-md sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+        <div className="max-w-screen-2xl mx-auto px-6 h-24 flex items-center justify-between">
           <div className="flex items-center gap-6">
             <Link href="/">
               <Button variant="ghost" size="icon" className="h-12 w-12 rounded-full hover:bg-muted active:scale-90 transition-all">
@@ -103,169 +148,337 @@ export default function DesignSystemPage() {
                   <Layers className="h-6 w-6" />
                </div>
                <div>
-                  <h1 className="text-2xl font-black tracking-tighter uppercase leading-none">Strato v2.0</h1>
-                  <p className="text-muted-foreground font-black mt-1 uppercase text-[9px] tracking-[0.2em]">Living Design System • ABAP Portal</p>
+                  <h1 className="text-2xl font-black tracking-tighter uppercase leading-none">Strato v2.0 Lab</h1>
+                  <p className="text-muted-foreground font-black mt-1 uppercase text-[9px] tracking-[0.2em]">Sperimentazione UI & Logica Semantica</p>
                </div>
             </div>
           </div>
-          <div className="flex items-center gap-4">
-             <div className="flex bg-muted/40 p-1 rounded-xl">
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  onClick={() => setTheme("light")}
-                  className={cn("rounded-lg font-black text-[9px] uppercase px-4", theme === "light" && "bg-background shadow-sm")}
-                >
-                  <Sun className="h-3.5 w-3.5 mr-2" /> Light
-                </Button>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  onClick={() => setTheme("dark")}
-                  className={cn("rounded-lg font-black text-[9px] uppercase px-4", theme === "dark" && "bg-background shadow-sm")}
-                >
-                  <Moon className="h-3.5 w-3.5 mr-2" /> Dark
-                </Button>
-             </div>
+          <div className="flex items-center gap-3">
+             <Button variant="outline" className="rounded-xl h-11 gap-2 font-black text-[10px] uppercase border-none bg-muted/40" onClick={resetToStrato}>
+               <RefreshCw className="h-4 w-4" /> Reset Default
+             </Button>
+             <Button className="rounded-xl h-11 gap-2 font-black text-[10px] uppercase bg-primary text-primary-foreground">
+               <Save className="h-4 w-4" /> Esporta Prototipo
+             </Button>
           </div>
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto p-6 md:p-12 space-y-20">
+      <div className="max-w-screen-2xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-0">
         
-        {/* Foundations Section */}
-        <section className="space-y-12">
-          <div className="space-y-2">
-            <h2 className="text-4xl font-black tracking-tighter uppercase">Foundations</h2>
-            <p className="text-muted-foreground font-medium text-lg">La logica cromatica semantica di Nettuno Strato.</p>
-          </div>
+        {/* Sidebar Editor (Ripristinato) */}
+        <aside className="lg:col-span-3 border-r border-border/10 h-[calc(100vh-6rem)] overflow-y-auto bg-card/20 no-scrollbar">
+          <div className="p-8 space-y-10">
+            <div className="space-y-6">
+              <div className="flex items-center gap-3 px-1">
+                <Palette className="h-4 w-4 text-primary" />
+                <h2 className="text-xs font-black uppercase tracking-[0.2em]">Token Editor</h2>
+              </div>
+              
+              <div className="space-y-8">
+                {/* Superfici */}
+                <div className="space-y-4">
+                  <p className="text-[9px] font-black text-muted-foreground uppercase tracking-widest px-1">Superfici & Base</p>
+                  {['background', 'foreground', 'card', 'border'].map(key => (
+                    <div key={key} className="space-y-2 px-1">
+                      <div className="flex justify-between items-center">
+                        <Label className="text-[10px] font-bold text-foreground/60">{key}</Label>
+                        <span className="text-[9px] font-mono opacity-40 uppercase">{(tokens as any)[key]}</span>
+                      </div>
+                      <div className="flex gap-2">
+                        <div className="h-8 w-8 rounded-lg border border-border/20 shrink-0" style={{ backgroundColor: (tokens as any)[key] }} />
+                        <Input 
+                          type="color" 
+                          value={(tokens as any)[key]} 
+                          onChange={(e) => updateToken(key as any, e.target.value)}
+                          className="h-8 p-0 bg-transparent border-none cursor-pointer flex-1"
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
-            {[
-              { name: "Canvas", hex: currentPalette.background, label: "background" },
-              { name: "Slate", hex: currentPalette.foreground, label: "foreground" },
-              { name: "Surface", hex: currentPalette.card, label: "card" },
-              { name: "Violet", hex: currentPalette.primary, label: "primary" },
-              { name: "Coral", hex: currentPalette.destructive, label: "destructive" },
-            ].map((c) => (
-              <div key={c.name} className="space-y-3 group">
-                <div className="aspect-[1.5/1] rounded-[1.5rem] shadow-sm transition-all group-hover:scale-[1.02] border border-border/10" style={{ backgroundColor: c.hex }} />
-                <div className="px-1">
-                  <p className="font-black text-xs uppercase tracking-tight leading-none">{c.name}</p>
-                  <p className="text-[10px] font-mono text-muted-foreground uppercase mt-1.5">{c.hex}</p>
+                <Separator className="bg-border/10" />
+
+                {/* Azioni */}
+                <div className="space-y-4">
+                  <p className="text-[9px] font-black text-muted-foreground uppercase tracking-widest px-1">Azioni & Branding</p>
+                  {['primary', 'destructive'].map(key => (
+                    <div key={key} className="space-y-2 px-1">
+                      <div className="flex justify-between items-center">
+                        <Label className="text-[10px] font-bold text-foreground/60">{key}</Label>
+                        <span className="text-[9px] font-mono opacity-40 uppercase">{(tokens as any)[key]}</span>
+                      </div>
+                      <div className="flex gap-2">
+                        <div className="h-8 w-8 rounded-lg border border-border/20 shrink-0" style={{ backgroundColor: (tokens as any)[key] }} />
+                        <Input 
+                          type="color" 
+                          value={(tokens as any)[key]} 
+                          onChange={(e) => updateToken(key as any, e.target.value)}
+                          className="h-8 p-0 bg-transparent border-none cursor-pointer flex-1"
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <Separator className="bg-border/10" />
+
+                {/* Ruoli Semantici */}
+                <div className="space-y-4 pb-10">
+                  <p className="text-[9px] font-black text-muted-foreground uppercase tracking-widest px-1">Ruoli Semantici (Bento)</p>
+                  {['info', 'success', 'warning', 'accent'].map(key => (
+                    <div key={key} className="space-y-4 border-l-2 border-muted pl-4 py-1">
+                      <div className="space-y-2">
+                        <Label className="text-[10px] font-bold text-foreground/60 uppercase tracking-tighter">{key} BG</Label>
+                        <Input type="color" value={(tokens as any)[key]} onChange={(e) => updateToken(key as any, e.target.value)} className="h-8 p-0 bg-transparent border-none cursor-pointer" />
+                      </div>
+                      <div className="space-y-2">
+                        <Label className="text-[10px] font-bold text-foreground/60 uppercase tracking-tighter">{key} FG</Label>
+                        <Input type="color" value={(tokens as any)[key + 'Fg']} onChange={(e) => updateToken((key + 'Fg') as any, e.target.value)} className="h-8 p-0 bg-transparent border-none cursor-pointer" />
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
-            ))}
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8">
-            {[
-              { name: "Info", hex: currentPalette.roleInfo, role: "Cyan" },
-              { name: "Success", hex: currentPalette.roleSuccess, role: "Lime" },
-              { name: "Warning", hex: currentPalette.roleWarning, role: "Amber" },
-              { name: "Accent", hex: currentPalette.roleAccent, role: "Electric" },
-            ].map((c) => (
-              <div key={c.name} className="flex items-center gap-5 p-6 bg-card rounded-[1.5rem] border border-border/40">
-                <div className="h-14 w-14 rounded-2xl shrink-0 shadow-inner" style={{ backgroundColor: c.hex }} />
-                <div>
-                   <p className="font-black text-sm uppercase tracking-tight">{c.name}</p>
-                   <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest mt-0.5">{c.role}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Interactive Lab */}
-        <section className="space-y-12">
-          <div className="flex items-center justify-between">
-            <div className="space-y-2">
-              <h2 className="text-4xl font-black tracking-tighter uppercase">Lab & Componenti</h2>
-              <p className="text-muted-foreground font-medium text-lg">Test dei componenti atomici con i nuovi token.</p>
             </div>
-            <Badge variant="outline" className="rounded-full px-4 h-8 font-black text-[10px] uppercase tracking-widest border-border/40">v2.0.4 Stable</Badge>
           </div>
+        </aside>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            
-            {/* Component Preview Canvas */}
-            <div className="lg:col-span-12 rounded-[3rem] p-10 md:p-16 space-y-16 border-none shadow-none" style={{ backgroundColor: 'var(--ds-bg)', color: 'var(--ds-fg)' }}>
-               
-               {/* Typo Scale */}
-               <div className="space-y-8">
-                  <p className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40">Typographic Hierarchy</p>
+        {/* Main Content Area (Ripristinato con Tabs) */}
+        <main className="lg:col-span-9 h-[calc(100vh-6rem)] overflow-y-auto no-scrollbar">
+          <div className="p-8 md:p-12 space-y-12">
+            <Tabs defaultValue="components" className="w-full">
+              <TabsList className="bg-card h-16 rounded-[1.25rem] p-1.5 gap-1 border border-border/10 mb-12 max-w-2xl mx-auto shadow-sm">
+                <TabsTrigger value="components" className="rounded-xl font-black text-[10px] uppercase tracking-widest gap-2 flex-1 data-[state=active]:bg-background data-[state=active]:shadow-none transition-all">
+                  <Box className="h-4 w-4" /> UI Componenti
+                </TabsTrigger>
+                <TabsTrigger value="typography" className="rounded-xl font-black text-[10px] uppercase tracking-widest gap-2 flex-1 data-[state=active]:bg-background data-[state=active]:shadow-none transition-all">
+                  <Type className="h-4 w-4" /> Tipografia
+                </TabsTrigger>
+                <TabsTrigger value="code" className="rounded-xl font-black text-[10px] uppercase tracking-widest gap-2 flex-1 data-[state=active]:bg-background data-[state=active]:shadow-none transition-all">
+                  <Code className="h-4 w-4" /> Export CSS
+                </TabsTrigger>
+              </TabsList>
+
+              {/* === TAB COMPONENTI === */}
+              <TabsContent value="components" className="mt-0 animate-in fade-in slide-in-from-bottom-2 duration-500">
+                <div 
+                  className="rounded-[3rem] p-10 md:p-16 space-y-20 border-none transition-all duration-500 shadow-2xl relative overflow-hidden"
+                  style={{ backgroundColor: 'var(--preview-bg)', color: 'var(--preview-fg)' }}
+                >
+                  {/* Buttons Section */}
+                  <section className="space-y-8">
+                    <div className="space-y-1">
+                      <p className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40">Atoms / Buttons</p>
+                      <h3 className="text-2xl font-black tracking-tighter uppercase">Interazioni Principali</h3>
+                    </div>
+                    <div className="flex flex-wrap items-end gap-6">
+                      <div className="space-y-3 text-center">
+                        <Button className="h-16 px-10 rounded-[1.5rem] font-black uppercase tracking-widest text-xs shadow-2xl shadow-primary/20 transition-all active:scale-95"
+                          style={{ backgroundColor: 'var(--preview-primary)', color: 'var(--preview-bg)' }}>
+                          Primary Action
+                        </Button>
+                        <p className="text-[9px] font-black opacity-30 uppercase tracking-widest">bg-primary</p>
+                      </div>
+
+                      <div className="space-y-3 text-center">
+                        <Button className="h-16 px-10 rounded-[1.5rem] font-black uppercase tracking-widest text-xs transition-all active:scale-95"
+                          style={{ backgroundColor: 'var(--preview-destructive)', color: 'var(--preview-bg)' }}>
+                          Critical
+                        </Button>
+                        <p className="text-[9px] font-black opacity-30 uppercase tracking-widest">bg-destructive</p>
+                      </div>
+
+                      <div className="space-y-3 text-center">
+                        <Button variant="outline" className="h-16 px-10 rounded-[1.5rem] font-black uppercase tracking-widest text-xs border-none bg-muted/40 transition-all active:scale-95"
+                          style={{ color: 'var(--preview-fg)' }}>
+                          Secondary
+                        </Button>
+                        <p className="text-[9px] font-black opacity-30 uppercase tracking-widest">bg-muted/40</p>
+                      </div>
+                    </div>
+                  </section>
+
+                  {/* Bento Grid Section */}
+                  <section className="space-y-10">
+                    <div className="space-y-1">
+                      <p className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40">Molecules / Bento Grid</p>
+                      <h3 className="text-2xl font-black tracking-tighter uppercase">Geometria Deep Bento</h3>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      {/* Info Card */}
+                      <div className="p-8 rounded-[2rem] space-y-8 transition-all hover:scale-[1.02] cursor-pointer"
+                        style={{ backgroundColor: 'var(--preview-info)', color: 'var(--preview-info-fg)' }}>
+                        <div className="flex justify-between items-start">
+                           <div className="h-12 w-12 rounded-xl flex items-center justify-center bg-current/10">
+                              <Info className="h-6 w-6" />
+                           </div>
+                           <Badge variant="outline" className="border-current/20 rounded-full font-black text-[9px] uppercase">v2.0</Badge>
+                        </div>
+                        <h4 className="text-2xl font-black tracking-tighter uppercase leading-none">Info Role</h4>
+                      </div>
+
+                      {/* Success Card */}
+                      <div className="p-8 rounded-[2rem] space-y-8 transition-all hover:scale-[1.02] cursor-pointer"
+                        style={{ backgroundColor: 'var(--preview-success)', color: 'var(--preview-success-fg)' }}>
+                        <div className="flex justify-between items-start">
+                           <div className="h-12 w-12 rounded-xl flex items-center justify-center bg-current/10">
+                              <CheckCheck className="h-6 w-6" />
+                           </div>
+                           <Badge variant="outline" className="border-current/20 rounded-full font-black text-[9px] uppercase">OK</Badge>
+                        </div>
+                        <h4 className="text-2xl font-black tracking-tighter uppercase leading-none">Success Role</h4>
+                      </div>
+
+                      {/* Warning Card */}
+                      <div className="p-8 rounded-[2rem] space-y-8 transition-all hover:scale-[1.02] cursor-pointer"
+                        style={{ backgroundColor: 'var(--preview-warning)', color: 'var(--preview-warning-fg)' }}>
+                        <div className="flex justify-between items-start">
+                           <div className="h-12 w-12 rounded-xl flex items-center justify-center bg-current/10">
+                              <Clock className="h-6 w-6" />
+                           </div>
+                           <Badge variant="outline" className="border-current/20 rounded-full font-black text-[9px] uppercase">Soon</Badge>
+                        </div>
+                        <h4 className="text-2xl font-black tracking-tighter uppercase leading-none">Warning Role</h4>
+                      </div>
+                    </div>
+                  </section>
+
+                  {/* Complex Dialog Preview */}
+                  <section className="space-y-10">
+                    <div className="space-y-1">
+                      <p className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40">Organisms / Dialogs</p>
+                      <h3 className="text-2xl font-black tracking-tighter uppercase">Sistemi di Notifica</h3>
+                    </div>
+                    <div className="max-w-md bg-card rounded-[2.5rem] overflow-hidden border border-preview-border shadow-2xl"
+                      style={{ backgroundColor: 'var(--preview-card)' }}>
+                       <div className="p-10 border-b border-preview-border flex items-center justify-between" style={{ borderColor: 'rgba(0,0,0,0.05)' }}>
+                          <div className="flex items-center gap-4">
+                             <div className="h-12 w-12 rounded-2xl flex items-center justify-center text-primary-foreground shadow-lg" style={{ backgroundColor: 'var(--preview-primary)' }}>
+                                <Bell className="h-6 w-6" />
+                             </div>
+                             <h4 className="text-xl font-black tracking-tighter uppercase">Preview</h4>
+                          </div>
+                          <Badge className="rounded-full font-black text-[9px] uppercase" style={{ backgroundColor: 'var(--preview-primary)', color: 'var(--preview-bg)' }}>2 NEW</Badge>
+                       </div>
+                       <div className="p-4 space-y-2">
+                          <div className="p-5 rounded-2xl bg-muted/20 flex gap-4 items-center">
+                             <div className="h-10 w-10 rounded-xl bg-role-accent" style={{ backgroundColor: 'var(--preview-accent)' }} />
+                             <div className="flex-1">
+                                <p className="text-xs font-black uppercase tracking-tight">Esempio Messaggio</p>
+                                <p className="text-[10px] font-medium opacity-60">Anteprima del testo di notifica...</p>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                  </section>
+                </div>
+              </TabsContent>
+
+              {/* === TAB TIPOGRAFIA (Ripristinato) === */}
+              <TabsContent value="typography" className="mt-0 animate-in fade-in slide-in-from-bottom-2 duration-500">
+                <div 
+                  className="rounded-[3rem] p-10 md:p-16 space-y-20 border-none transition-all duration-500 shadow-2xl"
+                  style={{ backgroundColor: 'var(--preview-bg)', color: 'var(--preview-fg)' }}
+                >
                   <div className="space-y-6">
-                     <h1 className="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-[0.9]">Visual Identity</h1>
-                     <h2 className="text-2xl md:text-3xl font-black tracking-tight uppercase">Accademia di Belle Arti</h2>
-                     <p className="text-lg md:text-xl font-medium leading-relaxed max-w-2xl opacity-80">
-                        Il sistema Strato utilizza Instrument Sans per bilanciare autorità editoriale e leggibilità digitale.
-                     </p>
-                  </div>
-               </div>
-
-               {/* Bento Cards Preview */}
-               <div className="space-y-8">
-                  <p className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40">Bento Pattern (Radius 24px)</p>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="p-8 rounded-[2rem] space-y-8 transition-all hover:scale-[1.02] cursor-pointer" style={{ backgroundColor: 'var(--ds-card)' }}>
-                       <div className="h-12 w-12 rounded-xl flex items-center justify-center text-primary-foreground shadow-lg" style={{ backgroundColor: 'var(--ds-primary)' }}>
-                          <Layout className="h-6 w-6" />
+                    <p className="text-[10px] font-black uppercase tracking-[0.4em] opacity-40">Heading Hierarchy</p>
+                    <div className="space-y-12">
+                       <div className="space-y-4">
+                          <p className="text-[9px] font-mono opacity-30">H1 - text-6xl font-black leading-[0.9]</p>
+                          <h1 className="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-[0.95]">
+                             Digital Art <br />Identity
+                          </h1>
                        </div>
-                       <h3 className="text-2xl font-black tracking-tight uppercase">Structure</h3>
+                       <div className="space-y-4">
+                          <p className="text-[9px] font-mono opacity-30">H2 - text-3xl font-black</p>
+                          <h2 className="text-3xl md:text-4xl font-black tracking-tight uppercase">
+                             Sistemi Accademici Complessi
+                          </h2>
+                       </div>
+                    </div>
+                  </div>
+
+                  <Separator className="opacity-10" />
+
+                  <div className="space-y-6">
+                    <p className="text-[10px] font-black uppercase tracking-[0.4em] opacity-40">Body & Reading</p>
+                    <div className="space-y-8 max-w-2xl">
+                       <div className="space-y-2">
+                          <p className="text-[9px] font-mono opacity-30">Large Body - text-xl font-medium</p>
+                          <p className="text-lg md:text-2xl font-medium leading-relaxed">
+                             Il carattere Instrument Sans garantisce un&apos;eleganza neutrale ma autoritaria, perfetta per un ecosistema artistico.
+                          </p>
+                       </div>
+                       <div className="space-y-2">
+                          <p className="text-[9px] font-mono opacity-30">Regular - text-base font-medium</p>
+                          <p className="text-base font-medium leading-relaxed opacity-70">
+                             Ogni blocco di testo è calibrato per una leggibilità ottimale su schermi touch ad alta risoluzione, mantenendo un contrasto minimo di 4.5:1.
+                          </p>
+                       </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-6">
+                    <p className="text-[10px] font-black uppercase tracking-[0.4em] opacity-40">Metadata & Labels</p>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
+                       <div className="space-y-2">
+                          <p className="text-[9px] font-mono opacity-30">Label Caps</p>
+                          <p className="text-[11px] font-black uppercase tracking-[0.2em] leading-none">Aggiornamento</p>
+                       </div>
+                       <div className="space-y-2">
+                          <p className="text-[9px] font-mono opacity-30">Badge Style</p>
+                          <Badge className="bg-primary text-primary-foreground font-black text-[9px] uppercase px-3 h-6 rounded-full border-none">Attivo</Badge>
+                       </div>
+                    </div>
+                  </div>
+                </div>
+              </TabsContent>
+
+              {/* === TAB EXPORT CSS (Ripristinato) === */}
+              <TabsContent value="code" className="mt-0 animate-in fade-in slide-in-from-bottom-2 duration-500">
+                 <div className="bg-card rounded-[2.5rem] p-10 md:p-16 border border-border/10 space-y-12">
+                    <div className="space-y-2">
+                       <h3 className="text-3xl font-black tracking-tighter uppercase">Strato Variable Config</h3>
+                       <p className="text-muted-foreground font-medium uppercase text-[10px] tracking-widest">Copia questi token per globals.css</p>
                     </div>
                     
-                    <div className="p-8 rounded-[2rem] space-y-8 transition-all hover:scale-[1.02] cursor-pointer shadow-xl shadow-primary/5" style={{ backgroundColor: 'var(--ds-primary)', color: 'var(--ds-bg)' }}>
-                       <div className="h-12 w-12 rounded-xl flex items-center justify-center bg-background/20">
-                          <Component className="h-6 w-6" />
-                       </div>
-                       <h3 className="text-2xl font-black tracking-tight uppercase">Primary</h3>
+                    <div className="relative group">
+                       <pre className="bg-muted/40 p-10 rounded-[2rem] text-sm font-mono overflow-x-auto border border-border/5">
+{`:root {
+  --background: ${tokens.background};
+  --foreground: ${tokens.foreground};
+  --card: ${tokens.card};
+  --primary: ${tokens.primary};
+  --destructive: ${tokens.destructive};
+  --border: ${tokens.border};
+
+  /* Semantic Roles */
+  --role-info: ${tokens.info};
+  --role-info-fg: ${tokens.infoFg};
+  --role-success: ${tokens.success};
+  --role-success-fg: ${tokens.successFg};
+  --role-warning: ${tokens.warning};
+  --role-warning-fg: ${tokens.warningFg};
+  --role-accent: ${tokens.accent};
+  --role-accent-fg: ${tokens.accentFg};
+}`}
+                       </pre>
+                       <Button variant="outline" className="absolute top-6 right-6 rounded-xl font-black text-[10px] uppercase h-10 px-5 border-none bg-background/50 backdrop-blur-md hover:bg-background"
+                         onClick={() => {
+                           navigator.clipboard.writeText(`:root {\n  --background: ${tokens.background};\n  --foreground: ${tokens.foreground};\n  --card: ${tokens.card};\n  --primary: ${tokens.primary};\n  --destructive: ${tokens.destructive};\n  --border: ${tokens.border};\n\n  /* Semantic Roles */\n  --role-info: ${tokens.info};\n  --role-info-fg: ${tokens.infoFg};\n  --role-success: ${tokens.success};\n  --role-success-fg: ${tokens.successFg};\n  --role-warning: ${tokens.warning};\n  --role-warning-fg: ${tokens.warningFg};\n  --role-accent: ${tokens.accent};\n  --role-accent-fg: ${tokens.accentFg};\n}`)
+                           alert("Token copiati!")
+                         }}>
+                         Copia Codice
+                       </Button>
                     </div>
-
-                    <div className="p-8 rounded-[2rem] space-y-8 transition-all hover:scale-[1.02] cursor-pointer" style={{ backgroundColor: 'var(--ds-success)' }}>
-                       <div className="h-12 w-12 rounded-xl flex items-center justify-center bg-foreground/5">
-                          <ShieldCheck className="h-6 w-6" />
-                       </div>
-                       <h3 className="text-2xl font-black tracking-tight uppercase">Secure</h3>
-                    </div>
-                  </div>
-               </div>
-
-               {/* Buttons & Forms */}
-               <div className="space-y-8">
-                  <p className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40">Interaction Atoms</p>
-                  <div className="flex flex-wrap gap-6 items-end">
-                    <Button className="h-16 px-10 rounded-[1.5rem] font-black uppercase tracking-widest text-xs shadow-2xl shadow-primary/20 active:scale-95 transition-all" style={{ backgroundColor: 'var(--ds-primary)', color: 'var(--ds-bg)' }}>
-                       Primary Button
-                    </Button>
-                    
-                    <Button variant="outline" className="h-16 px-10 rounded-[1.5rem] font-black uppercase tracking-widest text-xs border-none active:scale-95 transition-all" style={{ backgroundColor: 'var(--ds-destructive)', color: 'var(--ds-bg)' }}>
-                       Critical Action
-                    </Button>
-
-                    <div className="flex-1 min-w-[300px] space-y-3">
-                       <Label className="text-[9px] font-black uppercase tracking-widest opacity-40 ml-2">Input Prototype</Label>
-                       <Input 
-                         placeholder="Scrivi qui..." 
-                         className="h-16 px-6 rounded-2xl border-none font-bold text-base shadow-sm"
-                         style={{ backgroundColor: 'var(--ds-card)' }}
-                       />
-                    </div>
-                  </div>
-               </div>
-
-            </div>
+                 </div>
+              </TabsContent>
+            </Tabs>
           </div>
-        </section>
-
-        {/* Documentation Footer */}
-        <footer className="pt-20 border-t border-border/10 flex flex-col items-center text-center gap-6">
-           <div className="h-16 w-16 rounded-[1.5rem] bg-foreground text-background flex items-center justify-center">
-              <Sparkles className="h-8 w-8" />
-           </div>
-           <p className="text-sm font-black uppercase tracking-[0.4em] opacity-40">Single Source of Truth • 2026</p>
-        </footer>
-
-      </main>
+        </main>
+      </div>
     </div>
   )
 }
