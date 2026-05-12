@@ -1,39 +1,40 @@
 # Fondamenta del Design
 
-## 🎨 Colori (Brand & UI)
-Usiamo un approccio basato su variabili CSS per supportare nativamente la Dark Mode.
+## 🎨 Palette Colori Semantica (WCAG AA Compliant)
+La palette di Nettuno è progettata per garantire un rapporto di contrasto minimo di **4.5:1** per il testo normale e **3:1** per componenti grafici, assicurando l'accessibilità universale.
 
-### Core Colors
-- **Foreground**: `#000000` (Light) / `#FFFFFF` (Dark) - Testi e icone principali.
-- **Background**: `#FFFFFF` (Light) / `#09090b` (Dark) - Sfondo principale.
-- **Card**: `#F4F4F5` (Light / `muted/30`) / `#18181b` (Dark) - Sfondi di sezioni e card.
-- **Border**: `border-border/40` - Bordi sottili e discreti.
+### 🌓 Logica Light & Dark
+| Token | Light Mode (Warm Paper) | Dark Mode (Deep Graphite) | Funzione |
+| :--- | :--- | :--- | :--- |
+| **`background`** | `#F8F5F0` | `#0A0A0A` | Sfondo principale dell'applicazione. |
+| **`foreground`** | `#1A1917` | `#F5F5F0` | Testo principale e icone ad alto contrasto. |
+| **`card`** | `#FFFFFF` | `#141414` | Superfici elevate (Bento cards, Sidebar). |
+| **`muted`** | `#F1EFE9` | `#1A1A1A` | Sfondi secondari e aree a bassa enfasi. |
+| **`muted-fg`** | `#7C7A77` | `#71717A` | Testi secondari e metadati (Passa WCAG AA su bg). |
+| **`accent`** | `#FFD6E8` | `#2A1F2D` | Colore di evidenza e feedback interattivo. |
+| **`border`** | `#E5E2DA` | `#262626` | Separatori e bordi discreti. |
 
-### Accent Colors (Bento Style)
-- **Blue**: `bg-blue-100/50` / `dark:bg-blue-900/30` (Area Studenti)
-- **Pink**: `bg-rose-100/50` / `dark:bg-rose-900/30` (Area Docenti)
-- **Green**: `text-emerald-500` (Successo / Conferme)
-- **Red**: `text-red-500` (Errori / Allerta presenze)
+### 🌈 Colori di Ruolo (Bento Accents)
+Usati per categorizzare le aree Studente/Docente e gli stati del sistema.
+
+| Ruolo | Light Tint | Dark Deep | Utilizzo |
+| :--- | :--- | :--- | :--- |
+| **Studente** | `#DBEAFE` (Blue) | `#111B2D` | Icone, badge e sezioni Area Studenti. |
+| **Docente** | `#FEE2E2` (Pink) | `#2D1616` | Icone, badge e sezioni Area Docenti. |
+| **Successo** | `#DCFCE7` (Green) | `#0F2013` | Stato presenze, conferme, voti alti. |
+| **Allerta** | `#FEF9C3` (Yellow) | `#261F0F` | Comunicazioni, scadenze, avvisi. |
+| **Critico** | `#FEE2E2` (Red) | `#2D1616` | Errori, presenze sotto soglia, scadenze passate. |
 
 ## ✍️ Tipografia
 - **Font Family**: `Instrument Sans` (Variable)
-- **Stile**: Black (900) per i titoli, Medium (500) per il corpo del testo.
+- **Gerarchia**:
+  - **Titoli (Black 900)**: Usati per H1 e H2 per massima leggibilità.
+  - **Corpo (Medium 500)**: Bilanciato per ridurre l'affaticamento visivo.
+  - **Label (Black 900 + Caps)**: Usate per metadati per "tagliare" il layout con autorità visiva.
 
-### Scale
-- **H1**: `text-2xl md:text-4xl` (font-black, tracking-tighter)
-- **H2**: `text-xl md:text-2xl` (font-black, tracking-tight)
-- **Body**: `text-sm md:text-base` (font-medium)
-- **Label/Caption**: `text-[10px]` (font-black, uppercase, tracking-widest)
-
-## 📏 Spazi & Griglie
-- **Unit Base**: `4px`
-- **Border Radius**:
-  - `rounded-full`: Pulsanti circolari, avatar.
-  - `rounded-2xl` (1rem): Pulsanti standard, input.
-  - `rounded-[1.5rem]` (1.5rem): Card piccole, menu.
-  - `rounded-[2rem]` (2rem): Card grandi, Dashboard sections.
-
-### Layout Padding
-- **Mobile**: `px-6`
-- **Desktop**: `md:px-8` (Content max-width: `1280px`)
-- **Gap Generale**: `gap-8` o `gap-12` per separare le macro-sezioni.
+## 📏 Spazi & Griglie (8-Point System)
+- **Base Unit**: `4px` (tutte le dimensioni sono multipli di 4 o 8).
+- **Radius Stratificato**:
+  - **Esterno (Container)**: `1.5rem` (24px)
+  - **Interno (Componenti)**: `0.75rem` (12px)
+  - Questo garantisce un "nested radius" armonioso che rispetta la geometria delle card.
