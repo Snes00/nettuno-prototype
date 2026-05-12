@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { GraduationCap, UserCog, Sparkles } from "lucide-react";
+import { GraduationCap, UserCog, Sparkles, Palette } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function LandingPage() {
   return (
