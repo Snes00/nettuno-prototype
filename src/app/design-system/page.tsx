@@ -40,73 +40,62 @@ import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
 
 export default function DesignSystemPage() {
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = React.useState(false)
   
-  // Strato v2.0 Tokens - State for interactive editor
-  const [tokens, setTokens] = React.useState({
-    background: theme === "dark" ? "#0F0E14" : "#EEEDF2",
-    foreground: theme === "dark" ? "#E4E2EC" : "#14131A",
-    card: theme === "dark" ? "#1E1C2A" : "#FFFFFF",
-    primary: theme === "dark" ? "#8470EF" : "#6547E8",
-    destructive: theme === "dark" ? "#F56E90" : "#F03C6C",
-    border: theme === "dark" ? "#2E2C3A" : "#E4E2EC",
-    info: theme === "dark" ? "#043450" : "#EBF8FF",
-    infoFg: theme === "dark" ? "#80CBF5" : "#065180",
-    success: theme === "dark" ? "#144D1B" : "#EDFAEE",
-    successFg: theme === "dark" ? "#8CDA95" : "#1D6E26",
-    warning: theme === "dark" ? "#573006" : "#FEFAEE",
-    warningFg: theme === "dark" ? "#EEC070" : "#7A480A",
-    accent: theme === "dark" ? "#2E1A72" : "#F1EFFE",
-    accentFg: theme === "dark" ? "#C9C0F8" : "#5035C8",
-  })
+  // Strato v2.0 Global Tokens Map
+  const STRATO_DEFAULTS = {
+    light: {
+      background: "#EEEDF2",
+      foreground: "#14131A",
+      card: "#FFFFFF",
+      primary: "#6547E8",
+      destructive: "#F03C6C",
+      border: "#E4E2EC",
+      info: "#EBF8FF",
+      infoFg: "#065180",
+      success: "#EDFAEE",
+      successFg: "#1D6E26",
+      warning: "#FEFAEE",
+      warningFg: "#7A480A",
+      accent: "#F1EFFE",
+      accentFg: "#5035C8",
+    },
+    dark: {
+      background: "#0F0E14",
+      foreground: "#E4E2EC",
+      card: "#1E1C2A",
+      primary: "#8470EF",
+      destructive: "#F56E90",
+      border: "#2E2C3A",
+      info: "#043450",
+      infoFg: "#80CBF5",
+      success: "#144D1B",
+      successFg: "#8CDA95",
+      warning: "#573006",
+      warningFg: "#EEC070",
+      accent: "#2E1A72",
+      accentFg: "#C9C0F8",
+    }
+  }
 
-  // Sincronizza i token quando cambia il tema di sistema, ma solo se l'utente non li ha modificati? 
-  // Per semplicità nel lab, resettiamo al cambio tema per mostrare i default di Strato.
-  React.useEffect(() => {
-    setTokens({
-      background: theme === "dark" ? "#0F0E14" : "#EEEDF2",
-      foreground: theme === "dark" ? "#E4E2EC" : "#14131A",
-      card: theme === "dark" ? "#1E1C2A" : "#FFFFFF",
-      primary: theme === "dark" ? "#8470EF" : "#6547E8",
-      destructive: theme === "dark" ? "#F56E90" : "#F03C6C",
-      border: theme === "dark" ? "#2E2C3A" : "#E4E2EC",
-      info: theme === "dark" ? "#043450" : "#EBF8FF",
-      infoFg: theme === "dark" ? "#80CBF5" : "#065180",
-      success: theme === "dark" ? "#144D1B" : "#EDFAEE",
-      successFg: theme === "dark" ? "#8CDA95" : "#1D6E26",
-      warning: theme === "dark" ? "#573006" : "#FEFAEE",
-      warningFg: theme === "dark" ? "#EEC070" : "#7A480A",
-      accent: theme === "dark" ? "#2E1A72" : "#F1EFFE",
-      accentFg: theme === "dark" ? "#C9C0F8" : "#5035C8",
-    })
-  }, [theme])
+  // Tokens state initialization
+  const [tokens, setTokens] = React.useState(STRATO_DEFAULTS.light)
 
+  // Ensure hydration and sync tokens with the actual resolved theme
   React.useEffect(() => {
     setMounted(true)
-  }, [])
+    const isDark = resolvedTheme === "dark"
+    setTokens(isDark ? STRATO_DEFAULTS.dark : STRATO_DEFAULTS.light)
+  }, [resolvedTheme])
 
   const updateToken = (key: keyof typeof tokens, value: string) => {
     setTokens(prev => ({ ...prev, [key]: value }))
   }
 
   const resetToStrato = () => {
-    setTokens({
-      background: theme === "dark" ? "#0F0E14" : "#EEEDF2",
-      foreground: theme === "dark" ? "#E4E2EC" : "#14131A",
-      card: theme === "dark" ? "#1E1C2A" : "#FFFFFF",
-      primary: theme === "dark" ? "#8470EF" : "#6547E8",
-      destructive: theme === "dark" ? "#F56E90" : "#F03C6C",
-      border: theme === "dark" ? "#2E2C3A" : "#E4E2EC",
-      info: theme === "dark" ? "#043450" : "#EBF8FF",
-      infoFg: theme === "dark" ? "#80CBF5" : "#065180",
-      success: theme === "dark" ? "#144D1B" : "#EDFAEE",
-      successFg: theme === "dark" ? "#8CDA95" : "#1D6E26",
-      warning: theme === "dark" ? "#573006" : "#FEFAEE",
-      warningFg: theme === "dark" ? "#EEC070" : "#7A480A",
-      accent: theme === "dark" ? "#2E1A72" : "#F1EFFE",
-      accentFg: theme === "dark" ? "#C9C0F8" : "#5035C8",
-    })
+    const isDark = resolvedTheme === "dark"
+    setTokens(isDark ? STRATO_DEFAULTS.dark : STRATO_DEFAULTS.light)
   }
 
   if (!mounted) return null
@@ -114,7 +103,7 @@ export default function DesignSystemPage() {
   return (
     <div className="min-h-screen bg-background text-foreground animate-in fade-in duration-700">
       
-      {/* Dynamic Style Override for Preview */}
+      {/* Dynamic Style Override for Preview Area */}
       <style jsx global>{`
         :root {
           --preview-bg: ${tokens.background};
@@ -149,16 +138,33 @@ export default function DesignSystemPage() {
                </div>
                <div>
                   <h1 className="text-2xl font-black tracking-tighter uppercase leading-none">Strato v2.0 Lab</h1>
-                  <p className="text-muted-foreground font-black mt-1 uppercase text-[9px] tracking-[0.2em]">Sperimentazione UI & Logica Semantica</p>
+                  <p className="text-muted-foreground font-black mt-1 uppercase text-[9px] tracking-[0.2em]">Design System Live Editor</p>
                </div>
             </div>
           </div>
-          <div className="flex items-center gap-3">
-             <Button variant="outline" className="rounded-xl h-11 gap-2 font-black text-[10px] uppercase border-none bg-muted/40" onClick={resetToStrato}>
+          <div className="flex items-center gap-4">
+             {/* Theme Switcher in Header for accessibility */}
+             <div className="flex bg-muted/40 p-1 rounded-xl">
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  onClick={() => setTheme("light")}
+                  className={cn("rounded-lg font-black text-[9px] uppercase px-4 h-9", resolvedTheme === "light" && "bg-background shadow-sm")}
+                >
+                  <Sun className="h-3.5 w-3.5 mr-2" /> Light
+                </Button>
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  onClick={() => setTheme("dark")}
+                  className={cn("rounded-lg font-black text-[9px] uppercase px-4 h-9", resolvedTheme === "dark" && "bg-background shadow-sm")}
+                >
+                  <Moon className="h-3.5 w-3.5 mr-2" /> Dark
+                </Button>
+             </div>
+             <Separator orientation="vertical" className="h-8 bg-border/10 mx-2" />
+             <Button className="rounded-xl h-11 gap-2 font-black text-[10px] uppercase bg-primary text-primary-foreground shadow-lg shadow-primary/20" onClick={resetToStrato}>
                <RefreshCw className="h-4 w-4" /> Reset Default
-             </Button>
-             <Button className="rounded-xl h-11 gap-2 font-black text-[10px] uppercase bg-primary text-primary-foreground">
-               <Save className="h-4 w-4" /> Esporta Prototipo
              </Button>
           </div>
         </div>
@@ -166,27 +172,27 @@ export default function DesignSystemPage() {
 
       <div className="max-w-screen-2xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-0">
         
-        {/* Sidebar Editor (Ripristinato) */}
+        {/* Sidebar Editor */}
         <aside className="lg:col-span-3 border-r border-border/10 h-[calc(100vh-6rem)] overflow-y-auto bg-card/20 no-scrollbar">
           <div className="p-8 space-y-10">
             <div className="space-y-6">
               <div className="flex items-center gap-3 px-1">
                 <Palette className="h-4 w-4 text-primary" />
-                <h2 className="text-xs font-black uppercase tracking-[0.2em]">Token Editor</h2>
+                <h2 className="text-xs font-black uppercase tracking-[0.2em]">Token Configuration</h2>
               </div>
               
               <div className="space-y-8">
-                {/* Superfici */}
+                {/* Surfaces */}
                 <div className="space-y-4">
                   <p className="text-[9px] font-black text-muted-foreground uppercase tracking-widest px-1">Superfici & Base</p>
                   {['background', 'foreground', 'card', 'border'].map(key => (
-                    <div key={key} className="space-y-2 px-1">
+                    <div key={key} className="space-y-2 px-1 group">
                       <div className="flex justify-between items-center">
                         <Label className="text-[10px] font-bold text-foreground/60">{key}</Label>
                         <span className="text-[9px] font-mono opacity-40 uppercase">{(tokens as any)[key]}</span>
                       </div>
                       <div className="flex gap-2">
-                        <div className="h-8 w-8 rounded-lg border border-border/20 shrink-0" style={{ backgroundColor: (tokens as any)[key] }} />
+                        <div className="h-8 w-8 rounded-lg border border-border/20 shrink-0 shadow-sm" style={{ backgroundColor: (tokens as any)[key] }} />
                         <Input 
                           type="color" 
                           value={(tokens as any)[key]} 
@@ -200,17 +206,17 @@ export default function DesignSystemPage() {
 
                 <Separator className="bg-border/10" />
 
-                {/* Azioni */}
+                {/* Actions */}
                 <div className="space-y-4">
                   <p className="text-[9px] font-black text-muted-foreground uppercase tracking-widest px-1">Azioni & Branding</p>
                   {['primary', 'destructive'].map(key => (
-                    <div key={key} className="space-y-2 px-1">
+                    <div key={key} className="space-y-2 px-1 group">
                       <div className="flex justify-between items-center">
                         <Label className="text-[10px] font-bold text-foreground/60">{key}</Label>
                         <span className="text-[9px] font-mono opacity-40 uppercase">{(tokens as any)[key]}</span>
                       </div>
                       <div className="flex gap-2">
-                        <div className="h-8 w-8 rounded-lg border border-border/20 shrink-0" style={{ backgroundColor: (tokens as any)[key] }} />
+                        <div className="h-8 w-8 rounded-lg border border-border/20 shrink-0 shadow-sm" style={{ backgroundColor: (tokens as any)[key] }} />
                         <Input 
                           type="color" 
                           value={(tokens as any)[key]} 
@@ -224,17 +230,17 @@ export default function DesignSystemPage() {
 
                 <Separator className="bg-border/10" />
 
-                {/* Ruoli Semantici */}
-                <div className="space-y-4 pb-10">
+                {/* Semantic Roles */}
+                <div className="space-y-4 pb-12">
                   <p className="text-[9px] font-black text-muted-foreground uppercase tracking-widest px-1">Ruoli Semantici (Bento)</p>
                   {['info', 'success', 'warning', 'accent'].map(key => (
-                    <div key={key} className="space-y-4 border-l-2 border-muted pl-4 py-1">
+                    <div key={key} className="space-y-4 border-l-2 border-primary/20 pl-4 py-1">
                       <div className="space-y-2">
-                        <Label className="text-[10px] font-bold text-foreground/60 uppercase tracking-tighter">{key} BG</Label>
+                        <Label className="text-[10px] font-bold text-foreground/60 uppercase tracking-tighter">{key} Background</Label>
                         <Input type="color" value={(tokens as any)[key]} onChange={(e) => updateToken(key as any, e.target.value)} className="h-8 p-0 bg-transparent border-none cursor-pointer" />
                       </div>
                       <div className="space-y-2">
-                        <Label className="text-[10px] font-bold text-foreground/60 uppercase tracking-tighter">{key} FG</Label>
+                        <Label className="text-[10px] font-bold text-foreground/60 uppercase tracking-tighter">{key} Foreground</Label>
                         <Input type="color" value={(tokens as any)[key + 'Fg']} onChange={(e) => updateToken((key + 'Fg') as any, e.target.value)} className="h-8 p-0 bg-transparent border-none cursor-pointer" />
                       </div>
                     </div>
@@ -245,156 +251,122 @@ export default function DesignSystemPage() {
           </div>
         </aside>
 
-        {/* Main Content Area (Ripristinato con Tabs) */}
-        <main className="lg:col-span-9 h-[calc(100vh-6rem)] overflow-y-auto no-scrollbar">
-          <div className="p-8 md:p-12 space-y-12">
+        {/* Main Content Area */}
+        <main className="lg:col-span-9 h-[calc(100vh-6rem)] overflow-y-auto no-scrollbar bg-background">
+          <div className="p-8 md:p-12 space-y-12 max-w-5xl mx-auto">
             <Tabs defaultValue="components" className="w-full">
-              <TabsList className="bg-card h-16 rounded-[1.25rem] p-1.5 gap-1 border border-border/10 mb-12 max-w-2xl mx-auto shadow-sm">
-                <TabsTrigger value="components" className="rounded-xl font-black text-[10px] uppercase tracking-widest gap-2 flex-1 data-[state=active]:bg-background data-[state=active]:shadow-none transition-all">
-                  <Box className="h-4 w-4" /> UI Componenti
+              <TabsList className="bg-card h-16 rounded-[1.5rem] p-1.5 gap-1 border border-border/10 mb-16 shadow-xl">
+                <TabsTrigger value="components" className="rounded-xl font-black text-[10px] uppercase tracking-widest gap-2 flex-1 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all">
+                  <Box className="h-4 w-4" /> UI Elements
                 </TabsTrigger>
-                <TabsTrigger value="typography" className="rounded-xl font-black text-[10px] uppercase tracking-widest gap-2 flex-1 data-[state=active]:bg-background data-[state=active]:shadow-none transition-all">
-                  <Type className="h-4 w-4" /> Tipografia
+                <TabsTrigger value="typography" className="rounded-xl font-black text-[10px] uppercase tracking-widest gap-2 flex-1 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all">
+                  <Type className="h-4 w-4" /> Typography
                 </TabsTrigger>
-                <TabsTrigger value="code" className="rounded-xl font-black text-[10px] uppercase tracking-widest gap-2 flex-1 data-[state=active]:bg-background data-[state=active]:shadow-none transition-all">
-                  <Code className="h-4 w-4" /> Export CSS
+                <TabsTrigger value="code" className="rounded-xl font-black text-[10px] uppercase tracking-widest gap-2 flex-1 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all">
+                  <Code className="h-4 w-4" /> Export Config
                 </TabsTrigger>
               </TabsList>
 
               {/* === TAB COMPONENTI === */}
               <TabsContent value="components" className="mt-0 animate-in fade-in slide-in-from-bottom-2 duration-500">
                 <div 
-                  className="rounded-[3rem] p-10 md:p-16 space-y-20 border-none transition-all duration-500 shadow-2xl relative overflow-hidden"
+                  className="rounded-[3rem] p-10 md:p-20 space-y-24 border border-preview-border transition-all duration-500 shadow-2xl relative"
                   style={{ backgroundColor: 'var(--preview-bg)', color: 'var(--preview-fg)' }}
                 >
                   {/* Buttons Section */}
-                  <section className="space-y-8">
-                    <div className="space-y-1">
-                      <p className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40">Atoms / Buttons</p>
-                      <h3 className="text-2xl font-black tracking-tighter uppercase">Interazioni Principali</h3>
+                  <section className="space-y-10">
+                    <div className="space-y-2">
+                      <p className="text-[11px] font-black uppercase tracking-[0.4em] opacity-40">Atoms / Interaction</p>
+                      <h3 className="text-3xl font-black tracking-tighter uppercase">Global Buttons</h3>
                     </div>
-                    <div className="flex flex-wrap items-end gap-6">
-                      <div className="space-y-3 text-center">
-                        <Button className="h-16 px-10 rounded-[1.5rem] font-black uppercase tracking-widest text-xs shadow-2xl shadow-primary/20 transition-all active:scale-95"
-                          style={{ backgroundColor: 'var(--preview-primary)', color: 'var(--preview-bg)' }}>
-                          Primary Action
+                    <div className="flex flex-wrap items-end gap-8">
+                      <div className="space-y-4">
+                        <Button className="h-16 px-12 rounded-[1.5rem] font-black uppercase tracking-widest text-xs shadow-2xl shadow-primary/20 transition-all active:scale-95"
+                          style={{ backgroundColor: 'var(--preview-primary)', color: theme === "dark" ? "#0F0E14" : "#FFFFFF" }}>
+                          Primary
                         </Button>
-                        <p className="text-[9px] font-black opacity-30 uppercase tracking-widest">bg-primary</p>
+                        <p className="text-[10px] font-black opacity-30 text-center uppercase tracking-widest">bg-primary</p>
                       </div>
 
-                      <div className="space-y-3 text-center">
-                        <Button className="h-16 px-10 rounded-[1.5rem] font-black uppercase tracking-widest text-xs transition-all active:scale-95"
-                          style={{ backgroundColor: 'var(--preview-destructive)', color: 'var(--preview-bg)' }}>
+                      <div className="space-y-4">
+                        <Button className="h-16 px-12 rounded-[1.5rem] font-black uppercase tracking-widest text-xs transition-all active:scale-95"
+                          style={{ backgroundColor: 'var(--preview-destructive)', color: theme === "dark" ? "#0F0E14" : "#FFFFFF" }}>
                           Critical
                         </Button>
-                        <p className="text-[9px] font-black opacity-30 uppercase tracking-widest">bg-destructive</p>
+                        <p className="text-[10px] font-black opacity-30 text-center uppercase tracking-widest">bg-destructive</p>
                       </div>
 
-                      <div className="space-y-3 text-center">
-                        <Button variant="outline" className="h-16 px-10 rounded-[1.5rem] font-black uppercase tracking-widest text-xs border-none bg-muted/40 transition-all active:scale-95"
+                      <div className="space-y-4">
+                        <Button variant="outline" className="h-16 px-12 rounded-[1.5rem] font-black uppercase tracking-widest text-xs border-none bg-muted/40 transition-all active:scale-95"
                           style={{ color: 'var(--preview-fg)' }}>
-                          Secondary
+                          Ghost
                         </Button>
-                        <p className="text-[9px] font-black opacity-30 uppercase tracking-widest">bg-muted/40</p>
+                        <p className="text-[10px] font-black opacity-30 text-center uppercase tracking-widest">bg-muted/40</p>
                       </div>
                     </div>
                   </section>
 
                   {/* Bento Grid Section */}
-                  <section className="space-y-10">
-                    <div className="space-y-1">
-                      <p className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40">Molecules / Bento Grid</p>
-                      <h3 className="text-2xl font-black tracking-tighter uppercase">Geometria Deep Bento</h3>
+                  <section className="space-y-12">
+                    <div className="space-y-2">
+                      <p className="text-[11px] font-black uppercase tracking-[0.4em] opacity-40">Molecules / Bento</p>
+                      <h3 className="text-3xl font-black tracking-tighter uppercase">Semantic States</h3>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      {/* Info Card */}
-                      <div className="p-8 rounded-[2rem] space-y-8 transition-all hover:scale-[1.02] cursor-pointer"
-                        style={{ backgroundColor: 'var(--preview-info)', color: 'var(--preview-info-fg)' }}>
-                        <div className="flex justify-between items-start">
-                           <div className="h-12 w-12 rounded-xl flex items-center justify-center bg-current/10">
-                              <Info className="h-6 w-6" />
-                           </div>
-                           <Badge variant="outline" className="border-current/20 rounded-full font-black text-[9px] uppercase">v2.0</Badge>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                      {['info', 'success', 'warning', 'accent'].map(role => (
+                        <div key={role} className="p-8 rounded-[2rem] space-y-10 transition-all hover:scale-[1.05] cursor-pointer shadow-lg"
+                          style={{ backgroundColor: `var(--preview-${role})`, color: `var(--preview-${role}-fg)` }}>
+                          <div className="h-12 w-12 rounded-2xl flex items-center justify-center bg-current/10">
+                             {role === 'info' && <Info className="h-6 w-6" />}
+                             {role === 'success' && <CheckCheck className="h-6 w-6" />}
+                             {role === 'warning' && <Clock className="h-6 w-6" />}
+                             {role === 'accent' && <Sparkles className="h-6 w-6" />}
+                          </div>
+                          <h4 className="text-2xl font-black tracking-tighter uppercase leading-none">{role} Role</h4>
                         </div>
-                        <h4 className="text-2xl font-black tracking-tighter uppercase leading-none">Info Role</h4>
-                      </div>
-
-                      {/* Success Card */}
-                      <div className="p-8 rounded-[2rem] space-y-8 transition-all hover:scale-[1.02] cursor-pointer"
-                        style={{ backgroundColor: 'var(--preview-success)', color: 'var(--preview-success-fg)' }}>
-                        <div className="flex justify-between items-start">
-                           <div className="h-12 w-12 rounded-xl flex items-center justify-center bg-current/10">
-                              <CheckCheck className="h-6 w-6" />
-                           </div>
-                           <Badge variant="outline" className="border-current/20 rounded-full font-black text-[9px] uppercase">OK</Badge>
-                        </div>
-                        <h4 className="text-2xl font-black tracking-tighter uppercase leading-none">Success Role</h4>
-                      </div>
-
-                      {/* Warning Card */}
-                      <div className="p-8 rounded-[2rem] space-y-8 transition-all hover:scale-[1.02] cursor-pointer"
-                        style={{ backgroundColor: 'var(--preview-warning)', color: 'var(--preview-warning-fg)' }}>
-                        <div className="flex justify-between items-start">
-                           <div className="h-12 w-12 rounded-xl flex items-center justify-center bg-current/10">
-                              <Clock className="h-6 w-6" />
-                           </div>
-                           <Badge variant="outline" className="border-current/20 rounded-full font-black text-[9px] uppercase">Soon</Badge>
-                        </div>
-                        <h4 className="text-2xl font-black tracking-tighter uppercase leading-none">Warning Role</h4>
-                      </div>
+                      ))}
                     </div>
                   </section>
 
-                  {/* Complex Dialog Preview */}
-                  <section className="space-y-10">
-                    <div className="space-y-1">
-                      <p className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40">Organisms / Dialogs</p>
-                      <h3 className="text-2xl font-black tracking-tighter uppercase">Sistemi di Notifica</h3>
-                    </div>
-                    <div className="max-w-md bg-card rounded-[2.5rem] overflow-hidden border border-preview-border shadow-2xl"
-                      style={{ backgroundColor: 'var(--preview-card)' }}>
-                       <div className="p-10 border-b border-preview-border flex items-center justify-between" style={{ borderColor: 'rgba(0,0,0,0.05)' }}>
-                          <div className="flex items-center gap-4">
-                             <div className="h-12 w-12 rounded-2xl flex items-center justify-center text-primary-foreground shadow-lg" style={{ backgroundColor: 'var(--preview-primary)' }}>
-                                <Bell className="h-6 w-6" />
-                             </div>
-                             <h4 className="text-xl font-black tracking-tighter uppercase">Preview</h4>
-                          </div>
-                          <Badge className="rounded-full font-black text-[9px] uppercase" style={{ backgroundColor: 'var(--preview-primary)', color: 'var(--preview-bg)' }}>2 NEW</Badge>
-                       </div>
-                       <div className="p-4 space-y-2">
-                          <div className="p-5 rounded-2xl bg-muted/20 flex gap-4 items-center">
-                             <div className="h-10 w-10 rounded-xl bg-role-accent" style={{ backgroundColor: 'var(--preview-accent)' }} />
-                             <div className="flex-1">
-                                <p className="text-xs font-black uppercase tracking-tight">Esempio Messaggio</p>
-                                <p className="text-[10px] font-medium opacity-60">Anteprima del testo di notifica...</p>
-                             </div>
-                          </div>
-                       </div>
-                    </div>
+                  {/* Card Surface Preview */}
+                  <section className="space-y-12">
+                     <div className="space-y-2">
+                        <p className="text-[11px] font-black uppercase tracking-[0.4em] opacity-40">Surface / Containers</p>
+                        <h3 className="text-3xl font-black tracking-tighter uppercase">Living Surface</h3>
+                     </div>
+                     <div className="bg-card rounded-[3rem] p-12 space-y-8 border border-preview-border shadow-xl"
+                       style={{ backgroundColor: 'var(--preview-card)' }}>
+                        <div className="flex justify-between items-center">
+                           <h4 className="text-2xl font-black uppercase tracking-tight">Main Surface Card</h4>
+                           <Badge variant="outline" className="border-current/20 rounded-full font-black text-[10px] px-4 h-8 uppercase tracking-widest">bg-card</Badge>
+                        </div>
+                        <p className="text-lg opacity-60 leading-relaxed font-medium">
+                           Le card utilizzano il token <code className="font-mono text-primary bg-primary/5 px-2 py-0.5 rounded text-sm">--preview-card</code>. In modalità Dark, queste superfici diventano profonde ed eleganti.
+                        </p>
+                     </div>
                   </section>
                 </div>
               </TabsContent>
 
-              {/* === TAB TIPOGRAFIA (Ripristinato) === */}
+              {/* === TAB TIPOGRAFIA === */}
               <TabsContent value="typography" className="mt-0 animate-in fade-in slide-in-from-bottom-2 duration-500">
                 <div 
-                  className="rounded-[3rem] p-10 md:p-16 space-y-20 border-none transition-all duration-500 shadow-2xl"
+                  className="rounded-[3rem] p-10 md:p-20 space-y-24 border border-preview-border transition-all duration-500 shadow-2xl"
                   style={{ backgroundColor: 'var(--preview-bg)', color: 'var(--preview-fg)' }}
                 >
-                  <div className="space-y-6">
-                    <p className="text-[10px] font-black uppercase tracking-[0.4em] opacity-40">Heading Hierarchy</p>
-                    <div className="space-y-12">
-                       <div className="space-y-4">
-                          <p className="text-[9px] font-mono opacity-30">H1 - text-6xl font-black leading-[0.9]</p>
-                          <h1 className="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-[0.95]">
-                             Digital Art <br />Identity
+                  <div className="space-y-10">
+                    <p className="text-[11px] font-black uppercase tracking-[0.4em] opacity-40">Editorial / Scale</p>
+                    <div className="space-y-16">
+                       <div className="space-y-6">
+                          <p className="text-[10px] font-mono opacity-20 border-b border-current/10 pb-2 max-w-fit">H1 - text-8xl font-black leading-[0.85]</p>
+                          <h1 className="text-6xl md:text-9xl font-black tracking-tighter uppercase leading-[0.9]">
+                             Strato <br />System
                           </h1>
                        </div>
-                       <div className="space-y-4">
-                          <p className="text-[9px] font-mono opacity-30">H2 - text-3xl font-black</p>
-                          <h2 className="text-3xl md:text-4xl font-black tracking-tight uppercase">
-                             Sistemi Accademici Complessi
+                       <div className="space-y-6">
+                          <p className="text-[10px] font-mono opacity-20 border-b border-current/10 pb-2 max-w-fit">H2 - text-5xl font-black</p>
+                          <h2 className="text-4xl md:text-5xl font-black tracking-tighter uppercase">
+                             Visual Authority
                           </h2>
                        </div>
                     </div>
@@ -402,51 +374,34 @@ export default function DesignSystemPage() {
 
                   <Separator className="opacity-10" />
 
-                  <div className="space-y-6">
-                    <p className="text-[10px] font-black uppercase tracking-[0.4em] opacity-40">Body & Reading</p>
-                    <div className="space-y-8 max-w-2xl">
-                       <div className="space-y-2">
-                          <p className="text-[9px] font-mono opacity-30">Large Body - text-xl font-medium</p>
-                          <p className="text-lg md:text-2xl font-medium leading-relaxed">
-                             Il carattere Instrument Sans garantisce un&apos;eleganza neutrale ma autoritaria, perfetta per un ecosistema artistico.
+                  <div className="space-y-10">
+                    <p className="text-[11px] font-black uppercase tracking-[0.4em] opacity-40">Reading / Experience</p>
+                    <div className="space-y-10 max-w-3xl">
+                       <div className="space-y-4">
+                          <p className="text-2xl md:text-4xl font-medium leading-[1.3]">
+                             Il carattere Instrument Sans bilancia autorità editoriale e precisione digitale, garantendo leggibilità su ogni touchpoint.
                           </p>
                        </div>
-                       <div className="space-y-2">
-                          <p className="text-[9px] font-mono opacity-30">Regular - text-base font-medium</p>
-                          <p className="text-base font-medium leading-relaxed opacity-70">
-                             Ogni blocco di testo è calibrato per una leggibilità ottimale su schermi touch ad alta risoluzione, mantenendo un contrasto minimo di 4.5:1.
-                          </p>
-                       </div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-6">
-                    <p className="text-[10px] font-black uppercase tracking-[0.4em] opacity-40">Metadata & Labels</p>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
-                       <div className="space-y-2">
-                          <p className="text-[9px] font-mono opacity-30">Label Caps</p>
-                          <p className="text-[11px] font-black uppercase tracking-[0.2em] leading-none">Aggiornamento</p>
-                       </div>
-                       <div className="space-y-2">
-                          <p className="text-[9px] font-mono opacity-30">Badge Style</p>
-                          <Badge className="bg-primary text-primary-foreground font-black text-[9px] uppercase px-3 h-6 rounded-full border-none">Attivo</Badge>
-                       </div>
+                       <p className="text-base md:text-lg font-medium leading-relaxed opacity-60">
+                          Ogni riga di testo segue le regole di contrasto WCAG 2.1 AA, assicurando che l&apos;esperienza utente sia inclusiva e riposante per la vista.
+                       </p>
                     </div>
                   </div>
                 </div>
               </TabsContent>
 
-              {/* === TAB EXPORT CSS (Ripristinato) === */}
+              {/* === TAB EXPORT === */}
               <TabsContent value="code" className="mt-0 animate-in fade-in slide-in-from-bottom-2 duration-500">
-                 <div className="bg-card rounded-[2.5rem] p-10 md:p-16 border border-border/10 space-y-12">
-                    <div className="space-y-2">
-                       <h3 className="text-3xl font-black tracking-tighter uppercase">Strato Variable Config</h3>
-                       <p className="text-muted-foreground font-medium uppercase text-[10px] tracking-widest">Copia questi token per globals.css</p>
+                 <div className="bg-card rounded-[3rem] p-12 md:p-20 border border-border/10 space-y-16 shadow-2xl">
+                    <div className="space-y-4 text-center">
+                       <h3 className="text-5xl font-black tracking-tighter uppercase leading-none">Variable Config</h3>
+                       <p className="text-muted-foreground font-black uppercase text-[11px] tracking-[0.4em]">Ready for globals.css</p>
                     </div>
                     
                     <div className="relative group">
-                       <pre className="bg-muted/40 p-10 rounded-[2rem] text-sm font-mono overflow-x-auto border border-border/5">
+                       <pre className="bg-muted/40 p-12 rounded-[2.5rem] text-sm font-mono overflow-x-auto border border-border/5 leading-relaxed">
 {`:root {
+  /* Strato v2.0 Live Export */
   --background: ${tokens.background};
   --foreground: ${tokens.foreground};
   --card: ${tokens.card};
@@ -465,12 +420,13 @@ export default function DesignSystemPage() {
   --role-accent-fg: ${tokens.accentFg};
 }`}
                        </pre>
-                       <Button variant="outline" className="absolute top-6 right-6 rounded-xl font-black text-[10px] uppercase h-10 px-5 border-none bg-background/50 backdrop-blur-md hover:bg-background"
+                       <Button 
+                         className="absolute top-8 right-8 rounded-xl font-black text-[10px] uppercase h-12 px-8 bg-primary text-primary-foreground shadow-xl active:scale-95 transition-all"
                          onClick={() => {
                            navigator.clipboard.writeText(`:root {\n  --background: ${tokens.background};\n  --foreground: ${tokens.foreground};\n  --card: ${tokens.card};\n  --primary: ${tokens.primary};\n  --destructive: ${tokens.destructive};\n  --border: ${tokens.border};\n\n  /* Semantic Roles */\n  --role-info: ${tokens.info};\n  --role-info-fg: ${tokens.infoFg};\n  --role-success: ${tokens.success};\n  --role-success-fg: ${tokens.successFg};\n  --role-warning: ${tokens.warning};\n  --role-warning-fg: ${tokens.warningFg};\n  --role-accent: ${tokens.accent};\n  --role-accent-fg: ${tokens.accentFg};\n}`)
-                           alert("Token copiati!")
+                           alert("Token configurazione Strato copiati!")
                          }}>
-                         Copia Codice
+                         Copy to Clipboard
                        </Button>
                     </div>
                  </div>
