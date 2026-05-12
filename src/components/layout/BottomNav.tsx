@@ -1,6 +1,6 @@
 "use client";
 
-import { Home, BookOpen, FolderOpen, Mail, User, GraduationCap, Sparkles, Settings } from "lucide-react";
+import { Home, BookOpen, FolderOpen, Mail, User, GraduationCap, Settings } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -31,8 +31,8 @@ export function BottomNav() {
   return (
     <>
       {/* Mobile Bottom Nav - Borderless & Adaptive */}
-      <nav className="fixed bottom-0 left-0 right-0 z-50 flex h-20 items-center justify-around bg-background md:hidden px-4">
-        <div className="flex w-full h-14 items-center justify-around bg-card border-none rounded-full px-2 shadow-none transition-colors">
+      <nav className="fixed bottom-0 left-0 right-0 z-50 flex h-24 items-center justify-around bg-background md:hidden px-6">
+        <div className="flex w-full h-14 items-center justify-around bg-card border border-border/20 rounded-full px-2 shadow-none transition-all">
           {items.map((item) => {
             const Icon = item.icon;
             const isActive = pathname === item.href;
@@ -43,7 +43,7 @@ export function BottomNav() {
                 href={item.href}
                 className={cn(
                   "flex items-center justify-center h-10 w-10 rounded-full transition-all",
-                  isActive ? "bg-foreground text-background scale-110" : "text-muted-foreground hover:text-foreground"
+                  isActive ? "bg-primary text-primary-foreground scale-110 shadow-lg shadow-primary/20" : "text-muted-foreground hover:text-foreground"
                 )}
               >
                 <Icon className={cn("h-5 w-5", isActive && "stroke-[2.5px]")} />
@@ -54,7 +54,7 @@ export function BottomNav() {
       </nav>
 
       {/* Desktop Sidebar - Borderless & Adaptive Mode */}
-      <nav className="hidden fixed left-6 top-28 bottom-6 w-24 md:w-72 bg-card border-none rounded-[1.5rem] md:flex flex-col p-6 gap-2 z-[60] transition-all shadow-none overflow-hidden">
+      <nav className="hidden fixed left-6 top-28 bottom-6 w-24 md:w-72 bg-card border border-border/20 rounded-[2rem] md:flex flex-col p-6 gap-2 z-[60] transition-all shadow-none overflow-hidden hover:border-border/40">
         <div className="space-y-3 pt-4">
           {items.map((item) => {
             const Icon = item.icon;
@@ -67,15 +67,28 @@ export function BottomNav() {
                 className={cn(
                   "group flex items-center justify-center md:justify-start gap-4 px-4 py-5 rounded-2xl transition-all",
                   isActive 
-                    ? "bg-foreground text-background font-bold shadow-lg shadow-foreground/10" 
+                    ? "bg-primary text-primary-foreground font-bold shadow-lg shadow-primary/20" 
                     : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
                 )}
               >
                 <Icon className={cn("h-6 w-6 shrink-0 transition-transform group-hover:scale-110", isActive && "stroke-[2.5px]")} />
-                <span className="hidden md:block text-sm font-black tracking-tighter uppercase">{item.label}</span>
+                <span className="hidden md:block text-[11px] font-black tracking-widest uppercase">{item.label}</span>
               </Link>
             );
           })}
+        </div>
+        
+        {/* Footer Sidebar opzionale */}
+        <div className="mt-auto pt-6 border-t border-border/10 hidden md:block">
+           <div className="bg-muted/30 rounded-2xl p-4 flex items-center gap-3">
+              <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                 <User className="h-5 w-5" />
+              </div>
+              <div className="flex flex-col overflow-hidden">
+                 <span className="text-[10px] font-black uppercase tracking-widest truncate">{isDocente ? "A. Rossi" : "Studente"}</span>
+                 <span className="text-[9px] text-muted-foreground font-medium uppercase tracking-widest opacity-60">Sessione attiva</span>
+              </div>
+           </div>
         </div>
       </nav>
     </>

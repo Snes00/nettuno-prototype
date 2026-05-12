@@ -10,22 +10,24 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { TeacherQuickActions } from "@/components/dashboard/docente/TeacherQuickActions";
+import { cn } from "@/lib/utils";
 
 const AVVISI = [
-  { id: 1, titolo: "Appello Straordinario", descrizione: "Richiesta apertura appello per Pittura II.", ora: "11:15", icon: AlertCircle, color: "text-[#991b1b]" },
-  { id: 2, titolo: "Verbale da firmare", descrizione: "3 verbali in attesa di firma digitale.", ora: "Oggi", icon: Bell, color: "text-amber-700" },
-  { id: 3, titolo: "Ricevimento Studenti", descrizione: "Marco Bianchi ha prenotato per domani.", ora: "Ieri", icon: Users, color: "text-blue-700" },
-  { id: 4, titolo: "Consiglio Accademico", descrizione: "Convocazione per il 15 Maggio.", ora: "3gg fa", icon: Calendar, color: "text-purple-700" },
+  { id: 1, titolo: "Appello Straordinario", descrizione: "Richiesta apertura appello per Pittura II.", ora: "11:15", icon: AlertCircle, color: "text-role-critical-fg" },
+  { id: 2, titolo: "Verbale da firmare", descrizione: "3 verbali in attesa di firma digitale.", ora: "Oggi", icon: Bell, color: "text-role-warning-fg" },
+  { id: 3, titolo: "Ricevimento Studenti", descrizione: "Marco Bianchi ha prenotato per domani.", ora: "Ieri", icon: Users, color: "text-role-info-fg" },
+  { id: 4, titolo: "Consiglio Accademico", descrizione: "Convocazione per il 15 Maggio.", ora: "3gg fa", icon: Calendar, color: "text-role-accent-fg" },
 ];
 
 export default function DocenteDashboardPage() {
   return (
-    <div className="flex flex-col gap-12 animate-in fade-in duration-500">
+    <div className="flex flex-col gap-10 animate-in fade-in duration-500 pb-12">
       {/* Header Benvenuto */}
-      <section>
-        <h1 className="text-2xl md:text-4xl font-black tracking-tighter text-foreground uppercase">
-          Benvenuto prof rossi.
+      <section className="px-1">
+        <h1 className="text-2xl md:text-4xl font-black tracking-tighter text-foreground uppercase leading-none">
+          Bentornato, Prof. Rossi
         </h1>
+        <p className="text-muted-foreground mt-2 font-medium text-base md:text-lg tracking-tight">Ecco il riepilogo delle attività accademiche di oggi.</p>
       </section>
 
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
@@ -33,11 +35,11 @@ export default function DocenteDashboardPage() {
         <div className="md:col-span-8 space-y-12">
           
           {/* Sezione Comunicazioni */}
-          <section className="bg-card rounded-[2rem] p-8 md:p-10 border-none shadow-none space-y-8">
+          <section className="bg-card rounded-[2rem] p-8 md:p-10 border border-border/40 md:border-none shadow-none space-y-8 transition-all hover:scale-[1.005]">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-4">
                 <h2 className="text-xl font-black tracking-tighter uppercase">Comunicazioni</h2>
-                <Badge className="bg-foreground text-background border-none rounded-full px-4 h-7 font-black text-[10px] uppercase">
+                <Badge className="bg-role-critical-fg text-role-critical border-none rounded-full px-4 h-7 font-black text-[10px] uppercase tracking-widest">
                   2 Urgenti
                 </Badge>
               </div>
@@ -45,18 +47,25 @@ export default function DocenteDashboardPage() {
 
             <div className="space-y-4">
               {AVVISI.slice(0, 3).map((avviso) => (
-                <div key={avviso.id} className="group flex items-center justify-between p-6 bg-muted/30 rounded-2xl hover:bg-muted/50 transition-all cursor-pointer">
-                  <div className="space-y-1">
-                    <p className="font-black text-sm uppercase tracking-tight">{avviso.titolo}</p>
-                    <p className="text-xs font-bold text-muted-foreground">{avviso.descrizione}</p>
+                <div key={avviso.id} className="group flex items-center justify-between p-6 bg-muted/30 rounded-2xl hover:bg-muted/50 transition-all cursor-pointer border border-transparent hover:border-border/20">
+                  <div className="flex items-center gap-5">
+                    <div className={cn("h-12 w-12 rounded-xl flex items-center justify-center shrink-0", 
+                      avviso.id === 1 ? "bg-role-critical/10" : 
+                      avviso.id === 2 ? "bg-role-warning/10" : "bg-role-info/10")}>
+                      <avviso.icon className={cn("h-6 w-6", avviso.color)} />
+                    </div>
+                    <div className="space-y-0.5">
+                      <p className="font-black text-sm uppercase tracking-tight text-foreground">{avviso.titolo}</p>
+                      <p className="text-xs font-bold text-muted-foreground">{avviso.descrizione}</p>
+                    </div>
                   </div>
-                  <span className="text-[10px] font-black text-muted-foreground opacity-50">{avviso.ora}</span>
+                  <span className="text-[10px] font-black text-muted-foreground/40 uppercase tracking-widest">{avviso.ora}</span>
                 </div>
               ))}
             </div>
 
-            <div className="flex justify-end">
-              <button className="text-xs font-black uppercase tracking-widest hover:underline flex items-center gap-2">
+            <div className="flex justify-end pt-2">
+              <button className="text-[10px] font-black uppercase tracking-[0.2em] text-primary hover:opacity-80 flex items-center gap-2 transition-all">
                 Vedi tutte <ChevronRight className="h-4 w-4" />
               </button>
             </div>
@@ -67,49 +76,43 @@ export default function DocenteDashboardPage() {
             <h2 className="text-xl font-black tracking-tighter uppercase px-2">Attività di oggi</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {/* Lezione In Corso */}
-              <div className="bg-card rounded-[2rem] p-8 space-y-8 relative group cursor-pointer hover:bg-muted/20 transition-all">
+              <div className="bg-role-success rounded-[2rem] p-8 space-y-8 relative group cursor-pointer border border-role-success-fg/10 transition-all hover:scale-[1.02]">
                 <div className="flex justify-between items-start">
-                  <Badge className="bg-foreground text-background border-none rounded-full px-3 h-6 font-black text-[9px] uppercase">
+                  <Badge className="bg-role-success-fg text-role-success border-none rounded-full px-3 h-6 font-black text-[9px] uppercase tracking-widest">
                     In Corso
                   </Badge>
                 </div>
                 <div className="space-y-1">
-                  <h3 className="text-3xl font-black tracking-tighter leading-none uppercase">Web Design 1</h3>
-                  <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest">Triennio</p>
+                  <h3 className="text-3xl font-black tracking-tighter leading-none uppercase text-role-success-fg">Web Design 1</h3>
+                  <p className="text-[10px] font-black text-role-success-fg/60 uppercase tracking-[0.2em]">Triennio · Aula 12</p>
                 </div>
                 <div className="flex flex-col gap-2">
-                   <div className="flex items-center gap-2 text-xs font-black">
+                   <div className="flex items-center gap-2 text-xs font-black text-role-success-fg/80">
                       <Clock className="h-4 w-4" /> 14:00 / 18:00
                    </div>
-                   <div className="flex items-center gap-2 text-xs font-black">
-                      <MapPin className="h-4 w-4" /> Aula 12
-                   </div>
                 </div>
-                <div className="absolute bottom-8 right-8 h-10 w-10 rounded-xl bg-muted flex items-center justify-center">
+                <div className="absolute bottom-8 right-8 h-10 w-10 rounded-xl bg-role-success-fg/10 flex items-center justify-center text-role-success-fg">
                    <BookOpen className="h-5 w-5" />
                 </div>
               </div>
 
-              {/* Lezione Terminata */}
-              <div className="bg-card rounded-[2rem] p-8 space-y-8 relative opacity-60 group cursor-pointer hover:opacity-100 transition-all">
+              {/* Prossima Lezione (Accent Role) */}
+              <div className="bg-role-accent rounded-[2rem] p-8 space-y-8 relative group cursor-pointer border border-role-accent-fg/10 transition-all hover:scale-[1.02]">
                 <div className="flex justify-between items-start">
-                  <Badge variant="outline" className="border-foreground text-foreground rounded-full px-3 h-6 font-black text-[9px] uppercase">
-                    Terminata
+                  <Badge className="bg-role-accent-fg text-role-accent border-none rounded-full px-3 h-6 font-black text-[9px] uppercase tracking-widest">
+                    Prossima
                   </Badge>
                 </div>
                 <div className="space-y-1">
-                  <h3 className="text-3xl font-black tracking-tighter leading-none uppercase">Web Design</h3>
-                  <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest">Biennio</p>
+                  <h3 className="text-3xl font-black tracking-tighter leading-none uppercase text-role-accent-fg">Web Design</h3>
+                  <p className="text-[10px] font-black text-role-accent-fg/60 uppercase tracking-[0.2em]">Biennio · Aula 15</p>
                 </div>
                 <div className="flex flex-col gap-2">
-                   <div className="flex items-center gap-2 text-xs font-black">
-                      <Clock className="h-4 w-4" /> 08:00 / 12:00
-                   </div>
-                   <div className="flex items-center gap-2 text-xs font-black">
-                      <MapPin className="h-4 w-4" /> Aula 15
+                   <div className="flex items-center gap-2 text-xs font-black text-role-accent-fg/80">
+                      <Clock className="h-4 w-4" /> Domani, 08:00
                    </div>
                 </div>
-                <div className="absolute bottom-8 right-8 h-10 w-10 rounded-xl bg-muted flex items-center justify-center">
+                <div className="absolute bottom-8 right-8 h-10 w-10 rounded-xl bg-role-accent-fg/10 flex items-center justify-center text-role-accent-fg">
                    <BookOpen className="h-5 w-5" />
                 </div>
               </div>
@@ -119,7 +122,7 @@ export default function DocenteDashboardPage() {
 
         {/* Colonna Destra: Azioni Rapide */}
         <div className="md:col-span-4 sticky top-32">
-          <section className="bg-card rounded-[2rem] p-8 md:p-10 space-y-8 min-h-[400px] flex flex-col">
+          <section className="bg-card rounded-[2rem] p-8 md:p-10 space-y-8 min-h-[400px] flex flex-col border border-border/40 md:border-none shadow-none transition-all hover:scale-[1.005]">
             <h2 className="text-xl font-black tracking-tighter uppercase">Azioni Rapide</h2>
             <div className="flex-1">
               <TeacherQuickActions />

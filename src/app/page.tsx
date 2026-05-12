@@ -1,81 +1,81 @@
 "use client";
 
 import Link from "next/link";
-import { GraduationCap, UserCog, Sparkles, Palette } from "lucide-react";
+import { GraduationCap, UserCog, Sparkles, Palette, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-background flex flex-col items-center justify-center p-6 sm:p-12">
+    <div className="min-h-screen bg-background flex flex-col items-center justify-center p-8 sm:p-12 overflow-hidden relative">
+      {/* Background Glows */}
+      <div className="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute -bottom-[10%] -right-[10%] w-[50%] h-[50%] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+
       {/* Logo & Header */}
-      <div className="flex flex-col items-center mb-16 space-y-4 animate-in fade-in slide-in-from-bottom-8 duration-700">
-        <div className="h-20 w-20 rounded-3xl bg-foreground text-background flex items-center justify-center shadow-none mb-4">
-          <Sparkles className="h-10 w-10" />
+      <div className="flex flex-col items-center mb-20 space-y-6 animate-in fade-in slide-in-from-bottom-10 duration-1000">
+        <div className="h-24 w-24 rounded-[2.5rem] bg-primary text-primary-foreground flex items-center justify-center shadow-2xl shadow-primary/30 mb-4 rotate-3 hover:rotate-0 transition-all duration-700 cursor-pointer">
+          <Sparkles className="h-12 w-12" />
         </div>
-        <div className="text-center">
-          <h1 className="text-5xl font-black tracking-tighter leading-tight text-foreground">
+        <div className="text-center space-y-2">
+          <h1 className="text-6xl font-black tracking-tighter leading-tight text-foreground uppercase">
             Nettuno
           </h1>
-          <p className="text-sm font-bold uppercase tracking-[0.3em] text-muted-foreground opacity-50">
-            Accademia di Belle Arti
+          <p className="text-[11px] font-black uppercase tracking-[0.4em] text-muted-foreground/60">
+            Accademia di Belle Arti • ABA Portal
           </p>
         </div>
       </div>
 
       {/* Selection Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl animate-in fade-in slide-in-from-bottom-12 delay-200 duration-1000 fill-mode-both">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full max-w-5xl animate-in fade-in slide-in-from-bottom-16 delay-300 duration-1000 fill-mode-both">
         
         {/* Studente */}
         <Link href="/login?role=studente" className="group">
-          <div className="bento-card h-[400px] bg-card hover:bg-muted/30 border border-border/40 cursor-pointer overflow-hidden relative">
-            <div className="z-10 relative h-full flex flex-col justify-between">
-              <div>
-                <div className="h-14 w-14 rounded-2xl bg-bento-blue/50 flex items-center justify-center mb-6 text-foreground">
-                  <GraduationCap className="h-7 w-7" />
+          <div className="rounded-[2.5rem] p-10 h-[450px] bg-card hover:bg-muted/20 border border-border/40 md:border-none shadow-none cursor-pointer overflow-hidden relative transition-all hover:scale-[1.02] flex flex-col justify-between">
+            <div className="z-10 relative">
+                <div className="h-16 w-16 rounded-2xl bg-role-info flex items-center justify-center mb-8 text-role-info-fg shadow-sm">
+                  <GraduationCap className="h-8 w-8" />
                 </div>
-                <h2 className="text-3xl font-black tracking-tighter text-foreground mb-2">Area Studenti</h2>
-                <p className="text-muted-foreground font-medium max-w-[200px]">Gestisci il tuo piano di studi, esami e comunicazioni.</p>
-              </div>
-              <div className="flex items-center text-sm font-black uppercase tracking-widest text-foreground group-hover:translate-x-2 transition-transform">
-                Entra <span className="ml-2">→</span>
-              </div>
+                <h2 className="text-4xl font-black tracking-tighter text-foreground mb-4 uppercase">Area Studenti</h2>
+                <p className="text-muted-foreground font-medium text-lg leading-snug max-w-[260px]">Accedi al tuo libretto, gestisci tasse e frequenza corsi.</p>
+            </div>
+            <div className="z-10 relative flex items-center gap-3 text-[11px] font-black uppercase tracking-[0.2em] text-primary group-hover:gap-5 transition-all">
+              Inizia Sessione <ArrowRight className="h-4 w-4" />
             </div>
             {/* Background Decoration */}
-            <div className="absolute -bottom-10 -right-10 h-64 w-64 bg-bento-blue/20 rounded-full blur-3xl group-hover:bg-bento-blue/40 transition-colors" />
+            <div className="absolute -bottom-16 -right-16 h-80 w-80 bg-role-info/10 rounded-full blur-3xl group-hover:bg-role-info/20 transition-all duration-700" />
           </div>
         </Link>
 
         {/* Docente */}
         <Link href="/login?role=docente" className="group">
-          <div className="bento-card h-[400px] bg-card hover:bg-muted/30 border border-border/40 cursor-pointer overflow-hidden relative">
-            <div className="z-10 relative h-full flex flex-col justify-between">
-              <div>
-                <div className="h-14 w-14 rounded-2xl bg-bento-pink/50 flex items-center justify-center mb-6 text-foreground">
-                  <UserCog className="h-7 w-7" />
+          <div className="rounded-[2.5rem] p-10 h-[450px] bg-card hover:bg-muted/20 border border-border/40 md:border-none shadow-none cursor-pointer overflow-hidden relative transition-all hover:scale-[1.02] flex flex-col justify-between">
+            <div className="z-10 relative">
+                <div className="h-16 w-16 rounded-2xl bg-role-accent flex items-center justify-center mb-8 text-role-accent-fg shadow-sm">
+                  <UserCog className="h-8 w-8" />
                 </div>
-                <h2 className="text-3xl font-black tracking-tighter text-foreground mb-2">Area Docenti</h2>
-                <p className="text-muted-foreground font-medium max-w-[200px]">Gestisci i tuoi corsi, verbali e ricevi i tuoi studenti.</p>
-              </div>
-              <div className="flex items-center text-sm font-black uppercase tracking-widest text-foreground group-hover:translate-x-2 transition-transform">
-                Entra <span className="ml-2">→</span>
-              </div>
+                <h2 className="text-4xl font-black tracking-tighter text-foreground mb-4 uppercase">Area Docenti</h2>
+                <p className="text-muted-foreground font-medium text-lg leading-snug max-w-[260px]">Gestione didattica, verbali d&apos;esame e ricevimento.</p>
+            </div>
+            <div className="z-10 relative flex items-center gap-3 text-[11px] font-black uppercase tracking-[0.2em] text-primary group-hover:gap-5 transition-all">
+              Accesso Registro <ArrowRight className="h-4 w-4" />
             </div>
             {/* Background Decoration */}
-            <div className="absolute -bottom-10 -right-10 h-64 w-64 bg-bento-pink/20 rounded-full blur-3xl group-hover:bg-bento-pink/40 transition-colors" />
+            <div className="absolute -bottom-16 -right-16 h-80 w-80 bg-role-accent/10 rounded-full blur-3xl group-hover:bg-role-accent/20 transition-all duration-700" />
           </div>
         </Link>
       </div>
 
-      <div className="mt-12 animate-in fade-in slide-in-from-bottom-4 delay-500 fill-mode-both">
+      <div className="mt-16 animate-in fade-in slide-in-from-bottom-6 delay-700 fill-mode-both">
         <Link href="/design-system">
-          <Button variant="outline" className="h-12 rounded-2xl px-8 gap-3 font-black text-[10px] uppercase tracking-widest border-none bg-muted/30 hover:bg-muted/50 transition-all">
-            <Palette className="h-4 w-4" /> Esplora Design System
+          <Button variant="outline" className="h-14 rounded-2xl px-10 gap-4 font-black text-[11px] uppercase tracking-[0.2em] border-border/40 bg-card hover:bg-muted transition-all active:scale-95 shadow-none">
+            <Palette className="h-5 w-5 text-primary" /> Sistema Strato v2.0
           </Button>
         </Link>
       </div>
 
-      <p className="mt-16 text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground opacity-30">
-        Nettuno v4.0 • Redesign Project
+      <p className="mt-20 text-[10px] font-black uppercase tracking-[0.3em] text-muted-foreground/30">
+        Accademia di Belle Arti • Nettuno Ecosystem • 2026
       </p>
     </div>
   );

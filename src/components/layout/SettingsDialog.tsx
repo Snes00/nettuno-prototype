@@ -42,50 +42,50 @@ interface SecurityViewProps {
 }
 
 const SecurityView = ({ setView, is2FAActive, setIs2FAActive, devices }: SecurityViewProps) => (
-  <div className="space-y-6 animate-in slide-in-from-right-4 duration-200">
+  <div className="space-y-8 animate-in slide-in-from-right-4 duration-300">
     <Button 
       variant="outline" 
       size="icon" 
       onClick={() => setView("main")} 
-      className="h-11 w-11 rounded-full border-none bg-muted/30 hover:bg-muted/50 text-foreground transition-all mb-2"
+      className="h-12 w-12 rounded-full border-none bg-muted/30 hover:bg-muted/50 text-foreground transition-all mb-2 active:scale-90"
     >
-      <ArrowLeft className="h-5 w-5" />
+      <ArrowLeft className="h-6 w-6" />
     </Button>
-    <div className="space-y-6">
-      <h3 className="text-xl font-black tracking-tight text-foreground">Sicurezza e Privacy</h3>
+    <div className="space-y-8">
+      <h3 className="text-2xl font-black tracking-tight text-foreground uppercase leading-none">Sicurezza</h3>
       
-      <div className="space-y-2">
+      <div className="space-y-3">
         {/* 2FA */}
-        <div className="p-5 rounded-2xl bg-muted/30 flex items-center justify-between">
+        <div className="p-6 rounded-2xl bg-muted/30 flex items-center justify-between border border-transparent">
           <div className="flex flex-col">
-            <span className="text-sm font-bold text-foreground">Autenticazione 2FA</span>
-            <span className="text-[10px] font-medium text-muted-foreground uppercase">Extra protezione</span>
+            <span className="text-base font-black uppercase tracking-tight text-foreground leading-none">Autenticazione 2FA</span>
+            <span className="text-[10px] font-black text-muted-foreground uppercase tracking-widest mt-1.5 opacity-60">Extra protezione</span>
           </div>
           <Switch checked={is2FAActive} onCheckedChange={setIs2FAActive} />
         </div>
 
         {/* Password */}
-        <Button variant="ghost" className="w-full justify-between h-16 rounded-2xl bg-muted/30 px-5 hover:bg-muted/50 border-none transition-all">
-          <div className="flex items-center gap-3">
-            <KeyRound className="h-5 w-5 opacity-60" />
-            <div className="text-left">
-              <p className="text-sm font-bold text-foreground leading-none">Cambia Password</p>
-              <p className="text-[10px] font-medium text-muted-foreground mt-1 uppercase">Ultima modifica: 3 mesi fa</p>
+        <Button variant="ghost" className="w-full justify-between h-20 rounded-2xl bg-muted/30 px-6 hover:bg-muted/50 border-none transition-all active:scale-[0.98]">
+          <div className="flex items-center gap-4 text-left">
+            <KeyRound className="h-6 w-6 text-muted-foreground" />
+            <div className="space-y-0.5">
+              <p className="text-base font-black uppercase tracking-tight text-foreground leading-none">Cambia Password</p>
+              <p className="text-[10px] font-black text-muted-foreground mt-1 uppercase tracking-widest opacity-60">Aggiornato 3 mesi fa</p>
             </div>
           </div>
-          <ChevronRight className="h-4 w-4 opacity-20" />
+          <ChevronRight className="h-5 w-5 text-muted-foreground/20" />
         </Button>
 
         {/* Dispositivi */}
-        <Button variant="ghost" className="w-full justify-between h-16 rounded-2xl bg-muted/30 px-5 hover:bg-muted/50 border-none transition-all" onClick={() => setView("devices")}>
-          <div className="flex items-center gap-3">
-            <Smartphone className="h-5 w-5 opacity-60" />
-            <div className="text-left">
-              <p className="text-sm font-bold text-foreground leading-none">Dispositivi Connessi</p>
-              <p className="text-[10px] font-medium text-muted-foreground mt-1 uppercase">{devices.length} Sessioni attive</p>
+        <Button variant="ghost" className="w-full justify-between h-20 rounded-2xl bg-muted/30 px-6 hover:bg-muted/50 border-none transition-all active:scale-[0.98]" onClick={() => setView("devices")}>
+          <div className="flex items-center gap-4 text-left">
+            <Smartphone className="h-6 w-6 text-muted-foreground" />
+            <div className="space-y-0.5">
+              <p className="text-base font-black uppercase tracking-tight text-foreground leading-none">Dispositivi</p>
+              <p className="text-[10px] font-black text-muted-foreground mt-1 uppercase tracking-widest opacity-60">{devices.length} Sessioni attive</p>
             </div>
           </div>
-          <ChevronRight className="h-4 w-4 opacity-20" />
+          <ChevronRight className="h-5 w-5 text-muted-foreground/20" />
         </Button>
       </div>
     </div>
@@ -99,29 +99,31 @@ interface DevicesViewProps {
 }
 
 const DevicesView = ({ setView, devices, setDevices }: DevicesViewProps) => (
-  <div className="space-y-6 animate-in slide-in-from-right-4 duration-200">
+  <div className="space-y-8 animate-in slide-in-from-right-4 duration-300">
     <Button 
       variant="outline" 
       size="icon" 
       onClick={() => setView("security")} 
-      className="h-11 w-11 rounded-full border-none bg-muted/30 hover:bg-muted/50 text-foreground transition-all mb-2"
+      className="h-12 w-12 rounded-full border-none bg-muted/30 hover:bg-muted/50 text-foreground transition-all mb-2 active:scale-90"
     >
-      <ArrowLeft className="h-5 w-5" />
+      <ArrowLeft className="h-6 w-6" />
     </Button>
-    <div className="space-y-4">
-      <h3 className="text-xl font-black tracking-tight">Dispositivi Connessi</h3>
+    <div className="space-y-6">
+      <h3 className="text-2xl font-black tracking-tight uppercase leading-none">Dispositivi Connessi</h3>
       <div className="space-y-3">
         {devices.map(device => (
-          <div key={device.id} className="p-4 rounded-2xl bg-muted/30 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <Smartphone className={cn("h-5 w-5", device.active ? "text-emerald-500" : "text-muted-foreground")} />
-              <div>
-                <p className="text-sm font-bold">{device.name}</p>
-                <p className="text-[10px] text-muted-foreground uppercase font-black">{device.location} {device.active && "• In uso"}</p>
+          <div key={device.id} className="p-6 rounded-2xl bg-muted/30 flex items-center justify-between border border-transparent">
+            <div className="flex items-center gap-5">
+              <div className={cn("h-12 w-12 rounded-xl flex items-center justify-center shadow-none", device.active ? "bg-role-success text-role-success-fg" : "bg-muted text-muted-foreground")}>
+                 <Smartphone className="h-6 w-6" />
+              </div>
+              <div className="text-left">
+                <p className="text-base font-black uppercase tracking-tight text-foreground">{device.name}</p>
+                <p className="text-[10px] text-muted-foreground uppercase font-black tracking-widest mt-1 opacity-60">{device.location} {device.active && "• In uso"}</p>
               </div>
             </div>
             {!device.active && (
-              <Button variant="ghost" size="sm" className="text-destructive text-[10px] font-black" onClick={() => setDevices(devices.filter(d => d.id !== device.id))}>RIMUOVI</Button>
+              <Button variant="ghost" size="sm" className="text-role-critical-fg hover:bg-role-critical/10 text-[9px] font-black uppercase tracking-widest px-4 h-10 rounded-xl transition-all" onClick={() => setDevices(devices.filter(d => d.id !== device.id))}>RIMUOVI</Button>
             )}
           </div>
         ))}
@@ -153,44 +155,43 @@ export function SettingsDialog() {
   return (
     <Dialog onOpenChange={(open) => !open && setView("main")}>
       <DialogTrigger asChild>
-        <Button 
-          variant="ghost" 
-          className="h-14 w-14 rounded-2xl text-muted-foreground hover:text-foreground bg-card dark:bg-white/5 border-none hover:bg-muted dark:hover:bg-white/10 transition-all flex items-center justify-center p-0 shadow-none"
+        <button 
+          className="h-14 w-14 rounded-2xl text-muted-foreground hover:text-foreground bg-card border border-border/20 hover:border-border/40 transition-all flex items-center justify-center p-0 shadow-none active:scale-95 group"
         >
-          <Settings className="h-7 w-7" />
+          <Settings className="h-6 w-6 group-hover:rotate-45 transition-transform" />
           <span className="sr-only">Impostazioni</span>
-        </Button>
+        </button>
       </DialogTrigger>
       
-      <DialogContent className="sm:max-w-[480px] h-[90vh] sm:h-[85vh] flex flex-col rounded-[1.5rem] p-0 overflow-hidden border-none bg-background shadow-none animate-in zoom-in-95 duration-200">
-        <DialogHeader className="p-8 border-b border-border/40 shrink-0">
-          <div className="flex items-center gap-3 mb-1">
-            <div className="h-10 w-10 rounded-xl bg-foreground text-background flex items-center justify-center">
-              <Settings className="h-5 w-5" />
+      <DialogContent className="sm:max-w-[500px] h-[90vh] sm:h-[85vh] flex flex-col rounded-[2.5rem] p-0 overflow-hidden border border-border/40 md:border-none bg-background shadow-none animate-in zoom-in-95 duration-200">
+        <DialogHeader className="p-10 border-b border-border/20 bg-card shrink-0">
+          <div className="flex items-center gap-4 mb-2">
+            <div className="h-12 w-12 rounded-2xl bg-primary text-primary-foreground flex items-center justify-center shadow-lg shadow-primary/20">
+              <Settings className="h-6 w-6" />
             </div>
-            <DialogTitle className="text-2xl font-black tracking-tighter text-foreground">Impostazioni</DialogTitle>
+            <DialogTitle className="text-3xl font-black tracking-tighter text-foreground uppercase">Impostazioni</DialogTitle>
           </div>
-          <DialogDescription className="text-sm font-medium text-muted-foreground">
+          <DialogDescription className="text-sm font-medium text-muted-foreground uppercase tracking-tight">
             {isDocente ? "Gestione pannello docente e preferenze." : "Personalizza la tua esperienza su Nettuno."}
           </DialogDescription>
         </DialogHeader>
         
-        <ScrollArea className="flex-1 px-8 overflow-y-auto">
-          <div className="py-8">
+        <ScrollArea className="flex-1 px-10 overflow-y-auto">
+          <div className="py-10">
             {view === "main" && (
-              <div className="grid gap-10">
+              <div className="grid gap-12">
                 {/* Sezione Aspetto & Accessibilità */}
-                <div className="space-y-4">
+                <div className="space-y-5">
                   <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/60 px-1">Aspetto & Accessibilità</h4>
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between p-5 rounded-[1.25rem] bg-muted/30 border-none">
-                      <div className="flex items-center gap-3">
-                        <div className="h-10 w-10 rounded-xl bg-background flex items-center justify-center text-foreground shadow-sm">
-                          {theme === "dark" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between p-6 rounded-[1.5rem] bg-muted/30 border border-transparent transition-all active:scale-[0.98]">
+                      <div className="flex items-center gap-5">
+                        <div className="h-12 w-12 rounded-xl bg-background flex items-center justify-center text-foreground shadow-none border border-border/10">
+                          {theme === "dark" ? <Moon className="h-6 w-6" /> : <Sun className="h-6 w-6" />}
                         </div>
                         <div className="flex flex-col">
-                          <Label htmlFor="dark-mode" className="font-bold text-sm text-foreground">Modalità Scura</Label>
-                          <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">Tema Interfaccia</span>
+                          <Label htmlFor="dark-mode" className="font-black text-base text-foreground uppercase tracking-tight leading-none">Modalità Scura</Label>
+                          <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60 mt-1 leading-none">Tema Interfaccia</span>
                         </div>
                       </div>
                       <Switch 
@@ -203,14 +204,14 @@ export function SettingsDialog() {
                 </div>
 
                 {/* Sezione Lingua */}
-                <div className="space-y-4">
+                <div className="space-y-5">
                   <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/60 px-1">Lingua di sistema</h4>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-2 gap-4">
                     <Button 
                       variant="outline" 
                       className={cn(
-                        "justify-center h-12 rounded-xl text-xs font-black transition-all border-none shadow-none",
-                        lang === "it" ? "bg-foreground text-background" : "bg-muted/40 text-foreground hover:bg-muted/60"
+                        "justify-center h-14 rounded-2xl text-[10px] font-black transition-all border-none shadow-none uppercase tracking-widest active:scale-95",
+                        lang === "it" ? "bg-primary text-primary-foreground" : "bg-muted/40 text-foreground hover:bg-muted/60"
                       )}
                       onClick={() => setLang("it")}
                     >
@@ -219,8 +220,8 @@ export function SettingsDialog() {
                     <Button 
                       variant="outline" 
                       className={cn(
-                        "justify-center h-12 rounded-xl text-xs font-black transition-all border-none shadow-none",
-                        lang === "en" ? "bg-foreground text-background" : "bg-muted/40 text-foreground hover:bg-muted/60"
+                        "justify-center h-14 rounded-2xl text-[10px] font-black transition-all border-none shadow-none uppercase tracking-widest active:scale-95",
+                        lang === "en" ? "bg-primary text-primary-foreground" : "bg-muted/40 text-foreground hover:bg-muted/60"
                       )}
                       onClick={() => setLang("en")}
                     >
@@ -230,23 +231,23 @@ export function SettingsDialog() {
                 </div>
 
                 {/* Sezione Notifiche */}
-                <div className="space-y-4">
+                <div className="space-y-5">
                   <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/60 px-1 flex items-center gap-2">
-                    <Bell className="h-3 w-3" /> Notifiche
+                    <Bell className="h-4 w-4" /> Notifiche
                   </h4>
-                  <div className="space-y-5 px-1">
+                  <div className="space-y-8 px-1">
                     <div className="flex items-center justify-between">
                       <div className="flex flex-col text-foreground">
-                        <Label className="text-sm font-bold">Centro notifiche</Label>
-                        <span className="text-[10px] font-medium text-muted-foreground">Avvisi istantanei nell&apos;app</span>
+                        <Label className="text-base font-black uppercase tracking-tight">Centro notifiche</Label>
+                        <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-widest opacity-60">Avvisi istantanei</span>
                       </div>
                       <Switch checked={notifications.push} />
                     </div>
                     {isDocente && (
                       <div className="flex items-center justify-between">
                         <div className="flex flex-col text-foreground">
-                          <Label className="text-sm font-bold">Prenotazioni Ricevimento</Label>
-                          <span className="text-[10px] font-medium text-muted-foreground">Notifica per nuovi appuntamenti</span>
+                          <Label className="text-base font-black uppercase tracking-tight">Prenotazioni</Label>
+                          <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-widest opacity-60">Nuovi appuntamenti</span>
                         </div>
                         <Switch checked={notifications.ricevimenti} />
                       </div>
@@ -254,32 +255,32 @@ export function SettingsDialog() {
                   </div>
                 </div>
 
-                {/* Sezione Sicurezza (Nuova Logica Interattiva) */}
-                <div className="space-y-4">
+                {/* Sezione Sicurezza */}
+                <div className="space-y-5">
                   <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/60 px-1">Sicurezza e Privacy</h4>
                   <Button 
                     variant="ghost" 
                     onClick={() => setView("security")}
-                    className="w-full justify-between h-14 rounded-2xl bg-muted/30 hover:bg-muted/50 px-5 border-none text-foreground transition-all"
+                    className="w-full justify-between h-20 rounded-2xl bg-muted/30 hover:bg-muted/50 px-6 border-none text-foreground transition-all active:scale-[0.98]"
                   >
-                    <div className="flex items-center gap-3 text-sm font-bold">
-                      <ShieldCheck className="h-5 w-5 opacity-60" /> Gestione Sicurezza
+                    <div className="flex items-center gap-5 text-base font-black uppercase tracking-tight">
+                      <ShieldCheck className="h-6 w-6 text-muted-foreground" /> Gestione Sicurezza
                     </div>
-                    <ChevronRight className="h-4 w-4 opacity-20" />
+                    <ChevronRight className="h-5 w-5 text-muted-foreground/20" />
                   </Button>
                 </div>
 
-                <Separator className="bg-border/40" />
+                <Separator className="bg-border/20" />
 
                 {/* Sezione Azioni Critiche */}
-                <div className="space-y-3">
-                  <Button variant="ghost" className="w-full justify-start h-14 rounded-2xl hover:bg-destructive/10 text-destructive px-5 gap-4 transition-all border-none font-black uppercase tracking-widest text-xs">
-                    <LogOut className="h-5 w-5" />
+                <div className="space-y-4">
+                  <Button variant="ghost" className="w-full justify-start h-16 rounded-2xl hover:bg-role-critical/10 text-role-critical-fg px-6 gap-5 transition-all border-none font-black uppercase tracking-widest text-[10px] active:scale-95">
+                    <LogOut className="h-6 w-6" />
                     Esci dall&apos;account
                   </Button>
                   
-                  <Button variant="ghost" className="w-full justify-start h-14 rounded-2xl hover:bg-muted/40 text-muted-foreground hover:text-foreground px-5 gap-4 transition-all border-none font-black uppercase tracking-widest text-xs">
-                    <Bug className="h-5 w-5" />
+                  <Button variant="ghost" className="w-full justify-start h-16 rounded-2xl hover:bg-muted/40 text-muted-foreground hover:text-foreground px-6 gap-5 transition-all border-none font-black uppercase tracking-widest text-[10px] active:scale-95">
+                    <Bug className="h-6 w-6" />
                     Segnala un Bug
                   </Button>
                 </div>
@@ -304,10 +305,10 @@ export function SettingsDialog() {
           </div>
         </ScrollArea>
 
-        <DialogFooter className="p-8 bg-muted/20 border-t border-border/40 shrink-0">
-          <div className="flex items-center justify-center gap-2 text-[10px] text-muted-foreground font-black uppercase tracking-[0.2em] w-full">
-            <Info className="h-3 w-3" />
-            Nettuno v4.0.0
+        <DialogFooter className="p-10 bg-muted/20 border-t border-border/20 shrink-0">
+          <div className="flex items-center justify-center gap-3 text-[10px] text-muted-foreground font-black uppercase tracking-[0.3em] w-full opacity-40">
+            <Info className="h-4 w-4" />
+            Nettuno v4.2.0 • Strato v2.0
           </div>
         </DialogFooter>
       </DialogContent>
