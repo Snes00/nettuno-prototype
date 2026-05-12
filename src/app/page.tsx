@@ -63,7 +63,14 @@ export default function LandingPage() {
             <div className="absolute -bottom-10 -right-10 h-64 w-64 bg-bento-pink/20 rounded-full blur-3xl group-hover:bg-bento-pink/40 transition-colors" />
           </div>
         </Link>
+      </div>
 
+      <div className="mt-12 animate-in fade-in slide-in-from-bottom-4 delay-500 fill-mode-both">
+        <Link href="/design-system">
+          <Button variant="outline" className="h-12 rounded-2xl px-8 gap-3 font-black text-[10px] uppercase tracking-widest border-none bg-muted/30 hover:bg-muted/50 transition-all">
+            <Palette className="h-4 w-4" /> Esplora Design System
+          </Button>
+        </Link>
       </div>
 
       <p className="mt-16 text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground opacity-30">
