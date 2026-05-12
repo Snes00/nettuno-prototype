@@ -38,7 +38,7 @@
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
 
-  /* Semantic Role Variables */
+  /* Strato v2.0 Semantic Roles */
   --color-role-info: var(--role-info);
   --color-role-info-fg: var(--role-info-fg);
   --color-role-success: var(--role-success);
@@ -50,105 +50,101 @@
   --color-role-accent: var(--role-accent);
   --color-role-accent-fg: var(--role-accent-fg);
   
-  /* Refined Radius Geometry */
   --radius: 1.5rem;
   --radius-inner: 0.75rem;
-  
   --spacing-bento: 1.5rem;
 }
 
 :root {
-  /* Surface */
-  --background: #F8F5F0;
-  --foreground: #1A1917;
+  /* --- STRATO LIGHT --- */
+  --background: #EEEDF2;     /* Canvas */
+  --foreground: #14131A;     /* Slate-950 */
   --card: #FFFFFF;
-  --card-foreground: #1A1917;
+  --card-foreground: #14131A;
   --popover: #FFFFFF;
-  --popover-foreground: #1A1917;
+  --popover-foreground: #14131A;
   
-  /* Brand/Actions */
-  --primary: #1A1917;
+  --primary: #6547E8;        /* Violet-500 */
   --primary-foreground: #FFFFFF;
-  --secondary: #F1EFE9;
-  --secondary-foreground: #1A1917;
-  --muted: #F1EFE9;
-  --muted-foreground: #7C7A77;
-  --accent: #F1EFE9;
-  --accent-foreground: #1A1917;
-  --destructive: #EF4444;
+  --secondary: #F6F5F9;      /* Surface */
+  --secondary-foreground: #14131A;
+  --muted: #F6F5F9;          /* Surface */
+  --muted-foreground: #7E7B8A;/* Slate-500 */
+  --accent: #F1EFFE;         /* Violet-50 */
+  --accent-foreground: #5035C8;/* Violet-600 */
+  --destructive: #F03C6C;    /* Coral-500 */
   --destructive-foreground: #FFFFFF;
   
-  --border: #E5E2DA;
-  --input: #E5E2DA;
-  --ring: #1A1917;
+  --border: #E4E2EC;         /* Slate-100 */
+  --input: #E4E2EC;
+  --ring: #6547E8;
 
-  /* Semantic Roles (Light) */
-  --role-info: #DBEAFE;       /* Blue Tint */
-  --role-info-fg: #1E40AF;    /* Deep Blue */
-  --role-success: #DCFCE7;    /* Green Tint */
-  --role-success-fg: #166534; /* Deep Green */
-  --role-warning: #FEF9C3;    /* Yellow Tint */
-  --role-warning-fg: #854D0E; /* Deep Gold */
-  --role-critical: #FEE2E2;   /* Red Tint */
-  --role-critical-fg: #991B1B;/* Deep Red */
-  --role-accent: #F3E8FF;     /* Purple Tint */
-  --role-accent-fg: #6B21A8;  /* Deep Purple */
+  /* Semantic Roles (Light - Strato v2.0) */
+  --role-info: #EBF8FF;       /* Cyan-50 */
+  --role-info-fg: #065180;    /* Cyan-700 */
+  --role-success: #EDFAEE;    /* Lime-50 */
+  --role-success-fg: #1D6E26; /* Lime-700 */
+  --role-warning: #FEFAEE;    /* Amber-50 */
+  --role-warning-fg: #7A480A; /* Amber-700 */
+  --role-critical: #FEF5F8;   /* Coral-50 */
+  --role-critical-fg: #A81E40;/* Coral-700 */
+  --role-accent: #F1EFFE;     /* Violet-50 */
+  --role-accent-fg: #5035C8;  /* Violet-600 */
 
-  --sidebar: #FFFFFF;
-  --sidebar-foreground: #1A1917;
-  --sidebar-primary: #1A1917;
+  --sidebar: #F6F5F9;
+  --sidebar-foreground: #14131A;
+  --sidebar-primary: #6547E8;
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #F1EFE9;
-  --sidebar-accent-foreground: #1A1917;
-  --sidebar-border: #E5E2DA;
-  --sidebar-ring: #1A1917;
+  --sidebar-accent: #E4E2EC;
+  --sidebar-accent-foreground: #14131A;
+  --sidebar-border: #E4E2EC;
+  --sidebar-ring: #6547E8;
 }
 
 .dark {
-  /* Surface */
-  --background: #09090B;
-  --foreground: #F5F5F0;
-  --card: #18181B;
-  --card-foreground: #F5F5F0;
-  --popover: #18181B;
-  --popover-foreground: #F5F5F0;
+  /* --- STRATO DARK --- */
+  --background: #0F0E14;     /* Dark Canvas */
+  --foreground: #E4E2EC;     /* Slate-100 */
+  --card: #1E1C2A;           /* Dark Card */
+  --card-foreground: #E4E2EC;
+  --popover: #1E1C2A;
+  --popover-foreground: #E4E2EC;
   
-  /* Brand/Actions */
-  --primary: #F5F5F0;
-  --primary-foreground: #09090B;
-  --secondary: #27272A;
-  --secondary-foreground: #F5F5F0;
-  --muted: #27272A;
-  --muted-foreground: #A1A1AA;
-  --accent: #27272A;
-  --accent-foreground: #F5F5F0;
-  --destructive: #EF4444;
-  --destructive-foreground: #FFFFFF;
+  --primary: #8470EF;        /* Violet-400 (Brighter for Dark) */
+  --primary-foreground: #0F0E14;
+  --secondary: #16151E;      /* Dark Surface */
+  --secondary-foreground: #E4E2EC;
+  --muted: #16151E;
+  --muted-foreground: #9E9BAA;/* Slate-400 */
+  --accent: #2E1A72;         /* Violet-800 */
+  --accent-foreground: #C9C0F8;/* Violet-200 */
+  --destructive: #F56E90;    /* Coral-400 */
+  --destructive-foreground: #0F0E14;
   
-  --border: #27272A;
-  --input: #27272A;
-  --ring: #F5F5F0;
+  --border: #2E2C3A;         /* Slate-800 */
+  --input: #2E2C3A;
+  --ring: #8470EF;
 
-  /* Semantic Roles (Dark) */
-  --role-info: #111B2D;       /* Deep Navy */
-  --role-info-fg: #60A5FA;    /* Light Blue */
-  --role-success: #0F2013;    /* Deep Forest */
-  --role-success-fg: #4ADE80; /* Light Green */
-  --role-warning: #261F0F;    /* Deep Gold Tint */
-  --role-warning-fg: #FACC15; /* Bright Yellow */
-  --role-critical: #2D1616;   /* Deep Crimson */
-  --role-critical-fg: #F87171;/* Light Red */
-  --role-accent: #1C122D;     /* Deep Royal */
-  --role-accent-fg: #C084FC;  /* Light Purple */
+  /* Semantic Roles (Dark - Strato v2.0) */
+  --role-info: #043450;       /* Cyan-800 */
+  --role-info-fg: #80CBF5;    /* Cyan-300 */
+  --role-success: #144D1B;    /* Lime-800 */
+  --role-success-fg: #8CDA95; /* Lime-300 */
+  --role-warning: #573006;    /* Amber-800 */
+  --role-warning-fg: #EEC070; /* Amber-300 */
+  --role-critical: #781730;   /* Coral-800 */
+  --role-critical-fg: #F99AB4;/* Coral-300 */
+  --role-accent: #2E1A72;     /* Violet-800 */
+  --role-accent-fg: #C9C0F8;  /* Violet-200 */
 
-  --sidebar: #18181B;
-  --sidebar-foreground: #F5F5F0;
-  --sidebar-primary: #F5F5F0;
-  --sidebar-primary-foreground: #09090B;
-  --sidebar-accent: #27272A;
-  --sidebar-accent-foreground: #F5F5F0;
-  --sidebar-border: #27272A;
-  --sidebar-ring: #F5F5F0;
+  --sidebar: #16151E;
+  --sidebar-foreground: #E4E2EC;
+  --sidebar-primary: #8470EF;
+  --sidebar-primary-foreground: #0F0E14;
+  --sidebar-accent: #2E2C3A;
+  --sidebar-accent-foreground: #E4E2EC;
+  --sidebar-border: #2E2C3A;
+  --sidebar-ring: #8470EF;
 }
 
 @layer base {
@@ -162,10 +158,6 @@
 
 @layer components {
   .bento-card {
-    @apply rounded-[var(--radius)] p-[var(--spacing-bento)] border-none flex flex-col justify-between transition-all duration-300 hover:scale-[1.01];
-  }
-  
-  .bento-inner-card {
-    @apply rounded-[var(--radius-inner)] p-6;
+    @apply rounded-[var(--radius)] p-[var(--spacing-bento)] border border-border/20 flex flex-col justify-between transition-all duration-300 hover:scale-[1.01];
   }
 }

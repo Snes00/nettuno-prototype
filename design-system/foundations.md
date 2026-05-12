@@ -1,39 +1,31 @@
-# Fondamenta del Design
+# Fondamenta del Design — Sistema "Strato" (v2.0)
 
-## 🎨 Palette Colori Semantica (WCAG AA Compliant)
-Nettuno utilizza un sistema di colori basato su **ruoli semantici**. Non usiamo colori "casuali", ma variabili che descrivono la funzione dell'elemento. Ogni ruolo garantisce un contrasto minimo di **4.5:1** (WCAG AA).
+## 🎨 Logica Cromatica
+Il sistema **Strato** si allontana dai colori istituzionali classici per abbracciare un'estetica "Digital Art & Design". La palette è progettata per garantire accessibilità **WCAG 2.1 AA/AAA**.
 
-### 🌓 Superfici e Testi Base
-| Token | Funzione |
-| :--- | :--- |
-| **`background`** | Sfondo principale (Warm Paper / Deep Graphite). |
-| **`foreground`** | Testo principale ad alto contrasto. |
-| **`card`** | Superfici elevate (Bento cards, Sidebar). |
-| **`muted`** | Aree a bassa enfasi. |
-| **`border`** | Separatori e bordi discreti. |
-| **`primary`** | Azioni principali (Bottoni, link chiave). |
-| **`destructive`** | Azioni pericolose o errori critici (es. Logout). |
-
-### 🌈 Ruoli Bento (Accents)
-Usati per categorizzare le informazioni e fornire feedback visivo. Ogni ruolo ha una variante `--bg` (sfondo) e `--fg` (testo).
-
-| Ruolo | Esempio Utilizzo | Colore (Light) | Colore (Dark) |
+### 🌓 Fondamenta (Surfaces)
+| Token | Colore (Light) | Colore (Dark) | Funzione |
 | :--- | :--- | :--- | :--- |
-| **`role-info`** | Medie, CFU, Statistiche | Blue | Deep Navy |
-| **`role-success`** | Esami superati, Pagamenti OK | Green | Deep Forest |
-| **`role-warning`** | Scadenze, Avvisi, Alert | Yellow | Deep Gold |
-| **`role-critical`** | Tasse scadute, Errori, Logout | Red/Pink | Deep Crimson |
-| **`role-accent`** | Piani di studio, Progetti, Extra | Purple | Deep Royal |
+| **`background`** | `#EEEDF2` (Canvas) | `#0F0E14` | Sfondo pagina profondo. |
+| **`card`** | `#FFFFFF` | `#1E1C2A` | Superfici bento e container. |
+| **`muted`** | `#F6F5F9` (Surface) | `#16151E` | Sidebar e aree secondarie. |
+| **`border`** | `Slate-100` | `Slate-800` | Bordi e separatori freddi. |
+
+### 🚀 Azioni e Ruoli (Semantic)
+Utilizziamo rampe colore sature e "elettriche" per una UI moderna.
+
+| Ruolo | Brand Token | Funzione |
+| :--- | :--- | :--- |
+| **Primary** | `Violet` | CTA, Focus, Navigazione attiva. (Viola Electric) |
+| **Destructive** | `Coral` | Azioni critiche, Errori, Logout. (Corallo Digital) |
+| **Success** | `Lime` | Esami superati, Conferme. (Lime Electric) |
+| **Warning** | `Amber` | Avvisi, Scadenze imminenti. |
+| **Info** | `Cyan` | Medie, Statistiche, CFU. |
 
 ## ✍️ Tipografia
-- **Font Family**: `Instrument Sans` (Variable)
-- **Gerarchia**:
-  - **Titoli (Black 900)**: Usati per H1 e H2 per massima leggibilità.
-  - **Corpo (Medium 500)**: Bilanciato per ridurre l'affaticamento visivo.
-  - **Label (Black 900 + Caps)**: Usate per metadati per "tagliare" il layout con autorità visiva.
+- **Primary Font**: `Instrument Sans` (Variable) per la UI.
+- **Accents**: Ispirato ai sistemi `Syne` e `DM Sans` per un feeling editoriale.
 
-## 📏 Spazi & Griglie (8-Point System)
-- **Base Unit**: `4px`
-- **Radius Stratificato**:
-  - **Esterno (Container)**: `1.5rem` (24px)
-  - **Interno (Componenti)**: `0.75rem` (12px)
+## 📏 Geometria Strato
+- **Radius**: `1.5rem` (24px) per i contenitori esterni, `0.75rem` (12px) per gli interni.
+- **Contrast**: Uso di outline sottili e ombre "borderless" per profondità senza pesantzza.

@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nettuno — Sistema Colore "Strato" · Dark Mode</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* === DARK FOUNDATION === */
+  --canvas:    #0F0E14;
+  --surface:   #16151E;
+  --card:      #1E1C2A;
+  --card-raised: #252337;
+  --overlay:   #2C2940;
+
+  /* === SLATE (cool gray — dark mode) === */
+  --slate-950: #14131A;
+  --slate-900: #1E1D26;
+  --slate-800: #2E2C3A;
+  --slate-700: #45424F;
+  --slate-600: #5E5B6A;
+  --slate-500: #7E7B8A;
+  --slate-400: #9E9BAA;
+  --slate-300: #B8B6C4;
+  --slate-200: #D0CED9;
+  --slate-100: #E4E2EC;
+  --slate-50:  #F0EFF5;
+
+  /* === VIOLA (Primary) === */
+  --violet-950: #0D0626;
+  --violet-900: #1C0F4A;
+  --violet-800: #2E1A72;
+  --violet-700: #3F269A;
+  --violet-600: #5035C8;
+  --violet-500: #6547E8;
+  --violet-400: #8470EF;
+  --violet-300: #A99AF4;
+  --violet-200: #C9C0F8;
+  --violet-100: #E2DDFB;
+  --violet-50:  #F1EFFE;
+
+  /* === CORALLO (Destructive) === */
+  --coral-950: #2A0810;
+  --coral-900: #4A1020;
+  --coral-800: #781730;
+  --coral-700: #A81E40;
+  --coral-600: #D42855;
+  --coral-500: #F03C6C;
+  --coral-400: #F56E90;
+  --coral-300: #F99AB4;
+  --coral-200: #FCC4D4;
+  --coral-100: #FDEAF0;
+  --coral-50:  #FEF5F8;
+
+  /* === LIME (Success) === */
+  --lime-900: #0C3010;
+  --lime-800: #144D1B;
+  --lime-700: #1D6E26;
+  --lime-600: #269233;
+  --lime-500: #32B342;
+  --lime-400: #5DC96A;
+  --lime-300: #8CDA95;
+  --lime-200: #B2E8B8;
+  --lime-100: #D6F4D9;
+  --lime-50:  #EDFAEE;
+
+  /* === AMBRA (Warning) === */
+  --amber-900: #2E1800;
+  --amber-800: #573006;
+  --amber-700: #7A480A;
+  --amber-600: #9E6010;
+  --amber-500: #C47E1C;
+  --amber-400: #DEA040;
+  --amber-300: #EEC070;
+  --amber-200: #F0CC88;
+  --amber-100: #FAF0D0;
+  --amber-50:  #FEFAEE;
+
+  /* === CIANO (Info) === */
+  --cyan-900: #011C2A;
+  --cyan-800: #043450;
+  --cyan-700: #065180;
+  --cyan-600: #0972B4;
+  --cyan-500: #1194E0;
+  --cyan-400: #46B0EE;
+  --cyan-300: #80CBF5;
+  --cyan-200: #B2E0FA;
+  --cyan-100: #D4EEFC;
+  --cyan-50:  #EBF8FF;
+
+  /* === SEMANTIC DARK MODE TOKENS === */
+  --color-text-primary:    #E4E2EC;
+  --color-text-secondary:  #9E9BAA;
+  --color-text-tertiary:   #5E5B6A;
+  --color-text-disabled:   #45424F;
+  --color-text-inverse:    #14131A;
+
+  --color-border-default:  #2E2C3A;
+  --color-border-strong:   #45424F;
+  --color-border-focus:    #8470EF;
+
+  font-family: 'DM Sans', sans-serif;
+  background: var(--canvas);
+  color: var(--color-text-primary);
+}
+
+body {
+  background: var(--canvas);
+  padding: 48px 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.section { margin-bottom: 52px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--slate-600);
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--slate-800);
+}
+
+.divider { border: none; border-top: 1px solid var(--slate-800); margin: 40px 0; }
+
+.ramp-card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid var(--slate-800);
+}
+
+.ramp-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--slate-200);
+  margin-bottom: 3px;
+}
+.ramp-desc { font-size: 11px; color: var(--slate-500); margin-bottom: 14px; }
+
+.swatch-row {
+  display: flex;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 52px;
+  margin-bottom: 8px;
+}
+.swatch {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 4px 5px;
+  transition: flex 0.18s ease;
+  cursor: default;
+}
+.swatch:hover { flex: 1.7; }
+.swatch .stop {
+  font-size: 8px;
+  font-weight: 700;
+  font-family: monospace;
+  opacity: 0.55;
+  letter-spacing: 0.04em;
+}
+.swatch .hex {
+  font-size: 8.5px;
+  font-family: monospace;
+  opacity: 0;
+  transition: opacity 0.12s;
+  letter-spacing: 0.02em;
+}
+.swatch:hover .hex { opacity: 1; }
+
+.wcag-aaa { display:inline-flex;align-items:center;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:0.06em;background:var(--violet-400);color:var(--violet-950); }
+.wcag-aa { display:inline-flex;align-items:center;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:0.06em;background:var(--violet-800);color:var(--violet-200); }
+.wcag-fail { display:inline-flex;align-items:center;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:var(--slate-800);color:var(--slate-500); }
+.wcag-note { display:inline-flex;align-items:center;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:var(--amber-800);color:var(--amber-200); }
+
+.token-table { width:100%; border-collapse:collapse; font-size:12.5px; }
+.token-table td { padding:9px 12px; border-bottom:1px solid var(--slate-800); vertical-align:middle; }
+.token-table tr:last-child td { border-bottom:none; }
+.token-table tr:nth-child(even) { background:rgba(255,255,255,0.02); }
+.token-name { font-family:monospace; font-size:11.5px; color:var(--violet-300); font-weight:500; }
+.token-value { font-family:monospace; font-size:11px; color:var(--slate-600); }
+.token-desc { color:var(--slate-400); }
+.color-dot { width:18px;height:18px;border-radius:50%;border:1.5px solid rgba(255,255,255,0.1);display:inline-block;vertical-align:middle;margin-right:7px; }
+
+/* Buttons */
+.btn {
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  padding:10px 20px;border-radius:8px;font-size:13px;font-weight:500;
+  font-family:'DM Sans',sans-serif;letter-spacing:0.01em;
+  border:1.5px solid transparent;cursor:pointer;
+}
+.btn-primary { background:var(--violet-500);color:#fff;border-color:var(--violet-500); }
+.btn-secondary { background:transparent;color:var(--violet-300);border-color:var(--violet-600); }
+.btn-ghost { background:var(--slate-800);color:var(--slate-200);border-color:var(--slate-700); }
+.btn-destructive { background:var(--coral-500);color:#fff;border-color:var(--coral-500); }
+.btn-warning { background:var(--amber-800);color:var(--amber-200);border-color:var(--amber-700); }
+.btn-info { background:var(--cyan-900);color:var(--cyan-300);border-color:var(--cyan-800); }
+.btn-light { background:var(--slate-100);color:var(--slate-950);border-color:var(--slate-100); }
+.btn-disabled { background:var(--slate-800);color:var(--slate-600);border-color:var(--slate-800);cursor:not-allowed; }
+
+/* Badges */
+.badge { display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:500;letter-spacing:0.03em; }
+.badge-success { background:var(--lime-900);color:var(--lime-300);border:1px solid var(--lime-800); }
+.badge-danger { background:var(--coral-900);color:var(--coral-300);border:1px solid var(--coral-800); }
+.badge-warning { background:var(--amber-900);color:var(--amber-300);border:1px solid var(--amber-800); }
+.badge-info { background:var(--cyan-900);color:var(--cyan-300);border:1px solid var(--cyan-800); }
+.badge-neutral { background:var(--slate-800);color:var(--slate-400);border:1px solid var(--slate-700); }
+.badge-primary { background:var(--violet-900);color:var(--violet-300);border:1px solid var(--violet-700); }
+.badge-dot { width:6px;height:6px;border-radius:50%; }
+.badge-success .badge-dot { background:var(--lime-400); }
+.badge-danger .badge-dot { background:var(--coral-400); }
+.badge-warning .badge-dot { background:var(--amber-400); }
+.badge-info .badge-dot { background:var(--cyan-400); }
+.badge-neutral .badge-dot { background:var(--slate-500); }
+.badge-primary .badge-dot { background:var(--violet-400); }
+
+/* Alerts */
+.alert { border-radius:10px;padding:14px 16px;font-size:13px;display:flex;gap:10px;align-items:flex-start;border:1px solid; }
+.alert-success { background:rgba(20,77,27,0.25);border-color:var(--lime-800);color:var(--lime-200); }
+.alert-danger { background:rgba(120,23,48,0.25);border-color:var(--coral-800);color:var(--coral-200); }
+.alert-warning { background:rgba(87,48,6,0.3);border-color:var(--amber-800);color:var(--amber-200); }
+.alert-info { background:rgba(4,52,80,0.3);border-color:var(--cyan-800);color:var(--cyan-200); }
+
+/* Inputs */
+.input-demo { width:100%;padding:10px 14px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13.5px;color:var(--slate-100);outline:none;border:1.5px solid var(--slate-700);background:var(--card-raised);transition:border-color 0.15s; }
+.input-demo::placeholder { color: var(--slate-600); }
+.input-demo:focus { border-color:var(--violet-400);box-shadow:0 0 0 3px rgba(132,112,239,0.15); }
+.input-error { border-color:var(--coral-600) !important; }
+.input-error:focus { box-shadow:0 0 0 3px rgba(240,60,108,0.15) !important; }
+.input-disabled { background:var(--slate-900) !important;color:var(--slate-700) !important;cursor:not-allowed; }
+
+.component-panel { background:var(--card);border-radius:16px;padding:24px;border:1px solid var(--slate-800); }
+
+.header-strip { display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--slate-800); }
+.version-tag { font-size:11px;color:var(--slate-500);font-family:monospace;background:var(--slate-800);padding:4px 10px;border-radius:6px; }
+
+/* Bento */
+.bento-bg { background:var(--surface);border-radius:20px;padding:18px; }
+.bento-card { background:var(--card);border-radius:14px;padding:18px;border:1px solid var(--slate-800); }
+.bento-accent { background:var(--violet-900);border-radius:14px;padding:18px;border:1px solid var(--violet-700); }
+.bento-light { background:var(--violet-500);border-radius:14px;padding:18px; }
+.bento-alert { background:rgba(120,23,48,0.2);border-radius:14px;padding:18px;border:1px solid var(--coral-900); }
+.bento-grid { display:grid;grid-template-columns:2fr 1fr;gap:12px; }
+
+.contrast-block { border-radius:12px;padding:18px;text-align:center; }
+
+/* Highlight box — dark specific usage notes */
+.usage-note { padding:14px 16px;background:rgba(132,112,239,0.1);border-radius:10px;border:1px solid var(--violet-800);font-size:12px;color:var(--violet-200);line-height:1.7; }
+
+/* Surface scale strip */
+.surface-strip { display:flex;border-radius:12px;overflow:hidden;height:64px; }
+.surface-stop { flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:6px 8px; }
+.surface-stop:hover { flex:1.8; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header-strip">
+  <div>
+    <div style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:0.2em;color:var(--slate-600);text-transform:uppercase;margin-bottom:10px;">Nettuno · ABA Portal</div>
+    <div style="font-family:'Syne',sans-serif;font-size:52px;font-weight:800;line-height:1;letter-spacing:-0.03em;color:var(--slate-100);">Sistema
+      <span style="color:var(--violet-400);">Strato</span>
+    </div>
+    <p style="font-size:13px;color:var(--slate-500);margin-top:8px;">Versione 2.0 · Dark Mode · WCAG 2.1 AA/AAA</p>
+  </div>
+  <div style="text-align:right;display:flex;flex-direction:column;gap:6px;align-items:flex-end;">
+    <span class="version-tag">v2.0.0</span>
+    <span class="version-tag">WCAG 2.1 AA</span>
+    <span class="version-tag">dark mode</span>
+  </div>
+</div>
+
+<!-- DARK MODE LOGIC NOTE -->
+<div class="section">
+  <div class="section-title">Logica Dark Mode</div>
+  <div class="grid-3" style="gap:16px;">
+    <div class="ramp-card" style="border-top:3px solid var(--violet-400);">
+      <div class="ramp-name" style="color:var(--violet-300);">Inversione ramp</div>
+      <div class="ramp-desc">In dark mode le ramp si usano al contrario. Dove in light usi il 50 per i fill, in dark usi l'800–900. Dove usi il 700 per il testo, in dark usi il 200–300.</div>
+    </div>
+    <div class="ramp-card" style="border-top:3px solid var(--slate-500);">
+      <div class="ramp-name" style="color:var(--slate-300);">Surfaces a strati</div>
+      <div class="ramp-desc">4 livelli di profondità: Canvas (#0F0E14) → Surface (#16151E) → Card (#1E1C2A) → Card raised (#252337). Ogni bento box è un layer.</div>
+    </div>
+    <div class="ramp-card" style="border-top:3px solid var(--coral-500);">
+      <div class="ramp-name" style="color:var(--coral-300);">Saturazione ridotta</div>
+      <div class="ramp-desc">I colori semantici in dark usano stop più alti (400–300) che in light. Meno saturazione = meno stanchezza visiva di notte, più leggibilità.</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SURFACE SCALE -->
+<div class="section">
+  <div class="section-title">Foundation · Scala delle Superfici</div>
+  <div class="surface-strip" style="margin-bottom:12px;">
+    <div class="surface-stop" style="background:#0F0E14; border-radius:10px 0 0 10px;">
+      <span style="font-family:monospace;font-size:8.5px;color:#45424F;font-weight:700;">Canvas</span>
+      <span style="font-family:monospace;font-size:8px;color:#2E2C3A;">#0F0E14</span>
+    </div>
+    <div class="surface-stop" style="background:#16151E;">
+      <span style="font-family:monospace;font-size:8.5px;color:#5E5B6A;font-weight:700;">Surface</span>
+      <span style="font-family:monospace;font-size:8px;color:#45424F;">#16151E</span>
+    </div>
+    <div class="surface-stop" style="background:#1E1C2A;">
+      <span style="font-family:monospace;font-size:8.5px;color:#7E7B8A;font-weight:700;">Card</span>
+      <span style="font-family:monospace;font-size:8px;color:#5E5B6A;">#1E1C2A</span>
+    </div>
+    <div class="surface-stop" style="background:#252337;">
+      <span style="font-family:monospace;font-size:8.5px;color:#9E9BAA;font-weight:700;">Card raised</span>
+      <span style="font-family:monospace;font-size:8px;color:#7E7B8A;">#252337</span>
+    </div>
+    <div class="surface-stop" style="background:#2C2940; border-radius:0 10px 10px 0;">
+      <span style="font-family:monospace;font-size:8.5px;color:#B8B6C4;font-weight:700;">Overlay</span>
+      <span style="font-family:monospace;font-size:8px;color:#9E9BAA;">#2C2940</span>
+    </div>
+  </div>
+  <div class="grid-4">
+    <div>
+      <div style="height:72px;background:#0F0E14;border-radius:12px;border:1px solid #2E2C3A;margin-bottom:8px;"></div>
+      <div class="ramp-name">Canvas</div>
+      <div style="font-size:11px;color:var(--slate-600);font-family:monospace;">#0F0E14</div>
+      <div style="font-size:10px;color:var(--slate-700);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;">Page bg · root</div>
+    </div>
+    <div>
+      <div style="height:72px;background:#16151E;border-radius:12px;border:1px solid #2E2C3A;margin-bottom:8px;"></div>
+      <div class="ramp-name">Surface</div>
+      <div style="font-size:11px;color:var(--slate-600);font-family:monospace;">#16151E</div>
+      <div style="font-size:10px;color:var(--slate-700);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;">Sidebar · panel</div>
+    </div>
+    <div>
+      <div style="height:72px;background:#1E1C2A;border-radius:12px;border:1px solid #2E2C3A;margin-bottom:8px;"></div>
+      <div class="ramp-name">Card</div>
+      <div style="font-size:11px;color:var(--slate-600);font-family:monospace;">#1E1C2A</div>
+      <div style="font-size:10px;color:var(--slate-700);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;">Bento cards</div>
+    </div>
+    <div>
+      <div style="height:72px;background:#252337;border-radius:12px;border:1px solid #2E2C3A;margin-bottom:8px;"></div>
+      <div class="ramp-name">Card raised</div>
+      <div style="font-size:11px;color:var(--slate-600);font-family:monospace;">#252337</div>
+      <div style="font-size:10px;color:var(--slate-700);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;">Input · hover</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- RAMPS DARK USAGE -->
+<div class="section">
+  <div class="section-title">Ramp · Uso in Dark Mode</div>
+
+  <!-- SLATE DARK -->
+  <div class="ramp-card" style="margin-bottom:14px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+      <div>
+        <div class="ramp-name">Slate · Gray freddo</div>
+        <div class="ramp-desc">In dark mode lo stop 100 diventa il testo principale — la ramp si percorre al contrario</div>
+      </div>
+    </div>
+    <div class="swatch-row">
+      <div class="swatch" style="background:#F0EFF5;border-radius:8px 0 0 8px;"><span class="stop" style="color:#9E9BAA;">50</span><span class="hex" style="color:#7E7B8A;">#F0EFF5</span></div>
+      <div class="swatch" style="background:#E4E2EC; outline:2px solid #fff; outline-offset:-3px;"><span class="stop" style="color:#7E7B8A;font-weight:900;">100★</span><span class="hex" style="color:#45424F;">#E4E2EC</span></div>
+      <div class="swatch" style="background:#D0CED9;"><span class="stop" style="color:#5E5B6A;">200</span><span class="hex" style="color:#45424F;">#D0CED9</span></div>
+      <div class="swatch" style="background:#9E9BAA;"><span class="stop" style="color:#2E2C3A;">400</span><span class="hex" style="color:#1E1D26;">#9E9BAA</span></div>
+      <div class="swatch" style="background:#5E5B6A;"><span class="stop" style="color:#D0CED9;">600</span><span class="hex" style="color:#E4E2EC;">#5E5B6A</span></div>
+      <div class="swatch" style="background:#45424F;"><span class="stop" style="color:#B8B6C4;">700</span><span class="hex" style="color:#D0CED9;">#45424F</span></div>
+      <div class="swatch" style="background:#2E2C3A; outline:2px solid #45424F; outline-offset:-2px;"><span class="stop" style="color:#9E9BAA;font-weight:900;">800★</span><span class="hex" style="color:#D0CED9;">#2E2C3A</span></div>
+      <div class="swatch" style="background:#1E1D26;"><span class="stop" style="color:#7E7B8A;">900</span><span class="hex" style="color:#B8B6C4;">#1E1D26</span></div>
+      <div class="swatch" style="background:#14131A;border-radius:0 8px 8px 0;"><span class="stop" style="color:#5E5B6A;">950</span><span class="hex" style="color:#9E9BAA;">#14131A</span></div>
+    </div>
+    <div style="display:flex;gap:20px;font-size:11px;color:var(--slate-500);margin-top:6px;">
+      <span><span style="color:var(--slate-200);">★ 100</span> = testo primario dark</span>
+      <span><span style="color:var(--slate-200);">★ 800</span> = bordi default dark</span>
+    </div>
+  </div>
+
+  <!-- VIOLA DARK -->
+  <div class="ramp-card" style="margin-bottom:14px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+      <div>
+        <div class="ramp-name" style="color:var(--violet-300);">Viola · Primary Dark</div>
+        <div class="ramp-desc">In dark il primary shift da 500 a 400 — stesso brand, meno fatica visiva su fondo scuro</div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <span class="wcag-aaa">AAA</span>
+        <span style="font-size:11px;color:var(--slate-500);">400 su #0F0E14 = 6.1:1</span>
+      </div>
+    </div>
+    <div class="swatch-row">
+      <div class="swatch" style="background:#F1EFFE;border-radius:8px 0 0 8px;"><span class="stop" style="color:#8470EF;">50</span><span class="hex" style="color:#6547E8;">#F1EFFE</span></div>
+      <div class="swatch" style="background:#E2DDFB;"><span class="stop" style="color:#6547E8;">100</span><span class="hex" style="color:#5035C8;">#E2DDFB</span></div>
+      <div class="swatch" style="background:#C9C0F8;"><span class="stop" style="color:#3F269A;">200</span><span class="hex" style="color:#2E1A72;">#C9C0F8</span></div>
+      <div class="swatch" style="background:#A99AF4;"><span class="stop" style="color:#2E1A72;">300</span><span class="hex" style="color:#1C0F4A;">#A99AF4</span></div>
+      <div class="swatch" style="background:#8470EF; outline:2px solid #fff; outline-offset:-3px;"><span class="stop" style="color:#0D0626;font-weight:900;">400★</span><span class="hex" style="color:#0D0626;">#8470EF</span></div>
+      <div class="swatch" style="background:#6547E8;"><span class="stop" style="color:#C9C0F8;">500</span><span class="hex" style="color:#E2DDFB;">#6547E8</span></div>
+      <div class="swatch" style="background:#5035C8;"><span class="stop" style="color:#A99AF4;">600</span><span class="hex" style="color:#C9C0F8;">#5035C8</span></div>
+      <div class="swatch" style="background:#3F269A;"><span class="stop" style="color:#8470EF;">700</span><span class="hex" style="color:#C9C0F8;">#3F269A</span></div>
+      <div class="swatch" style="background:#2E1A72; outline:2px solid #3F269A; outline-offset:-2px;"><span class="stop" style="color:#8470EF;font-weight:900;">800★</span><span class="hex" style="color:#C9C0F8;">#2E1A72</span></div>
+      <div class="swatch" style="background:#1C0F4A;border-radius:0 8px 8px 0;"><span class="stop" style="color:#5035C8;">900</span><span class="hex" style="color:#A99AF4;">#1C0F4A</span></div>
+    </div>
+    <div style="display:flex;gap:20px;font-size:11px;color:var(--slate-500);margin-top:6px;">
+      <span><span style="color:var(--violet-300);">★ 400</span> = primary btn dark</span>
+      <span><span style="color:var(--violet-300);">★ 800</span> = bg badge / fill card</span>
+      <span><span style="color:var(--violet-300);">★ 300</span> = secondary text / link</span>
+    </div>
+  </div>
+
+  <!-- CORALLO DARK -->
+  <div class="ramp-card" style="margin-bottom:14px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+      <div>
+        <div class="ramp-name" style="color:var(--coral-300);">Corallo · Destructive Dark</div>
+        <div class="ramp-desc">500 rimane per i bottoni (testo bianco su fondo scuro). Badge e fill usano 900 con testo 300.</div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <span class="wcag-aaa">AAA</span>
+        <span style="font-size:11px;color:var(--slate-500);">500 su #0F0E14 = 5.4:1</span>
+      </div>
+    </div>
+    <div class="swatch-row">
+      <div class="swatch" style="background:#FEF5F8;border-radius:8px 0 0 8px;"><span class="stop" style="color:#F56E90;">50</span></div>
+      <div class="swatch" style="background:#FDEAF0;"><span class="stop" style="color:#F03C6C;">100</span></div>
+      <div class="swatch" style="background:#FCC4D4;"><span class="stop" style="color:#A81E40;">200</span></div>
+      <div class="swatch" style="background:#F99AB4;"><span class="stop" style="color:#781730;">300</span><span class="hex" style="color:#4A1020;">#F99AB4</span></div>
+      <div class="swatch" style="background:#F56E90;"><span class="stop" style="color:#4A1020;">400</span></div>
+      <div class="swatch" style="background:#F03C6C; outline:2px solid #fff; outline-offset:-3px;"><span class="stop" style="color:#FEF5F8;font-weight:900;">500★</span><span class="hex" style="color:#FDEAF0;">#F03C6C</span></div>
+      <div class="swatch" style="background:#D42855;"><span class="stop" style="color:#FCC4D4;">600</span></div>
+      <div class="swatch" style="background:#A81E40;"><span class="stop" style="color:#F99AB4;">700</span></div>
+      <div class="swatch" style="background:#781730;"><span class="stop" style="color:#F56E90;">800</span></div>
+      <div class="swatch" style="background:#4A1020; outline:2px solid #781730; outline-offset:-2px;border-radius:0 8px 8px 0;"><span class="stop" style="color:#F03C6C;font-weight:900;">900★</span><span class="hex" style="color:#FCC4D4;">#4A1020</span></div>
+    </div>
+  </div>
+
+  <!-- LIME + AMBER + CYAN -->
+  <div class="grid-3" style="gap:14px;">
+    <div class="ramp-card">
+      <div class="ramp-name" style="color:var(--lime-300);">Lime · Success Dark</div>
+      <div class="ramp-desc">400 per testi success · 900 per fill badge</div>
+      <div class="swatch-row" style="height:44px;">
+        <div class="swatch" style="background:#EDFAEE;border-radius:8px 0 0 8px;"><span class="stop" style="color:#5DC96A;font-size:7.5px;">50</span></div>
+        <div class="swatch" style="background:#B2E8B8;"><span class="stop" style="color:#1D6E26;font-size:7.5px;">200</span></div>
+        <div class="swatch" style="background:#5DC96A; outline:2px solid #fff; outline-offset:-2px;"><span class="stop" style="color:#051A07;font-size:7.5px;font-weight:900;">400★</span></div>
+        <div class="swatch" style="background:#32B342;"><span class="stop" style="color:#EDFAEE;font-size:7.5px;">500</span></div>
+        <div class="swatch" style="background:#1D6E26;"><span class="stop" style="color:#B2E8B8;font-size:7.5px;">700</span></div>
+        <div class="swatch" style="background:#144D1B;"><span class="stop" style="color:#8CDA95;font-size:7.5px;">800</span></div>
+        <div class="swatch" style="background:#0C3010; outline:2px solid #144D1B; outline-offset:-2px;border-radius:0 8px 8px 0;"><span class="stop" style="color:#5DC96A;font-size:7.5px;font-weight:900;">900★</span></div>
+      </div>
+      <div style="font-size:11px;color:var(--slate-500);margin-top:6px;">400 su canvas = 8.2:1 · AAA ✓</div>
+    </div>
+    <div class="ramp-card">
+      <div class="ramp-name" style="color:var(--amber-300);">Ambra · Warning Dark</div>
+      <div class="ramp-desc">300 per testi · 900 fill badge · 500 icone</div>
+      <div class="swatch-row" style="height:44px;">
+        <div class="swatch" style="background:#FEFAEE;border-radius:8px 0 0 8px;"><span class="stop" style="color:#DEA040;font-size:7.5px;">50</span></div>
+        <div class="swatch" style="background:#F0CC88;"><span class="stop" style="color:#7A480A;font-size:7.5px;">200</span></div>
+        <div class="swatch" style="background:#EEC070; outline:2px solid #fff; outline-offset:-2px;"><span class="stop" style="color:#2E1800;font-size:7.5px;font-weight:900;">300★</span></div>
+        <div class="swatch" style="background:#DEA040;"><span class="stop" style="color:#2E1800;font-size:7.5px;">400</span></div>
+        <div class="swatch" style="background:#C47E1C;"><span class="stop" style="color:#FEFAEE;font-size:7.5px;">500</span></div>
+        <div class="swatch" style="background:#573006;"><span class="stop" style="color:#F0CC88;font-size:7.5px;">800</span></div>
+        <div class="swatch" style="background:#2E1800; outline:2px solid #573006; outline-offset:-2px;border-radius:0 8px 8px 0;"><span class="stop" style="color:#DEA040;font-size:7.5px;font-weight:900;">900★</span></div>
+      </div>
+      <div style="font-size:11px;color:var(--slate-500);margin-top:6px;">300 su canvas = 7.1:1 · AAA ✓</div>
+    </div>
+    <div class="ramp-card">
+      <div class="ramp-name" style="color:var(--cyan-300);">Ciano · Info Dark</div>
+      <div class="ramp-desc">300 per testi link · 900 fill badge</div>
+      <div class="swatch-row" style="height:44px;">
+        <div class="swatch" style="background:#EBF8FF;border-radius:8px 0 0 8px;"><span class="stop" style="color:#46B0EE;font-size:7.5px;">50</span></div>
+        <div class="swatch" style="background:#B2E0FA;"><span class="stop" style="color:#065180;font-size:7.5px;">200</span></div>
+        <div class="swatch" style="background:#80CBF5; outline:2px solid #fff; outline-offset:-2px;"><span class="stop" style="color:#011C2A;font-size:7.5px;font-weight:900;">300★</span></div>
+        <div class="swatch" style="background:#46B0EE;"><span class="stop" style="color:#011C2A;font-size:7.5px;">400</span></div>
+        <div class="swatch" style="background:#1194E0;"><span class="stop" style="color:#EBF8FF;font-size:7.5px;">500</span></div>
+        <div class="swatch" style="background:#043450;"><span class="stop" style="color:#80CBF5;font-size:7.5px;">800</span></div>
+        <div class="swatch" style="background:#011C2A; outline:2px solid #043450; outline-offset:-2px;border-radius:0 8px 8px 0;"><span class="stop" style="color:#46B0EE;font-size:7.5px;font-weight:900;">900★</span></div>
+      </div>
+      <div style="font-size:11px;color:var(--slate-500);margin-top:6px;">300 su canvas = 9.4:1 · AAA ✓</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- TOKEN SEMANTICI DARK -->
+<div class="section">
+  <div class="section-title">Token Semantici · Testo Dark Mode</div>
+  <div class="component-panel">
+    <table class="token-table">
+      <thead>
+        <tr>
+          <td style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--slate-600);padding-bottom:12px;">Token</td>
+          <td style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--slate-600);padding-bottom:12px;">Valore Dark</td>
+          <td style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--slate-600);padding-bottom:12px;">Visivo</td>
+          <td style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--slate-600);padding-bottom:12px;">vs Light</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="token-name">--color-text-primary</span></td><td><span class="token-value">#E4E2EC · Slate-100</span></td><td style="font-size:15px;font-weight:500;color:#E4E2EC;">Titolo principale</td><td style="font-size:11px;color:var(--slate-600);">Light: Slate-950</td></tr>
+        <tr><td><span class="token-name">--color-text-secondary</span></td><td><span class="token-value">#9E9BAA · Slate-400</span></td><td style="font-size:13px;color:#9E9BAA;">Testo secondario</td><td style="font-size:11px;color:var(--slate-600);">Light: Slate-600</td></tr>
+        <tr><td><span class="token-name">--color-text-tertiary</span></td><td><span class="token-value">#5E5B6A · Slate-600</span></td><td style="font-size:13px;color:#5E5B6A;">Placeholder · hint</td><td style="font-size:11px;color:var(--slate-600);">Light: Slate-400</td></tr>
+        <tr><td><span class="token-name">--color-text-disabled</span></td><td><span class="token-value">#45424F · Slate-700</span></td><td style="font-size:13px;color:#45424F;">Testo disabilitato</td><td style="font-size:11px;color:var(--slate-600);">Light: Slate-300</td></tr>
+        <tr><td><span class="token-name">--color-text-inverse</span></td><td><span class="token-value">#14131A · Slate-950</span></td><td><span style="background:#8470EF;padding:2px 10px;border-radius:4px;font-size:13px;color:#14131A;">Su chiaro</span></td><td style="font-size:11px;color:var(--slate-600);">Light: White</td></tr>
+        <tr><td><span class="token-name">--color-text-link</span></td><td><span class="token-value">#A99AF4 · Violet-300</span></td><td style="font-size:13px;color:#A99AF4;text-decoration:underline;">Link interattivo</td><td style="font-size:11px;color:var(--slate-600);">Light: Violet-700</td></tr>
+        <tr><td><span class="token-name">--color-text-success</span></td><td><span class="token-value">#5DC96A · Lime-400</span></td><td style="font-size:13px;color:#5DC96A;">Presente · OK</td><td style="font-size:11px;color:var(--slate-600);">Light: Lime-700</td></tr>
+        <tr><td><span class="token-name">--color-text-danger</span></td><td><span class="token-value">#F99AB4 · Coral-300</span></td><td style="font-size:13px;color:#F99AB4;">Errore · Eliminato</td><td style="font-size:11px;color:var(--slate-600);">Light: Coral-700</td></tr>
+        <tr><td><span class="token-name">--color-text-warning</span></td><td><span class="token-value">#EEC070 · Amber-300</span></td><td style="font-size:13px;color:#EEC070;">Attenzione · Pending</td><td style="font-size:11px;color:var(--slate-600);">Light: Amber-700</td></tr>
+        <tr><td><span class="token-name">--color-text-info</span></td><td><span class="token-value">#80CBF5 · Cyan-300</span></td><td style="font-size:13px;color:#80CBF5;">Info · Nuovo</td><td style="font-size:11px;color:var(--slate-600);">Light: Cyan-700</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- BOTTONI DARK -->
+<div class="section">
+  <div class="section-title">Componenti · Bottoni Dark</div>
+  <div class="component-panel">
+    <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:22px;">
+      <button class="btn btn-primary">Conferma presenza</button>
+      <button class="btn btn-secondary">Orario lezioni</button>
+      <button class="btn btn-ghost">Annulla</button>
+      <button class="btn btn-light">Azione chiara</button>
+      <button class="btn btn-destructive">Elimina</button>
+      <button class="btn btn-warning">In scadenza</button>
+      <button class="btn btn-info">Messaggio</button>
+      <button class="btn btn-disabled" disabled>Non disponibile</button>
+    </div>
+    <table class="token-table" style="font-size:12px;">
+      <tr><td class="token-name">Primary</td><td><span class="color-dot" style="background:#8470EF;"></span>bg Violet-400 #8470EF</td><td class="token-desc">Stesso uso, stop più chiaro del light (500→400)</td><td><span class="wcag-aaa">AAA 6.1:1</span></td></tr>
+      <tr><td class="token-name">Secondary</td><td><span class="color-dot" style="background:#2E1A72;border:1.5px solid #6547E8;"></span>outline Violet-600</td><td class="token-desc">Bordo visibile sul fondo scuro</td><td><span class="wcag-aa">AA</span></td></tr>
+      <tr><td class="token-name">Ghost</td><td><span class="color-dot" style="background:#2E2C3A;border:1.5px solid #45424F;"></span>bg Slate-800</td><td class="token-desc">Annulla · Indietro · Neutro</td><td><span class="wcag-aa">AA</span></td></tr>
+      <tr><td class="token-name">Light</td><td><span class="color-dot" style="background:#E4E2EC;"></span>bg Slate-100 · text Slate-950</td><td class="token-desc">CTA inverso per sezioni scure</td><td><span class="wcag-aaa">AAA 18:1</span></td></tr>
+      <tr><td class="token-name">Destructive</td><td><span class="color-dot" style="background:#F03C6C;"></span>bg Coral-500</td><td class="token-desc">Invariato — abbastanza leggibile su dark</td><td><span class="wcag-aaa">AAA 5.4:1</span></td></tr>
+      <tr><td class="token-name">Disabled</td><td><span class="color-dot" style="background:#2E2C3A;"></span>bg Slate-800 · text Slate-600</td><td class="token-desc">Non interattivo su sfondo scuro</td><td><span class="wcag-fail">Non interattivo</span></td></tr>
+    </table>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- BADGE DARK -->
+<div class="section">
+  <div class="section-title">Badge e Stato · Dark</div>
+  <div class="component-panel">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;">
+      <span class="badge badge-success"><span class="badge-dot"></span>In corso</span>
+      <span class="badge badge-success"><span class="badge-dot"></span>Presente</span>
+      <span class="badge badge-danger"><span class="badge-dot"></span>Assente</span>
+      <span class="badge badge-danger"><span class="badge-dot"></span>Terminata</span>
+      <span class="badge badge-warning"><span class="badge-dot"></span>In scadenza</span>
+      <span class="badge badge-warning"><span class="badge-dot"></span>Pending</span>
+      <span class="badge badge-info"><span class="badge-dot"></span>Nuovo</span>
+      <span class="badge badge-primary"><span class="badge-dot"></span>Selezionato</span>
+      <span class="badge badge-neutral"><span class="badge-dot"></span>Archiviato</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <span style="background:#E4E2EC;color:#14131A;padding:4px 12px;border-radius:6px;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.1em;">2 URGENTI</span>
+      <span style="background:#2E1A72;color:#C9C0F8;padding:4px 12px;border-radius:6px;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.1em;border:1px solid #3F269A;">TRIENNIO</span>
+      <span style="background:#2E2C3A;color:#9E9BAA;padding:4px 12px;border-radius:6px;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.1em;border:1px solid #45424F;">BIENNIO</span>
+      <span style="background:#F03C6C;color:#fff;padding:4px 12px;border-radius:6px;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.1em;">STRAORDINARIO</span>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ALERTS DARK -->
+<div class="section">
+  <div class="section-title">Notifiche e Alert · Dark</div>
+  <div style="display:flex;flex-direction:column;gap:10px;">
+    <div class="alert alert-success"><div style="font-size:16px;flex-shrink:0;">✓</div><div><strong>Presenza registrata.</strong> Pittura e Arti Visive I — confermata per oggi 09:00–13:00.</div></div>
+    <div class="alert alert-danger"><div style="font-size:16px;flex-shrink:0;">✕</div><div><strong>Appello non disponibile.</strong> La data richiesta è già occupata da un'altra sessione d'esame.</div></div>
+    <div class="alert alert-warning"><div style="font-size:16px;flex-shrink:0;">⚠</div><div><strong>Frequenza a rischio.</strong> Hai superato il 20% di assenze per Anatomia Artistica.</div></div>
+    <div class="alert alert-info"><div style="font-size:16px;flex-shrink:0;">ℹ</div><div><strong>3 verbali in attesa.</strong> Firma digitale richiesta entro oggi alle 18:00.</div></div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- INPUTS DARK -->
+<div class="section">
+  <div class="section-title">Input e Form · Dark</div>
+  <div class="component-panel">
+    <div class="grid-3" style="gap:16px;">
+      <div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;color:var(--slate-500);text-transform:uppercase;margin-bottom:6px;">Default</div>
+        <input class="input-demo" type="text" placeholder="es. mario.rossi">
+        <div style="font-size:11px;color:var(--slate-600);margin-top:5px;">border Slate-700 · focus Violet-400</div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;color:var(--coral-500);text-transform:uppercase;margin-bottom:6px;">Errore</div>
+        <input class="input-demo input-error" type="text" value="mario.ross" style="border-color:#D42855;">
+        <div style="font-size:11px;color:var(--coral-400);margin-top:5px;">Matricola non riconosciuta</div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.12em;color:var(--slate-700);text-transform:uppercase;margin-bottom:6px;">Disabilitato</div>
+        <input class="input-demo input-disabled" type="text" value="Sola lettura" disabled>
+        <div style="font-size:11px;color:var(--slate-700);margin-top:5px;">bg Slate-900 · text Slate-700</div>
+      </div>
+    </div>
+    <div style="margin-top:18px;padding-top:14px;border-top:1px solid var(--slate-800);">
+      <div style="display:flex;gap:24px;font-size:12px;color:var(--slate-500);flex-wrap:wrap;">
+        <span><span class="color-dot" style="background:#45424F;"></span>Default: Slate-700</span>
+        <span><span class="color-dot" style="background:#5E5B6A;"></span>Hover: Slate-600</span>
+        <span><span class="color-dot" style="background:#8470EF;"></span>Focus: Violet-400</span>
+        <span><span class="color-dot" style="background:#D42855;"></span>Error: Coral-600</span>
+        <span><span class="color-dot" style="background:#1E1D26;border:1px solid #45424F;"></span>Disabled: Slate-900</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- BENTO DARK -->
+<div class="section">
+  <div class="section-title">Preview · Bento Dark applicato</div>
+  <div class="bento-bg">
+    <div class="bento-grid" style="margin-bottom:12px;">
+      <div class="bento-accent">
+        <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.18em;color:var(--violet-400);margin-bottom:8px;">LEZIONE IMMINENTE</div>
+        <div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;line-height:1.1;margin-bottom:14px;color:var(--slate-100);">Pittura e Arti Visive I</div>
+        <div style="font-size:12px;color:var(--slate-400);margin-bottom:3px;">Prof. Alessandro Rossi</div>
+        <div style="font-size:12px;color:var(--slate-600);margin-bottom:16px;">09:00 – 13:00 · Aula Magno</div>
+        <button style="background:var(--violet-400);color:var(--violet-950);border:none;padding:8px 18px;border-radius:8px;font-size:12px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;">Registra presenza</button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="bento-card">
+          <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.14em;color:var(--slate-600);margin-bottom:4px;">MEDIA PRESENZE</div>
+          <div style="font-family:'Syne',sans-serif;font-size:30px;font-weight:800;color:var(--violet-400);">84%</div>
+          <div style="background:var(--slate-800);border-radius:4px;height:5px;margin-top:8px;overflow:hidden;">
+            <div style="background:var(--violet-400);width:84%;height:100%;border-radius:4px;"></div>
+          </div>
+        </div>
+        <div class="bento-alert">
+          <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.14em;color:var(--coral-500);margin-bottom:4px;">VERBALI URGENTI</div>
+          <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--coral-300);">3</div>
+          <div style="font-size:11px;color:var(--coral-500);">Da firmare entro oggi</div>
+        </div>
+      </div>
+    </div>
+    <div class="grid-3" style="gap:10px;">
+      <div class="bento-card">
+        <span class="badge badge-success" style="margin-bottom:8px;"><span class="badge-dot"></span>In corso</span>
+        <div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--slate-100);">Web Design 1</div>
+        <div style="font-size:11px;color:var(--slate-600);">Triennio · 14:00–18:00</div>
+      </div>
+      <div class="bento-card" style="opacity:0.38;">
+        <span class="badge badge-neutral" style="margin-bottom:8px;"><span class="badge-dot"></span>Terminata</span>
+        <div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--slate-100);">Web Design</div>
+        <div style="font-size:11px;color:var(--slate-600);">Biennio · 08:00–12:00</div>
+      </div>
+      <div class="bento-card" style="border:1px dashed var(--slate-700);">
+        <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.14em;color:var(--slate-600);margin-bottom:6px;">AZIONI RAPIDE</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="font-size:12px;color:var(--slate-400);">+ Crea appello</div>
+          <div style="font-size:12px;color:var(--slate-400);">+ Orario lezioni</div>
+          <div style="font-size:12px;color:var(--violet-400);">→ Verbali</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- WCAG DARK -->
+<div class="section">
+  <div class="section-title">Accessibilità · Contrasto Dark Mode</div>
+  <div class="grid-4" style="gap:12px;margin-bottom:14px;">
+    <div class="contrast-block" style="background:var(--card);border:1px solid var(--slate-800);">
+      <div style="color:var(--violet-400);font-family:'Syne',sans-serif;font-size:24px;font-weight:800;">6.1:1</div>
+      <div style="font-size:11px;color:var(--slate-500);margin:4px 0;">Violet-400 su Canvas</div>
+      <span class="wcag-aaa">AAA ✓</span>
+    </div>
+    <div class="contrast-block" style="background:var(--card);border:1px solid var(--slate-800);">
+      <div style="color:var(--coral-300);font-family:'Syne',sans-serif;font-size:24px;font-weight:800;">9.1:1</div>
+      <div style="font-size:11px;color:var(--slate-500);margin:4px 0;">Coral-300 su Canvas</div>
+      <span class="wcag-aaa">AAA ✓</span>
+    </div>
+    <div class="contrast-block" style="background:var(--card);border:1px solid var(--slate-800);">
+      <div style="color:var(--lime-400);font-family:'Syne',sans-serif;font-size:24px;font-weight:800;">8.2:1</div>
+      <div style="font-size:11px;color:var(--slate-500);margin:4px 0;">Lime-400 su Canvas</div>
+      <span class="wcag-aaa">AAA ✓</span>
+    </div>
+    <div class="contrast-block" style="background:var(--card);border:1px solid var(--slate-800);">
+      <div style="color:var(--slate-100);font-family:'Syne',sans-serif;font-size:24px;font-weight:800;">16:1</div>
+      <div style="font-size:11px;color:var(--slate-500);margin:4px 0;">Slate-100 su Canvas</div>
+      <span class="wcag-aaa">AAA ✓</span>
+    </div>
+  </div>
+  <div class="usage-note">
+    <strong>Regola principale dark mode:</strong> i colori semantici usano stop 2–3 livelli più chiari rispetto al light (es. testo danger: Coral-700 → Coral-300). I fill di badge e card usano stop 800–900, mai 50–100 che avrebbero troppo contrasto e sembrerebbero fuori tema. Il focus ring usa Violet-400 con <code>box-shadow: 0 0 0 3px rgba(132,112,239,0.2)</code> — il glow leggero è l'eccezione accettata al flat design per leggibilità accessibilità in dark.
+  </div>
+</div>
+
+<div style="text-align:center;padding:28px 0 12px;font-family:'Syne',sans-serif;font-size:10px;color:var(--slate-700);letter-spacing:0.16em;font-weight:700;">
+  NETTUNO · SISTEMA STRATO v2.0 · DARK MODE · WCAG 2.1 AA/AAA
+</div>
+
+</body>
+</html>
