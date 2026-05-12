@@ -17,7 +17,7 @@ export default function DocenteAmministrazionePage() {
   return (
     <div className="flex flex-col gap-10 pb-16 animate-in fade-in duration-500">
       <section className="px-1 space-y-1">
-        <h1 className="text-4xl md:text-5xl font-black tracking-tighter text-foreground">Amministrazione</h1>
+        <h1 className="text-2xl md:text-4xl font-black tracking-tighter text-foreground">Amministrazione</h1>
         <p className="text-muted-foreground text-base md:text-lg font-medium tracking-tight">
           Gestione documenti, richieste ferie e modulistica docenti.
         </p>

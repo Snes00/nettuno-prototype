@@ -54,15 +54,8 @@ export function BottomNav() {
       </nav>
 
       {/* Desktop Sidebar - Borderless & Adaptive Mode */}
-      <nav className="hidden fixed left-6 top-6 bottom-6 w-24 md:w-72 bg-card border-none rounded-[1.5rem] md:flex flex-col p-6 gap-2 z-[60] transition-all shadow-none overflow-hidden">
-        {/* Platform Logo */}
-        <div className="mb-8 px-4 py-2">
-           <div className="h-14 w-14 rounded-2xl bg-foreground text-background flex items-center justify-center transition-transform hover:rotate-12 shadow-none shrink-0">
-              <Sparkles className="h-7 w-7" />
-           </div>
-        </div>
-
-        <div className="space-y-3">
+      <nav className="hidden fixed left-6 top-28 bottom-6 w-24 md:w-72 bg-card border-none rounded-[1.5rem] md:flex flex-col p-6 gap-2 z-[60] transition-all shadow-none overflow-hidden">
+        <div className="space-y-3 pt-4">
           {items.map((item) => {
             const Icon = item.icon;
             const isActive = pathname === item.href;

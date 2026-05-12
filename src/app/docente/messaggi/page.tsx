@@ -109,7 +109,7 @@ export default function DocenteMessaggiPage() {
     <div className="flex flex-col gap-6 animate-in fade-in duration-500">
       <section className="space-y-4 px-1">
         <div>
-          <h1 className="text-4xl md:text-5xl font-black tracking-tighter text-foreground">Messaggi</h1>
+          <h1 className="text-2xl md:text-4xl font-black tracking-tighter text-foreground">Messaggi</h1>
           <p className="text-muted-foreground mt-1 font-medium">Comunicazioni con studenti, colleghi e uffici.</p>
         </div>
 

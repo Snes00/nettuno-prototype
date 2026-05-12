@@ -27,7 +27,7 @@ export default function DocenteDidatticaPage() {
           <Link href="/docente/dashboard" className="h-12 w-12 rounded-full bg-muted/30 flex items-center justify-center hover:bg-muted/50 transition-all">
             <ChevronLeft className="h-6 w-6" />
           </Link>
-          <h1 className="text-4xl md:text-5xl font-black tracking-tighter text-foreground uppercase">Didattica</h1>
+          <h1 className="text-2xl md:text-4xl font-black tracking-tighter text-foreground uppercase">Didattica</h1>
         </div>
         <div className="h-12 w-12 rounded-full bg-muted/30 flex items-center justify-center">
            <Bell className="h-6 w-6" />

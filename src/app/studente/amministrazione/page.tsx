@@ -53,8 +53,8 @@ export default function AmministrazionePage() {
   return (
     <div className="flex flex-col gap-8 pb-12 animate-in fade-in duration-500">
       {/* Intestazione */}
-      <section className="space-y-1">
-        <h1 className="text-4xl md:text-5xl font-black tracking-tighter text-foreground">Amministrazione</h1>
+      <section className="px-1 space-y-1">
+        <h1 className="text-2xl md:text-4xl font-black tracking-tighter text-foreground">Amministrazione</h1>
         <p className="text-muted-foreground text-base md:text-lg font-medium tracking-tight">
           Gestisci la tua carriera, i pagamenti e la tua documentazione.
         </p>

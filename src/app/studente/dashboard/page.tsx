@@ -22,8 +22,8 @@ const AVVISI = [
 export default function DashboardPage() {
   return (
     <div className="flex flex-col gap-8 animate-in fade-in duration-500">
-      <section className="space-y-1">
-        <h1 className="text-4xl md:text-5xl font-black tracking-tighter text-foreground">Dashboard</h1>
+      <section className="px-1 space-y-1">
+        <h1 className="text-2xl md:text-4xl font-black tracking-tighter text-foreground">Dashboard</h1>
         <p className="text-muted-foreground text-base md:text-lg font-medium tracking-tight">
           Bentvenuto, studente. Ecco cosa succede oggi.
         </p>

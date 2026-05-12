@@ -23,7 +23,7 @@ export default function DocenteDashboardPage() {
     <div className="flex flex-col gap-12 animate-in fade-in duration-500">
       {/* Header Benvenuto */}
       <section>
-        <h1 className="text-3xl md:text-5xl font-black tracking-tighter text-foreground uppercase">
+        <h1 className="text-2xl md:text-4xl font-black tracking-tighter text-foreground uppercase">
           Benvenuto prof rossi.
         </h1>
       </section>

@@ -21,7 +21,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         "flex-1 transition-all",
         "md:pl-72" // Desktop sidebar space
       )}>
-        <main className="max-w-[1280px] mx-auto pb-32 pt-32 px-6 md:pb-12 md:px-8">
+        <main className="max-w-[1280px] mx-auto pb-32 pt-28 px-6 md:pb-12 md:px-8 md:pt-32">
           {children}
         </main>
       </div>
