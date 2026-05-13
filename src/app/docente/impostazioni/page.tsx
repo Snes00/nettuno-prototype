@@ -40,14 +40,7 @@ export default function DocenteImpostazioniPage() {
   })
 
   return (
-    <div className="max-w-4xl mx-auto flex flex-col gap-10 pb-16 animate-in fade-in duration-500">
-      <section className="px-1 space-y-1">
-        <h1 className="text-2xl md:text-4xl font-black tracking-tighter text-foreground uppercase leading-none">Impostazioni</h1>
-        <p className="text-muted-foreground text-base md:text-lg font-medium tracking-tight mt-2">
-          Gestione account, sicurezza e preferenze di sistema.
-        </p>
-      </section>
-
+    <div className="max-w-4xl mx-auto flex flex-col gap-10 pb-16 animate-in fade-in duration-500 pt-6">
       <div className="bg-card rounded-[2.5rem] overflow-hidden border border-border/40 md:border-none shadow-none">
         <div className="p-8 md:p-12">
           {view === "main" && (

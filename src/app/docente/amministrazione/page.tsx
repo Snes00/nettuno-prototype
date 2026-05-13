@@ -15,14 +15,7 @@ import { cn } from "@/lib/utils"
 
 export default function DocenteAmministrazionePage() {
   return (
-    <div className="flex flex-col gap-10 pb-16 animate-in fade-in duration-500">
-      <section className="px-1 space-y-1">
-        <h1 className="text-2xl md:text-4xl font-black tracking-tighter text-foreground">Amministrazione</h1>
-        <p className="text-muted-foreground text-base md:text-lg font-medium tracking-tight">
-          Gestione documenti, richieste ferie e modulistica docenti.
-        </p>
-      </section>
-
+    <div className="flex flex-col gap-10 pb-16 animate-in fade-in duration-500 pt-6">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         
         {/* Gestione Ferie e Permessi (Bento Accent) */}

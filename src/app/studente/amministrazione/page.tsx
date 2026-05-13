@@ -51,17 +51,9 @@ export default function AmministrazionePage() {
   ];
 
   return (
-    <div className="flex flex-col gap-8 pb-12 animate-in fade-in duration-500">
-      {/* Intestazione */}
-      <section className="px-1 space-y-1">
-        <h1 className="text-2xl md:text-4xl font-black tracking-tighter text-foreground uppercase">Amministrazione</h1>
-        <p className="text-muted-foreground text-base md:text-lg font-medium tracking-tight">
-          Gestisci la tua carriera, i pagamenti e la tua documentazione.
-        </p>
-      </section>
-
+    <div className="flex flex-col gap-6 pb-12 animate-in fade-in duration-500 pt-4">
       <Tabs defaultValue="carriera" className="w-full">
-        <TabsList className="flex w-full overflow-x-auto h-auto p-1.5 bg-muted/40 rounded-[1.5rem] mb-8 border-none no-scrollbar">
+        <TabsList className="flex w-full overflow-x-auto h-auto p-1.5 bg-muted/40 rounded-[1.5rem] mb-12 border-none no-scrollbar">
           <TabsTrigger value="carriera" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-bold text-sm transition-all active:scale-95">
             <GraduationCap className="h-4 w-4" />
             <span className="hidden sm:inline">Carriera</span>

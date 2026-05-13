@@ -27,22 +27,9 @@ const DAYS_OF_WEEK = ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom"];
 
 export default function DocenteDidatticaPage() {
   return (
-    <div className="flex flex-col gap-10 pb-16 animate-in fade-in duration-500">
-      {/* Header Didattica */}
-      <section className="flex items-center justify-between px-1">
-        <div className="flex items-center gap-5">
-          <Link href="/docente/dashboard" className="h-12 w-12 rounded-full bg-muted/30 flex items-center justify-center hover:bg-muted/50 transition-all active:scale-90 shadow-none border border-transparent hover:border-border/20">
-            <ChevronLeft className="h-6 w-6 text-foreground" />
-          </Link>
-          <h1 className="text-2xl md:text-4xl font-black tracking-tighter text-foreground uppercase leading-none">Didattica</h1>
-        </div>
-        <div className="h-12 w-12 rounded-full bg-muted/30 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
-           <Bell className="h-6 w-6" />
-        </div>
-      </section>
-
+    <div className="flex flex-col gap-6 pb-16 animate-in fade-in duration-500 pt-4">
       <Tabs defaultValue="corsi" className="w-full">
-        <TabsList className="flex w-full overflow-x-auto h-auto p-1.5 bg-muted/40 rounded-[1.5rem] mb-10 border-none no-scrollbar">
+        <TabsList className="flex w-full overflow-x-auto h-auto p-1.5 bg-muted/40 rounded-[1.5rem] mb-12 border-none no-scrollbar">
           <TabsTrigger value="corsi" className="flex-1 rounded-xl py-3.5 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
             Corsi
           </TabsTrigger>

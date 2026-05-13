@@ -28,15 +28,7 @@ export default function AreaPersonalePage() {
   const [showQR, setShowQR] = React.useState(false);
 
   return (
-    <div className="flex flex-col gap-10 pb-16 animate-in fade-in duration-500">
-      {/* Intestazione */}
-      <section className="px-1 space-y-1">
-        <h1 className="text-2xl md:text-4xl font-black tracking-tighter text-foreground uppercase leading-none">Area Personale</h1>
-        <p className="text-muted-foreground text-base md:text-lg font-medium tracking-tight mt-2">
-          Gestisci il tuo profilo, i dati anagrafici e la tua identità digitale.
-        </p>
-      </section>
-
+    <div className="flex flex-col gap-10 pb-16 animate-in fade-in duration-500 pt-6">
       {/* Badge Studente Bento (Hero Card - Violet Primary) */}
       <section className="relative w-full aspect-[1.6/1] md:aspect-[2.5/1] rounded-[2.5rem] bg-primary text-primary-foreground p-8 md:p-12 overflow-hidden cursor-pointer group transition-all hover:scale-[1.01] border border-primary-foreground/10 shadow-none">
           <div className="relative z-10 h-full flex flex-col justify-between">

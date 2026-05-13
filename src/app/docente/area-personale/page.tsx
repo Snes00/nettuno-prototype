@@ -20,14 +20,7 @@ import { cn } from "@/lib/utils"
 
 export default function DocenteAreaPersonalePage() {
   return (
-    <div className="flex flex-col gap-10 pb-16 animate-in fade-in duration-500">
-      <section className="px-1 space-y-1">
-        <h1 className="text-2xl md:text-4xl font-black tracking-tighter text-foreground uppercase leading-none">Area Personale</h1>
-        <p className="text-muted-foreground text-base md:text-lg font-medium tracking-tight mt-2">
-          Gestisci il tuo profilo, imposta la disponibilità per il ricevimento e configura l&apos;account.
-        </p>
-      </section>
-
+    <div className="flex flex-col gap-10 pb-16 animate-in fade-in duration-500 pt-6">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
         
         {/* Profile Card (Bento White - Primary Accent) */}

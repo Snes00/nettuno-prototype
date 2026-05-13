@@ -49,16 +49,9 @@ export default function DidatticaPage() {
   const eventiDelGiorno = EVENTI_CALENDARIO[selectedDay] || [];
 
   return (
-    <div className="flex flex-col gap-10 pb-16 animate-in fade-in duration-500">
-      <section className="px-1 space-y-1">
-        <h1 className="text-2xl md:text-4xl font-black tracking-tighter text-foreground uppercase leading-none">Didattica</h1>
-        <p className="text-muted-foreground text-base md:text-lg font-medium tracking-tight mt-2">
-          Gestisci i tuoi corsi, segui il tuo piano di studi e monitora il percorso tesi.
-        </p>
-      </section>
-
+    <div className="flex flex-col gap-6 pb-16 animate-in fade-in duration-500 pt-4">
       <Tabs defaultValue="corsi" className="w-full">
-        <TabsList className="flex w-full overflow-x-auto h-auto p-1.5 bg-muted/40 rounded-[1.5rem] mb-10 border-none no-scrollbar">
+        <TabsList className="flex w-full overflow-x-auto h-auto p-1.5 bg-muted/40 rounded-[1.5rem] mb-12 border-none no-scrollbar">
           <TabsTrigger value="corsi" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
             Corsi
           </TabsTrigger>

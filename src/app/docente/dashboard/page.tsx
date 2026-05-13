@@ -21,13 +21,12 @@ const AVVISI = [
 
 export default function DocenteDashboardPage() {
   return (
-    <div className="flex flex-col gap-10 animate-in fade-in duration-500 pb-12">
+    <div className="flex flex-col gap-10 animate-in fade-in duration-500 pb-12 pt-4">
       {/* Header Benvenuto */}
       <section className="px-1">
-        <h1 className="text-2xl md:text-4xl font-black tracking-tighter text-foreground uppercase leading-none">
-          Bentornato, Prof. Rossi
-        </h1>
-        <p className="text-muted-foreground mt-2 font-medium text-base md:text-lg tracking-tight">Ecco il riepilogo delle attività accademiche di oggi.</p>
+        <p className="text-muted-foreground text-base md:text-xl font-medium tracking-tight">
+          Bentornato, <span className="text-foreground font-black uppercase tracking-tight">Prof. Rossi</span>. Ecco il tuo riepilogo di oggi.
+        </p>
       </section>
 
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">

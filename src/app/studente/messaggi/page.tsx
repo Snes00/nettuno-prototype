@@ -107,14 +107,8 @@ export default function MessaggiPage() {
   })
 
   return (
-    <div className="flex flex-col gap-8 animate-in fade-in duration-500 pb-12">
-      {/* Intestazione */}
+    <div className="flex flex-col gap-8 animate-in fade-in duration-500 pb-12 pt-4">
       <section className="space-y-6 px-1">
-        <div>
-          <h1 className="text-2xl md:text-4xl font-black tracking-tighter text-foreground uppercase">Messaggi</h1>
-          <p className="text-muted-foreground mt-1 font-medium text-base md:text-lg tracking-tight">Comunicazioni con docenti e segreteria.</p>
-        </div>
-
         <div className="relative group max-w-2xl">
           <Search className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground group-focus-within:text-foreground transition-colors" />
           <Input 
