@@ -54,10 +54,10 @@ export function BottomNav() {
         </div>
       </nav>
 
-      {/* Desktop Sidebar - Full Height & Integrated Logo */}
-      <nav className="hidden fixed left-0 top-0 bottom-0 w-72 lg:w-80 bg-card border-r border-border/10 md:flex flex-col z-[60] transition-all shadow-none overflow-hidden">
+      {/* Desktop Sidebar - Floating Rounded Box with Integrated Logo */}
+      <nav className="hidden fixed left-6 top-6 bottom-6 w-72 lg:w-80 bg-card border border-border/10 rounded-[2.5rem] md:flex flex-col z-[60] transition-all shadow-none overflow-hidden hover:border-border/20">
         
-        {/* Logo Section inside Sidebar */}
+        {/* Logo Section inside the rounded Sidebar Box */}
         <div className="p-10 pb-6">
           <Link href="/" className="flex items-center gap-4 group">
             <div className="h-12 w-12 rounded-2xl bg-primary text-primary-foreground flex items-center justify-center transition-all group-hover:rotate-12 shadow-lg shadow-primary/20 shrink-0">

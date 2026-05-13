@@ -19,9 +19,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       <Header />
       <div className={cn(
         "flex-1 transition-all",
-        "md:pl-72 lg:pl-80" // Desktop sidebar space increased for breathing room
+        "md:pl-80 lg:pl-88" // Spazio per la sidebar floating + margini
       )}>
-        <main className="max-w-[1280px] mx-auto pb-32 pt-28 px-6 md:pb-12 md:px-10 md:pt-12">
+        <main className="max-w-[1440px] mx-auto pb-32 pt-28 px-6 md:pb-12 md:px-12 md:pt-10">
           {children}
         </main>
       </div>
