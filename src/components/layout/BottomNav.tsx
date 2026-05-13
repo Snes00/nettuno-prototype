@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Progress } from "@/components/ui/progress";
 
 const studentItems = [
   { label: "Dashboard", href: "/studente/dashboard", icon: Home },
@@ -97,16 +98,33 @@ export function BottomNav() {
           </div>
         </ScrollArea>
         
-        {/* Footer Sidebar */}
-        <div className="p-6 border-t border-border/5">
-           <div className="bg-muted/30 rounded-2xl p-4 flex items-center gap-3">
-              <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary shadow-inner">
-                 <User className="h-5 w-5" />
-              </div>
-              <div className="flex flex-col overflow-hidden">
-                 <span className="text-[10px] font-black uppercase tracking-widest truncate">{isDocente ? "Prof. Rossi" : "Area Studente"}</span>
-                 <span className="text-[9px] text-muted-foreground font-black uppercase tracking-widest opacity-40">v2.0 Strato</span>
-              </div>
+        {/* Footer Sidebar - Academic Progress summary restored */}
+        <div className="p-8 border-t border-border/5 space-y-6">
+           {!isDocente ? (
+             <div className="space-y-4">
+                <div className="flex justify-between items-end">
+                   <div className="space-y-1">
+                      <p className="text-[9px] font-black uppercase tracking-[0.2em] text-muted-foreground/60">Percorso</p>
+                      <p className="text-xs font-black uppercase tracking-tight text-foreground">42 / 180 CFU</p>
+                   </div>
+                   <span className="text-[10px] font-black text-primary">23%</span>
+                </div>
+                <Progress value={23} className="h-1.5 bg-muted/40 [&>div]:bg-primary rounded-full" />
+             </div>
+           ) : (
+             <div className="flex items-center gap-4 bg-muted/20 p-4 rounded-2xl">
+                <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                   <User className="h-5 w-5" />
+                </div>
+                <div className="flex flex-col">
+                   <p className="text-[10px] font-black uppercase tracking-widest text-foreground">A. Rossi</p>
+                   <p className="text-[9px] font-black text-muted-foreground uppercase tracking-widest opacity-60">Docente</p>
+                </div>
+             </div>
+           )}
+           
+           <div className="flex items-center justify-center gap-2 text-[8px] font-black uppercase tracking-[0.3em] text-muted-foreground/30">
+              Nettuno v4.2.0 • ABA Ecosystem
            </div>
         </div>
       </nav>

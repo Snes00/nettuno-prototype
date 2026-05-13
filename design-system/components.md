@@ -1,13 +1,13 @@
-# Componenti UI — Sistema "Strato" (v2.0)
+# Componenti UI — Sistema "" (v2.0)
 
 ## 📐 Griglia e Geometria
-Il sistema Strato si basa sul concetto di **Deep Bento**.
+Il sistema  si basa sul concetto di **Deep Bento**.
 - **Corner Radius Esterno**: `1.5rem` (24px) per le sezioni principali e card.
 - **Corner Radius Interno**: `0.75rem` (12px) per elementi UI interni (input, bottoni piccoli, avatar).
 - **Radius Dialog/Hero**: `2.5rem` (40px) per un look ultra-moderno e morbido.
 
 ## 🔘 Bottoni (Buttons)
-Basati sul componente `Button` di shadcn/ui ma con logica cromatica Strato.
+Basati sul componente `Button` di shadcn/ui ma con logica cromatica .
 
 ### 1. Primary
 - **Colore**: `bg-primary` (Violet-500/400), testo `text-primary-foreground`.

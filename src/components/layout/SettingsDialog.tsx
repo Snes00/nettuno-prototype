@@ -308,7 +308,7 @@ export function SettingsDialog() {
         <DialogFooter className="p-10 bg-muted/20 border-t border-border/20 shrink-0">
           <div className="flex items-center justify-center gap-3 text-[10px] text-muted-foreground font-black uppercase tracking-[0.3em] w-full opacity-40">
             <Info className="h-4 w-4" />
-            Nettuno v4.2.0 • Strato v2.0
+            Nettuno v4.2.0 •  v2.0
           </div>
         </DialogFooter>
       </DialogContent>

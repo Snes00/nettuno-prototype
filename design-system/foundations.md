@@ -1,7 +1,7 @@
-# Fondamenta del Design — Sistema "Strato" (v2.0)
+# Fondamenta del Design — Sistema "" (v2.0)
 
 ## 🎨 Logica Cromatica
-Il sistema **Strato** si allontana dai colori istituzionali classici per abbracciare un'estetica "Digital Art & Design". La palette è progettata per garantire accessibilità **WCAG 2.1 AA/AAA**.
+Il sistema **** si allontana dai colori istituzionali classici per abbracciare un'estetica "Digital Art & Design". La palette è progettata per garantire accessibilità **WCAG 2.1 AA/AAA**.
 
 ### 🌓 Fondamenta (Surfaces)
 | Token | Colore (Light) | Colore (Dark) | Funzione |
@@ -26,6 +26,6 @@ Utilizziamo rampe colore sature e "elettriche" per una UI moderna.
 - **Primary Font**: `Instrument Sans` (Variable) per la UI.
 - **Accents**: Ispirato ai sistemi `Syne` e `DM Sans` per un feeling editoriale.
 
-## 📏 Geometria Strato
+## 📏 Geometria 
 - **Radius**: `1.5rem` (24px) per i contenitori esterni, `0.75rem` (12px) per gli interni.
 - **Contrast**: Uso di outline sottili e ombre "borderless" per profondità senza pesantzza.

@@ -38,7 +38,7 @@
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
 
-  /* Strato v2.0 Semantic Roles */
+  /*  v2.0 Semantic Roles */
   --color-role-info: var(--role-info);
   --color-role-info-fg: var(--role-info-fg);
   --color-role-success: var(--role-success);
@@ -79,7 +79,7 @@
   --input: #E4E2EC;
   --ring: #6547E8;
 
-  /* Semantic Roles (Light - Strato v2.0) */
+  /* Semantic Roles (Light -  v2.0) */
   --role-info: #EBF8FF;       /* Cyan-50 */
   --role-info-fg: #065180;    /* Cyan-700 */
   --role-success: #EDFAEE;    /* Lime-50 */
@@ -125,7 +125,7 @@
   --input: #2E2C3A;
   --ring: #8470EF;
 
-  /* Semantic Roles (Dark - Strato v2.0) */
+  /* Semantic Roles (Dark -  v2.0) */
   --role-info: #043450;       /* Cyan-800 */
   --role-info-fg: #80CBF5;    /* Cyan-300 */
   --role-success: #144D1B;    /* Lime-800 */

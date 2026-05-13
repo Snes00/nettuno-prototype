@@ -69,7 +69,7 @@ export default function LandingPage() {
       <div className="mt-16 animate-in fade-in slide-in-from-bottom-6 delay-700 fill-mode-both">
         <Link href="/design-system">
           <Button variant="outline" className="h-14 rounded-2xl px-10 gap-4 font-black text-[11px] uppercase tracking-[0.2em] border-border/40 bg-card hover:bg-muted transition-all active:scale-95 shadow-none">
-            <Palette className="h-5 w-5 text-primary" /> Sistema Strato v2.0
+            <Palette className="h-5 w-5 text-primary" /> Sistema  v2.0
           </Button>
         </Link>
       </div>

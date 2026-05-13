@@ -43,7 +43,7 @@ export default function DesignSystemPage() {
   const { theme, setTheme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = React.useState(false)
   
-  // Strato v2.0 Global Tokens Map
+  //  v2.0 Global Tokens Map
   const STRATO_DEFAULTS = {
     light: {
       background: "#EEEDF2",
@@ -93,7 +93,7 @@ export default function DesignSystemPage() {
     setTokens(prev => ({ ...prev, [key]: value }))
   }
 
-  const resetToStrato = () => {
+  const resetTo = () => {
     const isDark = resolvedTheme === "dark"
     setTokens(isDark ? STRATO_DEFAULTS.dark : STRATO_DEFAULTS.light)
   }
@@ -137,7 +137,7 @@ export default function DesignSystemPage() {
                   <Layers className="h-6 w-6" />
                </div>
                <div>
-                  <h1 className="text-2xl font-black tracking-tighter uppercase leading-none">Strato v2.0 Lab</h1>
+                  <h1 className="text-2xl font-black tracking-tighter uppercase leading-none"> v2.0 Lab</h1>
                   <p className="text-muted-foreground font-black mt-1 uppercase text-[9px] tracking-[0.2em]">Design System Live Editor</p>
                </div>
             </div>
@@ -163,7 +163,7 @@ export default function DesignSystemPage() {
                 </Button>
              </div>
              <Separator orientation="vertical" className="h-8 bg-border/10 mx-2" />
-             <Button className="rounded-xl h-11 gap-2 font-black text-[10px] uppercase bg-primary text-primary-foreground shadow-lg shadow-primary/20" onClick={resetToStrato}>
+             <Button className="rounded-xl h-11 gap-2 font-black text-[10px] uppercase bg-primary text-primary-foreground shadow-lg shadow-primary/20" onClick={resetTo}>
                <RefreshCw className="h-4 w-4" /> Reset Default
              </Button>
           </div>
@@ -360,7 +360,7 @@ export default function DesignSystemPage() {
                        <div className="space-y-6">
                           <p className="text-[10px] font-mono opacity-20 border-b border-current/10 pb-2 max-w-fit">H1 - text-8xl font-black leading-[0.85]</p>
                           <h1 className="text-6xl md:text-9xl font-black tracking-tighter uppercase leading-[0.9]">
-                             Strato <br />System
+                              <br />System
                           </h1>
                        </div>
                        <div className="space-y-6">
@@ -401,7 +401,7 @@ export default function DesignSystemPage() {
                     <div className="relative group">
                        <pre className="bg-muted/40 p-12 rounded-[2.5rem] text-sm font-mono overflow-x-auto border border-border/5 leading-relaxed">
 {`:root {
-  /* Strato v2.0 Live Export */
+  /*  v2.0 Live Export */
   --background: ${tokens.background};
   --foreground: ${tokens.foreground};
   --card: ${tokens.card};
@@ -424,7 +424,7 @@ export default function DesignSystemPage() {
                          className="absolute top-8 right-8 rounded-xl font-black text-[10px] uppercase h-12 px-8 bg-primary text-primary-foreground shadow-xl active:scale-95 transition-all"
                          onClick={() => {
                            navigator.clipboard.writeText(`:root {\n  --background: ${tokens.background};\n  --foreground: ${tokens.foreground};\n  --card: ${tokens.card};\n  --primary: ${tokens.primary};\n  --destructive: ${tokens.destructive};\n  --border: ${tokens.border};\n\n  /* Semantic Roles */\n  --role-info: ${tokens.info};\n  --role-info-fg: ${tokens.infoFg};\n  --role-success: ${tokens.success};\n  --role-success-fg: ${tokens.successFg};\n  --role-warning: ${tokens.warning};\n  --role-warning-fg: ${tokens.warningFg};\n  --role-accent: ${tokens.accent};\n  --role-accent-fg: ${tokens.accentFg};\n}`)
-                           alert("Token configurazione Strato copiati!")
+                           alert("Token configurazione  copiati!")
                          }}>
                          Copy to Clipboard
                        </Button>

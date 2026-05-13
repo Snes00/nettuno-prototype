@@ -240,7 +240,7 @@ export default function DocenteImpostazioniPage() {
 
         <div className="p-10 bg-muted/20 border-t border-border/10 flex items-center justify-center gap-3 text-[10px] text-muted-foreground font-black uppercase tracking-[0.3em]">
           <Info className="h-4 w-4 opacity-40" />
-          Nettuno v4.2.0 • Strato v2.0
+          Nettuno v4.2.0 •  v2.0
         </div>
       </div>
     </div>

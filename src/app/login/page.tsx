@@ -128,7 +128,7 @@ function LoginForm() {
         </button>
         <div className="flex items-center gap-3 text-[10px] text-muted-foreground/30 font-black uppercase tracking-[0.2em]">
           <Info className="h-4 w-4 opacity-60" />
-          Nettuno v4.2.0 • Strato v2.0
+          Nettuno v4.2.0 •  v2.0
         </div>
       </div>
     </div>
