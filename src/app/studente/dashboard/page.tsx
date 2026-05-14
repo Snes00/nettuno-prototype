@@ -5,21 +5,19 @@ import {
   MapPin,
   Calendar,
   Bell,
-  ArrowRight,
-  CheckCircle2,
+  ChevronRight,
   GraduationCap,
   Plus,
   Pencil
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
 const AVVISI = [
-  { id: 1, titolo: "Tassa da pagare", descrizione: "Seconda rata entro il 30 Aprile.", ora: "11:15", icon: AlertCircle, color: "text-role-critical-fg" },
-  { id: 2, titolo: "Seminario Erasmus", descrizione: "Incontro informativo ore 15:00.", ora: "09:31", icon: Bell, color: "text-role-warning-fg" },
-  { id: 3, titolo: "Esame Anatomia", descrizione: "22 Aprile / 09:00 / Aula 4", ora: "18:10", icon: GraduationCap, color: "text-role-info-fg" },
-  { id: 4, titolo: "Variazione Aula", descrizione: "Pittura I spostata in Aula 4.", ora: "18:10", icon: MapPin, color: "text-role-accent-fg" },
+  { id: 1, titolo: "Tassa da pagare", descrizione: "Seconda rata entro il 30 Aprile.", ora: "11:15", icon: AlertCircle, iconColor: "text-role-critical-fg", iconBg: "bg-role-critical" },
+  { id: 2, titolo: "Seminario Erasmus", descrizione: "Incontro informativo ore 15:00.", ora: "09:31", icon: Bell, iconColor: "text-role-warning-fg", iconBg: "bg-role-warning" },
+  { id: 3, titolo: "Esame Anatomia", descrizione: "22 Aprile / 09:00 / Aula 4", ora: "18:10", icon: GraduationCap, iconColor: "text-role-info-fg", iconBg: "bg-role-info" },
+  { id: 4, titolo: "Variazione Aula", descrizione: "Pittura I spostata in Aula 4.", ora: "18:10", icon: MapPin, iconColor: "text-role-accent-fg", iconBg: "bg-role-accent" },
 ];
 
 const LEZIONI_OGGI = [
@@ -59,21 +57,23 @@ export default function DashboardPage() {
             <div className="space-y-3">
               {AVVISI.map((avviso) => (
                 <div key={avviso.id} className="group flex items-center justify-between p-5 bg-muted/30 rounded-2xl hover:bg-muted/50 transition-all cursor-pointer border border-transparent hover:border-border/20">
-                  <div className="flex items-center gap-4">
-                    <avviso.icon className={cn("h-5 w-5 shrink-0", avviso.color)} />
-                    <div>
-                      <p className={cn("font-black text-sm uppercase tracking-tight leading-none mb-1", avviso.color)}>{avviso.titolo}</p>
+                  <div className="flex items-center gap-5">
+                    <div className={cn("h-12 w-12 rounded-xl flex items-center justify-center shrink-0", avviso.iconBg)}>
+                      <avviso.icon className={cn("h-6 w-6", avviso.iconColor)} />
+                    </div>
+                    <div className="space-y-0.5">
+                      <p className="font-black text-sm uppercase tracking-tight text-foreground">{avviso.titolo}</p>
                       <p className="text-xs font-medium text-muted-foreground">{avviso.descrizione}</p>
                     </div>
                   </div>
-                  <span className="text-[10px] font-black text-muted-foreground/60 uppercase tracking-widest shrink-0 ml-4">{avviso.ora}</span>
+                  <span className="text-[10px] font-black text-muted-foreground/40 uppercase tracking-widest shrink-0 ml-4">{avviso.ora}</span>
                 </div>
               ))}
             </div>
             <div className="flex justify-end">
-              <Button variant="link" className="text-[10px] font-black uppercase tracking-widest text-primary gap-1 p-0 h-auto">
-                Vedi Tutte <ArrowRight className="h-3 w-3" />
-              </Button>
+              <button className="text-[10px] font-black uppercase tracking-[0.2em] text-primary hover:opacity-80 flex items-center gap-2 transition-all">
+                Vedi tutte <ChevronRight className="h-4 w-4" />
+              </button>
             </div>
           </section>
 
