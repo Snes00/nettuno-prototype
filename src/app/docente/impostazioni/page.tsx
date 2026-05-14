@@ -13,7 +13,7 @@ import {
   KeyRound,
   Bug,
   ChevronRight,
-  ArrowLeft
+  ChevronLeft
 } from "lucide-react"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
@@ -147,7 +147,7 @@ export default function DocenteImpostazioniPage() {
                     placeholder="Descrivi il problema riscontrato..."
                     className="w-full min-h-[100px] rounded-2xl bg-muted/30 border-none p-5 font-medium text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary/20 text-foreground"
                   />
-                  <Button className="rounded-xl h-12 px-8 bg-foreground text-background font-black uppercase tracking-widest text-[10px] shadow-none active:scale-95 transition-all">
+                  <Button className="rounded-xl h-12 px-8 bg-primary text-primary-foreground font-black uppercase tracking-widest text-[10px] shadow-none active:scale-95 transition-all">
                     Invia Segnalazione
                   </Button>
                 </div>
@@ -173,7 +173,7 @@ export default function DocenteImpostazioniPage() {
                 onClick={() => setView("main")} 
                 className="h-12 w-12 rounded-full border-none bg-muted/30 hover:bg-muted/50 text-foreground transition-all mb-4 active:scale-90"
               >
-                <ArrowLeft className="h-6 w-6" />
+                <ChevronLeft className="h-6 w-6" />
               </Button>
               <div className="space-y-10">
                 <h3 className="text-3xl font-black tracking-tight text-foreground uppercase leading-none">Sicurezza e Privacy</h3>
@@ -224,7 +224,7 @@ export default function DocenteImpostazioniPage() {
                 onClick={() => setView("security")} 
                 className="h-12 w-12 rounded-full border-none bg-muted/30 hover:bg-muted/50 text-foreground transition-all mb-4 active:scale-90"
               >
-                <ArrowLeft className="h-6 w-6" />
+                <ChevronLeft className="h-6 w-6" />
               </Button>
               <div className="space-y-8">
                 <h3 className="text-3xl font-black tracking-tight uppercase leading-none text-foreground">Dispositivi Connessi</h3>
@@ -253,7 +253,7 @@ export default function DocenteImpostazioniPage() {
 
         <div className="p-10 bg-muted/20 border-t border-border/10 flex items-center justify-center gap-3 text-[10px] text-muted-foreground font-black uppercase tracking-[0.3em]">
           <Info className="h-4 w-4 opacity-40" />
-          Nettuno v4.2.0 •  v2.0
+          Nettuno v4.0.0 • Strato v2.0
         </div>
       </div>
     </div>

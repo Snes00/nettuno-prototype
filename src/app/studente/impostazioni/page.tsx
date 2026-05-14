@@ -13,7 +13,7 @@ import {
   KeyRound,
   Bug,
   ChevronRight,
-  ArrowLeft
+  ChevronLeft
 } from "lucide-react"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
@@ -55,7 +55,7 @@ export default function StudenteImpostazioniPage() {
                         {theme === "dark" ? <Moon className="h-6 w-6" /> : <Sun className="h-6 w-6" />}
                       </div>
                       <div className="flex flex-col">
-                        <Label htmlFor="dark-mode" className="font-bold text-base text-foreground">Modalità Scura</Label>
+                        <Label htmlFor="dark-mode" className="font-black text-base text-foreground uppercase tracking-tight">Modalità Scura</Label>
                         <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60 leading-none mt-1">Tema Interfaccia</span>
                       </div>
                     </div>
@@ -76,7 +76,7 @@ export default function StudenteImpostazioniPage() {
                     variant="outline" 
                     className={cn(
                       "justify-center h-14 rounded-2xl text-[10px] font-black transition-all border-none shadow-none uppercase tracking-widest",
-                      lang === "it" ? "bg-foreground text-background" : "bg-muted/40 text-foreground hover:bg-muted/60"
+                      lang === "it" ? "bg-primary text-primary-foreground" : "bg-muted/40 text-foreground hover:bg-muted/60"
                     )}
                     onClick={() => setLang("it")}
                   >
@@ -86,7 +86,7 @@ export default function StudenteImpostazioniPage() {
                     variant="outline" 
                     className={cn(
                       "justify-center h-14 rounded-2xl text-[10px] font-black transition-all border-none shadow-none uppercase tracking-widest",
-                      lang === "en" ? "bg-foreground text-background" : "bg-muted/40 text-foreground hover:bg-muted/60"
+                      lang === "en" ? "bg-primary text-primary-foreground" : "bg-muted/40 text-foreground hover:bg-muted/60"
                     )}
                     onClick={() => setLang("en")}
                   >
@@ -103,15 +103,15 @@ export default function StudenteImpostazioniPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 px-1">
                   <div className="flex items-center justify-between">
                     <div className="flex flex-col text-foreground">
-                      <Label className="text-base font-bold">Centro notifiche</Label>
-                      <span className="text-[10px] font-medium text-muted-foreground">Avvisi istantanei nell&apos;app</span>
+                      <Label className="text-base font-black uppercase tracking-tight">Centro notifiche</Label>
+                      <span className="text-[10px] font-black text-muted-foreground uppercase tracking-widest opacity-60">Avvisi istantanei</span>
                     </div>
                     <Switch checked={notifications.push} />
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex flex-col text-foreground">
-                      <Label className="text-base font-bold">Email settimanali</Label>
-                      <span className="text-[10px] font-medium text-muted-foreground">Riepilogo attività didattiche</span>
+                      <Label className="text-base font-black uppercase tracking-tight">Email settimanali</Label>
+                      <span className="text-[10px] font-black text-muted-foreground uppercase tracking-widest opacity-60">Riepilogo attività didattiche</span>
                     </div>
                     <Switch checked={notifications.avvisi} />
                   </div>
@@ -127,8 +127,8 @@ export default function StudenteImpostazioniPage() {
                     onClick={() => setView("security")}
                     className="w-full justify-between h-20 rounded-2xl bg-muted/30 hover:bg-muted/50 px-8 border-none text-foreground transition-all active:scale-[0.98]"
                   >
-                    <div className="flex items-center gap-4 text-base font-bold">
-                      <ShieldCheck className="h-6 w-6 opacity-60" /> Gestione Sicurezza
+                    <div className="flex items-center gap-5 text-base font-black uppercase tracking-tight">
+                      <ShieldCheck className="h-6 w-6 text-muted-foreground" /> Gestione Sicurezza
                     </div>
                     <ChevronRight className="h-5 w-5 opacity-20" />
                   </Button>
@@ -147,7 +147,7 @@ export default function StudenteImpostazioniPage() {
                     placeholder="Descrivi il problema riscontrato..."
                     className="w-full min-h-[100px] rounded-2xl bg-muted/30 border-none p-5 font-medium text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary/20 text-foreground"
                   />
-                  <Button className="rounded-xl h-12 px-8 bg-foreground text-background font-black uppercase tracking-widest text-[10px] shadow-none active:scale-95 transition-all">
+                  <Button className="rounded-xl h-12 px-8 bg-primary text-primary-foreground font-black uppercase tracking-widest text-[10px] shadow-none active:scale-95 transition-all">
                     Invia Segnalazione
                   </Button>
                 </div>
@@ -173,7 +173,7 @@ export default function StudenteImpostazioniPage() {
                 onClick={() => setView("main")} 
                 className="h-12 w-12 rounded-full border-none bg-muted/30 hover:bg-muted/50 text-foreground transition-all mb-4 active:scale-90"
               >
-                <ArrowLeft className="h-6 w-6" />
+                <ChevronLeft className="h-6 w-6" />
               </Button>
               <div className="space-y-8">
                 <h3 className="text-3xl font-black tracking-tight text-foreground uppercase leading-none">Sicurezza e Privacy</h3>
@@ -182,7 +182,7 @@ export default function StudenteImpostazioniPage() {
                   {/* 2FA */}
                   <div className="p-6 rounded-2xl bg-muted/30 flex items-center justify-between border-none transition-all active:scale-[0.98]">
                     <div className="flex flex-col">
-                      <span className="text-base font-bold text-foreground">Autenticazione 2FA</span>
+                      <span className="text-base font-black uppercase tracking-tight text-foreground">Autenticazione 2FA</span>
                       <span className="text-[10px] font-medium text-muted-foreground uppercase">Extra protezione</span>
                     </div>
                     <Switch checked={is2FAActive} onCheckedChange={setIs2FAActive} />
@@ -193,8 +193,8 @@ export default function StudenteImpostazioniPage() {
                     <div className="flex items-center gap-4">
                       <KeyRound className="h-6 w-6 opacity-60" />
                       <div className="text-left">
-                        <p className="text-base font-bold text-foreground leading-none">Cambia Password</p>
-                        <p className="text-[10px] font-medium text-muted-foreground mt-1 uppercase">Ultima modifica: 6 mesi fa</p>
+                        <p className="text-base font-black uppercase tracking-tight text-foreground leading-none">Cambia Password</p>
+                        <p className="text-[9px] font-black text-muted-foreground mt-2 uppercase tracking-widest opacity-60">Ultima modifica: 6 mesi fa</p>
                       </div>
                     </div>
                     <ChevronRight className="h-5 w-5 opacity-20" />
@@ -205,8 +205,8 @@ export default function StudenteImpostazioniPage() {
                     <div className="flex items-center gap-4">
                       <Smartphone className="h-6 w-6 opacity-60" />
                       <div className="text-left">
-                        <p className="text-base font-bold text-foreground leading-none">Dispositivi Connessi</p>
-                        <p className="text-[10px] font-medium text-muted-foreground mt-1 uppercase">{devices.length} Sessioni attive</p>
+                        <p className="text-base font-black uppercase tracking-tight text-foreground leading-none">Dispositivi Connessi</p>
+                        <p className="text-[9px] font-black text-muted-foreground mt-2 uppercase tracking-widest opacity-60">{devices.length} Sessioni attive</p>
                       </div>
                     </div>
                     <ChevronRight className="h-5 w-5 opacity-20" />
@@ -224,7 +224,7 @@ export default function StudenteImpostazioniPage() {
                 onClick={() => setView("security")} 
                 className="h-12 w-12 rounded-full border-none bg-muted/30 hover:bg-muted/50 text-foreground transition-all mb-4 active:scale-90"
               >
-                <ArrowLeft className="h-6 w-6" />
+                <ChevronLeft className="h-6 w-6" />
               </Button>
               <div className="space-y-6">
                 <h3 className="text-3xl font-black tracking-tight uppercase leading-none">Dispositivi Connessi</h3>
@@ -253,7 +253,7 @@ export default function StudenteImpostazioniPage() {
 
         <div className="p-8 bg-muted/20 border-t border-border/20 flex items-center justify-center gap-2 text-[10px] text-muted-foreground font-black uppercase tracking-[0.2em]">
           <Info className="h-4 w-4" />
-          Nettuno v4.0.0 • Sistema Accademico Integrato
+          Nettuno v4.0.0 • Strato v2.0
         </div>
       </div>
     </div>

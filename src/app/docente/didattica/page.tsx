@@ -47,16 +47,16 @@ export default function DocenteDidatticaPage() {
     <div className="flex flex-col gap-6 pb-16 animate-in fade-in duration-500 pt-4">
       <Tabs defaultValue="corsi" className="w-full">
         <TabsList className="flex w-full overflow-x-auto h-auto p-1.5 bg-muted/40 rounded-[1.5rem] mb-12 border-none no-scrollbar">
-          <TabsTrigger value="corsi" className="flex-1 rounded-xl py-3.5 gap-2 font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
+          <TabsTrigger value="corsi" className="flex-1 rounded-xl py-3 gap-2 font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
             Corsi
           </TabsTrigger>
-          <TabsTrigger value="orario" className="flex-1 rounded-xl py-3.5 gap-2 font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
+          <TabsTrigger value="orario" className="flex-1 rounded-xl py-3 gap-2 font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
             Orario Lezioni
           </TabsTrigger>
-<TabsTrigger value="esami" className="flex-1 rounded-xl py-3.5 gap-2 font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
+<TabsTrigger value="esami" className="flex-1 rounded-xl py-3 gap-2 font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
             Esami
           </TabsTrigger>
-          <TabsTrigger value="tesi" className="flex-1 rounded-xl py-3.5 gap-2 font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
+          <TabsTrigger value="tesi" className="flex-1 rounded-xl py-3 gap-2 font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
             Tesi
           </TabsTrigger>
         </TabsList>
@@ -148,10 +148,7 @@ export default function DocenteDidatticaPage() {
                   <Input placeholder="es. Prof.ssa Elena Bianchi, Prof. Marco Verdi" className="h-14 rounded-2xl bg-muted/20 border-none focus-visible:ring-primary/20 font-bold" />
                 </div>
               </div>
-              <div className="flex gap-4 justify-end pt-4 border-t border-border/20">
-                <Button variant="outline" onClick={() => setCreaAppello(false)} className="rounded-xl h-14 px-10 font-black uppercase tracking-widest text-xs border-border/40 text-role-critical-fg hover:bg-role-critical/10">
-                  <X className="h-4 w-4 mr-2" /> Annulla
-                </Button>
+              <div className="flex justify-end pt-4 border-t border-border/20">
                 <Button className="rounded-xl h-14 px-10 bg-primary text-primary-foreground font-black uppercase tracking-widest text-xs shadow-none active:scale-95">
                   <Send className="h-4 w-4 mr-2" /> Pubblica
                 </Button>

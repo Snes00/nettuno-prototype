@@ -411,13 +411,9 @@ export default function DidatticaPage() {
           ) : (
             <div className="bg-card rounded-[2rem] p-8 md:p-12 space-y-10 border border-border/40 md:border-none shadow-none animate-in slide-in-from-bottom-4 duration-300">
               <div className="flex items-center gap-4">
-                <button
-                  onClick={() => setNuovaRichiesta(false)}
-                  className="h-10 w-10 rounded-full bg-muted/30 flex items-center justify-center hover:bg-muted transition-all active:scale-90"
-                >
-                  <ChevronLeft className="h-5 w-5 text-muted-foreground" />
-                </button>
-                <h2 className="text-3xl font-black tracking-tighter uppercase text-foreground">Nuova Richiesta Tesi</h2>
+                <Button variant="ghost" onClick={() => setNuovaRichiesta(false)} className="rounded-xl h-11 px-5 font-black uppercase tracking-widest text-[10px] text-muted-foreground hover:text-foreground hover:bg-muted/40 transition-all">
+                  <ChevronLeft className="h-4 w-4 mr-2" /> Torna al Percorso
+                </Button>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
