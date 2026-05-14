@@ -21,7 +21,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         "flex-1 transition-all",
         "md:pl-80 lg:pl-88" // Spazio per la sidebar floating + margini
       )}>
-        <main className="max-w-[1440px] mx-auto pb-32 pt-28 px-6 md:pb-12 md:px-12 md:pt-10">
+        <main className="max-w-[1440px] mx-auto pb-32 pt-28 px-6 md:pb-12 md:px-12 md:pt-28">
           {children}
         </main>
       </div>
