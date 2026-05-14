@@ -59,23 +59,23 @@ export default function AmministrazionePage() {
     <div className="flex flex-col gap-6 pb-12 animate-in fade-in duration-500 pt-4">
       <Tabs defaultValue="carriera" className="w-full">
         <TabsList className="flex w-full overflow-x-auto h-auto p-1.5 bg-muted/40 rounded-[1.5rem] mb-12 border-none no-scrollbar">
-          <TabsTrigger value="carriera" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
+          <TabsTrigger value="carriera" className="flex-1 rounded-xl py-3 gap-2 font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
             <GraduationCap className="h-4 w-4" />
             <span className="hidden sm:inline">Carriera</span>
           </TabsTrigger>
-          <TabsTrigger value="piano" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
+          <TabsTrigger value="piano" className="flex-1 rounded-xl py-3 gap-2 font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
             <BookOpen className="h-4 w-4" />
             <span className="hidden sm:inline">Piano di Studi</span>
           </TabsTrigger>
-          <TabsTrigger value="iscrizione" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
+          <TabsTrigger value="iscrizione" className="flex-1 rounded-xl py-3 gap-2 font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
             <RefreshCw className="h-4 w-4" />
             <span className="hidden sm:inline">Iscrizione</span>
           </TabsTrigger>
-          <TabsTrigger value="tasse" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
+          <TabsTrigger value="tasse" className="flex-1 rounded-xl py-3 gap-2 font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
             <CreditCard className="h-4 w-4" />
             <span className="hidden sm:inline">Tasse</span>
           </TabsTrigger>
-          <TabsTrigger value="certificati" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
+          <TabsTrigger value="certificati" className="flex-1 rounded-xl py-3 gap-2 font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
             <FileText className="h-4 w-4" />
             <span className="hidden sm:inline">Certificati</span>
           </TabsTrigger>

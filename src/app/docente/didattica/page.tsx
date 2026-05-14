@@ -46,19 +46,19 @@ export default function DocenteDidatticaPage() {
     <div className="flex flex-col gap-6 pb-16 animate-in fade-in duration-500 pt-4">
       <Tabs defaultValue="corsi" className="w-full">
         <TabsList className="flex w-full overflow-x-auto h-auto p-1.5 bg-muted/40 rounded-[1.5rem] mb-12 border-none no-scrollbar">
-          <TabsTrigger value="corsi" className="flex-1 rounded-xl py-3.5 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
+          <TabsTrigger value="corsi" className="flex-1 rounded-xl py-3.5 gap-2 font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
             Corsi
           </TabsTrigger>
-          <TabsTrigger value="orario" className="flex-1 rounded-xl py-3.5 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
+          <TabsTrigger value="orario" className="flex-1 rounded-xl py-3.5 gap-2 font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
             Orario Lezioni
           </TabsTrigger>
-          <TabsTrigger value="crea-appelli" className="flex-1 rounded-xl py-3.5 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
+          <TabsTrigger value="crea-appelli" className="flex-1 rounded-xl py-3.5 gap-2 font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
             Crea Appelli
           </TabsTrigger>
-          <TabsTrigger value="esami" className="flex-1 rounded-xl py-3.5 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
+          <TabsTrigger value="esami" className="flex-1 rounded-xl py-3.5 gap-2 font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
             Esami
           </TabsTrigger>
-          <TabsTrigger value="tesi" className="flex-1 rounded-xl py-3.5 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
+          <TabsTrigger value="tesi" className="flex-1 rounded-xl py-3.5 gap-2 font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
             Tesi
           </TabsTrigger>
         </TabsList>

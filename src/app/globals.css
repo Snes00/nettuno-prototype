@@ -160,4 +160,11 @@
   .bento-card {
     @apply rounded-[var(--radius)] p-[var(--spacing-bento)] border border-border/20 flex flex-col justify-between transition-all duration-300 hover:scale-[1.01];
   }
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }
