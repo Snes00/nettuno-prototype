@@ -42,6 +42,7 @@ import { cn } from "@/lib/utils"
 const DAYS_OF_WEEK = ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom"];
 
 export default function DocenteDidatticaPage() {
+  const [creaAppello, setCreaAppello] = React.useState(false)
   return (
     <div className="flex flex-col gap-6 pb-16 animate-in fade-in duration-500 pt-4">
       <Tabs defaultValue="corsi" className="w-full">
@@ -52,10 +53,7 @@ export default function DocenteDidatticaPage() {
           <TabsTrigger value="orario" className="flex-1 rounded-xl py-3.5 gap-2 font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
             Orario Lezioni
           </TabsTrigger>
-          <TabsTrigger value="crea-appelli" className="flex-1 rounded-xl py-3.5 gap-2 font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
-            Crea Appelli
-          </TabsTrigger>
-          <TabsTrigger value="esami" className="flex-1 rounded-xl py-3.5 gap-2 font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
+<TabsTrigger value="esami" className="flex-1 rounded-xl py-3.5 gap-2 font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
             Esami
           </TabsTrigger>
           <TabsTrigger value="tesi" className="flex-1 rounded-xl py-3.5 gap-2 font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
@@ -97,71 +95,74 @@ export default function DocenteDidatticaPage() {
           </div>
         </TabsContent>
 
-        {/* Tab CREA APPELLI */}
-        <TabsContent value="crea-appelli" className="mt-0 focus-visible:outline-none">
-          <div className="bg-card rounded-[2rem] p-8 md:p-12 space-y-10 border border-border/40 md:border-none shadow-none">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-black tracking-tighter uppercase text-foreground">Crea Nuovo Appello</h2>
-              <p className="text-muted-foreground font-medium">Compila tutti i campi per pubblicare l&apos;appello agli studenti.</p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">Livello</Label>
-                <select className="w-full h-14 rounded-2xl bg-muted/20 border-none px-4 font-bold text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20">
-                  <option>Triennio</option>
-                  <option>Biennio</option>
-                </select>
-              </div>
-              <div className="space-y-2">
-                <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">Sessione</Label>
-                <select className="w-full h-14 rounded-2xl bg-muted/20 border-none px-4 font-bold text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20">
-                  <option>Estiva</option>
-                  <option>Invernale</option>
-                  <option>Straordinaria</option>
-                </select>
-              </div>
-              <div className="space-y-2">
-                <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">Materia</Label>
-                <select className="w-full h-14 rounded-2xl bg-muted/20 border-none px-4 font-bold text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20">
-                  <option>Web Design 1</option>
-                  <option>Web Design 2</option>
-                </select>
-              </div>
-              <div className="space-y-2">
-                <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">Aula</Label>
-                <Input placeholder="es. Aula 12" className="h-14 rounded-2xl bg-muted/20 border-none focus-visible:ring-primary/20 font-bold" />
-              </div>
-              <div className="space-y-2">
-                <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">Data</Label>
-                <Input type="date" className="h-14 rounded-2xl bg-muted/20 border-none focus-visible:ring-primary/20 font-bold" />
-              </div>
-              <div className="space-y-2">
-                <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">Orario</Label>
-                <Input type="time" className="h-14 rounded-2xl bg-muted/20 border-none focus-visible:ring-primary/20 font-bold" />
-              </div>
-              <div className="md:col-span-2 space-y-2">
-                <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">Commissione</Label>
-                <Input placeholder="es. Prof.ssa Elena Bianchi, Prof. Marco Verdi" className="h-14 rounded-2xl bg-muted/20 border-none focus-visible:ring-primary/20 font-bold" />
-              </div>
-            </div>
-            <div className="flex gap-4 justify-end pt-4 border-t border-border/20">
-              <Button variant="outline" className="rounded-xl h-14 px-10 font-black uppercase tracking-widest text-xs border-border/40 text-role-critical-fg hover:bg-role-critical/10">
-                <X className="h-4 w-4 mr-2" /> Elimina
-              </Button>
-              <Button className="rounded-xl h-14 px-10 bg-primary text-primary-foreground font-black uppercase tracking-widest text-xs shadow-none active:scale-95">
-                <Send className="h-4 w-4 mr-2" /> Pubblica
-              </Button>
-            </div>
-          </div>
-        </TabsContent>
-
         {/* Tab ESAMI */}
         <TabsContent value="esami" className="mt-0 focus-visible:outline-none">
+          {creaAppello ? (
+            <div className="bg-card rounded-[2rem] p-8 md:p-12 space-y-10 border border-border/40 md:border-none shadow-none">
+              <div className="flex items-center gap-4">
+                <Button variant="ghost" onClick={() => setCreaAppello(false)} className="rounded-xl h-11 px-5 font-black uppercase tracking-widest text-[10px] text-muted-foreground hover:text-foreground hover:bg-muted/40 transition-all">
+                  <ChevronLeft className="h-4 w-4 mr-2" /> Torna agli Appelli
+                </Button>
+              </div>
+              <div className="space-y-2">
+                <h2 className="text-3xl font-black tracking-tighter uppercase text-foreground">Crea Nuovo Appello</h2>
+                <p className="text-muted-foreground font-medium">Compila tutti i campi per pubblicare l&apos;appello agli studenti.</p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">Livello</Label>
+                  <select className="w-full h-14 rounded-2xl bg-muted/20 border-none px-4 font-bold text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20">
+                    <option>Triennio</option>
+                    <option>Biennio</option>
+                  </select>
+                </div>
+                <div className="space-y-2">
+                  <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">Sessione</Label>
+                  <select className="w-full h-14 rounded-2xl bg-muted/20 border-none px-4 font-bold text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20">
+                    <option>Estiva</option>
+                    <option>Invernale</option>
+                    <option>Straordinaria</option>
+                  </select>
+                </div>
+                <div className="space-y-2">
+                  <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">Materia</Label>
+                  <select className="w-full h-14 rounded-2xl bg-muted/20 border-none px-4 font-bold text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20">
+                    <option>Web Design 1</option>
+                    <option>Web Design 2</option>
+                  </select>
+                </div>
+                <div className="space-y-2">
+                  <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">Aula</Label>
+                  <Input placeholder="es. Aula 12" className="h-14 rounded-2xl bg-muted/20 border-none focus-visible:ring-primary/20 font-bold" />
+                </div>
+                <div className="space-y-2">
+                  <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">Data</Label>
+                  <Input type="date" className="h-14 rounded-2xl bg-muted/20 border-none focus-visible:ring-primary/20 font-bold" />
+                </div>
+                <div className="space-y-2">
+                  <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">Orario</Label>
+                  <Input type="time" className="h-14 rounded-2xl bg-muted/20 border-none focus-visible:ring-primary/20 font-bold" />
+                </div>
+                <div className="md:col-span-2 space-y-2">
+                  <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">Commissione</Label>
+                  <Input placeholder="es. Prof.ssa Elena Bianchi, Prof. Marco Verdi" className="h-14 rounded-2xl bg-muted/20 border-none focus-visible:ring-primary/20 font-bold" />
+                </div>
+              </div>
+              <div className="flex gap-4 justify-end pt-4 border-t border-border/20">
+                <Button variant="outline" onClick={() => setCreaAppello(false)} className="rounded-xl h-14 px-10 font-black uppercase tracking-widest text-xs border-border/40 text-role-critical-fg hover:bg-role-critical/10">
+                  <X className="h-4 w-4 mr-2" /> Annulla
+                </Button>
+                <Button className="rounded-xl h-14 px-10 bg-primary text-primary-foreground font-black uppercase tracking-widest text-xs shadow-none active:scale-95">
+                  <Send className="h-4 w-4 mr-2" /> Pubblica
+                </Button>
+              </div>
+            </div>
+          ) : (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             <div className="lg:col-span-8 bg-card rounded-[2.5rem] p-10 space-y-10 border border-border/40 md:border-none shadow-none">
                <div className="flex items-center justify-between px-2">
                   <h3 className="text-2xl font-black tracking-tighter uppercase text-foreground">Appelli Sessione</h3>
-                  <Button variant="ghost" className="text-[10px] font-black uppercase tracking-[0.2em] text-primary hover:bg-primary/10 rounded-xl px-5 h-11 transition-all">Nuovo Appello <Plus className="ml-2 h-4 w-4" /></Button>
+                  <Button variant="ghost" onClick={() => setCreaAppello(true)} className="text-[10px] font-black uppercase tracking-[0.2em] text-primary hover:bg-primary/10 rounded-xl px-5 h-11 transition-all">Nuovo Appello <Plus className="ml-2 h-4 w-4" /></Button>
                </div>
                <div className="space-y-5">
                   {[
@@ -214,6 +215,7 @@ export default function DocenteDidatticaPage() {
                </div>
             </div>
           </div>
+          )}
         </TabsContent>
 
         {/* Tab TESI */}
