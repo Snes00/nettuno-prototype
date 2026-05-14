@@ -137,16 +137,29 @@ export default function StudenteImpostazioniPage() {
 
               <Separator className="bg-border/20" />
 
+              {/* Sezione Segnala un Problema */}
+              <div className="space-y-6">
+                <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/60 px-1 flex items-center gap-2">
+                  <Bug className="h-4 w-4" /> Segnala un Problema
+                </h4>
+                <div className="space-y-4">
+                  <textarea
+                    placeholder="Descrivi il problema riscontrato..."
+                    className="w-full min-h-[100px] rounded-2xl bg-muted/30 border-none p-5 font-medium text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary/20 text-foreground"
+                  />
+                  <Button className="rounded-xl h-12 px-8 bg-foreground text-background font-black uppercase tracking-widest text-[10px] shadow-none active:scale-95 transition-all">
+                    Invia Segnalazione
+                  </Button>
+                </div>
+              </div>
+
+              <Separator className="bg-border/20" />
+
               {/* Sezione Azioni Critiche */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button variant="ghost" className="h-16 rounded-2xl hover:bg-role-critical/30 text-role-critical-fg px-8 gap-4 transition-all border-none font-black uppercase tracking-widest text-[10px] active:scale-[0.98]">
                   <LogOut className="h-6 w-6" />
                   Esci dall&apos;account
-                </Button>
-                
-                <Button variant="ghost" className="h-16 rounded-2xl hover:bg-muted/40 text-muted-foreground hover:text-foreground px-8 gap-4 transition-all border-none font-black uppercase tracking-widest text-[10px] active:scale-[0.98]">
-                  <Bug className="h-6 w-6" />
-                  Segnala un Bug
                 </Button>
               </div>
             </div>

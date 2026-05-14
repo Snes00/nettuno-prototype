@@ -1,22 +1,35 @@
-import { 
-  AlertCircle, 
-  BookOpen, 
-  Clock, 
-  MapPin, 
+import {
+  AlertCircle,
+  BookOpen,
+  Clock,
+  MapPin,
   Calendar,
   Bell,
-  ArrowRight
+  ArrowRight,
+  CheckCircle2,
+  GraduationCap,
+  Plus,
+  Pencil
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { QuickActions } from "@/components/dashboard/QuickActions";
 import { cn } from "@/lib/utils";
 
 const AVVISI = [
-  { id: 1, titolo: "Lezione annullata", descrizione: "Anatomia Artistica annullata per domani.", ora: "10:30", icon: AlertCircle, color: "text-role-critical-fg" },
-  { id: 2, titolo: "Tassa in scadenza", descrizione: "Seconda rata entro il 30 Aprile.", ora: "Ieri", icon: Bell, color: "text-role-warning-fg" },
-  { id: 3, titolo: "Variazione Aula", descrizione: "Pittura I spostata in Aula 4.", ora: "2gg fa", icon: MapPin, color: "text-role-info-fg" },
-  { id: 4, titolo: "Seminario Erasmus", descrizione: "Incontro informativo ore 15:00.", ora: "12 Apr", icon: Calendar, color: "text-role-accent-fg" },
+  { id: 1, titolo: "Tassa da pagare", descrizione: "Seconda rata entro il 30 Aprile.", ora: "11:15", icon: AlertCircle, color: "text-role-critical-fg" },
+  { id: 2, titolo: "Seminario Erasmus", descrizione: "Incontro informativo ore 15:00.", ora: "09:31", icon: Bell, color: "text-role-warning-fg" },
+  { id: 3, titolo: "Esame Anatomia", descrizione: "22 Aprile / 09:00 / Aula 4", ora: "18:10", icon: GraduationCap, color: "text-role-info-fg" },
+  { id: 4, titolo: "Variazione Aula", descrizione: "Pittura I spostata in Aula 4.", ora: "18:10", icon: MapPin, color: "text-role-accent-fg" },
+];
+
+const LEZIONI_OGGI = [
+  { id: 1, materia: "Web Design 1", stato: "IN CORSO", orario: "14:00 / 18:00", aula: "Aula 12", statusClass: "bg-role-success text-role-success-fg", badgeBg: "bg-role-success-fg text-role-success" },
+  { id: 2, materia: "Design Grafico", stato: "TERMINATA", orario: "08:00 / 12:00", aula: "Aula 15", statusClass: "bg-muted/50 text-muted-foreground", badgeBg: "bg-muted-foreground/20 text-muted-foreground" },
+];
+
+const AZIONI_RAPIDE = [
+  { label: "Iscriviti ad un Appello", icon: GraduationCap, href: "/studente/didattica" },
+  { label: "Orario Lezioni", icon: Calendar, href: "/studente/didattica" },
 ];
 
 export default function DashboardPage() {
@@ -24,87 +37,111 @@ export default function DashboardPage() {
     <div className="flex flex-col gap-10 animate-in fade-in duration-500 text-foreground pb-12 pt-4">
       <section className="px-1">
         <p className="text-muted-foreground text-base md:text-xl font-medium tracking-tight">
-          Benvenuto, <span className="text-foreground font-black uppercase tracking-tight">Studente</span>. Ecco il tuo riepilogo di oggi.
+          Benvenuto, <span className="text-foreground font-black uppercase tracking-tight">Mario Rossi</span>. Ecco il tuo riepilogo di oggi.
         </p>
       </section>
 
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-        {/* Lezione Imminente (Success State) */}
-        <div className="md:col-span-8 bg-role-success rounded-[1.5rem] p-8 md:p-10 min-h-[320px] flex flex-col justify-between group border border-role-success-fg/10 shadow-none transition-all hover:scale-[1.01]">
-          <div className="flex justify-between items-start">
-             <div className="space-y-1">
-                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-role-success-fg/60">Lezione Imminente</span>
-                <h2 className="text-3xl md:text-5xl font-black tracking-tighter text-role-success-fg leading-[0.95] uppercase">Pittura e Arti <br />Visive I</h2>
-             </div>
-             <div className="h-12 w-12 rounded-xl bg-role-success-fg/10 flex items-center justify-center">
-                <BookOpen className="h-6 w-6 text-role-success-fg" />
-             </div>
-          </div>
-          <div className="flex flex-col md:flex-row items-end md:items-center justify-between gap-6">
-             <div className="space-y-2 w-full">
-                <p className="text-lg font-bold text-role-success-fg/80">Prof. Alessandro Rossi</p>
-                <div className="flex flex-wrap gap-4 text-sm font-bold text-role-success-fg/60">
-                   <span className="flex items-center gap-2 bg-background/30 px-3 py-1.5 rounded-xl"><Clock className="h-4 w-4" /> 09:00 - 13:00</span>
-                   <span className="flex items-center gap-2 bg-background/30 px-3 py-1.5 rounded-xl"><MapPin className="h-4 w-4" /> Aula Magno</span>
-                </div>
-             </div>
-             <button className="w-full md:w-auto bg-role-success-fg text-role-success rounded-xl px-8 h-12 font-black text-xs shadow-none hover:opacity-90 transition-all active:scale-95 shrink-0 uppercase tracking-widest">
-                Presenza
-             </button>
-          </div>
-        </div>
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
 
-        {/* Azioni Rapide (Card Surface) */}
-        <div className="md:col-span-4 bg-card rounded-[1.5rem] p-8 md:p-10 flex flex-col gap-6 border border-border/40 md:border-none shadow-none transition-all hover:scale-[1.01]">
-           <div className="flex justify-between items-center px-1">
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">Azioni Rapide</span>
-           </div>
-           <QuickActions />
-        </div>
+        {/* Colonna Sinistra: Comunicazioni + Lezioni di Oggi */}
+        <div className="md:col-span-8 space-y-8">
 
-        {/* Centro Avvisi (Critical State) */}
-        <div className="md:col-span-12 bg-role-critical rounded-[1.5rem] p-8 md:p-10 flex flex-col gap-6 border border-role-critical-fg/10 shadow-none transition-all hover:scale-[1.005]">
-           <div className="flex justify-between items-center px-2">
-              <div className="flex items-center gap-3">
-                 <AlertCircle className="h-5 w-5 text-role-critical-fg" />
-                 <span className="text-[10px] font-black uppercase tracking-[0.2em] text-role-critical-fg/60">Centro Avvisi</span>
+          {/* Comunicazioni */}
+          <section className="bg-card rounded-[2rem] p-8 md:p-10 border border-border/40 md:border-none shadow-none space-y-6 transition-all hover:scale-[1.005]">
+            <div className="flex justify-between items-center">
+              <div className="flex items-center gap-4">
+                <h2 className="text-xl font-black tracking-tighter uppercase">Comunicazioni</h2>
+                <Badge className="bg-role-critical-fg text-role-critical border-none rounded-full px-4 h-7 font-black text-[10px] uppercase tracking-widest">
+                  2 Urgenti
+                </Badge>
               </div>
-              <Badge className="bg-role-critical-fg text-role-critical border-none rounded-full px-3 h-7 font-black uppercase tracking-widest text-[9px]">4 Nuovi</Badge>
-           </div>
-
-           <div className="bg-background/40 dark:bg-black/20 rounded-xl overflow-hidden border border-role-critical-fg/5 shadow-none">
-              <table className="w-full text-left border-collapse">
-                 <thead>
-                    <tr className="border-b border-role-critical-fg/5 text-[10px] font-black uppercase tracking-[0.2em] text-role-critical-fg/40">
-                       <th className="px-8 py-4">Titolo</th>
-                       <th className="px-8 py-4 hidden md:table-cell">Descrizione</th>
-                       <th className="px-8 py-4 text-right">Data</th>
-                    </tr>
-                 </thead>
-                 <tbody>
-                    {AVVISI.map((avviso) => (
-                       <tr key={avviso.id} className="group cursor-pointer hover:bg-background/40 dark:hover:bg-white/5 transition-colors border-b border-role-critical-fg/5 last:border-0">
-                          <td className="px-8 py-5">
-                             <span className={cn("font-black text-sm tracking-tight uppercase", avviso.color)}>{avviso.titolo}</span>
-                          </td>
-                          <td className="px-8 py-5 hidden md:table-cell">
-                             <span className={cn("text-xs font-bold opacity-60", avviso.color)}>{avviso.descrizione}</span>
-                          </td>
-                          <td className="px-8 py-5 text-right">
-                             <span className={cn("text-xs font-black opacity-30 uppercase tracking-widest", avviso.color)}>{avviso.ora}</span>
-                          </td>
-                       </tr>
-                    ))}
-                 </tbody>
-              </table>
-           </div>
-
-           <div className="flex justify-center md:justify-end mt-2">
-              <Button className="rounded-xl bg-role-critical-fg text-role-critical hover:opacity-90 font-black px-8 h-12 gap-2 shadow-none text-[10px] uppercase tracking-widest transition-all active:scale-95">
-                 Tutti gli avvisi (12)
-                 <ArrowRight className="h-4 w-4" />
+            </div>
+            <div className="space-y-3">
+              {AVVISI.map((avviso) => (
+                <div key={avviso.id} className="group flex items-center justify-between p-5 bg-muted/30 rounded-2xl hover:bg-muted/50 transition-all cursor-pointer border border-transparent hover:border-border/20">
+                  <div className="flex items-center gap-4">
+                    <avviso.icon className={cn("h-5 w-5 shrink-0", avviso.color)} />
+                    <div>
+                      <p className={cn("font-black text-sm uppercase tracking-tight leading-none mb-1", avviso.color)}>{avviso.titolo}</p>
+                      <p className="text-xs font-medium text-muted-foreground">{avviso.descrizione}</p>
+                    </div>
+                  </div>
+                  <span className="text-[10px] font-black text-muted-foreground/60 uppercase tracking-widest shrink-0 ml-4">{avviso.ora}</span>
+                </div>
+              ))}
+            </div>
+            <div className="flex justify-end">
+              <Button variant="link" className="text-[10px] font-black uppercase tracking-widest text-primary gap-1 p-0 h-auto">
+                Vedi Tutte <ArrowRight className="h-3 w-3" />
               </Button>
-           </div>
+            </div>
+          </section>
+
+          {/* Lezioni di Oggi */}
+          <section className="space-y-4">
+            <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground px-1">Lezioni di Oggi</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {LEZIONI_OGGI.map((lezione) => (
+                <div key={lezione.id} className={cn(
+                  "rounded-[2rem] p-8 flex flex-col justify-between gap-8 transition-all hover:scale-[1.02] border border-transparent",
+                  lezione.statusClass
+                )}>
+                  <div className="flex justify-between items-start">
+                    <div className="space-y-2">
+                      <Badge className={cn("border-none rounded-full px-4 h-7 font-black text-[10px] uppercase tracking-widest", lezione.badgeBg)}>
+                        {lezione.stato}
+                      </Badge>
+                      <h3 className="text-2xl font-black tracking-tighter uppercase leading-none">{lezione.materia}</h3>
+                    </div>
+                    <div className="h-10 w-10 rounded-xl bg-background/20 flex items-center justify-center">
+                      <BookOpen className="h-5 w-5" />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 text-xs font-black uppercase opacity-70">
+                      <Clock className="h-3.5 w-3.5" /> {lezione.orario}
+                    </div>
+                    <div className="flex items-center gap-2 text-xs font-black uppercase opacity-70">
+                      <MapPin className="h-3.5 w-3.5" /> {lezione.aula}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        </div>
+
+        {/* Colonna Destra: Azioni Rapide */}
+        <div className="md:col-span-4 bg-card rounded-[2rem] p-8 md:p-10 flex flex-col gap-6 border border-border/40 md:border-none shadow-none">
+          <div className="flex justify-between items-center">
+            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">Azioni Rapide</span>
+            <button className="h-8 w-8 rounded-full bg-muted/40 flex items-center justify-center hover:bg-muted transition-all active:scale-90">
+              <Pencil className="h-3.5 w-3.5 text-muted-foreground" />
+            </button>
+          </div>
+          <div className="space-y-3">
+            {AZIONI_RAPIDE.map((azione) => {
+              const Icon = azione.icon;
+              return (
+                <a
+                  key={azione.label}
+                  href={azione.href}
+                  className="flex items-center gap-5 p-5 rounded-2xl bg-muted/30 hover:bg-muted/50 transition-all group cursor-pointer"
+                >
+                  <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                    <Icon className="h-6 w-6 text-primary group-hover:text-primary-foreground transition-colors" />
+                  </div>
+                  <span className="text-sm font-black text-foreground uppercase tracking-tight leading-tight">{azione.label}</span>
+                </a>
+              );
+            })}
+            <div className="flex items-center gap-5 p-5 rounded-2xl border-2 border-dashed border-muted-foreground/20 hover:border-foreground/20 transition-all cursor-pointer group">
+              <div className="h-12 w-12 rounded-xl bg-muted/30 flex items-center justify-center shrink-0">
+                <Plus className="h-6 w-6 text-muted-foreground/60" />
+              </div>
+              <span className="text-sm font-black text-muted-foreground/60 uppercase tracking-tight">Aggiungi</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

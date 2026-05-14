@@ -95,23 +95,26 @@ export default function DocenteDashboardPage() {
                 </div>
               </div>
 
-              {/* Prossima Lezione (Accent Role) */}
-              <div className="bg-role-accent rounded-[2rem] p-8 space-y-8 relative group cursor-pointer border border-role-accent-fg/10 transition-all hover:scale-[1.02]">
+              {/* Lezione Terminata */}
+              <div className="bg-muted/50 rounded-[2rem] p-8 space-y-8 relative group cursor-pointer border border-border/20 transition-all hover:scale-[1.02]">
                 <div className="flex justify-between items-start">
-                  <Badge className="bg-role-accent-fg text-role-accent border-none rounded-full px-3 h-6 font-black text-[9px] uppercase tracking-widest">
-                    Prossima
+                  <Badge className="bg-muted-foreground/20 text-muted-foreground border-none rounded-full px-3 h-6 font-black text-[9px] uppercase tracking-widest">
+                    Terminata
                   </Badge>
                 </div>
                 <div className="space-y-1">
-                  <h3 className="text-3xl font-black tracking-tighter leading-none uppercase text-role-accent-fg">Web Design</h3>
-                  <p className="text-[10px] font-black text-role-accent-fg/60 uppercase tracking-[0.2em]">Biennio · Aula 15</p>
+                  <h3 className="text-3xl font-black tracking-tighter leading-none uppercase text-foreground">Web Design</h3>
+                  <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em]">Biennio · Aula 15</p>
                 </div>
                 <div className="flex flex-col gap-2">
-                   <div className="flex items-center gap-2 text-xs font-black text-role-accent-fg/80">
-                      <Clock className="h-4 w-4" /> Domani, 08:00
+                   <div className="flex items-center gap-2 text-xs font-black text-muted-foreground">
+                      <Clock className="h-4 w-4" /> 08:00 / 12:00
+                   </div>
+                   <div className="flex items-center gap-2 text-xs font-black text-muted-foreground">
+                      <MapPin className="h-4 w-4" /> Aula 15
                    </div>
                 </div>
-                <div className="absolute bottom-8 right-8 h-10 w-10 rounded-xl bg-role-accent-fg/10 flex items-center justify-center text-role-accent-fg">
+                <div className="absolute bottom-8 right-8 h-10 w-10 rounded-xl bg-muted flex items-center justify-center text-muted-foreground">
                    <BookOpen className="h-5 w-5" />
                 </div>
               </div>

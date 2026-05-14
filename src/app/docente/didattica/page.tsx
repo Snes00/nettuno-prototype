@@ -2,12 +2,11 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { 
-  GraduationCap, 
+import {
+  GraduationCap,
   Download,
   ChevronLeft,
   ChevronRight as ChevronRightIcon,
-  Bell,
   ArrowRight,
   BookOpen,
   Users,
@@ -15,12 +14,29 @@ import {
   FileText,
   Clock,
   MapPin,
-  Plus
+  Plus,
+  Search,
+  CheckCircle2,
+  X,
+  MessageSquare,
+  AlertTriangle,
+  PenLine,
+  Send,
 } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { Button } from "@/components/ui/button"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogFooter,
+} from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import { cn } from "@/lib/utils"
 
 const DAYS_OF_WEEK = ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom"];
@@ -33,11 +49,11 @@ export default function DocenteDidatticaPage() {
           <TabsTrigger value="corsi" className="flex-1 rounded-xl py-3.5 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
             Corsi
           </TabsTrigger>
-          <TabsTrigger value="studenti" className="flex-1 rounded-xl py-3.5 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
-            Studenti
-          </TabsTrigger>
           <TabsTrigger value="orario" className="flex-1 rounded-xl py-3.5 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
-            Orario
+            Orario Lezioni
+          </TabsTrigger>
+          <TabsTrigger value="crea-appelli" className="flex-1 rounded-xl py-3.5 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
+            Crea Appelli
           </TabsTrigger>
           <TabsTrigger value="esami" className="flex-1 rounded-xl py-3.5 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
             Esami
@@ -81,66 +97,61 @@ export default function DocenteDidatticaPage() {
           </div>
         </TabsContent>
 
-        {/* Tab SITUAZIONE STUDENTI */}
-        <TabsContent value="studenti" className="space-y-10 mt-0 focus-visible:outline-none">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-card rounded-[2rem] p-8 border border-border/40 md:border-none shadow-none space-y-6 transition-all hover:scale-[1.02]">
-               <p className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/60">Media Voti Classe</p>
-               <div className="flex items-end justify-between">
-                  <h3 className="text-5xl font-black text-foreground tracking-tighter">27.4</h3>
-                  <Badge className="bg-role-success text-role-success-fg border-none rounded-lg px-2 h-6 font-black text-[9px] uppercase mb-2">+1.2</Badge>
-               </div>
+        {/* Tab CREA APPELLI */}
+        <TabsContent value="crea-appelli" className="mt-0 focus-visible:outline-none">
+          <div className="bg-card rounded-[2rem] p-8 md:p-12 space-y-10 border border-border/40 md:border-none shadow-none">
+            <div className="space-y-2">
+              <h2 className="text-3xl font-black tracking-tighter uppercase text-foreground">Crea Nuovo Appello</h2>
+              <p className="text-muted-foreground font-medium">Compila tutti i campi per pubblicare l&apos;appello agli studenti.</p>
             </div>
-            <div className="bg-card rounded-[2rem] p-8 border border-border/40 md:border-none shadow-none space-y-6 transition-all hover:scale-[1.02]">
-               <p className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/60">Frequenza Media</p>
-               <h3 className="text-5xl font-black text-foreground tracking-tighter">82%</h3>
-               <Progress value={82} className="h-2 bg-muted/30 [&>div]:bg-primary rounded-full" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">Livello</Label>
+                <select className="w-full h-14 rounded-2xl bg-muted/20 border-none px-4 font-bold text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20">
+                  <option>Triennio</option>
+                  <option>Biennio</option>
+                </select>
+              </div>
+              <div className="space-y-2">
+                <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">Sessione</Label>
+                <select className="w-full h-14 rounded-2xl bg-muted/20 border-none px-4 font-bold text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20">
+                  <option>Estiva</option>
+                  <option>Invernale</option>
+                  <option>Straordinaria</option>
+                </select>
+              </div>
+              <div className="space-y-2">
+                <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">Materia</Label>
+                <select className="w-full h-14 rounded-2xl bg-muted/20 border-none px-4 font-bold text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20">
+                  <option>Web Design 1</option>
+                  <option>Web Design 2</option>
+                </select>
+              </div>
+              <div className="space-y-2">
+                <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">Aula</Label>
+                <Input placeholder="es. Aula 12" className="h-14 rounded-2xl bg-muted/20 border-none focus-visible:ring-primary/20 font-bold" />
+              </div>
+              <div className="space-y-2">
+                <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">Data</Label>
+                <Input type="date" className="h-14 rounded-2xl bg-muted/20 border-none focus-visible:ring-primary/20 font-bold" />
+              </div>
+              <div className="space-y-2">
+                <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">Orario</Label>
+                <Input type="time" className="h-14 rounded-2xl bg-muted/20 border-none focus-visible:ring-primary/20 font-bold" />
+              </div>
+              <div className="md:col-span-2 space-y-2">
+                <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">Commissione</Label>
+                <Input placeholder="es. Prof.ssa Elena Bianchi, Prof. Marco Verdi" className="h-14 rounded-2xl bg-muted/20 border-none focus-visible:ring-primary/20 font-bold" />
+              </div>
             </div>
-            <div className="bg-card rounded-[2rem] p-8 border border-border/40 md:border-none shadow-none space-y-6 transition-all hover:scale-[1.02]">
-               <p className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/60">Studenti a Rischio</p>
-               <h3 className="text-5xl font-black text-role-critical-fg tracking-tighter">3</h3>
-               <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest opacity-60">Sotto la soglia del 75%</p>
+            <div className="flex gap-4 justify-end pt-4 border-t border-border/20">
+              <Button variant="outline" className="rounded-xl h-14 px-10 font-black uppercase tracking-widest text-xs border-border/40 text-role-critical-fg hover:bg-role-critical/10">
+                <X className="h-4 w-4 mr-2" /> Elimina
+              </Button>
+              <Button className="rounded-xl h-14 px-10 bg-primary text-primary-foreground font-black uppercase tracking-widest text-xs shadow-none active:scale-95">
+                <Send className="h-4 w-4 mr-2" /> Pubblica
+              </Button>
             </div>
-          </div>
-
-          <div className="bg-card rounded-[2.5rem] p-8 md:p-10 space-y-10 border border-border/40 md:border-none shadow-none">
-             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-                <h3 className="text-2xl font-black tracking-tighter uppercase text-foreground">Elenco Studenti Attivi</h3>
-                <div className="flex gap-3">
-                   <Button variant="outline" className="rounded-xl font-black text-[9px] uppercase tracking-widest h-11 px-6 border-border/40 hover:bg-muted/30">Filtra Corso</Button>
-                   <Button variant="outline" className="rounded-xl font-black text-[9px] uppercase tracking-widest h-11 px-6 border-border/40 hover:bg-muted/30">Esporta CSV</Button>
-                </div>
-             </div>
-             <div className="space-y-4">
-                {[
-                  { nome: "Marco Bianchi", corso: "Pittura I", media: 28.5, presenze: 90 },
-                  { nome: "Sofia Rossi", media: 24.2, corso: "Anatomia II", presenze: 72 },
-                  { nome: "Luca Verdi", media: 29.8, corso: "Pittura I", presenze: 95 },
-                  { nome: "Elena Neri", media: 22.5, corso: "Anatomia II", presenze: 60 },
-                ].map((s, idx) => (
-                  <div key={idx} className="flex items-center justify-between p-6 rounded-[1.5rem] bg-muted/20 hover:bg-muted/40 transition-all cursor-pointer group">
-                    <div className="flex items-center gap-5">
-                      <div className="h-14 w-14 rounded-2xl bg-background flex items-center justify-center font-black text-xs text-muted-foreground group-hover:text-primary group-hover:bg-primary/10 transition-all shadow-none border border-border/5">
-                        {s.nome.split(' ').map(n => n[0]).join('')}
-                      </div>
-                      <div>
-                        <p className="font-black text-lg text-foreground tracking-tight uppercase leading-none mb-1.5">{s.nome}</p>
-                        <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">{s.corso}</p>
-                      </div>
-                    </div>
-                    <div className="flex gap-10 md:gap-16 items-center">
-                       <div className="text-right hidden sm:block space-y-1">
-                          <p className="text-[10px] font-black uppercase text-muted-foreground/60 tracking-widest">Media</p>
-                          <p className="font-black text-foreground text-lg">{s.media}</p>
-                       </div>
-                       <div className="text-right space-y-1">
-                          <p className="text-[10px] font-black uppercase text-muted-foreground/60 tracking-widest">Presenze</p>
-                          <p className={cn("font-black text-lg", s.presenze < 75 ? "text-role-critical-fg" : "text-role-success-fg")}>{s.presenze}%</p>
-                       </div>
-                    </div>
-                  </div>
-                ))}
-             </div>
           </div>
         </TabsContent>
 
@@ -154,10 +165,10 @@ export default function DocenteDidatticaPage() {
                </div>
                <div className="space-y-5">
                   {[
-                    { id: "web-1", titolo: "Web 1", iscritti: 30, ora: "14:00", data: "15 Mag 2026", aula: "Aula 12", role: "bg-role-info" },
-                    { id: "web-2", titolo: "Web 2", iscritti: 42, ora: "09:00", data: "16 Mag 2026", aula: "Aula 15", role: "bg-role-accent" },
+                    { id: "web-1", titolo: "Web Design 1", sessione: "Sessione Estiva", iscritti: 30, ora: "14:00", data: "15 Mag 2026", aula: "Aula 12", role: "bg-role-info", stato: "pubblicato" },
+                    { id: "web-2", titolo: "Web Design 2", sessione: "Sessione Estiva", iscritti: 42, ora: "09:00", data: "16 Mag 2026", aula: "Aula 15", role: "bg-role-accent", stato: "bozza" },
                   ].map((appello) => (
-                    <div key={appello.id} className="p-8 bg-muted/20 rounded-[2rem] space-y-6 group cursor-pointer hover:bg-muted/40 transition-all border border-transparent hover:border-border/10">
+                    <div key={appello.id} className="p-8 bg-muted/20 rounded-[2rem] space-y-6 group hover:bg-muted/40 transition-all border border-transparent hover:border-border/10">
                        <div className="flex justify-between items-start">
                           <div className="flex items-center gap-5">
                              <div className={cn("h-14 w-14 rounded-2xl flex items-center justify-center text-foreground shadow-none", appello.role)}>
@@ -165,18 +176,24 @@ export default function DocenteDidatticaPage() {
                              </div>
                              <div>
                                 <h4 className="text-2xl font-black uppercase tracking-tighter leading-none mb-1">{appello.titolo}</h4>
-                                <p className="text-[10px] font-black uppercase text-muted-foreground tracking-widest">{appello.aula}</p>
+                                <p className="text-[10px] font-black uppercase text-muted-foreground tracking-widest">{appello.sessione} • {appello.aula}</p>
                              </div>
                           </div>
-                          <Badge variant="outline" className="border-border/40 rounded-full px-4 h-8 font-black text-[10px] uppercase tracking-widest">{appello.data}</Badge>
+                          <div className="flex items-center gap-3">
+                            {appello.stato === "bozza" && (
+                              <Badge className="bg-role-warning text-role-warning-fg border-none rounded-full px-3 h-7 font-black text-[9px] uppercase tracking-widest">Bozza</Badge>
+                            )}
+                            <Badge variant="outline" className="border-border/40 rounded-full px-4 h-8 font-black text-[10px] uppercase tracking-widest">{appello.data}</Badge>
+                          </div>
                        </div>
                        <div className="flex justify-between items-center pt-2">
-                          <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">
-                             <Users className="h-4 w-4" /> {appello.iscritti} Studenti prenotati
+                          <div className="flex items-center gap-6 text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">
+                             <span className="flex items-center gap-2"><Users className="h-4 w-4" /> {appello.iscritti} Iscritti</span>
+                             <span className="flex items-center gap-2"><Clock className="h-4 w-4" /> {appello.ora}</span>
                           </div>
-                          <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">
-                             <Clock className="h-4 w-4" /> {appello.ora}
-                          </div>
+                          <Button className="rounded-xl bg-foreground text-background h-10 px-6 font-black text-[10px] uppercase tracking-widest shadow-none active:scale-95 transition-all">
+                            Apri Verbale
+                          </Button>
                        </div>
                     </div>
                   ))}
@@ -200,47 +217,88 @@ export default function DocenteDidatticaPage() {
         </TabsContent>
 
         {/* Tab TESI */}
-        <TabsContent value="tesi" className="mt-0 focus-visible:outline-none">
-          <div className="bg-card rounded-[2.5rem] p-10 md:p-12 space-y-12 border border-border/40 md:border-none shadow-none">
-            <div className="flex justify-between items-center px-2">
-               <div className="space-y-2">
-                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/60">Supervisione Accademica</span>
-                  <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-foreground uppercase leading-none">Gestione Tesi</h2>
-                  <p className="text-muted-foreground font-medium text-lg mt-2 tracking-tight">Sessione Estiva • 5 Tesisti attivi</p>
-               </div>
-               <div className="h-24 w-24 rounded-3xl bg-role-accent flex items-center justify-center shrink-0">
-                  <GraduationCap className="h-12 w-12 text-role-accent-fg" />
-               </div>
+        <TabsContent value="tesi" className="mt-0 focus-visible:outline-none space-y-10">
+          {/* KPI */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="bg-role-accent rounded-[2rem] p-8 flex flex-col gap-4 cursor-pointer hover:scale-[1.02] transition-all border border-role-accent-fg/10">
+              <div className="h-14 w-14 rounded-2xl bg-role-accent-fg/10 flex items-center justify-center">
+                <GraduationCap className="h-7 w-7 text-role-accent-fg" />
+              </div>
+              <div>
+                <p className="text-5xl font-black tracking-tighter text-role-accent-fg">10</p>
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-role-accent-fg/60 mt-1">Tesisti</p>
+              </div>
+              <p className="text-[10px] font-black uppercase tracking-widest text-role-accent-fg/60">Clicca per vedere l&apos;elenco →</p>
             </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-role-warning rounded-[2rem] p-8 flex flex-col gap-4 cursor-pointer hover:scale-[1.02] transition-all border border-role-warning-fg/10">
+              <div className="h-14 w-14 rounded-2xl bg-role-warning-fg/10 flex items-center justify-center">
+                <FileText className="h-7 w-7 text-role-warning-fg" />
+              </div>
+              <div>
+                <p className="text-5xl font-black tracking-tighter text-role-warning-fg">5</p>
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-role-warning-fg/60 mt-1">Da Revisionare</p>
+              </div>
+              <p className="text-[10px] font-black uppercase tracking-widest text-role-warning-fg/60">Documenti in attesa di feedback →</p>
+            </div>
+          </div>
+
+          {/* Nuove Richieste */}
+          <section className="space-y-4">
+            <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground px-1">Nuove Richieste</h2>
+            <div className="space-y-4">
               {[
-                { nome: "Marco Bianchi", titolo: "L'uso della luce nel Caravaggio", progresso: 85, status: "Draft Finale" },
-                { nome: "Sofia Rossi", titolo: "Scultura digitale e 3D printing", progresso: 40, status: "Capitolo 2" },
-                { nome: "Luca Verdi", titolo: "L'estetica del frammento", progresso: 10, status: "Progetto" },
-                { nome: "Elena Neri", titolo: "Videoarte contemporanea", progresso: 60, status: "Draft" },
-                { nome: "Giulia Gialli", titolo: "Performance e corpo", progresso: 95, status: "Approvata" },
-              ].map((tesi, idx) => (
-                <div key={idx} className="p-8 rounded-[2rem] bg-muted/20 hover:bg-muted/40 transition-all space-y-6 group cursor-pointer border border-transparent hover:border-border/10">
-                  <div className="space-y-2">
-                    <h5 className="font-black text-xl text-foreground uppercase tracking-tight leading-none">{tesi.nome}</h5>
-                    <p className="text-xs font-medium text-muted-foreground line-clamp-1 italic">{tesi.titolo}</p>
+                { studente: "Giulia Romano", titolo: "Arte generativa e intelligenza artificiale", descrizione: "Un'analisi dell'arte prodotta con algoritmi generativi nel contesto della contemporaneità." },
+              ].map((req, i) => (
+                <div key={i} className="bg-card rounded-[2rem] p-8 space-y-6 border border-border/40 md:border-none shadow-none">
+                  <div className="space-y-1">
+                    <p className="font-black text-xl uppercase text-foreground tracking-tight">{req.studente}</p>
+                    <p className="text-sm font-bold text-muted-foreground italic">{req.titolo}</p>
                   </div>
-                  <div className="space-y-3">
-                    <div className="flex justify-between text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">
-                      <span>Progresso</span>
-                      <span>{tesi.progresso}%</span>
-                    </div>
-                    <Progress value={tesi.progresso} className="h-1.5 rounded-full bg-muted/40 [&>div]:bg-primary transition-all" />
-                  </div>
-                  <div className="flex justify-between items-center pt-4 border-t border-border/5">
-                     <Badge variant="outline" className="rounded-lg text-[9px] font-black px-3 py-1.5 uppercase tracking-widest border-border/40 text-muted-foreground">{tesi.status}</Badge>
-                     <Button variant="ghost" size="sm" className="rounded-xl font-black text-[10px] uppercase tracking-widest h-10 px-4 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all">Revisiona</Button>
+                  <p className="text-sm font-medium text-muted-foreground leading-relaxed">{req.descrizione}</p>
+                  <div className="flex gap-4">
+                    <Button className="rounded-xl h-12 px-8 bg-role-success-fg text-role-success font-black uppercase tracking-widest text-[10px] shadow-none active:scale-95">
+                      <CheckCircle2 className="h-4 w-4 mr-2" /> Approva
+                    </Button>
+                    <Button variant="outline" className="rounded-xl h-12 px-8 border-role-critical-fg/30 text-role-critical-fg hover:bg-role-critical/10 font-black uppercase tracking-widest text-[10px] active:scale-95">
+                      <X className="h-4 w-4 mr-2" /> Rifiuta
+                    </Button>
                   </div>
                 </div>
               ))}
             </div>
-          </div>
+          </section>
+
+          {/* Elenco Tesisti */}
+          <section className="space-y-4">
+            <div className="flex justify-between items-center px-1">
+              <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">Elenco Tesisti</h2>
+              <button className="text-[10px] font-black uppercase tracking-widest text-primary hover:opacity-80">Storico Tesi →</button>
+            </div>
+            <div className="bg-card rounded-[2rem] overflow-hidden border border-border/40 md:border-none shadow-none">
+              <div className="divide-y divide-border/20">
+                {[
+                  { nome: "Marco Bianchi", percorso: "Tesi 1", progresso: 85 },
+                  { nome: "Sofia Rossi", percorso: "Tesi 2", progresso: 40 },
+                  { nome: "Luca Verdi", percorso: "Tesi 1", progresso: 10 },
+                  { nome: "Elena Neri", percorso: "Tesi 2", progresso: 60 },
+                  { nome: "Giulia Gialli", percorso: "Tesi 1", progresso: 95 },
+                ].map((t, i) => (
+                  <div key={i} className="flex items-center justify-between p-6 hover:bg-muted/20 transition-colors group cursor-pointer">
+                    <div className="flex items-center gap-5">
+                      <div className="h-12 w-12 rounded-2xl bg-muted/30 flex items-center justify-center font-black text-xs text-muted-foreground group-hover:text-primary group-hover:bg-primary/10 transition-all">
+                        {t.nome.split(' ').map(n => n[0]).join('')}
+                      </div>
+                      <div>
+                        <p className="font-black text-foreground uppercase tracking-tight">{t.nome}</p>
+                        <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">{t.percorso} • {t.progresso}%</p>
+                      </div>
+                    </div>
+                    <ArrowRight className="h-5 w-5 text-muted-foreground/30 group-hover:translate-x-2 transition-all" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
         </TabsContent>
 
         {/* Tab ORARIO LEZIONI */}

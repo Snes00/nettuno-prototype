@@ -1,17 +1,22 @@
 "use client"
 
 import * as React from "react"
-import { 
-  User, 
-  Settings, 
-  HelpCircle, 
-  Mail, 
-  Phone, 
-  Camera, 
+import {
+  User,
+  Settings,
+  HelpCircle,
+  Mail,
+  Phone,
+  Camera,
   Globe,
   Calendar,
   ChevronRight,
-  LogOut
+  LogOut,
+  ShieldCheck,
+  MapPin,
+  Pencil,
+  Save,
+  Briefcase
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -19,35 +24,112 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 
 export default function DocenteAreaPersonalePage() {
+  const [editMode, setEditMode] = React.useState(false);
+
   return (
     <div className="flex flex-col gap-10 pb-16 animate-in fade-in duration-500 pt-6">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-        
-        {/* Profile Card (Bento White - Primary Accent) */}
-        <div className="md:col-span-12 bg-card rounded-[2.5rem] p-8 md:p-12 flex flex-col md:flex-row items-center gap-10 border border-border/40 md:border-none shadow-none transition-all hover:scale-[1.005]">
-          <div className="relative group">
-             <div className="h-32 w-32 md:h-44 md:w-44 rounded-full bg-muted/40 flex items-center justify-center overflow-hidden border-4 border-background transition-all group-hover:border-primary/20">
-                <User className="h-20 w-20 md:h-24 md:w-24 text-muted-foreground" />
-             </div>
-             <button className="absolute bottom-1 right-1 h-11 w-11 rounded-full bg-primary text-primary-foreground flex items-center justify-center border-4 border-background hover:scale-110 transition-transform shadow-lg">
-                <Settings className="h-5 w-5" />
-             </button>
+
+        {/* Badge Docente - Staff Accademico */}
+        <div className="md:col-span-12 relative bg-primary text-primary-foreground rounded-[2.5rem] p-8 md:p-12 overflow-hidden transition-all hover:scale-[1.005]">
+          <div className="relative z-10 flex flex-col gap-8">
+            <div className="flex justify-between items-start">
+              <div className="flex gap-6 md:gap-10 items-center">
+                <div className="relative group">
+                  <div className="h-28 w-28 md:h-36 md:w-36 rounded-3xl bg-primary-foreground/10 border border-primary-foreground/20 flex items-center justify-center overflow-hidden shrink-0">
+                    <User className="h-16 w-16 md:h-20 md:w-20 text-primary-foreground" />
+                  </div>
+                  <button className="absolute bottom-1 right-1 h-9 w-9 rounded-full bg-primary-foreground/20 flex items-center justify-center hover:bg-primary-foreground/30 transition-all">
+                    <Camera className="h-4 w-4 text-primary-foreground" />
+                  </button>
+                </div>
+                <div className="space-y-2">
+                  <Badge className="bg-primary-foreground/20 text-primary-foreground border-none font-black px-3 py-1 rounded-full uppercase tracking-widest text-[9px]">
+                    <ShieldCheck className="h-3 w-3 mr-1" /> Staff Accademico
+                  </Badge>
+                  <h2 className="text-3xl md:text-5xl font-black tracking-tighter leading-none uppercase">Prof. Alessandro Rossi</h2>
+                  <p className="text-primary-foreground/60 font-black uppercase tracking-[0.2em] text-[10px] md:text-xs">Docente Straordinario • Pittura e Arti Visive</p>
+                </div>
+              </div>
+              <Button variant="ghost" className="rounded-xl h-12 px-6 gap-3 text-primary-foreground/70 hover:bg-primary-foreground/10 font-black uppercase tracking-widest text-[10px] active:scale-95 transition-all shrink-0" asChild>
+                <Link href="/">
+                  <LogOut className="h-4 w-4" /> Esci
+                </Link>
+              </Button>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="space-y-0.5">
+                <p className="text-primary-foreground/40 text-[9px] font-black uppercase tracking-[0.2em]">Email Istituzionale</p>
+                <p className="text-sm font-black">a.rossi@abapa.it</p>
+              </div>
+              <div className="space-y-0.5">
+                <p className="text-primary-foreground/40 text-[9px] font-black uppercase tracking-[0.2em]">Ruolo</p>
+                <p className="text-sm font-black uppercase tracking-tight">Docente Straordinario</p>
+              </div>
+              <div className="space-y-0.5">
+                <p className="text-primary-foreground/40 text-[9px] font-black uppercase tracking-[0.2em]">Contratto</p>
+                <p className="text-sm font-black uppercase tracking-tight">Tempo Indeterminato</p>
+              </div>
+              <div className="space-y-0.5">
+                <p className="text-primary-foreground/40 text-[9px] font-black uppercase tracking-[0.2em]">Scadenza Badge</p>
+                <p className="text-sm font-black uppercase tracking-tight">31/12/2027</p>
+              </div>
+            </div>
           </div>
-          <div className="flex-1 text-center md:text-left space-y-5">
-             <div>
-                <h2 className="text-3xl md:text-5xl font-black tracking-tighter text-foreground leading-none uppercase">Prof. Alessandro Rossi</h2>
-                <p className="text-muted-foreground font-black mt-2 uppercase tracking-[0.2em] text-[10px] md:text-xs">Pittura e Arti Visive • Cattedra di I Fascia</p>
-             </div>
-             <div className="flex flex-wrap justify-center md:justify-start gap-3">
-                <Badge variant="outline" className="rounded-xl px-5 py-2 font-black text-[10px] uppercase tracking-widest bg-muted/20 border-border/40 text-foreground">alessandro.rossi@abapa.it</Badge>
-                <Badge variant="outline" className="rounded-xl px-5 py-2 font-black text-[10px] uppercase tracking-widest bg-muted/20 border-border/40 text-foreground">+39 081 ••• •• 42</Badge>
-             </div>
+          <div className="absolute top-[-20%] right-[-5%] h-[150%] w-[40%] bg-gradient-to-l from-primary-foreground/5 to-transparent rotate-12 pointer-events-none" />
+        </div>
+
+        {/* Dati Personali Editabili */}
+        <div className="md:col-span-12">
+          <div className="bg-card rounded-[2.5rem] p-8 md:p-12 space-y-8 border border-border/40 md:border-none shadow-none">
+            <div className="flex justify-between items-center">
+              <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">Dati Personali</h3>
+              <button
+                onClick={() => setEditMode(!editMode)}
+                className={cn(
+                  "h-10 w-10 rounded-xl flex items-center justify-center transition-all active:scale-90",
+                  editMode ? "bg-primary text-primary-foreground" : "bg-muted/30 text-muted-foreground hover:bg-muted"
+                )}
+              >
+                <Pencil className="h-4 w-4" />
+              </button>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {[
+                { label: "Email", icon: Mail, value: "a.rossi@abapa.it" },
+                { label: "Telefono", icon: Phone, value: "+39 081 123 45 42" },
+                { label: "Residenza", icon: MapPin, value: "Via Roma, 12 • Napoli (NA)" },
+                { label: "Status", icon: Briefcase, value: "Docente Straordinario • Tempo Indeterminato" },
+              ].map((campo) => {
+                const Icon = campo.icon;
+                return (
+                  <div key={campo.label} className="space-y-2">
+                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/60 flex items-center gap-2">
+                      <Icon className="h-3.5 w-3.5" /> {campo.label}
+                    </label>
+                    {editMode ? (
+                      <input
+                        defaultValue={campo.value}
+                        className="w-full h-14 rounded-2xl bg-muted/20 border-2 border-primary/20 px-5 font-bold text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
+                      />
+                    ) : (
+                      <p className="h-14 flex items-center px-5 rounded-2xl bg-muted/10 font-bold text-foreground">{campo.value}</p>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+            {editMode && (
+              <div className="flex justify-end pt-4 border-t border-border/20">
+                <Button
+                  onClick={() => setEditMode(false)}
+                  className="rounded-xl h-14 px-10 bg-primary text-primary-foreground font-black uppercase tracking-widest text-xs shadow-none active:scale-95"
+                >
+                  <Save className="h-4 w-4 mr-2" /> Salva
+                </Button>
+              </div>
+            )}
           </div>
-          <Button variant="ghost" className="rounded-xl h-16 px-8 gap-3 text-role-critical-fg hover:bg-role-critical/10 hover:text-role-critical-fg font-black uppercase tracking-widest text-[10px] active:scale-95 transition-all" asChild>
-            <Link href="/">
-              <LogOut className="h-5 w-5" /> Esci dall&apos;account
-            </Link>
-          </Button>
         </div>
 
         {/* Ricevimento Studenti (Bento Accent - Purple) */}

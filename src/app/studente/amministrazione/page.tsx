@@ -1,16 +1,21 @@
 "use client"
 
-import { 
-  FileText, 
-  CreditCard, 
-  BookOpen, 
-  GraduationCap, 
-  Download, 
-  AlertCircle, 
+import {
+  FileText,
+  CreditCard,
+  BookOpen,
+  GraduationCap,
+  Download,
+  AlertCircle,
   ChevronRight,
   Calculator,
   History,
-  ArrowRight
+  ArrowRight,
+  Plus,
+  RefreshCw,
+  MapPin,
+  PauseCircle,
+  XCircle
 } from "lucide-react";
 import { 
   Tabs, 
@@ -54,19 +59,23 @@ export default function AmministrazionePage() {
     <div className="flex flex-col gap-6 pb-12 animate-in fade-in duration-500 pt-4">
       <Tabs defaultValue="carriera" className="w-full">
         <TabsList className="flex w-full overflow-x-auto h-auto p-1.5 bg-muted/40 rounded-[1.5rem] mb-12 border-none no-scrollbar">
-          <TabsTrigger value="carriera" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-bold text-sm transition-all active:scale-95">
+          <TabsTrigger value="carriera" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
             <GraduationCap className="h-4 w-4" />
             <span className="hidden sm:inline">Carriera</span>
           </TabsTrigger>
-          <TabsTrigger value="tasse" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-bold text-sm transition-all active:scale-95">
+          <TabsTrigger value="piano" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
+            <BookOpen className="h-4 w-4" />
+            <span className="hidden sm:inline">Piano di Studi</span>
+          </TabsTrigger>
+          <TabsTrigger value="iscrizione" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
+            <RefreshCw className="h-4 w-4" />
+            <span className="hidden sm:inline">Iscrizione</span>
+          </TabsTrigger>
+          <TabsTrigger value="tasse" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
             <CreditCard className="h-4 w-4" />
             <span className="hidden sm:inline">Tasse</span>
           </TabsTrigger>
-          <TabsTrigger value="piano" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-bold text-sm transition-all active:scale-95">
-            <BookOpen className="h-4 w-4" />
-            <span className="hidden sm:inline">Piano</span>
-          </TabsTrigger>
-          <TabsTrigger value="certificati" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-bold text-sm transition-all active:scale-95">
+          <TabsTrigger value="certificati" className="flex-1 rounded-xl py-3 gap-2 data-[state=active]:bg-background data-[state=active]:shadow-none font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
             <FileText className="h-4 w-4" />
             <span className="hidden sm:inline">Certificati</span>
           </TabsTrigger>
@@ -137,6 +146,51 @@ export default function AmministrazionePage() {
               </Table>
             </div>
           </section>
+        </TabsContent>
+
+        {/* --- ISCRIZIONE --- */}
+        <TabsContent value="iscrizione" className="space-y-10 outline-none focus-visible:ring-0">
+          {[
+            {
+              titolo: "Triennio",
+              azioni: [
+                { label: "Rinnova", desc: "Iscrizione all'anno accademico successivo", icon: RefreshCw, color: "bg-role-info text-role-info-fg" },
+                { label: "Cambia Indirizzo", desc: "Richiesta di passaggio di corso o indirizzo", icon: MapPin, color: "bg-role-accent text-role-accent-fg" },
+                { label: "Sospensione", desc: "Richiesta di interruzione temporanea degli studi", icon: PauseCircle, color: "bg-role-warning text-role-warning-fg" },
+                { label: "Rinuncia", desc: "Procedura di rinuncia agli studi", icon: XCircle, color: "bg-role-critical text-role-critical-fg" },
+              ],
+            },
+            {
+              titolo: "Biennio",
+              azioni: [
+                { label: "Immatricolazione (Stesso Indirizzo)", desc: "Iscrizione al biennio con lo stesso indirizzo triennale", icon: GraduationCap, color: "bg-role-success text-role-success-fg" },
+                { label: "Immatricolazione (Indirizzo Differente)", desc: "Iscrizione al biennio con un nuovo indirizzo di studio", icon: GraduationCap, color: "bg-role-accent text-role-accent-fg" },
+              ],
+            },
+          ].map((gruppo) => (
+            <section key={gruppo.titolo} className="space-y-4">
+              <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground px-1">{gruppo.titolo}</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {gruppo.azioni.map((azione) => {
+                  const Icon = azione.icon;
+                  return (
+                    <div key={azione.label} className="bg-card rounded-[1.5rem] p-6 flex items-center gap-5 border border-border/40 md:border-none shadow-none transition-all hover:scale-[1.01] group cursor-pointer">
+                      <div className={`h-12 w-12 rounded-2xl flex items-center justify-center shrink-0 ${azione.color}`}>
+                        <Icon className="h-6 w-6" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="font-black text-foreground uppercase tracking-tight text-sm leading-none mb-1">{azione.label}</p>
+                        <p className="text-[10px] font-medium text-muted-foreground leading-tight">{azione.desc}</p>
+                      </div>
+                      <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary transition-colors">
+                        <Plus className="h-5 w-5 text-primary group-hover:text-primary-foreground transition-colors" />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+          ))}
         </TabsContent>
 
         {/* --- TASSE --- */}
