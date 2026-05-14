@@ -1,22 +1,33 @@
-import { 
-  AlertCircle, 
-  BookOpen, 
-  Clock, 
-  MapPin, 
+import {
+  AlertCircle,
+  BookOpen,
+  Clock,
+  MapPin,
   ChevronRight,
   Calendar,
   Bell,
-  Users
+  Users,
+  PlusCircle,
+  FileText,
+  GraduationCap,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { TeacherQuickActions } from "@/components/dashboard/docente/TeacherQuickActions";
+import { QuickActionsWidget, type QuickAction } from "@/components/dashboard/QuickActionsWidget";
 import { cn } from "@/lib/utils";
 
 const AVVISI = [
-  { id: 1, titolo: "Appello Straordinario", descrizione: "Richiesta apertura appello per Pittura II.", ora: "11:15", icon: AlertCircle, color: "text-role-critical-fg" },
-  { id: 2, titolo: "Verbale da firmare", descrizione: "3 verbali in attesa di firma digitale.", ora: "Oggi", icon: Bell, color: "text-role-warning-fg" },
-  { id: 3, titolo: "Ricevimento Studenti", descrizione: "Marco Bianchi ha prenotato per domani.", ora: "Ieri", icon: Users, color: "text-role-info-fg" },
-  { id: 4, titolo: "Consiglio Accademico", descrizione: "Convocazione per il 15 Maggio.", ora: "3gg fa", icon: Calendar, color: "text-role-accent-fg" },
+  { id: 1, titolo: "Appello Straordinario", descrizione: "Richiesta apertura appello per Pittura II.", ora: "11:15", icon: AlertCircle, iconColor: "text-role-critical-fg", iconBg: "bg-role-critical" },
+  { id: 2, titolo: "Verbale da firmare", descrizione: "3 verbali in attesa di firma digitale.", ora: "Oggi", icon: Bell, iconColor: "text-role-warning-fg", iconBg: "bg-role-warning" },
+  { id: 3, titolo: "Ricevimento Studenti", descrizione: "Marco Bianchi ha prenotato per domani.", ora: "Ieri", icon: Users, iconColor: "text-role-info-fg", iconBg: "bg-role-info" },
+  { id: 4, titolo: "Consiglio Accademico", descrizione: "Convocazione per il 15 Maggio.", ora: "3gg fa", icon: Calendar, iconColor: "text-role-accent-fg", iconBg: "bg-role-accent" },
+];
+
+const DOCENTE_ALL_ACTIONS: QuickAction[] = [
+  { id: "appelli", label: "Appelli", icon: PlusCircle, href: "/docente/didattica", tileClass: "bg-role-info", iconClass: "text-role-info-fg" },
+  { id: "orario", label: "Orario", icon: Calendar, href: "/docente/didattica", tileClass: "bg-role-accent", iconClass: "text-role-accent-fg" },
+  { id: "verbali", label: "Verbali", icon: FileText, href: "/docente/didattica", tileClass: "bg-role-warning", iconClass: "text-role-warning-fg" },
+  { id: "ricevimento", label: "Ricevimento", icon: Users, href: "/docente/studenti", tileClass: "bg-role-success", iconClass: "text-role-success-fg" },
+  { id: "tesi", label: "Tesi", icon: GraduationCap, href: "/docente/studenti", tileClass: "bg-role-critical", iconClass: "text-role-critical-fg" },
 ];
 
 export default function DocenteDashboardPage() {
@@ -48,10 +59,8 @@ export default function DocenteDashboardPage() {
               {AVVISI.slice(0, 3).map((avviso) => (
                 <div key={avviso.id} className="group flex items-center justify-between p-6 bg-muted/30 rounded-2xl hover:bg-muted/50 transition-all cursor-pointer border border-transparent hover:border-border/20">
                   <div className="flex items-center gap-5">
-                    <div className={cn("h-12 w-12 rounded-xl flex items-center justify-center shrink-0", 
-                      avviso.id === 1 ? "bg-role-critical/10" : 
-                      avviso.id === 2 ? "bg-role-warning/10" : "bg-role-info/10")}>
-                      <avviso.icon className={cn("h-6 w-6", avviso.color)} />
+                    <div className={cn("h-12 w-12 rounded-xl flex items-center justify-center shrink-0", avviso.iconBg)}>
+                      <avviso.icon className={cn("h-6 w-6", avviso.iconColor)} />
                     </div>
                     <div className="space-y-0.5">
                       <p className="font-black text-sm uppercase tracking-tight text-foreground">{avviso.titolo}</p>
@@ -127,7 +136,11 @@ export default function DocenteDashboardPage() {
           <section className="bg-card rounded-[2rem] p-8 md:p-10 space-y-8 min-h-[400px] flex flex-col border border-border/40 md:border-none shadow-none transition-all hover:scale-[1.005]">
             <h2 className="text-xl font-black tracking-tighter uppercase">Azioni Rapide</h2>
             <div className="flex-1">
-              <TeacherQuickActions />
+              <QuickActionsWidget
+                storageKey="nettuno_quick_actions_docente"
+                allActions={DOCENTE_ALL_ACTIONS}
+                defaultActionIds={["appelli", "orario"]}
+              />
             </div>
           </section>
         </div>

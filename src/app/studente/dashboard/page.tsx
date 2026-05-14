@@ -7,10 +7,11 @@ import {
   Bell,
   ChevronRight,
   GraduationCap,
-  Plus,
-  Pencil
+  CreditCard,
+  FileText,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { QuickActionsWidget, type QuickAction } from "@/components/dashboard/QuickActionsWidget";
 import { cn } from "@/lib/utils";
 
 const AVVISI = [
@@ -25,9 +26,12 @@ const LEZIONI_OGGI = [
   { id: 2, materia: "Design Grafico", stato: "TERMINATA", orario: "08:00 / 12:00", aula: "Aula 15", statusClass: "bg-muted/50 text-muted-foreground", badgeBg: "bg-muted-foreground/20 text-muted-foreground" },
 ];
 
-const AZIONI_RAPIDE = [
-  { label: "Appelli", icon: GraduationCap, href: "/studente/didattica" },
-  { label: "Orario", icon: Calendar, href: "/studente/didattica" },
+const STUDENTE_ALL_ACTIONS: QuickAction[] = [
+  { id: "appelli", label: "Appelli", icon: GraduationCap, href: "/studente/didattica", tileClass: "bg-role-info", iconClass: "text-role-info-fg" },
+  { id: "orario", label: "Orario", icon: Calendar, href: "/studente/didattica", tileClass: "bg-role-accent", iconClass: "text-role-accent-fg" },
+  { id: "tasse", label: "Tasse", icon: CreditCard, href: "/studente/segreteria", tileClass: "bg-role-warning", iconClass: "text-role-warning-fg" },
+  { id: "corsi", label: "Corsi", icon: BookOpen, href: "/studente/didattica", tileClass: "bg-role-success", iconClass: "text-role-success-fg" },
+  { id: "certificati", label: "Certificati", icon: FileText, href: "/studente/segreteria", tileClass: "bg-role-critical", iconClass: "text-role-critical-fg" },
 ];
 
 export default function DashboardPage() {
@@ -114,31 +118,12 @@ export default function DashboardPage() {
         {/* Colonna Destra: Azioni Rapide */}
         <div className="md:col-span-4 bg-card rounded-[2rem] p-8 md:p-10 flex flex-col gap-6 border border-border/40 md:border-none shadow-none">
           <span className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">Azioni Rapide</span>
-          <div className="relative flex-1">
-            <div className="grid grid-cols-2 gap-3">
-              {AZIONI_RAPIDE.map((azione) => {
-                const Icon = azione.icon;
-                return (
-                  <a
-                    key={azione.label}
-                    href={azione.href}
-                    className="group aspect-square flex flex-col items-center justify-center p-4 rounded-2xl bg-muted/30 hover:bg-muted/50 transition-all active:scale-[0.95]"
-                  >
-                    <Icon className="h-8 w-8 text-foreground mb-3" />
-                    <span className="text-[10px] font-black uppercase tracking-tighter text-center leading-tight">{azione.label}</span>
-                  </a>
-                );
-              })}
-              <div className="aspect-square rounded-2xl border-2 border-dashed border-muted-foreground/20 hover:border-foreground/20 flex flex-col items-center justify-center gap-2 transition-all cursor-pointer">
-                <div className="h-8 w-8 rounded-xl bg-muted/30 flex items-center justify-center">
-                  <Plus className="h-5 w-5 text-muted-foreground/60" />
-                </div>
-                <span className="text-[9px] font-black uppercase tracking-widest text-muted-foreground/60">Aggiungi</span>
-              </div>
-            </div>
-            <button className="absolute bottom-0 right-0 h-10 w-10 rounded-full bg-foreground text-background flex items-center justify-center shadow-lg hover:scale-110 transition-transform active:scale-90">
-              <Pencil className="h-5 w-5" />
-            </button>
+          <div className="flex-1">
+            <QuickActionsWidget
+              storageKey="nettuno_quick_actions_studente"
+              allActions={STUDENTE_ALL_ACTIONS}
+              defaultActionIds={["appelli", "orario"]}
+            />
           </div>
         </div>
       </div>
