@@ -28,8 +28,8 @@ const LEZIONI_OGGI = [
 ];
 
 const AZIONI_RAPIDE = [
-  { label: "Iscriviti ad un Appello", icon: GraduationCap, href: "/studente/didattica" },
-  { label: "Orario Lezioni", icon: Calendar, href: "/studente/didattica" },
+  { label: "Appelli", icon: GraduationCap, href: "/studente/didattica" },
+  { label: "Orario", icon: Calendar, href: "/studente/didattica" },
 ];
 
 export default function DashboardPage() {
@@ -113,34 +113,32 @@ export default function DashboardPage() {
 
         {/* Colonna Destra: Azioni Rapide */}
         <div className="md:col-span-4 bg-card rounded-[2rem] p-8 md:p-10 flex flex-col gap-6 border border-border/40 md:border-none shadow-none">
-          <div className="flex justify-between items-center">
-            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">Azioni Rapide</span>
-            <button className="h-8 w-8 rounded-full bg-foreground flex items-center justify-center hover:scale-110 transition-transform active:scale-90">
-              <Pencil className="h-3.5 w-3.5 text-background" />
-            </button>
-          </div>
-          <div className="space-y-3">
-            {AZIONI_RAPIDE.map((azione) => {
-              const Icon = azione.icon;
-              return (
-                <a
-                  key={azione.label}
-                  href={azione.href}
-                  className="flex items-center gap-5 p-5 rounded-2xl bg-muted/30 hover:bg-muted/50 transition-all group cursor-pointer"
-                >
-                  <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                    <Icon className="h-6 w-6 text-primary group-hover:text-primary-foreground transition-colors" />
-                  </div>
-                  <span className="text-sm font-black text-foreground uppercase tracking-tight leading-tight">{azione.label}</span>
-                </a>
-              );
-            })}
-            <div className="flex items-center gap-5 p-5 rounded-2xl border-2 border-dashed border-muted-foreground/20 hover:border-foreground/20 transition-all cursor-pointer group">
-              <div className="h-12 w-12 rounded-xl bg-muted/30 flex items-center justify-center shrink-0">
-                <Plus className="h-6 w-6 text-muted-foreground/60" />
+          <span className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">Azioni Rapide</span>
+          <div className="relative flex-1">
+            <div className="grid grid-cols-2 gap-3">
+              {AZIONI_RAPIDE.map((azione) => {
+                const Icon = azione.icon;
+                return (
+                  <a
+                    key={azione.label}
+                    href={azione.href}
+                    className="group aspect-square flex flex-col items-center justify-center p-4 rounded-2xl bg-muted/30 hover:bg-muted/50 transition-all active:scale-[0.95]"
+                  >
+                    <Icon className="h-8 w-8 text-foreground mb-3" />
+                    <span className="text-[10px] font-black uppercase tracking-tighter text-center leading-tight">{azione.label}</span>
+                  </a>
+                );
+              })}
+              <div className="aspect-square rounded-2xl border-2 border-dashed border-muted-foreground/20 hover:border-foreground/20 flex flex-col items-center justify-center gap-2 transition-all cursor-pointer">
+                <div className="h-8 w-8 rounded-xl bg-muted/30 flex items-center justify-center">
+                  <Plus className="h-5 w-5 text-muted-foreground/60" />
+                </div>
+                <span className="text-[9px] font-black uppercase tracking-widest text-muted-foreground/60">Aggiungi</span>
               </div>
-              <span className="text-sm font-black text-muted-foreground/60 uppercase tracking-tight">Aggiungi</span>
             </div>
+            <button className="absolute bottom-0 right-0 h-10 w-10 rounded-full bg-foreground text-background flex items-center justify-center shadow-lg hover:scale-110 transition-transform active:scale-90">
+              <Pencil className="h-5 w-5" />
+            </button>
           </div>
         </div>
       </div>

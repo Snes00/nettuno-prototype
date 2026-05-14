@@ -9,18 +9,8 @@ import {
 import Link from "next/link";
 
 const ACTIONS = [
-  { 
-    label: "Crea appelli", 
-    icon: PlusCircle, 
-    color: "bg-muted/30", 
-    href: "/docente/didattica" 
-  },
-  { 
-    label: "Orario lezioni", 
-    icon: Calendar, 
-    color: "bg-muted/30", 
-    href: "/docente/didattica" 
-  },
+  { label: "Appelli", icon: PlusCircle, href: "/docente/didattica" },
+  { label: "Orario", icon: Calendar, href: "/docente/didattica" },
 ];
 
 export function TeacherQuickActions() {
@@ -33,7 +23,7 @@ export function TeacherQuickActions() {
             <Link
               key={action.label}
               href={action.href}
-              className="group aspect-square flex flex-col items-center justify-center p-4 rounded-2xl bg-card border-none hover:bg-muted/50 transition-all active:scale-[0.95]"
+              className="group aspect-square flex flex-col items-center justify-center p-4 rounded-2xl bg-muted/30 hover:bg-muted/50 transition-all active:scale-[0.95]"
             >
               <Icon className="h-8 w-8 text-foreground mb-3" />
               <span className="text-[10px] font-black uppercase tracking-tighter text-center leading-tight">
