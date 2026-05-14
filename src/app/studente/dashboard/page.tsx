@@ -115,8 +115,8 @@ export default function DashboardPage() {
         <div className="md:col-span-4 bg-card rounded-[2rem] p-8 md:p-10 flex flex-col gap-6 border border-border/40 md:border-none shadow-none">
           <div className="flex justify-between items-center">
             <span className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">Azioni Rapide</span>
-            <button className="h-8 w-8 rounded-full bg-muted/40 flex items-center justify-center hover:bg-muted transition-all active:scale-90">
-              <Pencil className="h-3.5 w-3.5 text-muted-foreground" />
+            <button className="h-8 w-8 rounded-full bg-foreground flex items-center justify-center hover:scale-110 transition-transform active:scale-90">
+              <Pencil className="h-3.5 w-3.5 text-background" />
             </button>
           </div>
           <div className="space-y-3">

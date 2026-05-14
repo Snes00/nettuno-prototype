@@ -1,9 +1,10 @@
 "use client";
 
-import { 
-  PlusCircle, 
-  Calendar, 
-  Pencil
+import {
+  PlusCircle,
+  Calendar,
+  Pencil,
+  Plus
 } from "lucide-react";
 import Link from "next/link";
 
@@ -42,9 +43,12 @@ export function TeacherQuickActions() {
           );
         })}
         
-        {/* Slot Vuoto */}
-        <div className="aspect-square rounded-2xl border-2 border-dashed border-muted flex items-center justify-center opacity-40">
-           {/* Empty slot as per wireframe */}
+        {/* Slot Aggiungi */}
+        <div className="aspect-square rounded-2xl border-2 border-dashed border-muted-foreground/20 hover:border-foreground/20 flex flex-col items-center justify-center gap-2 transition-all cursor-pointer group">
+          <div className="h-8 w-8 rounded-xl bg-muted/30 flex items-center justify-center">
+            <Plus className="h-5 w-5 text-muted-foreground/60" />
+          </div>
+          <span className="text-[9px] font-black uppercase tracking-widest text-muted-foreground/60">Aggiungi</span>
         </div>
       </div>
       
