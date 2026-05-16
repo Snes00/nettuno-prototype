@@ -33,7 +33,7 @@ const STUDENTE_ALL_ACTIONS: QuickAction[] = [
   { id: "orario", label: "Orario", icon: Calendar, href: "/studente/didattica", tileClass: "bg-role-accent", iconClass: "text-role-accent-fg" },
   { id: "tasse", label: "Tasse", icon: CreditCard, href: "/studente/segreteria", tileClass: "bg-role-warning", iconClass: "text-role-warning-fg" },
   { id: "corsi", label: "Corsi", icon: BookOpen, href: "/studente/didattica", tileClass: "bg-role-success", iconClass: "text-role-success-fg" },
-  { id: "certificati", label: "Certificati", icon: FileText, href: "/studente/segreteria", tileClass: "bg-role-critical", iconClass: "text-role-critical-fg" },
+  { id: "certificati", label: "Certificati", icon: FileText, href: "/studente/segreteria", tileClass: "bg-primary", iconClass: "text-primary-foreground" },
 ];
 
 export default function DashboardPage() {

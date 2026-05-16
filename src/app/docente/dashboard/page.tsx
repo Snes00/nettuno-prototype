@@ -18,7 +18,7 @@ import { QuickActionsWidget, type QuickAction } from "@/components/dashboard/Qui
 import { cn } from "@/lib/utils";
 
 const AVVISI = [
-  { id: 1, titolo: "Appello Straordinario", descrizione: "Richiesta apertura appello per Pittura II.", ora: "11:15", icon: AlertCircle, iconColor: "text-role-critical-fg", iconBg: "bg-role-critical" },
+  { id: 1, titolo: "Appello Straordinario", descrizione: "Richiesta apertura appello per Pittura II.", ora: "11:15", icon: AlertCircle, iconColor: "text-role-warning-fg", iconBg: "bg-role-warning" },
   { id: 2, titolo: "Verbale da firmare", descrizione: "3 verbali in attesa di firma digitale.", ora: "Oggi", icon: Bell, iconColor: "text-role-warning-fg", iconBg: "bg-role-warning" },
   { id: 3, titolo: "Ricevimento Studenti", descrizione: "Marco Bianchi ha prenotato per domani.", ora: "Ieri", icon: Users, iconColor: "text-role-info-fg", iconBg: "bg-role-info" },
   { id: 4, titolo: "Consiglio Accademico", descrizione: "Convocazione per il 15 Maggio.", ora: "3gg fa", icon: Calendar, iconColor: "text-role-accent-fg", iconBg: "bg-role-accent" },
@@ -29,7 +29,7 @@ const DOCENTE_ALL_ACTIONS: QuickAction[] = [
   { id: "orario", label: "Orario", icon: Calendar, href: "/docente/didattica", tileClass: "bg-role-accent", iconClass: "text-role-accent-fg" },
   { id: "verbali", label: "Verbali", icon: FileText, href: "/docente/didattica", tileClass: "bg-role-warning", iconClass: "text-role-warning-fg" },
   { id: "ricevimento", label: "Ricevimento", icon: Users, href: "/docente/studenti", tileClass: "bg-role-success", iconClass: "text-role-success-fg" },
-  { id: "tesi", label: "Tesi", icon: GraduationCap, href: "/docente/studenti", tileClass: "bg-role-critical", iconClass: "text-role-critical-fg" },
+  { id: "tesi", label: "Tesi", icon: GraduationCap, href: "/docente/studenti", tileClass: "bg-primary", iconClass: "text-primary-foreground" },
 ];
 
 export default function DocenteDashboardPage() {
