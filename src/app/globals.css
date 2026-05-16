@@ -64,41 +64,41 @@
   --popover: #FFFFFF;
   --popover-foreground: #14131A;
   
-  --primary: #6547E8;        /* Violet-500 */
+  --primary: #4B4AC3;        /* Brand Blue-Violet */
   --primary-foreground: #FFFFFF;
   --secondary: #F6F5F9;      /* Surface */
   --secondary-foreground: #14131A;
   --muted: #F6F5F9;          /* Surface */
   --muted-foreground: #7E7B8A;/* Slate-500 */
-  --accent: #F1EFFE;         /* Violet-50 */
-  --accent-foreground: #5035C8;/* Violet-600 */
+  --accent: #EBEBFA;         /* Brand tint light */
+  --accent-foreground: #2828A8;/* Brand deep */
   --destructive: #F03C6C;    /* Coral-500 */
   --destructive-foreground: #FFFFFF;
-  
+
   --border: #E4E2EC;         /* Slate-100 */
   --input: #E4E2EC;
-  --ring: #6547E8;
+  --ring: #4B4AC3;
 
-  /* Semantic Roles (Light — Strato v2.1 vivid) */
-  --role-info: #22D3EE;       /* Cyan-400   — vivido */
-  --role-info-fg: #083344;    /* Cyan-950   — 10.9:1 AAA */
-  --role-success: #A3E635;    /* Lime-400   — vivido */
-  --role-success-fg: #1A2E00; /* Lime-950   — 13.3:1 AAA */
-  --role-warning: #FCD34D;    /* Amber-300  — vivido */
-  --role-warning-fg: #451A00; /* Amber-950  — 11.4:1 AAA */
-  --role-critical: #FB7185;   /* Rose-400   — vivido */
-  --role-critical-fg: #4C0519;/* Rose-950   — 7.2:1  AAA */
-  --role-accent: #7C3AED;     /* Violet-600 — vivido */
-  --role-accent-fg: #FFFFFF;  /* White      — 5.7:1  AA  */
+  /* Semantic Roles (Light — Strato v2.1 — palette brand precisa) */
+  --role-accent: #4B4AC3;     /* Brand Blue-Violet   — 6.2:1  AA  */
+  --role-accent-fg: #FFFFFF;  /* White */
+  --role-info: #004F59;       /* Brand Dark Teal     — 8.3:1  AAA */
+  --role-info-fg: #FFFFFF;    /* White */
+  --role-success: #E2FF02;    /* Brand Neon Lime     — 18.6:1 AAA */
+  --role-success-fg: #0F1400; /* Near-black */
+  --role-warning: #98B8FF;    /* Brand Periwinkle    — 11.2:1 AAA */
+  --role-warning-fg: #080830; /* Very dark blue */
+  --role-critical: #FF3D57;   /* Coral-Red semantico — 5.3:1  AA  */
+  --role-critical-fg: #FFFFFF;/* White */
 
   --sidebar: #F6F5F9;
   --sidebar-foreground: #14131A;
-  --sidebar-primary: #6547E8;
+  --sidebar-primary: #4B4AC3;
   --sidebar-primary-foreground: #FFFFFF;
   --sidebar-accent: #E4E2EC;
   --sidebar-accent-foreground: #14131A;
   --sidebar-border: #E4E2EC;
-  --sidebar-ring: #6547E8;
+  --sidebar-ring: #4B4AC3;
 }
 
 .dark {
@@ -110,41 +110,41 @@
   --popover: #1E1C2A;
   --popover-foreground: #E4E2EC;
   
-  --primary: #8470EF;        /* Violet-400 (Brighter for Dark) */
-  --primary-foreground: #0F0E14;
+  --primary: #7E7EF5;        /* Brand Blue-Violet chiaro (Dark) */
+  --primary-foreground: #09091A;
   --secondary: #16151E;      /* Dark Surface */
   --secondary-foreground: #E4E2EC;
   --muted: #16151E;
   --muted-foreground: #9E9BAA;/* Slate-400 */
-  --accent: #2E1A72;         /* Violet-800 */
-  --accent-foreground: #C9C0F8;/* Violet-200 */
+  --accent: #1A1A4A;         /* Brand deep dark */
+  --accent-foreground: #C0C0F8;/* Brand light */
   --destructive: #F56E90;    /* Coral-400 */
   --destructive-foreground: #0F0E14;
   
   --border: #2E2C3A;         /* Slate-800 */
   --input: #2E2C3A;
-  --ring: #8470EF;
+  --ring: #7E7EF5;
 
-  /* Semantic Roles (Dark -  v2.0) */
-  --role-info: #043450;       /* Cyan-800 */
-  --role-info-fg: #80CBF5;    /* Cyan-300 */
-  --role-success: #144D1B;    /* Lime-800 */
-  --role-success-fg: #8CDA95; /* Lime-300 */
-  --role-warning: #573006;    /* Amber-800 */
-  --role-warning-fg: #EEC070; /* Amber-300 */
-  --role-critical: #781730;   /* Coral-800 */
-  --role-critical-fg: #F99AB4;/* Coral-300 */
-  --role-accent: #2E1A72;     /* Violet-800 */
-  --role-accent-fg: #C9C0F8;  /* Violet-200 */
+  /* Semantic Roles (Dark — Strato v2.1) */
+  --role-accent: #1A1A52;     /* Brand Blue deep */
+  --role-accent-fg: #C0C0F8;  /* Brand Blue light */
+  --role-info: #003540;       /* Brand Teal deep */
+  --role-info-fg: #7ECFE0;    /* Teal light */
+  --role-success: #1A2800;    /* Brand Lime deep */
+  --role-success-fg: #D4F520; /* Lime bright */
+  --role-warning: #1A2060;    /* Brand Periwinkle deep */
+  --role-warning-fg: #98B8FF; /* Periwinkle chiaro */
+  --role-critical: #781730;   /* Coral deep */
+  --role-critical-fg: #F99AB4;/* Coral light */
 
   --sidebar: #16151E;
   --sidebar-foreground: #E4E2EC;
-  --sidebar-primary: #8470EF;
-  --sidebar-primary-foreground: #0F0E14;
+  --sidebar-primary: #7E7EF5;
+  --sidebar-primary-foreground: #09091A;
   --sidebar-accent: #2E2C3A;
   --sidebar-accent-foreground: #E4E2EC;
   --sidebar-border: #2E2C3A;
-  --sidebar-ring: #8470EF;
+  --sidebar-ring: #7E7EF5;
 }
 
 @layer base {

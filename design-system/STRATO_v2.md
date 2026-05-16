@@ -1,6 +1,7 @@
 # STRATO v2.1 — Design System Nettuno
 > Documento autorevole. In caso di conflitto con foundations.md o components.md, questo prevale.
 > Ultimo aggiornamento: 2026-05-16
+> Palette v2.1 derivata da tavola vettoriale Illustrator (pagina 2, "idea grafica.pdf")
 
 ---
 
@@ -39,50 +40,61 @@ L'interfaccia di Nettuno deve sembrare un'**app nativa moderna**, non un portale
 | `muted-foreground` | `#7E7B8A` | `#9E9BAA` | Testo secondario, label info (non critiche) |
 | `border` | `#E4E2EC` | `#2E2C3A` | Bordi sottili, separatori |
 
-### 2.2 Azione Primaria
+### 2.2 Brand Palette
+
+La palette ufficiale del brand Nettuno, derivata dalla tavola vettoriale del designer:
+
+| Colore | Hex | Nome | Uso principale |
+|---|---|---|---|
+| Nero | `#000000` | Black | Testo principale, header pill |
+| Bianco | `#FFFFFF` | White | Canvas, testo su scuro |
+| Blue-Violet | `#4B4AC3` | Brand Blue | Primary CTA, tile accent |
+| Dark Teal | `#004F59` | Brand Teal | Tile info, sfondo scuro |
+| Neon Lime | `#E2FF02` | Brand Lime | Tile success, highlight |
+| Periwinkle | `#98B8FF` | Brand Periwinkle | Tile soft, uso secondario |
+
+> Questi 6 valori sono i soli colori brand. Ogni altra tinta (amber, coral, ecc.) è semantica pura — non compare come sfondo decorativo.
+
+### 2.3 Azione Primaria
 
 | Token | Light | Dark | Uso |
 |---|---|---|---|
-| `primary` | `#6547E8` (Violet-500) | `#8470EF` (Violet-400) | CTA, tab attivo, focus ring |
-| `primary-foreground` | `#FFFFFF` | `#0F0E14` | Testo/icone su sfondo primary |
+| `primary` | `#4B4AC3` | `#7E7EF5` | CTA, tab attivo, focus ring |
+| `primary-foreground` | `#FFFFFF` | `#09091A` | Testo/icone su sfondo primary |
 
-Contrasto `primary-foreground` su `primary`: **5.5:1 — WCAG AA ✓**
+Contrasto light: **6.2:1 — WCAG AA ✓** · Dark: **6.1:1 — WCAG AA ✓**
 
-### 2.3 Ruoli Semantici
+### 2.4 Ruoli Semantici
 
-I token `role-*` hanno due varianti:
-- **`role-{ruolo}`** = sfondo saturo vivido (Light) / sfondo scuro saturo (Dark) → per tile bento, icon-box, badge background
-- **`role-{ruolo}-fg`** = testo/icona ad alto contrasto → sempre sopra il rispettivo `role-{ruolo}`
+I token `role-*` mappano direttamente la brand palette sui ruoli UI:
 
-#### Light mode — palette vivida (Strato v2.1)
+| Ruolo | Token | `role-*` Light | `role-*-fg` Light | Contrasto | Level |
+|---|---|---|---|---|---|
+| `accent` | Brand Blue | `#4B4AC3` | `#FFFFFF` | **6.2:1** | AA ✓ |
+| `info` | Brand Teal | `#004F59` | `#FFFFFF` | **8.3:1** | AAA ✓ |
+| `success` | Brand Lime | `#E2FF02` | `#0F1400` | **18.6:1** | AAA ✓ |
+| `warning` | Brand Periwinkle | `#98B8FF` | `#080830` | **11.2:1** | AAA ✓ |
+| `critical` | Semantico | `#FF3D57` | `#FFFFFF` | **5.3:1** | AA ✓ |
 
-I `role-*` light ora usano colori **saturi al 400–600 level**, non tinte pallide. Questo produce il look "bento colorato" del riferimento visivo.
+> `role-critical` **non è un colore brand** — è semantico puro. Non usarlo come tile decorativo. Riservarlo a: elimina, rinuncia definitiva, errore bloccante.
 
-| Ruolo | `role-*` Light | `role-*-fg` Light | Contrasto | Level |
-|---|---|---|---|---|
-| `info` | `#22D3EE` (Cyan-400) | `#083344` (Cyan-950) | **10.9:1** | AAA ✓ |
-| `success` | `#A3E635` (Lime-400) | `#1A2E00` (Lime-950) | **13.3:1** | AAA ✓ |
-| `warning` | `#FCD34D` (Amber-300) | `#451A00` (Amber-950) | **11.4:1** | AAA ✓ |
-| `critical` | `#FB7185` (Rose-400) | `#4C0519` (Rose-950) | **7.2:1** | AAA ✓ |
-| `accent` | `#7C3AED` (Violet-600) | `#FFFFFF` (White) | **5.7:1** | AA ✓ |
-
-**Pattern fg per tile light:**
-- `info`, `success`, `warning`, `critical` → **dark text** (il bg è vivido ma chiaro)
-- `accent` → **white text** (il bg è scuro)
+**Pattern fg:**
+- `accent` (blue), `info` (teal), `critical` (red) → **testo bianco** (bg scuro/saturo)
+- `success` (lime), `warning` (periwinkle) → **testo near-black** (bg chiaro)
 
 #### Dark mode — ruoli semantici
 
 | Ruolo | `role-*` Dark | `role-*-fg` Dark |
 |---|---|---|
-| `info` | `#043450` (Cyan-800) | `#80CBF5` (Cyan-300) |
-| `success` | `#144D1B` (Lime-800) | `#8CDA95` (Lime-300) |
-| `warning` | `#573006` (Amber-800) | `#EEC070` (Amber-300) |
-| `critical` | `#781730` (Coral-800) | `#F99AB4` (Coral-300) |
-| `accent` | `#2E1A72` (Violet-800) | `#C9C0F8` (Violet-200) |
+| `accent` | `#2E1A72` (Brand deep) | `#C0C0F8` |
+| `info` | `#043450` (Teal deep) | `#80CBF5` |
+| `success` | `#144D1B` (Lime deep) | `#8CDA95` |
+| `warning` | `#1A2060` (Periwinkle deep) | `#98B8FF` |
+| `critical` | `#781730` (Coral deep) | `#F99AB4` |
 
-> **Regola**: usare sempre `text-role-{ruolo}-fg` come foreground su `bg-role-{ruolo}`. Non mescolare token di ruoli diversi.
+> **Regola assoluta**: usare sempre `text-role-{ruolo}-fg` su `bg-role-{ruolo}`. Non mischiare.
 
-> **Distinzione opacità**: `bg-role-*/10` e `/20` sono **accettabili** come hover state di bottoni o overlay decorativi (glow, border). Sono **vietati** come sfondo persistente di tile/card con testo sopra — usare sempre `bg-role-*` pieno + `text-role-*-fg`.
+> **Opacità**: `bg-role-*/10–20` sono accettabili **solo** per hover state e overlay decorativi, non come sfondo persistente con testo sopra.
 
 ---
 
