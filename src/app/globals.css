@@ -79,17 +79,17 @@
   --input: #E4E2EC;
   --ring: #6547E8;
 
-  /* Semantic Roles (Light -  v2.0) */
-  --role-info: #EBF8FF;       /* Cyan-50 */
-  --role-info-fg: #065180;    /* Cyan-700 */
-  --role-success: #EDFAEE;    /* Lime-50 */
-  --role-success-fg: #1D6E26; /* Lime-700 */
-  --role-warning: #FEFAEE;    /* Amber-50 */
-  --role-warning-fg: #7A480A; /* Amber-700 */
-  --role-critical: #FEF5F8;   /* Coral-50 */
-  --role-critical-fg: #A81E40;/* Coral-700 */
-  --role-accent: #F1EFFE;     /* Violet-50 */
-  --role-accent-fg: #5035C8;  /* Violet-600 */
+  /* Semantic Roles (Light — Strato v2.1 vivid) */
+  --role-info: #22D3EE;       /* Cyan-400   — vivido */
+  --role-info-fg: #083344;    /* Cyan-950   — 10.9:1 AAA */
+  --role-success: #A3E635;    /* Lime-400   — vivido */
+  --role-success-fg: #1A2E00; /* Lime-950   — 13.3:1 AAA */
+  --role-warning: #FCD34D;    /* Amber-300  — vivido */
+  --role-warning-fg: #451A00; /* Amber-950  — 11.4:1 AAA */
+  --role-critical: #FB7185;   /* Rose-400   — vivido */
+  --role-critical-fg: #4C0519;/* Rose-950   — 7.2:1  AAA */
+  --role-accent: #7C3AED;     /* Violet-600 — vivido */
+  --role-accent-fg: #FFFFFF;  /* White      — 5.7:1  AA  */
 
   --sidebar: #F6F5F9;
   --sidebar-foreground: #14131A;

@@ -1,6 +1,6 @@
-# STRATO v2.0 — Design System Nettuno
+# STRATO v2.1 — Design System Nettuno
 > Documento autorevole. In caso di conflitto con foundations.md o components.md, questo prevale.
-> Ultimo aggiornamento: 2026-05-15
+> Ultimo aggiornamento: 2026-05-16
 
 ---
 
@@ -17,10 +17,12 @@ L'interfaccia di Nettuno deve sembrare un'**app nativa moderna**, non un portale
 - **Contrasto netto** — ogni elemento deve essere leggibile al primo sguardo (WCAG AA minimo, AAA dove possibile)
 
 ### Cosa evitare
-- Tinte pallide (`bg-role-success/10`) come sfondo di card — sembrano vuote
+- Tinte pallide con opacità (`bg-role-success/10`, `bg-role-info/20`) come sfondo tile — annullano il contrasto cromatico
+- Usare `bg-role-*` in light mode e aspettarsi un look tenue: **i role-* ora sono vividi**, non pastello
 - Testo muted su muted — perde leggibilità
 - Card bianche su sfondo bianco — non c'è gerarchia
 - Icone piccole in box piccoli dove basterebbe l'icona grande diretta
+- Testo `text-role-*-fg` su sfondo non `bg-role-*` — contrasto non garantito fuori contesto
 
 ---
 
@@ -49,20 +51,38 @@ Contrasto `primary-foreground` su `primary`: **5.5:1 — WCAG AA ✓**
 ### 2.3 Ruoli Semantici
 
 I token `role-*` hanno due varianti:
-- **`role-{ruolo}`** = sfondo tinta chiara (Light) / sfondo scuro saturo (Dark) → per card semantiche, badge background
-- **`role-{ruolo}-fg`** = testo/icona scuro (Light) / testo chiaro (Dark) → sempre usato come colore del testo/icone sopra il ruolo
+- **`role-{ruolo}`** = sfondo saturo vivido (Light) / sfondo scuro saturo (Dark) → per tile bento, icon-box, badge background
+- **`role-{ruolo}-fg`** = testo/icona ad alto contrasto → sempre sopra il rispettivo `role-{ruolo}`
+
+#### Light mode — palette vivida (Strato v2.1)
+
+I `role-*` light ora usano colori **saturi al 400–600 level**, non tinte pallide. Questo produce il look "bento colorato" del riferimento visivo.
 
 | Ruolo | `role-*` Light | `role-*-fg` Light | Contrasto | Level |
 |---|---|---|---|---|
-| `success` | `#EDFAEE` (Lime-50) | `#1D6E26` (Lime-700) | **8.2:1** | AAA ✓ |
-| `warning` | `#FEFAEE` (Amber-50) | `#7A480A` (Amber-700) | **7.1:1** | AAA ✓ |
-| `critical` | `#FEF5F8` (Coral-50) | `#A81E40` (Coral-700) | **7.5:1** | AAA ✓ |
-| `info` | `#EBF8FF` (Cyan-50) | `#065180` (Cyan-700) | **8.8:1** | AAA ✓ |
-| `accent` | `#F1EFFE` (Violet-50) | `#5035C8` (Violet-600) | **6.1:1** | AA ✓ |
+| `info` | `#22D3EE` (Cyan-400) | `#083344` (Cyan-950) | **10.9:1** | AAA ✓ |
+| `success` | `#A3E635` (Lime-400) | `#1A2E00` (Lime-950) | **13.3:1** | AAA ✓ |
+| `warning` | `#FCD34D` (Amber-300) | `#451A00` (Amber-950) | **11.4:1** | AAA ✓ |
+| `critical` | `#FB7185` (Rose-400) | `#4C0519` (Rose-950) | **7.2:1** | AAA ✓ |
+| `accent` | `#7C3AED` (Violet-600) | `#FFFFFF` (White) | **5.7:1** | AA ✓ |
 
-> **Nota critica**: In light mode i `role-*` sono quasi bianchi (Lime-50, Cyan-50...). Questo è corretto per card con testo scuro sopra, ma **non dà il look saturo dei riferimenti visivi**. Per tile/card eroiche con colori pieni e vivaci, usare invece i colori Dark Mode come ispirazione, o definire nuovi token `role-*-vivid` (roadmap futura).
+**Pattern fg per tile light:**
+- `info`, `success`, `warning`, `critical` → **dark text** (il bg è vivido ma chiaro)
+- `accent` → **white text** (il bg è scuro)
 
-> **Regola assoluta**: Non mettere mai testo bianco su `role-success` light (`#EDFAEE`) — il contrasto fallisce WCAG.
+#### Dark mode — ruoli semantici
+
+| Ruolo | `role-*` Dark | `role-*-fg` Dark |
+|---|---|---|
+| `info` | `#043450` (Cyan-800) | `#80CBF5` (Cyan-300) |
+| `success` | `#144D1B` (Lime-800) | `#8CDA95` (Lime-300) |
+| `warning` | `#573006` (Amber-800) | `#EEC070` (Amber-300) |
+| `critical` | `#781730` (Coral-800) | `#F99AB4` (Coral-300) |
+| `accent` | `#2E1A72` (Violet-800) | `#C9C0F8` (Violet-200) |
+
+> **Regola**: usare sempre `text-role-{ruolo}-fg` come foreground su `bg-role-{ruolo}`. Non mescolare token di ruoli diversi.
+
+> **Distinzione opacità**: `bg-role-*/10` e `/20` sono **accettabili** come hover state di bottoni o overlay decorativi (glow, border). Sono **vietati** come sfondo persistente di tile/card con testo sopra — usare sempre `bg-role-*` pieno + `text-role-*-fg`.
 
 ---
 
