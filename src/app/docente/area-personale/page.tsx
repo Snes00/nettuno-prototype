@@ -164,7 +164,7 @@ export default function DocenteAreaPersonalePage() {
                     </div>
                     <div className="text-right space-y-1">
                        <p className="text-sm font-black text-foreground uppercase tracking-tighter">{ric.orario}</p>
-                       <button className="text-[9px] font-black uppercase tracking-[0.2em] text-role-critical-fg opacity-40 hover:opacity-100 transition-opacity">Annulla</button>
+                       <button className="text-[9px] font-black uppercase tracking-[0.2em] text-muted-foreground opacity-40 hover:opacity-100 transition-opacity">Annulla</button>
                     </div>
                  </div>
                ))}

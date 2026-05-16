@@ -188,7 +188,7 @@ export default function DocenteMessaggiPage() {
                 </div>
               </div>
               {!msg.letto && (
-                <div className="absolute top-8 right-8 h-2.5 w-2.5 rounded-full bg-role-critical" />
+                <div className="absolute top-8 right-8 h-2.5 w-2.5 rounded-full bg-primary" />
               )}
             </div>
           ))

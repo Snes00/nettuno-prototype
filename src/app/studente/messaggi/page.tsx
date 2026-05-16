@@ -164,7 +164,7 @@ export default function MessaggiPage() {
                   "h-16 w-16 rounded-full flex items-center justify-center shrink-0 transition-transform group-hover:rotate-3 shadow-none",
                   msg.tipo === "segreteria" ? "bg-role-warning text-role-warning-fg" :
                   msg.tipo === "docenti" ? "bg-role-info text-role-info-fg" :
-                  "bg-role-critical text-role-critical-fg"
+                  "bg-role-accent text-role-accent-fg"
                 )}>
                   {msg.tipo === "segreteria" ? <Building2 className="h-8 w-8" /> :
                    msg.tipo === "docenti" ? <User className="h-8 w-8" /> :
@@ -191,7 +191,7 @@ export default function MessaggiPage() {
                 </div>
               </div>
               {!msg.letto && (
-                <div className="absolute top-8 right-8 h-2.5 w-2.5 rounded-full bg-role-critical" />
+                <div className="absolute top-8 right-8 h-2.5 w-2.5 rounded-full bg-primary" />
               )}
             </div>
           ))
