@@ -64,20 +64,20 @@
   --popover: #FFFFFF;
   --popover-foreground: #14131A;
   
-  --primary: #4B4AC3;        /* Brand Blue-Violet */
+  --primary: #14131A;        /* Nero — colore principale UI */
   --primary-foreground: #FFFFFF;
   --secondary: #F6F5F9;      /* Surface */
   --secondary-foreground: #14131A;
   --muted: #F6F5F9;          /* Surface */
   --muted-foreground: #7E7B8A;/* Slate-500 */
-  --accent: #EBEBFA;         /* Brand tint light */
-  --accent-foreground: #2828A8;/* Brand deep */
+  --accent: #EFEFEF;         /* Hover neutro */
+  --accent-foreground: #14131A;
   --destructive: #F03C6C;    /* Coral-500 */
   --destructive-foreground: #FFFFFF;
 
   --border: #E4E2EC;         /* Slate-100 */
   --input: #E4E2EC;
-  --ring: #4B4AC3;
+  --ring: #14131A;
 
   /* Semantic Roles (Light — Strato v2.1 — palette brand precisa) */
   --role-accent: #4B4AC3;     /* Brand Blue-Violet   — 6.2:1  AA  */
@@ -93,12 +93,12 @@
 
   --sidebar: #F6F5F9;
   --sidebar-foreground: #14131A;
-  --sidebar-primary: #4B4AC3;
+  --sidebar-primary: #14131A;
   --sidebar-primary-foreground: #FFFFFF;
   --sidebar-accent: #E4E2EC;
   --sidebar-accent-foreground: #14131A;
   --sidebar-border: #E4E2EC;
-  --sidebar-ring: #4B4AC3;
+  --sidebar-ring: #14131A;
 }
 
 .dark {
@@ -110,20 +110,20 @@
   --popover: #1E1C2A;
   --popover-foreground: #E4E2EC;
   
-  --primary: #7E7EF5;        /* Brand Blue-Violet chiaro (Dark) */
-  --primary-foreground: #09091A;
+  --primary: #E4E2EC;        /* Bianco/luce — colore principale UI dark */
+  --primary-foreground: #0F0E14;
   --secondary: #16151E;      /* Dark Surface */
   --secondary-foreground: #E4E2EC;
   --muted: #16151E;
   --muted-foreground: #9E9BAA;/* Slate-400 */
-  --accent: #1A1A4A;         /* Brand deep dark */
-  --accent-foreground: #C0C0F8;/* Brand light */
+  --accent: #2A2838;         /* Hover neutro dark */
+  --accent-foreground: #E4E2EC;
   --destructive: #F56E90;    /* Coral-400 */
   --destructive-foreground: #0F0E14;
-  
+
   --border: #2E2C3A;         /* Slate-800 */
   --input: #2E2C3A;
-  --ring: #7E7EF5;
+  --ring: #E4E2EC;
 
   /* Semantic Roles (Dark — Strato v2.1) */
   --role-accent: #1A1A52;     /* Brand Blue deep */
@@ -139,12 +139,12 @@
 
   --sidebar: #16151E;
   --sidebar-foreground: #E4E2EC;
-  --sidebar-primary: #7E7EF5;
-  --sidebar-primary-foreground: #09091A;
+  --sidebar-primary: #E4E2EC;
+  --sidebar-primary-foreground: #0F0E14;
   --sidebar-accent: #2E2C3A;
   --sidebar-accent-foreground: #E4E2EC;
   --sidebar-border: #2E2C3A;
-  --sidebar-ring: #7E7EF5;
+  --sidebar-ring: #E4E2EC;
 }
 
 @layer base {
