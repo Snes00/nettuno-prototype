@@ -38,20 +38,20 @@ const STUDENTE_ALL_ACTIONS: QuickAction[] = [
 
 export default function DashboardPage() {
   return (
-    <div className="flex flex-col gap-10 animate-in fade-in duration-500 text-foreground pb-12 pt-4">
+    <div className="flex flex-col gap-6 animate-in fade-in duration-500 text-foreground pb-12 pt-4">
       <section className="px-1">
         <p className="text-muted-foreground text-base md:text-xl font-medium tracking-tight">
           Benvenuto, <span className="text-foreground font-black uppercase tracking-tight">Mario Rossi</span>. Ecco il tuo riepilogo di oggi.
         </p>
       </section>
 
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-start">
 
         {/* Colonna Sinistra: Comunicazioni + Lezioni di Oggi */}
         <div className="md:col-span-8 space-y-8">
 
           {/* Comunicazioni */}
-          <section className="bg-card rounded-[1.25rem] p-5 md:p-6 border border-border/40 md:border-none shadow-none space-y-6 transition-all hover:scale-[1.005]">
+          <section className="bg-card rounded-[2rem] p-5 md:p-6 border border-border/40 md:border-none shadow-none space-y-6 transition-all hover:scale-[1.005]">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-4">
                 <h2 className="text-xl font-black tracking-tighter uppercase">Comunicazioni</h2>
@@ -62,9 +62,9 @@ export default function DashboardPage() {
             </div>
             <div className="space-y-3">
               {AVVISI.map((avviso) => (
-                <div key={avviso.id} className="group flex items-center justify-between p-5 bg-muted/30 rounded-2xl hover:bg-muted/50 transition-all cursor-pointer border border-transparent hover:border-border/20">
+                <div key={avviso.id} className="group flex items-center justify-between p-5 bg-muted/30 rounded-[1.5rem] hover:bg-muted/50 transition-all cursor-pointer border border-transparent hover:border-border/20">
                   <div className="flex items-center gap-5">
-                    <div className={cn("h-12 w-12 rounded-xl flex items-center justify-center shrink-0", avviso.iconBg)}>
+                    <div className={cn("h-12 w-12 rounded-full flex items-center justify-center shrink-0", avviso.iconBg)}>
                       <avviso.icon className={cn("h-6 w-6", avviso.iconColor)} />
                     </div>
                     <div className="space-y-0.5">
@@ -89,7 +89,7 @@ export default function DashboardPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {LEZIONI_OGGI.map((lezione) => (
                 <div key={lezione.id} className={cn(
-                  "rounded-[1.25rem] p-8 flex flex-col justify-between gap-8 transition-all hover:scale-[1.02] border border-transparent",
+                  "rounded-[2rem] p-8 flex flex-col justify-between gap-8 transition-all hover:scale-[1.02] border border-transparent",
                   lezione.statusClass
                 )}>
                   <div className="flex justify-between items-start">
@@ -99,7 +99,7 @@ export default function DashboardPage() {
                       </Badge>
                       <h3 className="text-2xl font-black tracking-tighter uppercase leading-none">{lezione.materia}</h3>
                     </div>
-                    <div className="h-10 w-10 rounded-xl bg-background/20 flex items-center justify-center">
+                    <div className="h-10 w-10 rounded-full bg-background/20 flex items-center justify-center">
                       <BookOpen className="h-5 w-5" />
                     </div>
                   </div>
@@ -118,7 +118,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Colonna Destra: Azioni Rapide */}
-        <div className="md:col-span-4 bg-card rounded-[1.25rem] p-5 md:p-6 flex flex-col gap-6 border border-border/40 md:border-none shadow-none">
+        <div className="md:col-span-4 bg-card rounded-[2rem] p-5 md:p-6 flex flex-col gap-6 border border-border/40 md:border-none shadow-none">
           <span className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">Azioni Rapide</span>
           <div className="flex-1">
             <QuickActionsWidget

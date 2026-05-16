@@ -91,7 +91,7 @@ export function NotificationsDialog() {
     <Dialog>
       <DialogTrigger asChild>
         <button 
-          className="h-14 w-14 rounded-2xl text-muted-foreground hover:text-foreground bg-card border border-border/20 hover:border-border/40 relative transition-all flex items-center justify-center p-0 shadow-none group active:scale-95"
+          className="h-14 w-14 rounded-full text-muted-foreground hover:text-foreground bg-card border border-border/20 hover:border-border/40 relative transition-all flex items-center justify-center p-0 shadow-none group active:scale-95"
         >
           <Bell className="h-6 w-6 group-hover:rotate-12 transition-transform" />
           {unreadCount > 0 && (
@@ -101,11 +101,11 @@ export function NotificationsDialog() {
         </button>
       </DialogTrigger>
       
-      <DialogContent className="sm:max-w-[460px] rounded-[1.5rem] p-0 overflow-hidden border border-border/40 md:border-none bg-background shadow-none animate-in zoom-in-95 duration-200">
+      <DialogContent className="sm:max-w-[460px] rounded-[2rem] p-0 overflow-hidden border border-border/40 md:border-none bg-background shadow-none animate-in zoom-in-95 duration-200">
         <DialogHeader className="p-10 border-b border-border/20 bg-card">
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-4">
-              <div className="h-12 w-12 rounded-2xl bg-primary text-primary-foreground flex items-center justify-center shadow-lg shadow-primary/20">
+              <div className="h-12 w-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg shadow-primary/20">
                 <Bell className="h-6 w-6" />
               </div>
               <DialogTitle className="text-3xl font-black tracking-tighter uppercase text-foreground">Notifiche</DialogTitle>
@@ -128,14 +128,14 @@ export function NotificationsDialog() {
                 <div 
                   key={notif.id}
                   className={cn(
-                    "group relative flex gap-5 p-6 rounded-[1.5rem] transition-all border border-transparent cursor-pointer",
+                    "group relative flex gap-5 p-6 rounded-[2rem] transition-all border border-transparent cursor-pointer",
                     notif.read ? "bg-transparent opacity-60 hover:bg-muted/20" : "bg-muted/40 hover:bg-muted/60 hover:border-border/10"
                   )}
                   onClick={() => toggleRead(notif.id)}
                 >
                   {/* Icona */}
                   <div className={cn(
-                    "h-14 w-14 rounded-2xl flex items-center justify-center shrink-0 transition-transform group-hover:scale-110 shadow-sm",
+                    "h-14 w-14 rounded-full flex items-center justify-center shrink-0 transition-transform group-hover:scale-110 shadow-sm",
                     notif.color
                   )}>
                     <notif.icon className="h-7 w-7" />
@@ -158,7 +158,7 @@ export function NotificationsDialog() {
                   <Button 
                     variant="ghost" 
                     size="icon" 
-                    className="absolute top-4 right-4 h-8 w-8 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-role-critical-fg hover:bg-role-critical/20"
+                    className="absolute top-4 right-4 h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-role-critical-fg hover:bg-role-critical/20"
                     onClick={(e) => {
                       e.stopPropagation()
                       deleteNotification(notif.id)
@@ -188,7 +188,7 @@ export function NotificationsDialog() {
         <DialogFooter className="p-8 bg-muted/20 border-t border-border/20 flex flex-row items-center justify-between gap-4">
           <Button 
             variant="ghost" 
-            className="text-[10px] font-black uppercase tracking-[0.2em] gap-2 text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-xl h-12 px-5"
+            className="text-[10px] font-black uppercase tracking-[0.2em] gap-2 text-muted-foreground hover:text-primary hover:bg-primary/5 h-12 px-5"
             onClick={markAllAsRead}
             disabled={unreadCount === 0}
           >
@@ -197,7 +197,7 @@ export function NotificationsDialog() {
           
           <Button 
             variant="ghost" 
-            className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground hover:text-foreground rounded-xl h-12 px-5 hover:bg-muted/40"
+            className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground hover:text-foreground h-12 px-5 hover:bg-muted/40"
           >
             Vedi tutte
           </Button>

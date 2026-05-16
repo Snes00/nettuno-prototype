@@ -112,7 +112,7 @@ export default function DocenteMessaggiPage() {
           <Search className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground group-focus-within:text-foreground transition-colors" />
           <Input 
             placeholder="Cerca conversazione..." 
-            className="pl-14 h-16 bg-card border border-border/40 rounded-[1.25rem] focus-visible:ring-primary/10 shadow-none text-base font-medium"
+            className="pl-14 h-16 bg-card border border-border/40 rounded-[2rem] focus-visible:ring-primary/10 shadow-none text-base font-medium"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -133,7 +133,7 @@ export default function DocenteMessaggiPage() {
                 variant="outline"
                 onClick={() => setActiveTab(tab.id)}
                 className={cn(
-                  "rounded-2xl h-12 px-6 gap-2 border-none transition-all shrink-0 font-black uppercase tracking-widest text-[10px]",
+                  "rounded-full h-12 px-6 gap-2 border-none transition-all shrink-0 font-black uppercase tracking-widest text-[10px]",
                   isActive ? "bg-foreground text-background" : "bg-muted/40 text-foreground hover:bg-muted/60"
                 )}
               >
@@ -152,13 +152,13 @@ export default function DocenteMessaggiPage() {
               key={msg.id} 
               onClick={() => setSelectedMsg(msg)}
               className={cn(
-                "p-8 rounded-[1.5rem] cursor-pointer transition-all border border-border/40 md:border-none group relative overflow-hidden",
+                "p-8 rounded-[2rem] cursor-pointer transition-all border border-border/40 md:border-none group relative overflow-hidden",
                 msg.letto ? "bg-card/60 opacity-80 hover:bg-card" : "bg-card hover:scale-[1.01]"
               )}
             >
               <div className="flex gap-6 items-center">
                 <div className={cn(
-                  "h-16 w-16 rounded-2xl flex items-center justify-center shrink-0 transition-transform group-hover:rotate-3 shadow-none",
+                  "h-16 w-16 rounded-full flex items-center justify-center shrink-0 transition-transform group-hover:rotate-3 shadow-none",
                   msg.tipo === "studenti" ? "bg-role-info text-role-info-fg" :
                   msg.tipo === "colleghi" ? "bg-role-accent text-role-accent-fg" :
                   "bg-role-warning text-role-warning-fg"
@@ -201,13 +201,13 @@ export default function DocenteMessaggiPage() {
       </div>
 
       <Dialog open={!!selectedMsg} onOpenChange={() => setSelectedMsg(null)}>
-        <DialogContent className="max-w-2xl h-[90vh] p-0 overflow-hidden rounded-[1.5rem] border-none bg-background shadow-none flex flex-col focus-visible:ring-0">
+        <DialogContent className="max-w-2xl h-[90vh] p-0 overflow-hidden rounded-[2rem] border-none bg-background shadow-none flex flex-col focus-visible:ring-0">
           {selectedMsg && (
             <>
               <div className="p-5 md:p-6 border-b border-border/20 bg-card flex items-center justify-between shrink-0">
                 <div className="flex items-center gap-5">
                    <div className={cn(
-                     "h-14 w-14 rounded-2xl flex items-center justify-center",
+                     "h-14 w-14 rounded-full flex items-center justify-center",
                      selectedMsg.tipo === "studenti" ? "bg-role-info text-role-info-fg" : "bg-role-accent text-role-accent-fg"
                    )}>
                      <User className="h-7 w-7" />
@@ -217,7 +217,7 @@ export default function DocenteMessaggiPage() {
                      <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mt-1.5">{selectedMsg.ruolo}</p>
                    </div>
                 </div>
-                <Button variant="ghost" size="icon" className="rounded-xl h-12 w-12 hover:bg-muted"><MoreHorizontal className="h-6 w-6" /></Button>
+                <Button variant="ghost" size="icon" className=" h-12 w-12 hover:bg-muted"><MoreHorizontal className="h-6 w-6" /></Button>
               </div>
 
               <ScrollArea className="flex-1 px-8 py-10">
@@ -225,7 +225,7 @@ export default function DocenteMessaggiPage() {
                   {selectedMsg.conversazione.map((chat) => (
                     <div key={chat.id} className={cn("flex flex-col", chat.io ? "items-end" : "items-start")}>
                       <div className={cn(
-                        "p-6 rounded-[1.5rem] max-w-[85%] font-medium text-sm leading-relaxed shadow-none",
+                        "p-6 rounded-[2rem] max-w-[85%] font-medium text-sm leading-relaxed shadow-none",
                         chat.io ? "bg-foreground text-background rounded-tr-none" : "bg-card text-foreground rounded-tl-none border border-border/20"
                       )}>
                         {chat.testo}
@@ -252,16 +252,16 @@ export default function DocenteMessaggiPage() {
               </ScrollArea>
 
               <div className="p-5 md:p-6 bg-card border-t border-border/20 shrink-0">
-                <div className="flex items-center gap-4 bg-background rounded-2xl p-2.5 pl-5 border border-border/40 focus-within:ring-2 focus-within:ring-primary/10 transition-all">
-                  <Button variant="ghost" size="icon" className="rounded-xl text-muted-foreground shrink-0 hover:bg-muted"><Plus className="h-5 w-5" /></Button>
+                <div className="flex items-center gap-4 bg-background rounded-full p-2.5 pl-5 border border-border/40 focus-within:ring-2 focus-within:ring-primary/10 transition-all">
+                  <Button variant="ghost" size="icon" className=" text-muted-foreground shrink-0 hover:bg-muted"><Plus className="h-5 w-5" /></Button>
                   <textarea 
                     className="flex-1 bg-transparent rounded-xl py-2.5 text-sm resize-none focus:outline-none border-none min-h-[44px] max-h-[120px] font-medium"
                     placeholder="Scrivi una risposta..."
                     rows={1}
                   />
                   <div className="flex items-center gap-1.5 pr-2">
-                    <Button variant="ghost" size="icon" className="rounded-xl text-muted-foreground shrink-0 hover:bg-muted"><ImageIcon className="h-5 w-5" /></Button>
-                    <Button className="h-12 w-12 rounded-xl bg-foreground text-background shrink-0 shadow-none hover:opacity-90 active:scale-95 transition-all">
+                    <Button variant="ghost" size="icon" className=" text-muted-foreground shrink-0 hover:bg-muted"><ImageIcon className="h-5 w-5" /></Button>
+                    <Button className="h-12 w-12  bg-foreground text-background shrink-0 shadow-none hover:opacity-90 active:scale-95 transition-all">
                       <Send className="h-5 w-5" />
                     </Button>
                   </div>

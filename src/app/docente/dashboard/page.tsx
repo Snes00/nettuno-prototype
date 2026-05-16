@@ -34,7 +34,7 @@ const DOCENTE_ALL_ACTIONS: QuickAction[] = [
 
 export default function DocenteDashboardPage() {
   return (
-    <div className="flex flex-col gap-10 animate-in fade-in duration-500 pb-12 pt-4">
+    <div className="flex flex-col gap-6 animate-in fade-in duration-500 pb-12 pt-4">
       {/* Header Benvenuto */}
       <section className="px-1">
         <p className="text-muted-foreground text-base md:text-xl font-medium tracking-tight">
@@ -42,12 +42,12 @@ export default function DocenteDashboardPage() {
         </p>
       </section>
 
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-start">
         {/* Colonna Sinistra: Comunicazioni + Attività */}
-        <div className="md:col-span-8 space-y-12">
+        <div className="md:col-span-8 space-y-6">
           
           {/* Sezione Comunicazioni */}
-          <section className="bg-card rounded-[1.25rem] p-5 md:p-6 border border-border/40 md:border-none shadow-none space-y-8 transition-all hover:scale-[1.005]">
+          <section className="bg-card rounded-[2rem] p-5 md:p-6 border border-border/40 md:border-none shadow-none space-y-8 transition-all hover:scale-[1.005]">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-4">
                 <h2 className="text-xl font-black tracking-tighter uppercase">Comunicazioni</h2>
@@ -59,9 +59,9 @@ export default function DocenteDashboardPage() {
 
             <div className="space-y-4">
               {AVVISI.slice(0, 3).map((avviso) => (
-                <div key={avviso.id} className="group flex items-center justify-between p-6 bg-muted/30 rounded-2xl hover:bg-muted/50 transition-all cursor-pointer border border-transparent hover:border-border/20">
+                <div key={avviso.id} className="group flex items-center justify-between p-6 bg-muted/30 rounded-[1.5rem] hover:bg-muted/50 transition-all cursor-pointer border border-transparent hover:border-border/20">
                   <div className="flex items-center gap-5">
-                    <div className={cn("h-12 w-12 rounded-xl flex items-center justify-center shrink-0", avviso.iconBg)}>
+                    <div className={cn("h-12 w-12 rounded-full flex items-center justify-center shrink-0", avviso.iconBg)}>
                       <avviso.icon className={cn("h-6 w-6", avviso.iconColor)} />
                     </div>
                     <div className="space-y-0.5">
@@ -86,7 +86,7 @@ export default function DocenteDashboardPage() {
             <h2 className="text-xl font-black tracking-tighter uppercase px-2">Attività di oggi</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {/* Lezione In Corso */}
-              <div className="bg-role-success rounded-[1.25rem] p-8 space-y-8 relative group cursor-pointer border border-role-success-fg/10 transition-all hover:scale-[1.02]">
+              <div className="bg-role-success rounded-[2rem] p-8 space-y-8 relative group cursor-pointer border border-role-success-fg/10 transition-all hover:scale-[1.02]">
                 <div className="flex justify-between items-start">
                   <Badge className="bg-role-success-fg text-role-success border-none rounded-full px-3 h-6 font-black text-[9px] uppercase tracking-widest">
                     In Corso
@@ -101,13 +101,13 @@ export default function DocenteDashboardPage() {
                       <Clock className="h-4 w-4" /> 14:00 / 18:00
                    </div>
                 </div>
-                <div className="absolute bottom-8 right-8 h-10 w-10 rounded-xl bg-role-success-fg/10 flex items-center justify-center text-role-success-fg">
+                <div className="absolute bottom-8 right-8 h-10 w-10 rounded-full bg-role-success-fg/10 flex items-center justify-center text-role-success-fg">
                    <BookOpen className="h-5 w-5" />
                 </div>
               </div>
 
               {/* Lezione Terminata */}
-              <div className="bg-muted/50 rounded-[1.25rem] p-8 space-y-8 relative group cursor-pointer border border-border/20 transition-all hover:scale-[1.02]">
+              <div className="bg-muted/50 rounded-[2rem] p-8 space-y-8 relative group cursor-pointer border border-border/20 transition-all hover:scale-[1.02]">
                 <div className="flex justify-between items-start">
                   <Badge className="bg-muted-foreground/20 text-muted-foreground border-none rounded-full px-3 h-6 font-black text-[9px] uppercase tracking-widest">
                     Terminata
@@ -125,7 +125,7 @@ export default function DocenteDashboardPage() {
                       <MapPin className="h-4 w-4" /> Aula 15
                    </div>
                 </div>
-                <div className="absolute bottom-8 right-8 h-10 w-10 rounded-xl bg-muted flex items-center justify-center text-muted-foreground">
+                <div className="absolute bottom-8 right-8 h-10 w-10 rounded-full bg-muted flex items-center justify-center text-muted-foreground">
                    <BookOpen className="h-5 w-5" />
                 </div>
               </div>
@@ -135,7 +135,7 @@ export default function DocenteDashboardPage() {
 
         {/* Colonna Destra: Azioni Rapide */}
         <div className="md:col-span-4 sticky top-32">
-          <section className="bg-card rounded-[1.25rem] p-5 md:p-6 space-y-8 min-h-[400px] flex flex-col border border-border/40 md:border-none shadow-none transition-all hover:scale-[1.005]">
+          <section className="bg-card rounded-[2rem] p-5 md:p-6 space-y-8 min-h-[400px] flex flex-col border border-border/40 md:border-none shadow-none transition-all hover:scale-[1.005]">
             <h2 className="text-xl font-black tracking-tighter uppercase">Azioni Rapide</h2>
             <div className="flex-1">
               <QuickActionsWidget

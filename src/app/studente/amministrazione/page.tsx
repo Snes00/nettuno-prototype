@@ -58,7 +58,7 @@ export default function AmministrazionePage() {
   return (
     <div className="flex flex-col gap-6 pb-12 animate-in fade-in duration-500 pt-4">
       <Tabs defaultValue="carriera" className="w-full">
-        <TabsList className="flex w-full overflow-x-auto h-auto p-1.5 bg-muted/40 rounded-[1.5rem] mb-12 border-none no-scrollbar">
+        <TabsList className="flex w-full overflow-x-auto h-auto p-1.5 bg-muted/40 rounded-[2rem] mb-12 border-none no-scrollbar">
           <TabsTrigger value="carriera" className="flex-1 rounded-xl py-3 gap-2 font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
             <GraduationCap className="h-4 w-4" />
             <span className="hidden sm:inline">Carriera</span>
@@ -85,8 +85,8 @@ export default function AmministrazionePage() {
         <TabsContent value="carriera" className="space-y-8 outline-none focus-visible:ring-0">
           {/* Statistiche Rapide */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-role-info rounded-[1.5rem] p-8 flex flex-col items-start gap-4 transition-all hover:scale-[1.02]">
-                <div className="h-10 w-10 rounded-xl bg-role-info-fg/10 flex items-center justify-center">
+            <div className="bg-role-info rounded-[2rem] p-8 flex flex-col items-start gap-4 transition-all hover:scale-[1.02]">
+                <div className="h-10 w-10 rounded-full bg-role-info-fg/10 flex items-center justify-center">
                    <Calculator className="h-5 w-5 text-role-info-fg" />
                 </div>
                 <div className="space-y-0.5">
@@ -94,8 +94,8 @@ export default function AmministrazionePage() {
                    <p className="text-[10px] uppercase font-black text-role-info-fg/60 tracking-[0.2em]">Media Ponderata</p>
                 </div>
             </div>
-            <div className="bg-role-warning rounded-[1.5rem] p-8 flex flex-col items-start gap-4 transition-all hover:scale-[1.02]">
-                <div className="h-10 w-10 rounded-xl bg-role-warning-fg/10 flex items-center justify-center">
+            <div className="bg-role-warning rounded-[2rem] p-8 flex flex-col items-start gap-4 transition-all hover:scale-[1.02]">
+                <div className="h-10 w-10 rounded-full bg-role-warning-fg/10 flex items-center justify-center">
                    <GraduationCap className="h-5 w-5 text-role-warning-fg" />
                 </div>
                 <div className="space-y-0.5">
@@ -103,8 +103,8 @@ export default function AmministrazionePage() {
                    <p className="text-[10px] uppercase font-black text-role-warning-fg/60 tracking-[0.2em]">CFU Acquisiti</p>
                 </div>
             </div>
-            <div className="bg-role-success rounded-[1.5rem] p-8 flex flex-col items-start gap-4 transition-all hover:scale-[1.02]">
-                <div className="h-10 w-10 rounded-xl bg-role-success-fg/10 flex items-center justify-center">
+            <div className="bg-role-success rounded-[2rem] p-8 flex flex-col items-start gap-4 transition-all hover:scale-[1.02]">
+                <div className="h-10 w-10 rounded-full bg-role-success-fg/10 flex items-center justify-center">
                    <History className="h-5 w-5 text-role-success-fg" />
                 </div>
                 <div className="space-y-0.5">
@@ -120,7 +120,7 @@ export default function AmministrazionePage() {
               <span className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">Libretto Digitale</span>
               <Button variant="link" className="text-xs font-bold text-primary gap-1">Vedi Storico <ArrowRight className="h-3 w-3" /></Button>
             </div>
-            <div className="bg-card rounded-[1.5rem] overflow-hidden border border-border/40 md:border-none shadow-none">
+            <div className="bg-card rounded-[2rem] overflow-hidden border border-border/40 md:border-none shadow-none">
               <Table>
                 <TableHeader className="bg-muted/20">
                   <TableRow className="border-b border-border/40 hover:bg-transparent">
@@ -174,15 +174,15 @@ export default function AmministrazionePage() {
                 {gruppo.azioni.map((azione) => {
                   const Icon = azione.icon;
                   return (
-                    <div key={azione.label} className="bg-card rounded-[1.5rem] p-6 flex items-center gap-5 border border-border/40 md:border-none shadow-none transition-all hover:scale-[1.01] group cursor-pointer">
-                      <div className={`h-12 w-12 rounded-2xl flex items-center justify-center shrink-0 ${azione.color}`}>
+                    <div key={azione.label} className="bg-card rounded-[2rem] p-6 flex items-center gap-5 border border-border/40 md:border-none shadow-none transition-all hover:scale-[1.01] group cursor-pointer">
+                      <div className={`h-12 w-12 rounded-full flex items-center justify-center shrink-0 ${azione.color}`}>
                         <Icon className="h-6 w-6" />
                       </div>
                       <div className="flex-1">
                         <p className="font-black text-foreground uppercase tracking-tight text-sm leading-none mb-1">{azione.label}</p>
                         <p className="text-[10px] font-medium text-muted-foreground leading-tight">{azione.desc}</p>
                       </div>
-                      <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary transition-colors">
+                      <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary transition-colors">
                         <Plus className="h-5 w-5 text-primary group-hover:text-primary-foreground transition-colors" />
                       </div>
                     </div>
@@ -201,13 +201,13 @@ export default function AmministrazionePage() {
           <div className="grid grid-cols-1 gap-4">
             {tasse.map((tassa) => (
               <div key={tassa.id} className={cn(
-                "rounded-[1.5rem] p-6 flex flex-col md:flex-row md:items-center gap-6 transition-all border-none",
+                "rounded-[2rem] p-6 flex flex-col md:flex-row md:items-center gap-6 transition-all border-none",
                 tassa.stato === "success" ? "bg-role-success" : 
                 tassa.stato === "warning" ? "bg-role-critical" : 
                 "bg-muted/50"
               )}>
                 <div className={cn(
-                  "h-14 w-14 rounded-2xl flex items-center justify-center shrink-0",
+                  "h-14 w-14 rounded-full flex items-center justify-center shrink-0",
                   tassa.stato === "success" ? "bg-role-success-fg/10" : 
                   tassa.stato === "warning" ? "bg-role-critical-fg/10" : 
                   "bg-muted/20"
@@ -249,11 +249,11 @@ export default function AmministrazionePage() {
 
                 <div className="flex gap-2">
                   {tassa.stato === "success" ? (
-                    <Button variant="outline" className="rounded-xl gap-2 font-bold bg-background/40 border-none hover:bg-background/60 h-11 px-6 transition-all active:scale-95">
+                    <Button variant="outline" className=" gap-2 font-bold bg-background/40 border-none hover:bg-background/60 h-11 px-6 transition-all active:scale-95">
                       <Download className="h-4 w-4" /> Ricevuta
                     </Button>
                   ) : (
-                    <Button className="rounded-xl gap-2 font-black bg-foreground text-background shadow-none h-11 px-6 hover:opacity-90 active:scale-95 transition-all uppercase tracking-widest text-[10px]">
+                    <Button className=" gap-2 font-black bg-foreground text-background shadow-none h-11 px-6 hover:opacity-90 active:scale-95 transition-all uppercase tracking-widest text-[10px]">
                       Paga con <span className="bg-background/90 text-[#003366] px-1.5 py-0.5 rounded text-[9px] font-black italic">pagoPA</span>
                     </Button>
                   )}
@@ -262,7 +262,7 @@ export default function AmministrazionePage() {
             ))}
           </div>
           
-          <div className="bg-role-info rounded-[1.5rem] p-8 flex flex-col md:flex-row items-center gap-6 mt-8">
+          <div className="bg-role-info rounded-[2rem] p-8 flex flex-col md:flex-row items-center gap-6 mt-8">
             <div className="h-12 w-12 rounded-full bg-role-info-fg/10 flex items-center justify-center shrink-0">
                <AlertCircle className="h-6 w-6 text-role-info-fg" />
             </div>
@@ -276,7 +276,7 @@ export default function AmministrazionePage() {
 
         {/* --- PIANO DI STUDI --- */}
         <TabsContent value="piano" className="space-y-6 outline-none focus-visible:ring-0">
-          <div className="bg-card rounded-[1.5rem] overflow-hidden border border-border/40 md:border-none shadow-none transition-all">
+          <div className="bg-card rounded-[2rem] overflow-hidden border border-border/40 md:border-none shadow-none transition-all">
             <div className="bg-role-accent p-5 md:p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
               <div className="space-y-1">
                 <span className="text-[10px] font-black uppercase tracking-[0.2em] text-role-accent-fg/60">Anno Accademico 2025/2026</span>
@@ -295,18 +295,18 @@ export default function AmministrazionePage() {
                    <div className="h-full bg-role-accent-fg rounded-full w-full" />
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
-                  <div className="p-6 rounded-[1.25rem] bg-muted/20 flex items-center justify-between group cursor-pointer hover:bg-muted/40 transition-all border-none">
+                  <div className="p-6 rounded-[2rem] bg-muted/20 flex items-center justify-between group cursor-pointer hover:bg-muted/40 transition-all border-none">
                     <div className="flex items-center gap-4">
-                       <div className="h-10 w-10 rounded-xl bg-background flex items-center justify-center shadow-none">
+                       <div className="h-10 w-10 rounded-full bg-background flex items-center justify-center shadow-none">
                           <BookOpen className="h-5 w-5 text-muted-foreground group-hover:text-foreground transition-colors" />
                        </div>
                        <span className="text-sm font-black tracking-tight text-foreground">Vedi Materie Inserite</span>
                     </div>
                     <ChevronRight className="h-5 w-5 text-muted-foreground group-hover:text-foreground transition-all group-hover:translate-x-1" />
                   </div>
-                  <div className="p-6 rounded-[1.25rem] bg-muted/20 flex items-center justify-between group cursor-pointer hover:bg-muted/40 transition-all border-none">
+                  <div className="p-6 rounded-[2rem] bg-muted/20 flex items-center justify-between group cursor-pointer hover:bg-muted/40 transition-all border-none">
                     <div className="flex items-center gap-4">
-                       <div className="h-10 w-10 rounded-xl bg-background flex items-center justify-center shadow-none">
+                       <div className="h-10 w-10 rounded-full bg-background flex items-center justify-center shadow-none">
                           <FileText className="h-5 w-5 text-muted-foreground group-hover:text-foreground transition-colors" />
                        </div>
                        <span className="text-sm font-black tracking-tight text-foreground">Regolamento Didattico</span>
@@ -332,8 +332,8 @@ export default function AmministrazionePage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {certificati.map((cert, i) => (
-              <div key={i} className="bg-card rounded-[1.5rem] p-8 flex flex-col gap-6 transition-all hover:scale-[1.02] group border border-border/40 md:border-none shadow-none">
-                <div className="h-12 w-12 rounded-xl bg-muted flex items-center justify-center shrink-0 group-hover:bg-foreground group-hover:text-background transition-colors">
+              <div key={i} className="bg-card rounded-[2rem] p-8 flex flex-col gap-6 transition-all hover:scale-[1.02] group border border-border/40 md:border-none shadow-none">
+                <div className="h-12 w-12 rounded-full bg-muted flex items-center justify-center shrink-0 group-hover:bg-foreground group-hover:text-background transition-colors">
                   <FileText className="h-6 w-6 text-muted-foreground group-hover:text-background transition-colors" />
                 </div>
                 <div className="space-y-2 flex-1">
@@ -349,7 +349,7 @@ export default function AmministrazionePage() {
               </div>
             ))}
             
-            <div className="bg-muted/20 rounded-[1.5rem] border-2 border-dashed border-muted-foreground/20 flex flex-col items-center justify-center p-8 text-center gap-4 min-h-[240px]">
+            <div className="bg-muted/20 rounded-[2rem] border-2 border-dashed border-muted-foreground/20 flex flex-col items-center justify-center p-8 text-center gap-4 min-h-[240px]">
               <div className="h-14 w-14 rounded-full bg-background flex items-center justify-center shadow-none border border-border/40">
                 <History className="h-7 w-7 text-muted-foreground/60" />
               </div>
@@ -357,7 +357,7 @@ export default function AmministrazionePage() {
                 <p className="text-sm font-black uppercase tracking-widest text-foreground">Archivio Storico</p>
                 <p className="text-xs font-bold text-muted-foreground max-w-[180px]">Richieste e documenti degli anni passati.</p>
               </div>
-              <Button variant="outline" size="sm" className="rounded-xl mt-2 font-black text-[10px] uppercase tracking-widest border-border/60 hover:bg-background transition-all active:scale-95">Vedi Tutto</Button>
+              <Button variant="outline" size="sm" className=" mt-2 font-black text-[10px] uppercase tracking-widest border-border/60 hover:bg-background transition-all active:scale-95">Vedi Tutto</Button>
             </div>
           </div>
         </TabsContent>

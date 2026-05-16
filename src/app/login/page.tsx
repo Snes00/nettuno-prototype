@@ -35,10 +35,10 @@ function LoginForm() {
   }
 
   return (
-    <div className="w-full max-w-[420px] space-y-12 animate-in slide-in-from-bottom-10 duration-1000">
+    <div className="w-full max-w-[420px] space-y-6 animate-in slide-in-from-bottom-10 duration-1000">
       {/* Logo Section */}
       <div className="flex flex-col items-center gap-8">
-        <div className="h-28 w-28 rounded-[1.5rem] bg-primary flex items-center justify-center text-primary-foreground shadow-2xl shadow-primary/30 rotate-3 hover:rotate-0 transition-all duration-700 cursor-pointer group">
+        <div className="h-28 w-28 rounded-[2rem] bg-primary flex items-center justify-center text-primary-foreground shadow-2xl shadow-primary/30 rotate-3 hover:rotate-0 transition-all duration-700 cursor-pointer group">
           <span className="text-4xl font-black tracking-tighter group-hover:scale-110 transition-transform">ABAP</span>
         </div>
         <div className="text-center space-y-3">
@@ -57,10 +57,10 @@ function LoginForm() {
         <Button 
           type="button" 
           variant="outline" 
-          className="w-full h-20 rounded-[1.5rem] border border-border/40 bg-card hover:bg-muted/40 flex items-center justify-between px-8 transition-all group active:scale-[0.98]"
+          className="w-full h-20 rounded-[2rem] border border-border/40 bg-card hover:bg-muted/40 flex items-center justify-between px-8 transition-all group active:scale-[0.98]"
         >
           <div className="flex items-center gap-5">
-            <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+            <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
                <Fingerprint className="h-6 w-6" />
             </div>
             <span className="font-black text-[11px] uppercase tracking-widest text-foreground">Entra con SPID / CIE</span>
@@ -87,7 +87,7 @@ function LoginForm() {
               <Input 
                 id="username" 
                 placeholder="mario.rossi" 
-                className="h-16 pl-14 rounded-[1.25rem] bg-card border border-border/40 focus-visible:ring-primary/20 transition-all font-bold text-base"
+                className="h-16 pl-14 rounded-[2rem] bg-card border border-border/40 focus-visible:ring-primary/20 transition-all font-bold text-base"
               />
             </div>
           </div>
@@ -107,7 +107,7 @@ function LoginForm() {
                 id="password" 
                 type="password" 
                 placeholder="••••••••" 
-                className="h-16 pl-14 rounded-[1.25rem] bg-card border border-border/40 focus-visible:ring-primary/20 transition-all text-base"
+                className="h-16 pl-14 rounded-[2rem] bg-card border border-border/40 focus-visible:ring-primary/20 transition-all text-base"
               />
             </div>
           </div>
@@ -115,7 +115,7 @@ function LoginForm() {
 
         <Button 
           disabled={loading}
-          className="w-full h-20 rounded-[1.5rem] bg-primary text-primary-foreground hover:opacity-90 font-black text-xs uppercase tracking-[0.3em] shadow-2xl shadow-primary/20 transition-all active:scale-[0.98]"
+          className="w-full h-20 rounded-[2rem] bg-primary text-primary-foreground hover:opacity-90 font-black text-xs uppercase tracking-[0.3em] shadow-2xl shadow-primary/20 transition-all active:scale-[0.98]"
         >
           {loading ? "Verifica in corso..." : "Accedi al Portale"}
         </Button>

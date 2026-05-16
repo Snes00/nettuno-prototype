@@ -28,9 +28,9 @@ export default function AreaPersonalePage() {
   const [showQR, setShowQR] = React.useState(false);
 
   return (
-    <div className="flex flex-col gap-10 pb-16 animate-in fade-in duration-500 pt-6">
+    <div className="flex flex-col gap-6 pb-10 animate-in fade-in duration-500 pt-6">
       {/* Badge Studente Bento (Hero Card - Violet Primary) */}
-      <section className="relative w-full rounded-[1.5rem] bg-primary text-primary-foreground p-6 md:p-8 overflow-hidden cursor-pointer group transition-all hover:scale-[1.01] border border-primary-foreground/10 shadow-none">
+      <section className="relative w-full rounded-[2rem] bg-primary text-primary-foreground p-6 md:p-8 overflow-hidden cursor-pointer group transition-all hover:scale-[1.01] border border-primary-foreground/10 shadow-none">
           <div className="relative z-10 flex flex-col gap-8">
             <div className="flex justify-between items-start">
               <div className="flex gap-6 md:gap-8 items-center">
@@ -48,11 +48,11 @@ export default function AreaPersonalePage() {
 
               <Dialog open={showQR} onOpenChange={setShowQR}>
                 <DialogTrigger asChild>
-                  <button className="h-16 w-16 rounded-2xl bg-primary-foreground/10 hover:bg-primary-foreground/20 flex items-center justify-center transition-all active:scale-90">
+                  <button className="h-16 w-16 rounded-full bg-primary-foreground/10 hover:bg-primary-foreground/20 flex items-center justify-center transition-all active:scale-90">
                     <QrCode className="h-8 w-8 text-primary-foreground" />
                   </button>
                 </DialogTrigger>
-                <DialogContent className="max-w-md p-0 border-none bg-card shadow-none rounded-[1.5rem] overflow-hidden focus-visible:ring-0">
+                <DialogContent className="max-w-md p-0 border-none bg-card shadow-none rounded-[2rem] overflow-hidden focus-visible:ring-0">
                   <DialogHeader className="p-10 border-b border-border/20">
                     <DialogTitle className="text-3xl font-black tracking-tighter text-foreground uppercase leading-none">Badge Digitale</DialogTitle>
                   </DialogHeader>
@@ -67,10 +67,10 @@ export default function AreaPersonalePage() {
                        <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em]">Valido fino al 31/12/2027</p>
                     </div>
                     <div className="grid grid-cols-2 gap-4 w-full">
-                       <Button className="rounded-xl h-14 bg-primary text-primary-foreground hover:opacity-90 border-none font-black uppercase tracking-widest text-[10px] gap-2 active:scale-95 transition-all">
+                       <Button className=" h-14 bg-primary text-primary-foreground hover:opacity-90 border-none font-black uppercase tracking-widest text-[10px] gap-2 active:scale-95 transition-all">
                           <Download className="h-4 w-4" /> Wallet
                        </Button>
-                       <Button variant="outline" className="rounded-xl h-14 bg-muted/40 text-foreground hover:bg-muted border-none font-black uppercase tracking-widest text-[10px] gap-2 active:scale-95 transition-all">
+                       <Button variant="outline" className=" h-14 bg-muted/40 text-foreground hover:bg-muted border-none font-black uppercase tracking-widest text-[10px] gap-2 active:scale-95 transition-all">
                           <Share2 className="h-4 w-4" /> Condividi
                        </Button>
                     </div>
@@ -108,9 +108,9 @@ export default function AreaPersonalePage() {
       </section>
 
       {/* Pulsante Dati Personali */}
-      <button className="w-full bg-card rounded-[1.5rem] p-6 flex items-center justify-between border border-border/40 md:border-none shadow-none hover:bg-muted/30 transition-all group active:scale-[0.99]">
+      <button className="w-full bg-card rounded-[2rem] p-6 flex items-center justify-between border border-border/40 md:border-none shadow-none hover:bg-muted/30 transition-all group active:scale-[0.99]">
         <div className="flex items-center gap-5">
-          <div className="h-12 w-12 rounded-2xl bg-muted/30 flex items-center justify-center text-muted-foreground group-hover:text-primary group-hover:bg-primary/10 transition-colors">
+          <div className="h-12 w-12 rounded-full bg-muted/30 flex items-center justify-center text-muted-foreground group-hover:text-primary group-hover:bg-primary/10 transition-colors">
             <User className="h-6 w-6" />
           </div>
           <span className="font-black text-foreground uppercase tracking-tight">Dati Personali</span>
@@ -120,9 +120,9 @@ export default function AreaPersonalePage() {
 
       {/* Grid Dati Personali */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-card rounded-[1.25rem] p-8 space-y-8 border border-border/40 md:border-none shadow-none transition-all hover:scale-[1.02]">
+        <div className="bg-card rounded-[2rem] p-8 space-y-8 border border-border/40 md:border-none shadow-none transition-all hover:scale-[1.02]">
           <div className="flex items-center gap-4">
-             <div className="h-12 w-12 rounded-2xl bg-muted/30 flex items-center justify-center text-muted-foreground">
+             <div className="h-12 w-12 rounded-full bg-muted/30 flex items-center justify-center text-muted-foreground">
                 <Mail className="h-6 w-6" />
              </div>
              <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">Contatti Diretti</h3>
@@ -139,9 +139,9 @@ export default function AreaPersonalePage() {
           </div>
         </div>
 
-        <div className="bg-card rounded-[1.25rem] p-8 space-y-8 border border-border/40 md:border-none shadow-none transition-all hover:scale-[1.02]">
+        <div className="bg-card rounded-[2rem] p-8 space-y-8 border border-border/40 md:border-none shadow-none transition-all hover:scale-[1.02]">
           <div className="flex items-center gap-4">
-             <div className="h-12 w-12 rounded-2xl bg-muted/30 flex items-center justify-center text-muted-foreground">
+             <div className="h-12 w-12 rounded-full bg-muted/30 flex items-center justify-center text-muted-foreground">
                 <MapPin className="h-6 w-6" />
              </div>
              <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">Residenza</h3>
@@ -153,12 +153,12 @@ export default function AreaPersonalePage() {
           </div>
         </div>
 
-        <div className="bg-role-info rounded-[1.25rem] p-8 flex flex-col justify-between border border-role-info-fg/10 shadow-none group transition-all hover:scale-[1.02]">
+        <div className="bg-role-info rounded-[2rem] p-8 flex flex-col justify-between border border-role-info-fg/10 shadow-none group transition-all hover:scale-[1.02]">
            <div className="space-y-3">
               <span className="text-[10px] font-black uppercase tracking-[0.2em] text-role-info-fg/60">Status Fiscale</span>
               <h3 className="text-2xl font-black tracking-tight text-role-info-fg leading-none uppercase">Situazione Contabile in Regola</h3>
            </div>
-           <Button variant="ghost" className="w-full mt-8 rounded-xl bg-role-info-fg/10 text-role-info-fg hover:bg-role-info-fg/20 font-black uppercase tracking-widest text-[9px] border-none h-12 shadow-none transition-all active:scale-95">
+           <Button variant="ghost" className="w-full mt-8  bg-role-info-fg/10 text-role-info-fg hover:bg-role-info-fg/20 font-black uppercase tracking-widest text-[9px] border-none h-12 shadow-none transition-all active:scale-95">
               Dettagli Pagamenti
            </Button>
         </div>
@@ -168,18 +168,18 @@ export default function AreaPersonalePage() {
       <section className="space-y-6">
         <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground px-1">Sicurezza e Accesso</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <button className="w-full h-24 bg-card rounded-[1.5rem] flex items-center justify-between px-10 hover:bg-muted/40 transition-all border border-border/40 md:border-none group shadow-none">
+          <button className="w-full h-24 bg-card rounded-[2rem] flex items-center justify-between px-10 hover:bg-muted/40 transition-all border border-border/40 md:border-none group shadow-none">
              <div className="flex items-center gap-6">
-                <div className="h-12 w-12 rounded-xl bg-muted/30 flex items-center justify-center text-muted-foreground group-hover:text-primary transition-colors">
+                <div className="h-12 w-12 rounded-full bg-muted/30 flex items-center justify-center text-muted-foreground group-hover:text-primary transition-colors">
                   <ShieldCheck className="h-6 w-6" />
                 </div>
                 <span className="font-black text-foreground uppercase tracking-tight">Cambio Password</span>
              </div>
              <ChevronRight className="h-5 w-5 text-muted-foreground/30 group-hover:translate-x-2 transition-all" />
           </button>
-          <button className="w-full h-24 bg-card rounded-[1.5rem] flex items-center justify-between px-10 hover:bg-muted/40 transition-all border border-border/40 md:border-none group shadow-none">
+          <button className="w-full h-24 bg-card rounded-[2rem] flex items-center justify-between px-10 hover:bg-muted/40 transition-all border border-border/40 md:border-none group shadow-none">
              <div className="flex items-center gap-6">
-                <div className="h-12 w-12 rounded-xl bg-muted/30 flex items-center justify-center text-muted-foreground group-hover:text-primary transition-colors">
+                <div className="h-12 w-12 rounded-full bg-muted/30 flex items-center justify-center text-muted-foreground group-hover:text-primary transition-colors">
                   <CreditCard className="h-6 w-6" />
                 </div>
                 <span className="font-black text-foreground uppercase tracking-tight">Metodi di Pagamento</span>
@@ -191,7 +191,7 @@ export default function AreaPersonalePage() {
 
       {/* Logout Action */}
       <Button 
-        className="w-full h-20 rounded-[1.25rem] bg-role-critical/10 text-role-critical-fg hover:bg-role-critical-fg hover:text-role-critical border-none transition-all font-black text-base gap-5 shadow-none uppercase tracking-[0.2em] active:scale-[0.98]"
+        className="w-full h-20 rounded-[2rem] bg-role-critical/10 text-role-critical-fg hover:bg-role-critical-fg hover:text-role-critical border-none transition-all font-black text-base gap-5 shadow-none uppercase tracking-[0.2em] active:scale-[0.98]"
       >
         <LogOut className="h-7 w-7" />
         Esci dall&apos;account

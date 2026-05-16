@@ -13,7 +13,7 @@ export default function LandingPage() {
 
       {/* Logo & Header */}
       <div className="flex flex-col items-center mb-20 space-y-6 animate-in fade-in slide-in-from-bottom-10 duration-1000">
-        <div className="h-24 w-24 rounded-[1.5rem] bg-primary text-primary-foreground flex items-center justify-center shadow-2xl shadow-primary/30 mb-4 rotate-3 hover:rotate-0 transition-all duration-700 cursor-pointer">
+        <div className="h-24 w-24 rounded-[2rem] bg-primary text-primary-foreground flex items-center justify-center shadow-2xl shadow-primary/30 mb-4 rotate-3 hover:rotate-0 transition-all duration-700 cursor-pointer">
           <Sparkles className="h-12 w-12" />
         </div>
         <div className="text-center space-y-2">
@@ -27,13 +27,13 @@ export default function LandingPage() {
       </div>
 
       {/* Selection Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full max-w-5xl animate-in fade-in slide-in-from-bottom-16 delay-300 duration-1000 fill-mode-both">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl animate-in fade-in slide-in-from-bottom-16 delay-300 duration-1000 fill-mode-both">
         
         {/* Studente */}
         <Link href="/login?role=studente" className="group">
-          <div className="rounded-[1.5rem] p-10 h-[450px] bg-card hover:bg-muted/20 border border-border/40 md:border-none shadow-none cursor-pointer overflow-hidden relative transition-all hover:scale-[1.02] flex flex-col justify-between">
+          <div className="rounded-[2rem] p-10 h-[450px] bg-card hover:bg-muted/20 border border-border/40 md:border-none shadow-none cursor-pointer overflow-hidden relative transition-all hover:scale-[1.02] flex flex-col justify-between">
             <div className="z-10 relative">
-                <div className="h-16 w-16 rounded-2xl bg-role-info flex items-center justify-center mb-8 text-role-info-fg shadow-sm">
+                <div className="h-16 w-16 rounded-full bg-role-info flex items-center justify-center mb-8 text-role-info-fg shadow-sm">
                   <GraduationCap className="h-8 w-8" />
                 </div>
                 <h2 className="text-4xl font-black tracking-tighter text-foreground mb-4 uppercase">Area Studenti</h2>
@@ -49,9 +49,9 @@ export default function LandingPage() {
 
         {/* Docente */}
         <Link href="/login?role=docente" className="group">
-          <div className="rounded-[1.5rem] p-10 h-[450px] bg-card hover:bg-muted/20 border border-border/40 md:border-none shadow-none cursor-pointer overflow-hidden relative transition-all hover:scale-[1.02] flex flex-col justify-between">
+          <div className="rounded-[2rem] p-10 h-[450px] bg-card hover:bg-muted/20 border border-border/40 md:border-none shadow-none cursor-pointer overflow-hidden relative transition-all hover:scale-[1.02] flex flex-col justify-between">
             <div className="z-10 relative">
-                <div className="h-16 w-16 rounded-2xl bg-role-accent flex items-center justify-center mb-8 text-role-accent-fg shadow-sm">
+                <div className="h-16 w-16 rounded-full bg-role-accent flex items-center justify-center mb-8 text-role-accent-fg shadow-sm">
                   <UserCog className="h-8 w-8" />
                 </div>
                 <h2 className="text-4xl font-black tracking-tighter text-foreground mb-4 uppercase">Area Docenti</h2>
@@ -68,7 +68,7 @@ export default function LandingPage() {
 
       <div className="mt-16 animate-in fade-in slide-in-from-bottom-6 delay-700 fill-mode-both">
         <Link href="/design-system">
-          <Button variant="outline" className="h-14 rounded-2xl px-10 gap-4 font-black text-[11px] uppercase tracking-[0.2em] border-border/40 bg-card hover:bg-muted transition-all active:scale-95 shadow-none">
+          <Button variant="outline" className="h-14  px-10 gap-4 font-black text-[11px] uppercase tracking-[0.2em] border-border/40 bg-card hover:bg-muted transition-all active:scale-95 shadow-none">
             <Palette className="h-5 w-5 text-primary" /> Sistema  v2.0
           </Button>
         </Link>

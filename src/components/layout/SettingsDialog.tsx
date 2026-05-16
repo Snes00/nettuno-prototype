@@ -56,7 +56,7 @@ const SecurityView = ({ setView, is2FAActive, setIs2FAActive, devices }: Securit
       
       <div className="space-y-3">
         {/* 2FA */}
-        <div className="p-6 rounded-2xl bg-muted/30 flex items-center justify-between border border-transparent">
+        <div className="p-6 rounded-[1.5rem] bg-muted/30 flex items-center justify-between border border-transparent">
           <div className="flex flex-col">
             <span className="text-base font-black uppercase tracking-tight text-foreground leading-none">Autenticazione 2FA</span>
             <span className="text-[10px] font-black text-muted-foreground uppercase tracking-widest mt-1.5 opacity-60">Extra protezione</span>
@@ -65,7 +65,7 @@ const SecurityView = ({ setView, is2FAActive, setIs2FAActive, devices }: Securit
         </div>
 
         {/* Password */}
-        <Button variant="ghost" className="w-full justify-between h-20 rounded-2xl bg-muted/30 px-6 hover:bg-muted/50 border-none transition-all active:scale-[0.98]">
+        <Button variant="ghost" className="w-full justify-between h-20  bg-muted/30 px-6 hover:bg-muted/50 border-none transition-all active:scale-[0.98]">
           <div className="flex items-center gap-4 text-left">
             <KeyRound className="h-6 w-6 text-muted-foreground" />
             <div className="space-y-0.5">
@@ -77,7 +77,7 @@ const SecurityView = ({ setView, is2FAActive, setIs2FAActive, devices }: Securit
         </Button>
 
         {/* Dispositivi */}
-        <Button variant="ghost" className="w-full justify-between h-20 rounded-2xl bg-muted/30 px-6 hover:bg-muted/50 border-none transition-all active:scale-[0.98]" onClick={() => setView("devices")}>
+        <Button variant="ghost" className="w-full justify-between h-20  bg-muted/30 px-6 hover:bg-muted/50 border-none transition-all active:scale-[0.98]" onClick={() => setView("devices")}>
           <div className="flex items-center gap-4 text-left">
             <Smartphone className="h-6 w-6 text-muted-foreground" />
             <div className="space-y-0.5">
@@ -112,9 +112,9 @@ const DevicesView = ({ setView, devices, setDevices }: DevicesViewProps) => (
       <h3 className="text-2xl font-black tracking-tight uppercase leading-none">Dispositivi Connessi</h3>
       <div className="space-y-3">
         {devices.map(device => (
-          <div key={device.id} className="p-6 rounded-2xl bg-muted/30 flex items-center justify-between border border-transparent">
+          <div key={device.id} className="p-6 rounded-[1.5rem] bg-muted/30 flex items-center justify-between border border-transparent">
             <div className="flex items-center gap-5">
-              <div className={cn("h-12 w-12 rounded-xl flex items-center justify-center shadow-none", device.active ? "bg-role-success text-role-success-fg" : "bg-muted text-muted-foreground")}>
+              <div className={cn("h-12 w-12 rounded-full flex items-center justify-center shadow-none", device.active ? "bg-role-success text-role-success-fg" : "bg-muted text-muted-foreground")}>
                  <Smartphone className="h-6 w-6" />
               </div>
               <div className="text-left">
@@ -123,7 +123,7 @@ const DevicesView = ({ setView, devices, setDevices }: DevicesViewProps) => (
               </div>
             </div>
             {!device.active && (
-              <Button variant="ghost" size="sm" className="text-role-critical-fg hover:bg-role-critical/10 text-[9px] font-black uppercase tracking-widest px-4 h-10 rounded-xl transition-all" onClick={() => setDevices(devices.filter(d => d.id !== device.id))}>RIMUOVI</Button>
+              <Button variant="ghost" size="sm" className="text-role-critical-fg hover:bg-role-critical/10 text-[9px] font-black uppercase tracking-widest px-4 h-10  transition-all" onClick={() => setDevices(devices.filter(d => d.id !== device.id))}>RIMUOVI</Button>
             )}
           </div>
         ))}
@@ -156,17 +156,17 @@ export function SettingsDialog() {
     <Dialog onOpenChange={(open) => !open && setView("main")}>
       <DialogTrigger asChild>
         <button 
-          className="h-14 w-14 rounded-2xl text-muted-foreground hover:text-foreground bg-card border border-border/20 hover:border-border/40 transition-all flex items-center justify-center p-0 shadow-none active:scale-95 group"
+          className="h-14 w-14 rounded-full text-muted-foreground hover:text-foreground bg-card border border-border/20 hover:border-border/40 transition-all flex items-center justify-center p-0 shadow-none active:scale-95 group"
         >
           <Settings className="h-6 w-6 group-hover:rotate-45 transition-transform" />
           <span className="sr-only">Impostazioni</span>
         </button>
       </DialogTrigger>
       
-      <DialogContent className="sm:max-w-[500px] h-[90vh] sm:h-[85vh] flex flex-col rounded-[1.5rem] p-0 overflow-hidden border border-border/40 md:border-none bg-background shadow-none animate-in zoom-in-95 duration-200">
+      <DialogContent className="sm:max-w-[500px] h-[90vh] sm:h-[85vh] flex flex-col rounded-[2rem] p-0 overflow-hidden border border-border/40 md:border-none bg-background shadow-none animate-in zoom-in-95 duration-200">
         <DialogHeader className="p-10 border-b border-border/20 bg-card shrink-0">
           <div className="flex items-center gap-4 mb-2">
-            <div className="h-12 w-12 rounded-2xl bg-primary text-primary-foreground flex items-center justify-center shadow-lg shadow-primary/20">
+            <div className="h-12 w-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg shadow-primary/20">
               <Settings className="h-6 w-6" />
             </div>
             <DialogTitle className="text-3xl font-black tracking-tighter text-foreground uppercase">Impostazioni</DialogTitle>
@@ -184,9 +184,9 @@ export function SettingsDialog() {
                 <div className="space-y-5">
                   <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/60 px-1">Aspetto & Accessibilità</h4>
                   <div className="space-y-4">
-                    <div className="flex items-center justify-between p-6 rounded-[1.5rem] bg-muted/30 border border-transparent transition-all active:scale-[0.98]">
+                    <div className="flex items-center justify-between p-6 rounded-[2rem] bg-muted/30 border border-transparent transition-all active:scale-[0.98]">
                       <div className="flex items-center gap-5">
-                        <div className="h-12 w-12 rounded-xl bg-background flex items-center justify-center text-foreground shadow-none border border-border/10">
+                        <div className="h-12 w-12 rounded-full bg-background flex items-center justify-center text-foreground shadow-none border border-border/10">
                           {theme === "dark" ? <Moon className="h-6 w-6" /> : <Sun className="h-6 w-6" />}
                         </div>
                         <div className="flex flex-col">
@@ -210,7 +210,7 @@ export function SettingsDialog() {
                     <Button 
                       variant="outline" 
                       className={cn(
-                        "justify-center h-14 rounded-2xl text-[10px] font-black transition-all border-none shadow-none uppercase tracking-widest active:scale-95",
+                        "justify-center h-14 rounded-full text-[10px] font-black transition-all border-none shadow-none uppercase tracking-widest active:scale-95",
                         lang === "it" ? "bg-primary text-primary-foreground" : "bg-muted/40 text-foreground hover:bg-muted/60"
                       )}
                       onClick={() => setLang("it")}
@@ -220,7 +220,7 @@ export function SettingsDialog() {
                     <Button 
                       variant="outline" 
                       className={cn(
-                        "justify-center h-14 rounded-2xl text-[10px] font-black transition-all border-none shadow-none uppercase tracking-widest active:scale-95",
+                        "justify-center h-14 rounded-full text-[10px] font-black transition-all border-none shadow-none uppercase tracking-widest active:scale-95",
                         lang === "en" ? "bg-primary text-primary-foreground" : "bg-muted/40 text-foreground hover:bg-muted/60"
                       )}
                       onClick={() => setLang("en")}
@@ -261,7 +261,7 @@ export function SettingsDialog() {
                   <Button 
                     variant="ghost" 
                     onClick={() => setView("security")}
-                    className="w-full justify-between h-20 rounded-2xl bg-muted/30 hover:bg-muted/50 px-6 border-none text-foreground transition-all active:scale-[0.98]"
+                    className="w-full justify-between h-20 rounded-[1.5rem] bg-muted/30 hover:bg-muted/50 px-6 border-none text-foreground transition-all active:scale-[0.98]"
                   >
                     <div className="flex items-center gap-5 text-base font-black uppercase tracking-tight">
                       <ShieldCheck className="h-6 w-6 text-muted-foreground" /> Gestione Sicurezza
@@ -274,12 +274,12 @@ export function SettingsDialog() {
 
                 {/* Sezione Azioni Critiche */}
                 <div className="space-y-4">
-                  <Button variant="ghost" className="w-full justify-start h-16 rounded-2xl hover:bg-role-critical/10 text-role-critical-fg px-6 gap-5 transition-all border-none font-black uppercase tracking-widest text-[10px] active:scale-95">
+                  <Button variant="ghost" className="w-full justify-start h-16  hover:bg-role-critical/10 text-role-critical-fg px-6 gap-5 transition-all border-none font-black uppercase tracking-widest text-[10px] active:scale-95">
                     <LogOut className="h-6 w-6" />
                     Esci dall&apos;account
                   </Button>
                   
-                  <Button variant="ghost" className="w-full justify-start h-16 rounded-2xl hover:bg-muted/40 text-muted-foreground hover:text-foreground px-6 gap-5 transition-all border-none font-black uppercase tracking-widest text-[10px] active:scale-95">
+                  <Button variant="ghost" className="w-full justify-start h-16  hover:bg-muted/40 text-muted-foreground hover:text-foreground px-6 gap-5 transition-all border-none font-black uppercase tracking-widest text-[10px] active:scale-95">
                     <Bug className="h-6 w-6" />
                     Segnala un Bug
                   </Button>

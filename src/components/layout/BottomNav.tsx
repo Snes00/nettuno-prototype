@@ -56,12 +56,12 @@ export function BottomNav() {
       </nav>
 
       {/* Desktop Sidebar - Floating Rounded Box with Integrated Logo */}
-      <nav className="hidden fixed left-6 top-6 bottom-6 w-72 lg:w-80 bg-card border border-border/10 rounded-[1.5rem] md:flex flex-col z-[60] transition-all shadow-none overflow-hidden hover:border-border/20">
+      <nav className="hidden fixed left-6 top-6 bottom-6 w-72 lg:w-80 bg-card border border-border/10 rounded-[2rem] md:flex flex-col z-[60] transition-all shadow-none overflow-hidden hover:border-border/20">
         
         {/* Logo Section inside the rounded Sidebar Box */}
         <div className="p-10 pb-6">
           <Link href="/" className="flex items-center gap-4 group">
-            <div className="h-12 w-12 rounded-2xl bg-primary text-primary-foreground flex items-center justify-center transition-all group-hover:rotate-12 shadow-lg shadow-primary/20 shrink-0">
+            <div className="h-12 w-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center transition-all group-hover:rotate-12 shadow-lg shadow-primary/20 shrink-0">
                <Sparkles className="h-6 w-6" />
             </div>
             <div className="flex flex-col -space-y-1">
@@ -112,7 +112,7 @@ export function BottomNav() {
                 <Progress value={23} className="h-1.5 bg-muted/40 [&>div]:bg-primary rounded-full" />
              </div>
            ) : (
-             <div className="flex items-center gap-4 bg-muted/20 p-4 rounded-2xl">
+             <div className="flex items-center gap-4 bg-muted/20 p-4 rounded-[1.5rem]">
                 <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
                    <User className="h-5 w-5" />
                 </div>

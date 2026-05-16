@@ -40,8 +40,8 @@ export default function StudenteImpostazioniPage() {
   })
 
   return (
-    <div className="max-w-4xl mx-auto flex flex-col gap-10 pb-16 animate-in fade-in duration-500 pt-6">
-      <div className="bg-card rounded-[1.25rem] overflow-hidden border border-border/40 md:border-none shadow-none">
+    <div className="max-w-4xl mx-auto flex flex-col gap-6 pb-10 animate-in fade-in duration-500 pt-6">
+      <div className="bg-card rounded-[2rem] overflow-hidden border border-border/40 md:border-none shadow-none">
         <div className="p-6 md:p-8">
           {view === "main" && (
             <div className="grid gap-12">
@@ -49,9 +49,9 @@ export default function StudenteImpostazioniPage() {
               <div className="space-y-6">
                 <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/60 px-1">Aspetto & Accessibilità</h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="flex items-center justify-between p-6 rounded-2xl bg-muted/30 border-none transition-all active:scale-[0.98]">
+                  <div className="flex items-center justify-between p-6 rounded-[1.5rem] bg-muted/30 border-none transition-all active:scale-[0.98]">
                     <div className="flex items-center gap-4">
-                      <div className="h-12 w-12 rounded-xl bg-background flex items-center justify-center text-foreground shadow-none border border-border/20">
+                      <div className="h-12 w-12 rounded-full bg-background flex items-center justify-center text-foreground shadow-none border border-border/20">
                         {theme === "dark" ? <Moon className="h-6 w-6" /> : <Sun className="h-6 w-6" />}
                       </div>
                       <div className="flex flex-col">
@@ -75,7 +75,7 @@ export default function StudenteImpostazioniPage() {
                   <Button 
                     variant="outline" 
                     className={cn(
-                      "justify-center h-14 rounded-2xl text-[10px] font-black transition-all border-none shadow-none uppercase tracking-widest",
+                      "justify-center h-14 rounded-full text-[10px] font-black transition-all border-none shadow-none uppercase tracking-widest",
                       lang === "it" ? "bg-primary text-primary-foreground" : "bg-muted/40 text-foreground hover:bg-muted/60"
                     )}
                     onClick={() => setLang("it")}
@@ -85,7 +85,7 @@ export default function StudenteImpostazioniPage() {
                   <Button 
                     variant="outline" 
                     className={cn(
-                      "justify-center h-14 rounded-2xl text-[10px] font-black transition-all border-none shadow-none uppercase tracking-widest",
+                      "justify-center h-14 rounded-full text-[10px] font-black transition-all border-none shadow-none uppercase tracking-widest",
                       lang === "en" ? "bg-primary text-primary-foreground" : "bg-muted/40 text-foreground hover:bg-muted/60"
                     )}
                     onClick={() => setLang("en")}
@@ -125,7 +125,7 @@ export default function StudenteImpostazioniPage() {
                   <Button 
                     variant="ghost" 
                     onClick={() => setView("security")}
-                    className="w-full justify-between h-20 rounded-2xl bg-muted/30 hover:bg-muted/50 px-8 border-none text-foreground transition-all active:scale-[0.98]"
+                    className="w-full justify-between h-20 rounded-[1.5rem] bg-muted/30 hover:bg-muted/50 px-8 border-none text-foreground transition-all active:scale-[0.98]"
                   >
                     <div className="flex items-center gap-5 text-base font-black uppercase tracking-tight">
                       <ShieldCheck className="h-6 w-6 text-muted-foreground" /> Gestione Sicurezza
@@ -145,9 +145,9 @@ export default function StudenteImpostazioniPage() {
                 <div className="space-y-4">
                   <textarea
                     placeholder="Descrivi il problema riscontrato..."
-                    className="w-full min-h-[100px] rounded-2xl bg-muted/30 border-none p-5 font-medium text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary/20 text-foreground"
+                    className="w-full min-h-[100px] rounded-[1.5rem] bg-muted/30 border-none p-5 font-medium text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary/20 text-foreground"
                   />
-                  <Button className="rounded-xl h-12 px-8 bg-primary text-primary-foreground font-black uppercase tracking-widest text-[10px] shadow-none active:scale-95 transition-all">
+                  <Button className=" h-12 px-8 bg-primary text-primary-foreground font-black uppercase tracking-widest text-[10px] shadow-none active:scale-95 transition-all">
                     Invia Segnalazione
                   </Button>
                 </div>
@@ -157,7 +157,7 @@ export default function StudenteImpostazioniPage() {
 
               {/* Sezione Azioni Critiche */}
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button variant="ghost" className="h-16 rounded-2xl hover:bg-role-critical/30 text-role-critical-fg px-8 gap-4 transition-all border-none font-black uppercase tracking-widest text-[10px] active:scale-[0.98]">
+                <Button variant="ghost" className="h-16  hover:bg-role-critical/30 text-role-critical-fg px-8 gap-4 transition-all border-none font-black uppercase tracking-widest text-[10px] active:scale-[0.98]">
                   <LogOut className="h-6 w-6" />
                   Esci dall&apos;account
                 </Button>
@@ -180,7 +180,7 @@ export default function StudenteImpostazioniPage() {
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {/* 2FA */}
-                  <div className="p-6 rounded-2xl bg-muted/30 flex items-center justify-between border-none transition-all active:scale-[0.98]">
+                  <div className="p-6 rounded-[1.5rem] bg-muted/30 flex items-center justify-between border-none transition-all active:scale-[0.98]">
                     <div className="flex flex-col">
                       <span className="text-base font-black uppercase tracking-tight text-foreground">Autenticazione 2FA</span>
                       <span className="text-[10px] font-medium text-muted-foreground uppercase">Extra protezione</span>
@@ -189,7 +189,7 @@ export default function StudenteImpostazioniPage() {
                   </div>
 
                   {/* Password */}
-                  <Button variant="ghost" className="w-full justify-between h-20 rounded-2xl bg-muted/30 px-8 hover:bg-muted/50 border-none transition-all active:scale-[0.98]">
+                  <Button variant="ghost" className="w-full justify-between h-20  bg-muted/30 px-8 hover:bg-muted/50 border-none transition-all active:scale-[0.98]">
                     <div className="flex items-center gap-4">
                       <KeyRound className="h-6 w-6 opacity-60" />
                       <div className="text-left">
@@ -201,7 +201,7 @@ export default function StudenteImpostazioniPage() {
                   </Button>
 
                   {/* Dispositivi */}
-                  <Button variant="ghost" className="w-full justify-between h-20 rounded-2xl bg-muted/30 px-8 hover:bg-muted/50 border-none transition-all active:scale-[0.98]" onClick={() => setView("devices")}>
+                  <Button variant="ghost" className="w-full justify-between h-20  bg-muted/30 px-8 hover:bg-muted/50 border-none transition-all active:scale-[0.98]" onClick={() => setView("devices")}>
                     <div className="flex items-center gap-4">
                       <Smartphone className="h-6 w-6 opacity-60" />
                       <div className="text-left">
@@ -230,9 +230,9 @@ export default function StudenteImpostazioniPage() {
                 <h3 className="text-3xl font-black tracking-tight uppercase leading-none">Dispositivi Connessi</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {devices.map(device => (
-                    <div key={device.id} className="p-6 rounded-2xl bg-muted/30 flex items-center justify-between border-none transition-all hover:bg-muted/40">
+                    <div key={device.id} className="p-6 rounded-[1.5rem] bg-muted/30 flex items-center justify-between border-none transition-all hover:bg-muted/40">
                       <div className="flex items-center gap-4">
-                        <div className={cn("h-10 w-10 rounded-xl flex items-center justify-center", device.active ? "bg-role-success-fg/10" : "bg-muted")}>
+                        <div className={cn("h-10 w-10 rounded-full flex items-center justify-center", device.active ? "bg-role-success-fg/10" : "bg-muted")}>
                            <Smartphone className={cn("h-5 w-5", device.active ? "text-role-success-fg" : "text-muted-foreground")} />
                         </div>
                         <div>
@@ -241,7 +241,7 @@ export default function StudenteImpostazioniPage() {
                         </div>
                       </div>
                       {!device.active && (
-                        <Button variant="ghost" size="sm" className="text-role-critical-fg hover:bg-role-critical/20 text-[10px] font-black uppercase tracking-widest px-4 h-9 rounded-xl transition-all" onClick={() => setDevices(devices.filter(d => d.id !== device.id))}>RIMUOVI</Button>
+                        <Button variant="ghost" size="sm" className="text-role-critical-fg hover:bg-role-critical/20 text-[10px] font-black uppercase tracking-widest px-4 h-9  transition-all" onClick={() => setDevices(devices.filter(d => d.id !== device.id))}>RIMUOVI</Button>
                       )}
                     </div>
                   ))}

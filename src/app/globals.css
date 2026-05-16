@@ -50,7 +50,7 @@
   --color-role-accent: var(--role-accent);
   --color-role-accent-fg: var(--role-accent-fg);
   
-  --radius: 1.25rem;
+  --radius: 1.5rem;
   --radius-inner: 0.75rem;
   --spacing-bento: 1.25rem;
 }

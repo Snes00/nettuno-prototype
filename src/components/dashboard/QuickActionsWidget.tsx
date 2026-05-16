@@ -57,9 +57,9 @@ export function QuickActionsWidget({
   if (!isLoaded) {
     return (
       <div className="grid grid-cols-2 gap-3">
-        <div className="aspect-square rounded-2xl bg-muted/30 animate-pulse" />
-        <div className="aspect-square rounded-2xl bg-muted/30 animate-pulse" />
-        <div className="aspect-square rounded-2xl bg-muted/20 animate-pulse" />
+        <div className="aspect-square rounded-[1.5rem] bg-muted/30 animate-pulse" />
+        <div className="aspect-square rounded-[1.5rem] bg-muted/30 animate-pulse" />
+        <div className="aspect-square rounded-[1.5rem] bg-muted/20 animate-pulse" />
       </div>
     )
   }
@@ -77,11 +77,11 @@ export function QuickActionsWidget({
               href={action.href}
               className={cn(
                 "group aspect-square flex flex-col items-center justify-center p-4",
-                "rounded-2xl transition-all active:scale-[0.95] hover:scale-[1.04]",
+                "rounded-[1.5rem] transition-all active:scale-[0.95] hover:scale-[1.04]",
                 action.tileClass ?? "bg-muted/30"
               )}
             >
-              <div className="h-12 w-12 rounded-2xl bg-foreground/[0.08] flex items-center justify-center mb-3">
+              <div className="h-12 w-12 rounded-full bg-foreground/[0.08] flex items-center justify-center mb-3">
                 <Icon className={cn("h-6 w-6", action.iconClass ?? "text-foreground")} />
               </div>
               <span className={cn("text-[10px] font-black uppercase tracking-tighter text-center leading-tight", action.iconClass ?? "text-foreground")}>
@@ -94,9 +94,9 @@ export function QuickActionsWidget({
         {/* Slot Aggiungi — apre il dialog di personalizzazione */}
         <button
           onClick={() => setDialogOpen(true)}
-          className="aspect-square rounded-2xl border-2 border-dashed border-muted-foreground/20 hover:border-foreground/20 flex flex-col items-center justify-center gap-2 transition-all cursor-pointer active:scale-[0.95]"
+          className="aspect-square rounded-[1.5rem] border-2 border-dashed border-muted-foreground/20 hover:border-foreground/20 flex flex-col items-center justify-center gap-2 transition-all cursor-pointer active:scale-[0.95]"
         >
-          <div className="h-8 w-8 rounded-xl bg-muted/30 flex items-center justify-center">
+          <div className="h-8 w-8 rounded-full bg-muted/30 flex items-center justify-center">
             <Plus className="h-5 w-5 text-muted-foreground/60" />
           </div>
           <span className="text-[9px] font-black uppercase tracking-widest text-muted-foreground/60">
@@ -107,7 +107,7 @@ export function QuickActionsWidget({
 
       {/* Dialog personalizzazione — aperto da Aggiungi E dal floating button */}
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent className="max-w-sm rounded-[1.25rem] border-none bg-card shadow-none">
+        <DialogContent className="max-w-sm rounded-[2rem] border-none bg-card shadow-none">
           <DialogHeader className="p-8 pb-2">
             <DialogTitle className="text-2xl font-black tracking-tighter uppercase">
               Personalizza
@@ -126,7 +126,7 @@ export function QuickActionsWidget({
                   onClick={() => toggle(action.id)}
                   className={cn(
                     "aspect-square flex flex-col items-center justify-center p-4",
-                    "rounded-2xl border-2 transition-all active:scale-[0.95]",
+                    "rounded-[1.5rem] border-2 transition-all active:scale-[0.95]",
                     isActive
                       ? cn("border-foreground", action.tileClass ?? "bg-muted/30")
                       : "border-transparent bg-muted/20 opacity-40 hover:opacity-70"
@@ -143,7 +143,7 @@ export function QuickActionsWidget({
           <DialogFooter className="p-8 pt-6">
             <Button
               onClick={() => setDialogOpen(false)}
-              className="w-full rounded-xl h-14 bg-primary text-primary-foreground font-black uppercase tracking-widest text-xs shadow-none active:scale-95 transition-all"
+              className="w-full h-14 bg-primary text-primary-foreground font-black uppercase tracking-widest text-xs shadow-none active:scale-95 transition-all"
             >
               Salva
             </Button>

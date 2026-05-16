@@ -133,7 +133,7 @@ export default function DesignSystemPage() {
               </Button>
             </Link>
             <div className="flex items-center gap-4">
-               <div className="h-12 w-12 rounded-2xl bg-primary text-primary-foreground flex items-center justify-center shadow-lg shadow-primary/20">
+               <div className="h-12 w-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg shadow-primary/20">
                   <Layers className="h-6 w-6" />
                </div>
                <div>
@@ -163,7 +163,7 @@ export default function DesignSystemPage() {
                 </Button>
              </div>
              <Separator orientation="vertical" className="h-8 bg-border/10 mx-2" />
-             <Button className="rounded-xl h-11 gap-2 font-black text-[10px] uppercase bg-primary text-primary-foreground shadow-lg shadow-primary/20" onClick={resetTo}>
+             <Button className=" h-11 gap-2 font-black text-[10px] uppercase bg-primary text-primary-foreground shadow-lg shadow-primary/20" onClick={resetTo}>
                <RefreshCw className="h-4 w-4" /> Reset Default
              </Button>
           </div>
@@ -253,9 +253,9 @@ export default function DesignSystemPage() {
 
         {/* Main Content Area */}
         <main className="lg:col-span-9 h-[calc(100vh-6rem)] overflow-y-auto no-scrollbar bg-background">
-          <div className="p-6 md:p-8 space-y-12 max-w-5xl mx-auto">
+          <div className="p-6 md:p-8 space-y-6 max-w-5xl mx-auto">
             <Tabs defaultValue="components" className="w-full">
-              <TabsList className="bg-card h-16 rounded-[1.5rem] p-1.5 gap-1 border border-border/10 mb-16 shadow-xl">
+              <TabsList className="bg-card h-16 rounded-[2rem] p-1.5 gap-1 border border-border/10 mb-16 shadow-xl">
                 <TabsTrigger value="components" className="rounded-xl font-black text-[10px] uppercase tracking-widest gap-2 flex-1 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all">
                   <Box className="h-4 w-4" /> UI Elements
                 </TabsTrigger>
@@ -281,7 +281,7 @@ export default function DesignSystemPage() {
                     </div>
                     <div className="flex flex-wrap items-end gap-8">
                       <div className="space-y-4">
-                        <Button className="h-16 px-12 rounded-[1.5rem] font-black uppercase tracking-widest text-xs shadow-2xl shadow-primary/20 transition-all active:scale-95"
+                        <Button className="h-16 px-12 rounded-[2rem] font-black uppercase tracking-widest text-xs shadow-2xl shadow-primary/20 transition-all active:scale-95"
                           style={{ backgroundColor: 'var(--preview-primary)', color: theme === "dark" ? "#0F0E14" : "#FFFFFF" }}>
                           Primary
                         </Button>
@@ -289,7 +289,7 @@ export default function DesignSystemPage() {
                       </div>
 
                       <div className="space-y-4">
-                        <Button className="h-16 px-12 rounded-[1.5rem] font-black uppercase tracking-widest text-xs transition-all active:scale-95"
+                        <Button className="h-16 px-12 rounded-[2rem] font-black uppercase tracking-widest text-xs transition-all active:scale-95"
                           style={{ backgroundColor: 'var(--preview-destructive)', color: theme === "dark" ? "#0F0E14" : "#FFFFFF" }}>
                           Critical
                         </Button>
@@ -297,7 +297,7 @@ export default function DesignSystemPage() {
                       </div>
 
                       <div className="space-y-4">
-                        <Button variant="outline" className="h-16 px-12 rounded-[1.5rem] font-black uppercase tracking-widest text-xs border-none bg-muted/40 transition-all active:scale-95"
+                        <Button variant="outline" className="h-16 px-12 rounded-[2rem] font-black uppercase tracking-widest text-xs border-none bg-muted/40 transition-all active:scale-95"
                           style={{ color: 'var(--preview-fg)' }}>
                           Ghost
                         </Button>
@@ -307,16 +307,16 @@ export default function DesignSystemPage() {
                   </section>
 
                   {/* Bento Grid Section */}
-                  <section className="space-y-12">
+                  <section className="space-y-6">
                     <div className="space-y-2">
                       <p className="text-[11px] font-black uppercase tracking-[0.4em] opacity-40">Molecules / Bento</p>
                       <h3 className="text-3xl font-black tracking-tighter uppercase">Semantic States</h3>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                       {['info', 'success', 'warning', 'accent'].map(role => (
-                        <div key={role} className="p-8 rounded-[1.25rem] space-y-10 transition-all hover:scale-[1.05] cursor-pointer shadow-lg"
+                        <div key={role} className="p-8 rounded-[2rem] space-y-10 transition-all hover:scale-[1.05] cursor-pointer shadow-lg"
                           style={{ backgroundColor: `var(--preview-${role})`, color: `var(--preview-${role}-fg)` }}>
-                          <div className="h-12 w-12 rounded-2xl flex items-center justify-center bg-current/10">
+                          <div className="h-12 w-12 rounded-full flex items-center justify-center bg-current/10">
                              {role === 'info' && <Info className="h-6 w-6" />}
                              {role === 'success' && <CheckCheck className="h-6 w-6" />}
                              {role === 'warning' && <Clock className="h-6 w-6" />}
@@ -329,7 +329,7 @@ export default function DesignSystemPage() {
                   </section>
 
                   {/* Card Surface Preview */}
-                  <section className="space-y-12">
+                  <section className="space-y-6">
                      <div className="space-y-2">
                         <p className="text-[11px] font-black uppercase tracking-[0.4em] opacity-40">Surface / Containers</p>
                         <h3 className="text-3xl font-black tracking-tighter uppercase">Living Surface</h3>
@@ -399,7 +399,7 @@ export default function DesignSystemPage() {
                     </div>
                     
                     <div className="relative group">
-                       <pre className="bg-muted/40 p-12 rounded-[1.5rem] text-sm font-mono overflow-x-auto border border-border/5 leading-relaxed">
+                       <pre className="bg-muted/40 p-12 rounded-[2rem] text-sm font-mono overflow-x-auto border border-border/5 leading-relaxed">
 {`:root {
   /*  v2.0 Live Export */
   --background: ${tokens.background};

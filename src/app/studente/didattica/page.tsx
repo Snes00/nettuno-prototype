@@ -73,9 +73,9 @@ export default function DidatticaPage() {
   };
 
   return (
-    <div className="flex flex-col gap-6 pb-16 animate-in fade-in duration-500 pt-4">
+    <div className="flex flex-col gap-6 pb-10 animate-in fade-in duration-500 pt-4">
       <Tabs defaultValue="corsi" className="w-full">
-        <TabsList className="flex w-full overflow-x-auto h-auto p-1.5 bg-muted/40 rounded-[1.5rem] mb-12 border-none no-scrollbar">
+        <TabsList className="flex w-full overflow-x-auto h-auto p-1.5 bg-muted/40 rounded-[2rem] mb-12 border-none no-scrollbar">
           <TabsTrigger value="corsi" className="flex-1 rounded-xl py-3 font-black text-[10px] uppercase tracking-widest transition-all active:scale-95">
             Corsi
           </TabsTrigger>
@@ -94,9 +94,9 @@ export default function DidatticaPage() {
         <TabsContent value="corsi" className="mt-0 focus-visible:outline-none space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {CORSI.map((corso) => (
-              <div key={corso.id} className="bg-card rounded-[1.25rem] p-8 space-y-8 border border-border/40 md:border-none shadow-none transition-all hover:scale-[1.01]">
+              <div key={corso.id} className="bg-card rounded-[2rem] p-8 space-y-8 border border-border/40 md:border-none shadow-none transition-all hover:scale-[1.01]">
                 <div className="space-y-1">
-                  <div className="h-12 w-12 rounded-xl flex items-center justify-center shrink-0 mb-4" style={{ background: corso.presenze < corso.soglia ? "var(--role-critical)" : "var(--role-success)" }}>
+                  <div className="h-12 w-12 rounded-full flex items-center justify-center shrink-0 mb-4" style={{ background: corso.presenze < corso.soglia ? "var(--role-critical)" : "var(--role-success)" }}>
                     <BookOpen className="h-6 w-6" style={{ color: corso.presenze < corso.soglia ? "var(--role-critical-fg)" : "var(--role-success-fg)" }} />
                   </div>
                   <h3 className="text-xl font-black tracking-tight uppercase leading-tight text-foreground">{corso.titolo}</h3>
@@ -132,14 +132,14 @@ export default function DidatticaPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
             {/* Griglia Settimanale */}
-            <div className="lg:col-span-7 bg-card rounded-[1.25rem] p-5 md:p-6 space-y-8 border border-border/40 md:border-none shadow-none">
+            <div className="lg:col-span-7 bg-card rounded-[2rem] p-5 md:p-6 space-y-8 border border-border/40 md:border-none shadow-none">
               <div className="flex items-center justify-between">
                 <h2 className="text-2xl font-black tracking-tight text-foreground uppercase">Settimana Corrente</h2>
                 <div className="flex gap-2">
-                  <Button variant="outline" size="icon" className="rounded-xl h-10 w-10 bg-muted/30 border-none hover:bg-muted/50">
+                  <Button variant="outline" size="icon" className=" h-10 w-10 bg-muted/30 border-none hover:bg-muted/50">
                     <ChevronLeft className="h-4 w-4" />
                   </Button>
-                  <Button variant="outline" size="icon" className="rounded-xl h-10 w-10 bg-muted/30 border-none hover:bg-muted/50">
+                  <Button variant="outline" size="icon" className=" h-10 w-10 bg-muted/30 border-none hover:bg-muted/50">
                     <ChevronRightIcon className="h-4 w-4" />
                   </Button>
                 </div>
@@ -166,9 +166,9 @@ export default function DidatticaPage() {
 
             {/* I Tuoi Impegni Oggi */}
             <div className="lg:col-span-5 space-y-6">
-              <div className="bg-card rounded-[1.25rem] p-8 space-y-6 border border-border/40 md:border-none shadow-none">
+              <div className="bg-card rounded-[2rem] p-8 space-y-6 border border-border/40 md:border-none shadow-none">
                 <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">I Tuoi Impegni Oggi</h3>
-                <div className="bg-role-success rounded-2xl p-6 space-y-4">
+                <div className="bg-role-success rounded-[1.5rem] p-6 space-y-4">
                   <div className="space-y-1">
                     <p className="text-xl font-black uppercase text-role-success-fg tracking-tight leading-none">Pittura I</p>
                   </div>
@@ -187,18 +187,18 @@ export default function DidatticaPage() {
               </div>
 
               <div className="grid grid-cols-1 gap-4">
-                <button className="bg-card rounded-2xl p-6 flex items-center justify-between border border-border/40 md:border-none shadow-none hover:bg-muted/30 transition-all group">
+                <button className="bg-card rounded-[1.5rem] p-6 flex items-center justify-between border border-border/40 md:border-none shadow-none hover:bg-muted/30 transition-all group">
                   <div className="flex items-center gap-4">
-                    <div className="h-10 w-10 rounded-xl bg-muted/30 flex items-center justify-center">
+                    <div className="h-10 w-10 rounded-full bg-muted/30 flex items-center justify-center">
                       <Download className="h-5 w-5 text-muted-foreground" />
                     </div>
                     <p className="text-sm font-black uppercase tracking-tight text-foreground">Calendario Didattico PDF</p>
                   </div>
                   <Download className="h-4 w-4 text-muted-foreground/40 group-hover:text-primary transition-colors" />
                 </button>
-                <button className="bg-card rounded-2xl p-6 flex items-center justify-between border border-border/40 md:border-none shadow-none hover:bg-muted/30 transition-all group">
+                <button className="bg-card rounded-[1.5rem] p-6 flex items-center justify-between border border-border/40 md:border-none shadow-none hover:bg-muted/30 transition-all group">
                   <div className="flex items-center gap-4">
-                    <div className="h-10 w-10 rounded-xl bg-muted/30 flex items-center justify-center">
+                    <div className="h-10 w-10 rounded-full bg-muted/30 flex items-center justify-center">
                       <Download className="h-5 w-5 text-muted-foreground" />
                     </div>
                     <p className="text-sm font-black uppercase tracking-tight text-foreground">Scarica Report Annuale</p>
@@ -216,7 +216,7 @@ export default function DidatticaPage() {
           {/* Appelli Aperti */}
           <section className="space-y-4">
             <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground px-1">Appelli Aperti</h2>
-            <div className="bg-card rounded-[1.25rem] overflow-hidden border border-border/40 md:border-none shadow-none">
+            <div className="bg-card rounded-[2rem] overflow-hidden border border-border/40 md:border-none shadow-none">
               <div className="divide-y divide-border/20">
                 {APPELLI_APERTI.map((appello) => {
                   const isPrenotato = prenotazioni[appello.id];
@@ -235,7 +235,7 @@ export default function DidatticaPage() {
                                 <Plus className="h-5 w-5 text-primary group-hover:text-primary-foreground" />
                               </button>
                             </DialogTrigger>
-                            <DialogContent className="max-w-md rounded-[1.25rem] border-none bg-card shadow-none">
+                            <DialogContent className="max-w-md rounded-[2rem] border-none bg-card shadow-none">
                               <DialogHeader className="p-8 pb-0">
                                 <DialogTitle className="text-2xl font-black tracking-tighter uppercase">Conferma Prenotazione</DialogTitle>
                               </DialogHeader>
@@ -250,8 +250,8 @@ export default function DidatticaPage() {
                                 </div>
                               </div>
                               <DialogFooter className="p-8 pt-0 flex gap-3">
-                                <Button variant="outline" onClick={() => setDialogAperto(null)} className="flex-1 rounded-xl h-12 border-border/40 font-black uppercase tracking-widest text-[10px]">Annulla</Button>
-                                <Button onClick={() => togglePrenotazione(appello.id)} className="flex-1 rounded-xl h-12 bg-primary text-primary-foreground font-black uppercase tracking-widest text-[10px] shadow-none">Prenotati</Button>
+                                <Button variant="outline" onClick={() => setDialogAperto(null)} className="flex-1  h-12 border-border/40 font-black uppercase tracking-widest text-[10px]">Annulla</Button>
+                                <Button onClick={() => togglePrenotazione(appello.id)} className="flex-1  h-12 bg-primary text-primary-foreground font-black uppercase tracking-widest text-[10px] shadow-none">Prenotati</Button>
                               </DialogFooter>
                             </DialogContent>
                           </Dialog>
@@ -265,11 +265,11 @@ export default function DidatticaPage() {
                       {isPrenotato && (
                         <Dialog open={dialogRinuncia === appello.id} onOpenChange={(o) => setDialogRinuncia(o ? appello.id : null)}>
                           <DialogTrigger asChild>
-                            <button className="h-9 w-9 rounded-xl bg-muted/30 hover:bg-role-critical/20 flex items-center justify-center transition-all shrink-0 active:scale-90">
+                            <button className="h-9 w-9 rounded-full bg-muted/30 hover:bg-role-critical/20 flex items-center justify-center transition-all shrink-0 active:scale-90">
                               <Pencil className="h-4 w-4 text-muted-foreground" />
                             </button>
                           </DialogTrigger>
-                          <DialogContent className="max-w-md rounded-[1.25rem] border-none bg-card shadow-none">
+                          <DialogContent className="max-w-md rounded-[2rem] border-none bg-card shadow-none">
                             <DialogHeader className="p-8 pb-0">
                               <DialogTitle className="text-2xl font-black tracking-tighter uppercase">Rinuncia Appello</DialogTitle>
                             </DialogHeader>
@@ -278,8 +278,8 @@ export default function DidatticaPage() {
                               <p className="text-xl font-black text-foreground uppercase tracking-tight">{appello.materia}</p>
                             </div>
                             <DialogFooter className="p-8 pt-0 flex gap-3">
-                              <Button variant="outline" onClick={() => setDialogRinuncia(null)} className="flex-1 rounded-xl h-12 border-border/40 font-black uppercase tracking-widest text-[10px]">Mantieni</Button>
-                              <Button onClick={() => rinuncia(appello.id)} className="flex-1 rounded-xl h-12 bg-role-critical-fg text-role-critical font-black uppercase tracking-widest text-[10px] shadow-none">Rinuncia</Button>
+                              <Button variant="outline" onClick={() => setDialogRinuncia(null)} className="flex-1  h-12 border-border/40 font-black uppercase tracking-widest text-[10px]">Mantieni</Button>
+                              <Button onClick={() => rinuncia(appello.id)} className="flex-1  h-12 bg-role-critical-fg text-role-critical font-black uppercase tracking-widest text-[10px] shadow-none">Rinuncia</Button>
                             </DialogFooter>
                           </DialogContent>
                         </Dialog>
@@ -294,7 +294,7 @@ export default function DidatticaPage() {
           {/* Esiti */}
           <section className="space-y-4">
             <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground px-1">Esiti</h2>
-            <div className="bg-card rounded-[1.25rem] overflow-hidden border border-border/40 md:border-none shadow-none">
+            <div className="bg-card rounded-[2rem] overflow-hidden border border-border/40 md:border-none shadow-none">
               <div className="divide-y divide-border/20">
                 {ESITI.map((esito) => (
                   <div key={esito.id} className="flex items-center justify-between p-6 hover:bg-muted/20 transition-colors">
@@ -308,11 +308,11 @@ export default function DidatticaPage() {
                           <div className="h-12 w-12 rounded-full bg-role-warning flex items-center justify-center font-black text-role-warning-fg text-sm">{esito.voto}</div>
                           <Dialog open={dialogAccettazione === esito.id} onOpenChange={(o) => setDialogAccettazione(o ? esito.id : null)}>
                             <DialogTrigger asChild>
-                              <button className="h-9 w-9 rounded-xl bg-role-warning/30 flex items-center justify-center transition-all active:scale-90">
+                              <button className="h-9 w-9 rounded-full bg-role-warning/30 flex items-center justify-center transition-all active:scale-90">
                                 <CheckCircle2 className="h-4 w-4 text-role-warning-fg" />
                               </button>
                             </DialogTrigger>
-                            <DialogContent className="max-w-md rounded-[1.25rem] border-none bg-card shadow-none">
+                            <DialogContent className="max-w-md rounded-[2rem] border-none bg-card shadow-none">
                               <DialogHeader className="p-8 pb-0">
                                 <DialogTitle className="text-2xl font-black tracking-tighter uppercase">Accettazione Voto</DialogTitle>
                               </DialogHeader>
@@ -328,8 +328,8 @@ export default function DidatticaPage() {
                                 </div>
                               </div>
                               <DialogFooter className="p-8 pt-0 flex gap-3">
-                                <Button variant="outline" onClick={() => setDialogAccettazione(null)} className="flex-1 rounded-xl h-12 border-border/40 font-black uppercase tracking-widest text-[10px]">Rifiuta</Button>
-                                <Button onClick={() => setDialogAccettazione(null)} className="flex-1 rounded-xl h-12 bg-role-success-fg text-role-success font-black uppercase tracking-widest text-[10px] shadow-none">Accetta</Button>
+                                <Button variant="outline" onClick={() => setDialogAccettazione(null)} className="flex-1  h-12 border-border/40 font-black uppercase tracking-widest text-[10px]">Rifiuta</Button>
+                                <Button onClick={() => setDialogAccettazione(null)} className="flex-1  h-12 bg-role-success-fg text-role-success font-black uppercase tracking-widest text-[10px] shadow-none">Accetta</Button>
                               </DialogFooter>
                             </DialogContent>
                           </Dialog>
@@ -353,7 +353,7 @@ export default function DidatticaPage() {
           {!nuovaRichiesta ? (
             <div className="space-y-10">
               {/* Stato: nessuna tesi avviata o monitoraggio */}
-              <div className="bg-card rounded-[1.25rem] p-6 md:p-8 space-y-12 border border-border/40 md:border-none shadow-none">
+              <div className="bg-card rounded-[2rem] p-6 md:p-8 space-y-6 border border-border/40 md:border-none shadow-none">
                 <div className="flex justify-between items-center">
                   <div className="space-y-2">
                     <span className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/60">Status Laurea</span>
@@ -380,7 +380,7 @@ export default function DidatticaPage() {
                       "bg-muted/20"
                     )}>
                       <div className={cn(
-                        "h-10 w-10 rounded-xl flex items-center justify-center font-black text-sm shrink-0",
+                        "h-10 w-10 rounded-full flex items-center justify-center font-black text-sm shrink-0",
                         s.status === "completed" ? "bg-foreground text-background" :
                         s.status === "active" ? "bg-role-accent-fg text-white" :
                         "bg-muted text-muted-foreground"
@@ -398,47 +398,47 @@ export default function DidatticaPage() {
                 <div className="pt-8 border-t border-border/20 flex flex-col sm:flex-row gap-4">
                   <Button
                     onClick={() => setNuovaRichiesta(true)}
-                    className="rounded-xl bg-primary text-primary-foreground px-10 h-14 font-black uppercase tracking-widest text-xs shadow-none active:scale-95 transition-all"
+                    className="bg-primary text-primary-foreground px-10 h-14 font-black uppercase tracking-widest text-xs shadow-none active:scale-95 transition-all"
                   >
                     <Plus className="h-4 w-4 mr-2" /> Nuova Richiesta
                   </Button>
-                  <Button variant="outline" className="rounded-xl px-10 h-14 font-black uppercase tracking-widest text-xs border-border/40 active:scale-95 transition-all">
+                  <Button variant="outline" className=" px-10 h-14 font-black uppercase tracking-widest text-xs border-border/40 active:scale-95 transition-all">
                     Carica File
                   </Button>
                 </div>
               </div>
             </div>
           ) : (
-            <div className="bg-card rounded-[1.25rem] p-6 md:p-8 space-y-10 border border-border/40 md:border-none shadow-none animate-in slide-in-from-bottom-4 duration-300">
+            <div className="bg-card rounded-[2rem] p-6 md:p-8 space-y-10 border border-border/40 md:border-none shadow-none animate-in slide-in-from-bottom-4 duration-300">
               <div className="flex items-center gap-4">
-                <Button variant="ghost" onClick={() => setNuovaRichiesta(false)} className="rounded-xl h-11 px-5 font-black uppercase tracking-widest text-[10px] text-muted-foreground hover:text-foreground hover:bg-muted/40 transition-all">
+                <Button variant="ghost" onClick={() => setNuovaRichiesta(false)} className=" h-11 px-5 font-black uppercase tracking-widest text-[10px] text-muted-foreground hover:text-foreground hover:bg-muted/40 transition-all">
                   <ChevronLeft className="h-4 w-4 mr-2" /> Torna al Percorso
                 </Button>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">Docente Relatore</Label>
-                  <Input placeholder="es. Prof. Alessandro Rossi" className="h-14 rounded-2xl bg-muted/20 border-none focus-visible:ring-primary/20 font-bold" />
+                  <Input placeholder="es. Prof. Alessandro Rossi" className="h-14 rounded-[1.5rem] bg-muted/20 border-none focus-visible:ring-primary/20 font-bold" />
                 </div>
                 <div className="space-y-2">
                   <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">Docente Correlatore</Label>
-                  <Input placeholder="es. Prof.ssa Elena Bianchi" className="h-14 rounded-2xl bg-muted/20 border-none focus-visible:ring-primary/20 font-bold" />
+                  <Input placeholder="es. Prof.ssa Elena Bianchi" className="h-14 rounded-[1.5rem] bg-muted/20 border-none focus-visible:ring-primary/20 font-bold" />
                 </div>
                 <div className="md:col-span-2 space-y-2">
                   <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">Titolo Provvisorio</Label>
-                  <Input placeholder="es. L'uso della luce nel Caravaggio..." className="h-14 rounded-2xl bg-muted/20 border-none focus-visible:ring-primary/20 font-bold" />
+                  <Input placeholder="es. L'uso della luce nel Caravaggio..." className="h-14 rounded-[1.5rem] bg-muted/20 border-none focus-visible:ring-primary/20 font-bold" />
                 </div>
                 <div className="md:col-span-2 space-y-2">
                   <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">Breve Descrizione</Label>
                   <textarea
                     placeholder="Descrivi brevemente il tuo progetto di tesi..."
-                    className="w-full min-h-[120px] rounded-2xl bg-muted/20 border-none p-4 font-medium text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary/20"
+                    className="w-full min-h-[120px] rounded-[1.5rem] bg-muted/20 border-none p-4 font-medium text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary/20"
                   />
                 </div>
               </div>
               <div className="flex gap-4 justify-end pt-4 border-t border-border/20">
-                <Button variant="outline" onClick={() => setNuovaRichiesta(false)} className="rounded-xl h-14 px-10 font-black uppercase tracking-widest text-xs border-border/40">Annulla</Button>
-                <Button className="rounded-xl h-14 px-10 bg-primary text-primary-foreground font-black uppercase tracking-widest text-xs shadow-none active:scale-95">
+                <Button variant="outline" onClick={() => setNuovaRichiesta(false)} className=" h-14 px-10 font-black uppercase tracking-widest text-xs border-border/40">Annulla</Button>
+                <Button className=" h-14 px-10 bg-primary text-primary-foreground font-black uppercase tracking-widest text-xs shadow-none active:scale-95">
                   <Send className="h-4 w-4 mr-2" /> Invia Richiesta
                 </Button>
               </div>
