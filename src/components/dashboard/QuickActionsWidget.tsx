@@ -81,8 +81,10 @@ export function QuickActionsWidget({
                 action.tileClass ?? "bg-muted/30"
               )}
             >
-              <Icon className={cn("h-8 w-8 mb-3", action.iconClass ?? "text-foreground")} />
-              <span className="text-[10px] font-black uppercase tracking-tighter text-center leading-tight text-foreground">
+              <div className="h-12 w-12 rounded-2xl bg-foreground/[0.08] flex items-center justify-center mb-3">
+                <Icon className={cn("h-6 w-6", action.iconClass ?? "text-foreground")} />
+              </div>
+              <span className={cn("text-[10px] font-black uppercase tracking-tighter text-center leading-tight", action.iconClass ?? "text-foreground")}>
                 {action.label}
               </span>
             </Link>
@@ -105,7 +107,7 @@ export function QuickActionsWidget({
 
       {/* Dialog personalizzazione — aperto da Aggiungi E dal floating button */}
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent className="max-w-sm rounded-[2rem] border-none bg-card shadow-none">
+        <DialogContent className="max-w-sm rounded-[1.25rem] border-none bg-card shadow-none">
           <DialogHeader className="p-8 pb-2">
             <DialogTitle className="text-2xl font-black tracking-tighter uppercase">
               Personalizza

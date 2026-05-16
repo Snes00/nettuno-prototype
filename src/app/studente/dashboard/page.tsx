@@ -51,7 +51,7 @@ export default function DashboardPage() {
         <div className="md:col-span-8 space-y-8">
 
           {/* Comunicazioni */}
-          <section className="bg-card rounded-[2rem] p-8 md:p-10 border border-border/40 md:border-none shadow-none space-y-6 transition-all hover:scale-[1.005]">
+          <section className="bg-card rounded-[1.25rem] p-5 md:p-6 border border-border/40 md:border-none shadow-none space-y-6 transition-all hover:scale-[1.005]">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-4">
                 <h2 className="text-xl font-black tracking-tighter uppercase">Comunicazioni</h2>
@@ -89,7 +89,7 @@ export default function DashboardPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {LEZIONI_OGGI.map((lezione) => (
                 <div key={lezione.id} className={cn(
-                  "rounded-[2rem] p-8 flex flex-col justify-between gap-8 transition-all hover:scale-[1.02] border border-transparent",
+                  "rounded-[1.25rem] p-8 flex flex-col justify-between gap-8 transition-all hover:scale-[1.02] border border-transparent",
                   lezione.statusClass
                 )}>
                   <div className="flex justify-between items-start">
@@ -118,7 +118,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Colonna Destra: Azioni Rapide */}
-        <div className="md:col-span-4 bg-card rounded-[2rem] p-8 md:p-10 flex flex-col gap-6 border border-border/40 md:border-none shadow-none">
+        <div className="md:col-span-4 bg-card rounded-[1.25rem] p-5 md:p-6 flex flex-col gap-6 border border-border/40 md:border-none shadow-none">
           <span className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">Azioni Rapide</span>
           <div className="flex-1">
             <QuickActionsWidget

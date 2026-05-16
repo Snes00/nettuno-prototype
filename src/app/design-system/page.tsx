@@ -253,7 +253,7 @@ export default function DesignSystemPage() {
 
         {/* Main Content Area */}
         <main className="lg:col-span-9 h-[calc(100vh-6rem)] overflow-y-auto no-scrollbar bg-background">
-          <div className="p-8 md:p-12 space-y-12 max-w-5xl mx-auto">
+          <div className="p-6 md:p-8 space-y-12 max-w-5xl mx-auto">
             <Tabs defaultValue="components" className="w-full">
               <TabsList className="bg-card h-16 rounded-[1.5rem] p-1.5 gap-1 border border-border/10 mb-16 shadow-xl">
                 <TabsTrigger value="components" className="rounded-xl font-black text-[10px] uppercase tracking-widest gap-2 flex-1 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all">
@@ -314,7 +314,7 @@ export default function DesignSystemPage() {
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                       {['info', 'success', 'warning', 'accent'].map(role => (
-                        <div key={role} className="p-8 rounded-[2rem] space-y-10 transition-all hover:scale-[1.05] cursor-pointer shadow-lg"
+                        <div key={role} className="p-8 rounded-[1.25rem] space-y-10 transition-all hover:scale-[1.05] cursor-pointer shadow-lg"
                           style={{ backgroundColor: `var(--preview-${role})`, color: `var(--preview-${role}-fg)` }}>
                           <div className="h-12 w-12 rounded-2xl flex items-center justify-center bg-current/10">
                              {role === 'info' && <Info className="h-6 w-6" />}
@@ -399,7 +399,7 @@ export default function DesignSystemPage() {
                     </div>
                     
                     <div className="relative group">
-                       <pre className="bg-muted/40 p-12 rounded-[2.5rem] text-sm font-mono overflow-x-auto border border-border/5 leading-relaxed">
+                       <pre className="bg-muted/40 p-12 rounded-[1.5rem] text-sm font-mono overflow-x-auto border border-border/5 leading-relaxed">
 {`:root {
   /*  v2.0 Live Export */
   --background: ${tokens.background};

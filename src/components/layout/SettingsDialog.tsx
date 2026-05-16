@@ -163,7 +163,7 @@ export function SettingsDialog() {
         </button>
       </DialogTrigger>
       
-      <DialogContent className="sm:max-w-[500px] h-[90vh] sm:h-[85vh] flex flex-col rounded-[2.5rem] p-0 overflow-hidden border border-border/40 md:border-none bg-background shadow-none animate-in zoom-in-95 duration-200">
+      <DialogContent className="sm:max-w-[500px] h-[90vh] sm:h-[85vh] flex flex-col rounded-[1.5rem] p-0 overflow-hidden border border-border/40 md:border-none bg-background shadow-none animate-in zoom-in-95 duration-200">
         <DialogHeader className="p-10 border-b border-border/20 bg-card shrink-0">
           <div className="flex items-center gap-4 mb-2">
             <div className="h-12 w-12 rounded-2xl bg-primary text-primary-foreground flex items-center justify-center shadow-lg shadow-primary/20">

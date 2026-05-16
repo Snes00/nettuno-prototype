@@ -205,10 +205,10 @@ export default function MessaggiPage() {
 
       {/* Chat Dialog */}
       <Dialog open={!!selectedMsg} onOpenChange={() => setSelectedMsg(null)}>
-        <DialogContent className="max-w-2xl h-[90vh] p-0 overflow-hidden rounded-[2.5rem] border-none bg-background shadow-none flex flex-col focus-visible:ring-0">
+        <DialogContent className="max-w-2xl h-[90vh] p-0 overflow-hidden rounded-[1.5rem] border-none bg-background shadow-none flex flex-col focus-visible:ring-0">
           {selectedMsg && (
             <>
-              <div className="p-8 md:p-10 border-b border-border/20 bg-card flex items-center justify-between shrink-0">
+              <div className="p-5 md:p-6 border-b border-border/20 bg-card flex items-center justify-between shrink-0">
                 <div className="flex items-center gap-5">
                    <div className={cn(
                      "h-14 w-14 rounded-2xl flex items-center justify-center",
@@ -240,7 +240,7 @@ export default function MessaggiPage() {
                 </div>
               </ScrollArea>
 
-              <div className="p-8 md:p-10 bg-card border-t border-border/20 shrink-0">
+              <div className="p-5 md:p-6 bg-card border-t border-border/20 shrink-0">
                 <div className="flex items-center gap-4 bg-background rounded-2xl p-2.5 pl-5 border border-border/40 focus-within:ring-2 focus-within:ring-primary/10 transition-all">
                   <Button variant="ghost" size="icon" className="rounded-xl text-muted-foreground shrink-0 hover:bg-muted"><Plus className="h-5 w-5" /></Button>
                   <textarea 

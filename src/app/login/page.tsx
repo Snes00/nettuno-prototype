@@ -38,7 +38,7 @@ function LoginForm() {
     <div className="w-full max-w-[420px] space-y-12 animate-in slide-in-from-bottom-10 duration-1000">
       {/* Logo Section */}
       <div className="flex flex-col items-center gap-8">
-        <div className="h-28 w-28 rounded-[2.5rem] bg-primary flex items-center justify-center text-primary-foreground shadow-2xl shadow-primary/30 rotate-3 hover:rotate-0 transition-all duration-700 cursor-pointer group">
+        <div className="h-28 w-28 rounded-[1.5rem] bg-primary flex items-center justify-center text-primary-foreground shadow-2xl shadow-primary/30 rotate-3 hover:rotate-0 transition-all duration-700 cursor-pointer group">
           <span className="text-4xl font-black tracking-tighter group-hover:scale-110 transition-transform">ABAP</span>
         </div>
         <div className="text-center space-y-3">

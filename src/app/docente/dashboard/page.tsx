@@ -47,7 +47,7 @@ export default function DocenteDashboardPage() {
         <div className="md:col-span-8 space-y-12">
           
           {/* Sezione Comunicazioni */}
-          <section className="bg-card rounded-[2rem] p-8 md:p-10 border border-border/40 md:border-none shadow-none space-y-8 transition-all hover:scale-[1.005]">
+          <section className="bg-card rounded-[1.25rem] p-5 md:p-6 border border-border/40 md:border-none shadow-none space-y-8 transition-all hover:scale-[1.005]">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-4">
                 <h2 className="text-xl font-black tracking-tighter uppercase">Comunicazioni</h2>
@@ -86,7 +86,7 @@ export default function DocenteDashboardPage() {
             <h2 className="text-xl font-black tracking-tighter uppercase px-2">Attività di oggi</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {/* Lezione In Corso */}
-              <div className="bg-role-success rounded-[2rem] p-8 space-y-8 relative group cursor-pointer border border-role-success-fg/10 transition-all hover:scale-[1.02]">
+              <div className="bg-role-success rounded-[1.25rem] p-8 space-y-8 relative group cursor-pointer border border-role-success-fg/10 transition-all hover:scale-[1.02]">
                 <div className="flex justify-between items-start">
                   <Badge className="bg-role-success-fg text-role-success border-none rounded-full px-3 h-6 font-black text-[9px] uppercase tracking-widest">
                     In Corso
@@ -107,7 +107,7 @@ export default function DocenteDashboardPage() {
               </div>
 
               {/* Lezione Terminata */}
-              <div className="bg-muted/50 rounded-[2rem] p-8 space-y-8 relative group cursor-pointer border border-border/20 transition-all hover:scale-[1.02]">
+              <div className="bg-muted/50 rounded-[1.25rem] p-8 space-y-8 relative group cursor-pointer border border-border/20 transition-all hover:scale-[1.02]">
                 <div className="flex justify-between items-start">
                   <Badge className="bg-muted-foreground/20 text-muted-foreground border-none rounded-full px-3 h-6 font-black text-[9px] uppercase tracking-widest">
                     Terminata
@@ -135,7 +135,7 @@ export default function DocenteDashboardPage() {
 
         {/* Colonna Destra: Azioni Rapide */}
         <div className="md:col-span-4 sticky top-32">
-          <section className="bg-card rounded-[2rem] p-8 md:p-10 space-y-8 min-h-[400px] flex flex-col border border-border/40 md:border-none shadow-none transition-all hover:scale-[1.005]">
+          <section className="bg-card rounded-[1.25rem] p-5 md:p-6 space-y-8 min-h-[400px] flex flex-col border border-border/40 md:border-none shadow-none transition-all hover:scale-[1.005]">
             <h2 className="text-xl font-black tracking-tighter uppercase">Azioni Rapide</h2>
             <div className="flex-1">
               <QuickActionsWidget

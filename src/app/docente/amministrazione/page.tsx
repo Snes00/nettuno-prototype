@@ -20,7 +20,7 @@ export default function DocenteAmministrazionePage() {
         
         {/* Gestione Ferie e Permessi (Bento Accent) */}
         <div className="lg:col-span-8 space-y-6">
-          <div className="bg-accent rounded-[1.5rem] p-8 md:p-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-8 border-none transition-colors">
+          <div className="bg-accent rounded-[1.5rem] p-5 md:p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-8 border-none transition-colors">
             <div className="space-y-2">
               <span className="text-[10px] font-black uppercase tracking-widest opacity-60">Pannello Personale</span>
               <h2 className="text-3xl font-black tracking-tighter leading-none text-foreground">Richieste Ferie <br />& Permessi</h2>

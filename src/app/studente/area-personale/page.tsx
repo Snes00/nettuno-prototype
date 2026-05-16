@@ -30,7 +30,7 @@ export default function AreaPersonalePage() {
   return (
     <div className="flex flex-col gap-10 pb-16 animate-in fade-in duration-500 pt-6">
       {/* Badge Studente Bento (Hero Card - Violet Primary) */}
-      <section className="relative w-full rounded-[2.5rem] bg-primary text-primary-foreground p-8 md:p-12 overflow-hidden cursor-pointer group transition-all hover:scale-[1.01] border border-primary-foreground/10 shadow-none">
+      <section className="relative w-full rounded-[1.5rem] bg-primary text-primary-foreground p-6 md:p-8 overflow-hidden cursor-pointer group transition-all hover:scale-[1.01] border border-primary-foreground/10 shadow-none">
           <div className="relative z-10 flex flex-col gap-8">
             <div className="flex justify-between items-start">
               <div className="flex gap-6 md:gap-8 items-center">
@@ -52,7 +52,7 @@ export default function AreaPersonalePage() {
                     <QrCode className="h-8 w-8 text-primary-foreground" />
                   </button>
                 </DialogTrigger>
-                <DialogContent className="max-w-md p-0 border-none bg-card shadow-none rounded-[2.5rem] overflow-hidden focus-visible:ring-0">
+                <DialogContent className="max-w-md p-0 border-none bg-card shadow-none rounded-[1.5rem] overflow-hidden focus-visible:ring-0">
                   <DialogHeader className="p-10 border-b border-border/20">
                     <DialogTitle className="text-3xl font-black tracking-tighter text-foreground uppercase leading-none">Badge Digitale</DialogTitle>
                   </DialogHeader>
@@ -120,7 +120,7 @@ export default function AreaPersonalePage() {
 
       {/* Grid Dati Personali */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-card rounded-[2rem] p-8 space-y-8 border border-border/40 md:border-none shadow-none transition-all hover:scale-[1.02]">
+        <div className="bg-card rounded-[1.25rem] p-8 space-y-8 border border-border/40 md:border-none shadow-none transition-all hover:scale-[1.02]">
           <div className="flex items-center gap-4">
              <div className="h-12 w-12 rounded-2xl bg-muted/30 flex items-center justify-center text-muted-foreground">
                 <Mail className="h-6 w-6" />
@@ -139,7 +139,7 @@ export default function AreaPersonalePage() {
           </div>
         </div>
 
-        <div className="bg-card rounded-[2rem] p-8 space-y-8 border border-border/40 md:border-none shadow-none transition-all hover:scale-[1.02]">
+        <div className="bg-card rounded-[1.25rem] p-8 space-y-8 border border-border/40 md:border-none shadow-none transition-all hover:scale-[1.02]">
           <div className="flex items-center gap-4">
              <div className="h-12 w-12 rounded-2xl bg-muted/30 flex items-center justify-center text-muted-foreground">
                 <MapPin className="h-6 w-6" />
@@ -153,7 +153,7 @@ export default function AreaPersonalePage() {
           </div>
         </div>
 
-        <div className="bg-role-info rounded-[2rem] p-8 flex flex-col justify-between border border-role-info-fg/10 shadow-none group transition-all hover:scale-[1.02]">
+        <div className="bg-role-info rounded-[1.25rem] p-8 flex flex-col justify-between border border-role-info-fg/10 shadow-none group transition-all hover:scale-[1.02]">
            <div className="space-y-3">
               <span className="text-[10px] font-black uppercase tracking-[0.2em] text-role-info-fg/60">Status Fiscale</span>
               <h3 className="text-2xl font-black tracking-tight text-role-info-fg leading-none uppercase">Situazione Contabile in Regola</h3>
@@ -191,7 +191,7 @@ export default function AreaPersonalePage() {
 
       {/* Logout Action */}
       <Button 
-        className="w-full h-20 rounded-[2rem] bg-role-critical/10 text-role-critical-fg hover:bg-role-critical-fg hover:text-role-critical border-none transition-all font-black text-base gap-5 shadow-none uppercase tracking-[0.2em] active:scale-[0.98]"
+        className="w-full h-20 rounded-[1.25rem] bg-role-critical/10 text-role-critical-fg hover:bg-role-critical-fg hover:text-role-critical border-none transition-all font-black text-base gap-5 shadow-none uppercase tracking-[0.2em] active:scale-[0.98]"
       >
         <LogOut className="h-7 w-7" />
         Esci dall&apos;account

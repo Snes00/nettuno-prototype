@@ -13,7 +13,7 @@ export default function LandingPage() {
 
       {/* Logo & Header */}
       <div className="flex flex-col items-center mb-20 space-y-6 animate-in fade-in slide-in-from-bottom-10 duration-1000">
-        <div className="h-24 w-24 rounded-[2.5rem] bg-primary text-primary-foreground flex items-center justify-center shadow-2xl shadow-primary/30 mb-4 rotate-3 hover:rotate-0 transition-all duration-700 cursor-pointer">
+        <div className="h-24 w-24 rounded-[1.5rem] bg-primary text-primary-foreground flex items-center justify-center shadow-2xl shadow-primary/30 mb-4 rotate-3 hover:rotate-0 transition-all duration-700 cursor-pointer">
           <Sparkles className="h-12 w-12" />
         </div>
         <div className="text-center space-y-2">
@@ -31,7 +31,7 @@ export default function LandingPage() {
         
         {/* Studente */}
         <Link href="/login?role=studente" className="group">
-          <div className="rounded-[2.5rem] p-10 h-[450px] bg-card hover:bg-muted/20 border border-border/40 md:border-none shadow-none cursor-pointer overflow-hidden relative transition-all hover:scale-[1.02] flex flex-col justify-between">
+          <div className="rounded-[1.5rem] p-10 h-[450px] bg-card hover:bg-muted/20 border border-border/40 md:border-none shadow-none cursor-pointer overflow-hidden relative transition-all hover:scale-[1.02] flex flex-col justify-between">
             <div className="z-10 relative">
                 <div className="h-16 w-16 rounded-2xl bg-role-info flex items-center justify-center mb-8 text-role-info-fg shadow-sm">
                   <GraduationCap className="h-8 w-8" />
@@ -49,7 +49,7 @@ export default function LandingPage() {
 
         {/* Docente */}
         <Link href="/login?role=docente" className="group">
-          <div className="rounded-[2.5rem] p-10 h-[450px] bg-card hover:bg-muted/20 border border-border/40 md:border-none shadow-none cursor-pointer overflow-hidden relative transition-all hover:scale-[1.02] flex flex-col justify-between">
+          <div className="rounded-[1.5rem] p-10 h-[450px] bg-card hover:bg-muted/20 border border-border/40 md:border-none shadow-none cursor-pointer overflow-hidden relative transition-all hover:scale-[1.02] flex flex-col justify-between">
             <div className="z-10 relative">
                 <div className="h-16 w-16 rounded-2xl bg-role-accent flex items-center justify-center mb-8 text-role-accent-fg shadow-sm">
                   <UserCog className="h-8 w-8" />

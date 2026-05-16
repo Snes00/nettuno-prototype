@@ -68,7 +68,7 @@ export default function DocenteDidatticaPage() {
               { id: "web-1", titolo: "Web Design 1", triennio: "Triennio", iscritti: 30, lezione: "Lunedì / 14:00" },
               { id: "web-2", titolo: "Web Design 2", triennio: "Triennio", iscritti: 40, lezione: "Martedì / 09:00" },
             ].map((corso) => (
-              <div key={corso.id} className="bg-card rounded-[2rem] p-10 space-y-10 border border-border/40 md:border-none shadow-none group relative overflow-hidden transition-all hover:scale-[1.01] hover:border-border/60">
+              <div key={corso.id} className="bg-card rounded-[1.25rem] p-10 space-y-10 border border-border/40 md:border-none shadow-none group relative overflow-hidden transition-all hover:scale-[1.01] hover:border-border/60">
                 <div className="space-y-2">
                    <h3 className="text-3xl md:text-4xl font-black tracking-tighter leading-none uppercase text-foreground">{corso.titolo}</h3>
                    <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em]">{corso.triennio} • ABA Portal</p>
@@ -98,7 +98,7 @@ export default function DocenteDidatticaPage() {
         {/* Tab ESAMI */}
         <TabsContent value="esami" className="mt-0 focus-visible:outline-none">
           {creaAppello ? (
-            <div className="bg-card rounded-[2rem] p-8 md:p-12 space-y-10 border border-border/40 md:border-none shadow-none">
+            <div className="bg-card rounded-[1.25rem] p-6 md:p-8 space-y-10 border border-border/40 md:border-none shadow-none">
               <div className="flex items-center gap-4">
                 <Button variant="ghost" onClick={() => setCreaAppello(false)} className="rounded-xl h-11 px-5 font-black uppercase tracking-widest text-[10px] text-muted-foreground hover:text-foreground hover:bg-muted/40 transition-all">
                   <ChevronLeft className="h-4 w-4 mr-2" /> Torna agli Appelli
@@ -156,7 +156,7 @@ export default function DocenteDidatticaPage() {
             </div>
           ) : (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <div className="lg:col-span-8 bg-card rounded-[2.5rem] p-10 space-y-10 border border-border/40 md:border-none shadow-none">
+            <div className="lg:col-span-8 bg-card rounded-[1.5rem] p-10 space-y-10 border border-border/40 md:border-none shadow-none">
                <div className="flex items-center justify-between px-2">
                   <h3 className="text-2xl font-black tracking-tighter uppercase text-foreground">Appelli Sessione</h3>
                   <Button variant="ghost" onClick={() => setCreaAppello(true)} className="text-[10px] font-black uppercase tracking-[0.2em] text-primary hover:bg-primary/10 rounded-xl px-5 h-11 transition-all">Nuovo Appello <Plus className="ml-2 h-4 w-4" /></Button>
@@ -166,7 +166,7 @@ export default function DocenteDidatticaPage() {
                     { id: "web-1", titolo: "Web Design 1", sessione: "Sessione Estiva", iscritti: 30, ora: "14:00", data: "15 Mag 2026", aula: "Aula 12", role: "bg-role-info", stato: "pubblicato" },
                     { id: "web-2", titolo: "Web Design 2", sessione: "Sessione Estiva", iscritti: 42, ora: "09:00", data: "16 Mag 2026", aula: "Aula 15", role: "bg-role-accent", stato: "bozza" },
                   ].map((appello) => (
-                    <div key={appello.id} className="p-8 bg-muted/20 rounded-[2rem] space-y-6 group hover:bg-muted/40 transition-all border border-transparent hover:border-border/10">
+                    <div key={appello.id} className="p-8 bg-muted/20 rounded-[1.25rem] space-y-6 group hover:bg-muted/40 transition-all border border-transparent hover:border-border/10">
                        <div className="flex justify-between items-start">
                           <div className="flex items-center gap-5">
                              <div className={cn("h-14 w-14 rounded-2xl flex items-center justify-center text-foreground shadow-none", appello.role)}>
@@ -198,7 +198,7 @@ export default function DocenteDidatticaPage() {
                </div>
             </div>
 
-            <div className="lg:col-span-4 bg-role-accent rounded-[2.5rem] p-10 flex flex-col justify-between border border-role-accent-fg/10 shadow-none min-h-[400px] transition-all hover:scale-[1.01]">
+            <div className="lg:col-span-4 bg-role-accent rounded-[1.5rem] p-10 flex flex-col justify-between border border-role-accent-fg/10 shadow-none min-h-[400px] transition-all hover:scale-[1.01]">
                <div className="space-y-4">
                   <div className="h-16 w-16 rounded-2xl bg-role-accent-fg/10 flex items-center justify-center text-role-accent-fg">
                      <FileText className="h-8 w-8" />
@@ -219,7 +219,7 @@ export default function DocenteDidatticaPage() {
         <TabsContent value="tesi" className="mt-0 focus-visible:outline-none space-y-10">
           {/* KPI */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div className="bg-role-accent rounded-[2rem] p-8 flex flex-col gap-4 cursor-pointer hover:scale-[1.02] transition-all border border-role-accent-fg/10">
+            <div className="bg-role-accent rounded-[1.25rem] p-8 flex flex-col gap-4 cursor-pointer hover:scale-[1.02] transition-all border border-role-accent-fg/10">
               <div className="h-14 w-14 rounded-2xl bg-role-accent-fg/10 flex items-center justify-center">
                 <GraduationCap className="h-7 w-7 text-role-accent-fg" />
               </div>
@@ -229,7 +229,7 @@ export default function DocenteDidatticaPage() {
               </div>
               <p className="text-[10px] font-black uppercase tracking-widest text-role-accent-fg/60">Clicca per vedere l&apos;elenco →</p>
             </div>
-            <div className="bg-role-warning rounded-[2rem] p-8 flex flex-col gap-4 cursor-pointer hover:scale-[1.02] transition-all border border-role-warning-fg/10">
+            <div className="bg-role-warning rounded-[1.25rem] p-8 flex flex-col gap-4 cursor-pointer hover:scale-[1.02] transition-all border border-role-warning-fg/10">
               <div className="h-14 w-14 rounded-2xl bg-role-warning-fg/10 flex items-center justify-center">
                 <FileText className="h-7 w-7 text-role-warning-fg" />
               </div>
@@ -248,7 +248,7 @@ export default function DocenteDidatticaPage() {
               {[
                 { studente: "Giulia Romano", titolo: "Arte generativa e intelligenza artificiale", descrizione: "Un'analisi dell'arte prodotta con algoritmi generativi nel contesto della contemporaneità." },
               ].map((req, i) => (
-                <div key={i} className="bg-card rounded-[2rem] p-8 space-y-6 border border-border/40 md:border-none shadow-none">
+                <div key={i} className="bg-card rounded-[1.25rem] p-8 space-y-6 border border-border/40 md:border-none shadow-none">
                   <div className="space-y-1">
                     <p className="font-black text-xl uppercase text-foreground tracking-tight">{req.studente}</p>
                     <p className="text-sm font-bold text-muted-foreground italic">{req.titolo}</p>
@@ -273,7 +273,7 @@ export default function DocenteDidatticaPage() {
               <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">Elenco Tesisti</h2>
               <button className="text-[10px] font-black uppercase tracking-widest text-primary hover:opacity-80">Storico Tesi →</button>
             </div>
-            <div className="bg-card rounded-[2rem] overflow-hidden border border-border/40 md:border-none shadow-none">
+            <div className="bg-card rounded-[1.25rem] overflow-hidden border border-border/40 md:border-none shadow-none">
               <div className="divide-y divide-border/20">
                 {[
                   { nome: "Marco Bianchi", percorso: "Tesi 1", progresso: 85 },
@@ -304,7 +304,7 @@ export default function DocenteDidatticaPage() {
         <TabsContent value="orario" className="mt-0 focus-visible:outline-none">
            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
               {/* Griglia Oraria */}
-              <div className="lg:col-span-8 bg-card rounded-[2.5rem] p-8 md:p-10 space-y-10 border border-border/40 md:border-none shadow-none">
+              <div className="lg:col-span-8 bg-card rounded-[1.5rem] p-5 md:p-6 space-y-10 border border-border/40 md:border-none shadow-none">
                  <div className="grid grid-cols-7 gap-3">
                     {DAYS_OF_WEEK.map((d) => (
                        <div key={d} className="text-center text-[10px] font-black uppercase tracking-widest text-muted-foreground/60 py-6">
@@ -321,9 +321,9 @@ export default function DocenteDidatticaPage() {
 
               {/* I Tuoi Impegni */}
               <div className="lg:col-span-4 space-y-8">
-                <div className="bg-card rounded-[2.5rem] p-10 space-y-10 border border-border/40 md:border-none shadow-none min-h-[400px]">
+                <div className="bg-card rounded-[1.5rem] p-10 space-y-10 border border-border/40 md:border-none shadow-none min-h-[400px]">
                    <h3 className="text-2xl font-black tracking-tighter uppercase text-foreground px-2">Agenda Odierna</h3>
-                   <div className="p-8 bg-muted/20 rounded-[2rem] space-y-8 relative overflow-hidden group">
+                   <div className="p-8 bg-muted/20 rounded-[1.25rem] space-y-8 relative overflow-hidden group">
                       <div className="absolute top-0 right-0 w-2 h-full bg-primary opacity-20" />
                       <div className="space-y-1.5">
                          <p className="text-[10px] font-black uppercase text-muted-foreground/60 tracking-widest">In Corso</p>

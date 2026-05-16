@@ -34,7 +34,7 @@ export function BottomNav() {
     <>
       {/* Mobile Bottom Nav - Borderless & Adaptive */}
       <nav className="fixed bottom-0 left-0 right-0 z-50 flex h-24 items-center justify-around bg-background md:hidden px-6">
-        <div className="flex w-full h-14 items-center justify-around bg-card border border-border/20 rounded-full px-2 shadow-none transition-all">
+        <div className="flex w-full h-14 items-center justify-around bg-card border border-border/20 rounded-full px-2 shadow-nav transition-all">
           {items.map((item) => {
             const Icon = item.icon;
             const isActive = pathname === item.href;
@@ -56,7 +56,7 @@ export function BottomNav() {
       </nav>
 
       {/* Desktop Sidebar - Floating Rounded Box with Integrated Logo */}
-      <nav className="hidden fixed left-6 top-6 bottom-6 w-72 lg:w-80 bg-card border border-border/10 rounded-[2.5rem] md:flex flex-col z-[60] transition-all shadow-none overflow-hidden hover:border-border/20">
+      <nav className="hidden fixed left-6 top-6 bottom-6 w-72 lg:w-80 bg-card border border-border/10 rounded-[1.5rem] md:flex flex-col z-[60] transition-all shadow-none overflow-hidden hover:border-border/20">
         
         {/* Logo Section inside the rounded Sidebar Box */}
         <div className="p-10 pb-6">

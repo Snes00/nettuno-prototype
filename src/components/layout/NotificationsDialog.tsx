@@ -101,7 +101,7 @@ export function NotificationsDialog() {
         </button>
       </DialogTrigger>
       
-      <DialogContent className="sm:max-w-[460px] rounded-[2.5rem] p-0 overflow-hidden border border-border/40 md:border-none bg-background shadow-none animate-in zoom-in-95 duration-200">
+      <DialogContent className="sm:max-w-[460px] rounded-[1.5rem] p-0 overflow-hidden border border-border/40 md:border-none bg-background shadow-none animate-in zoom-in-95 duration-200">
         <DialogHeader className="p-10 border-b border-border/20 bg-card">
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-4">

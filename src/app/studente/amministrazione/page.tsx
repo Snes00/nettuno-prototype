@@ -277,7 +277,7 @@ export default function AmministrazionePage() {
         {/* --- PIANO DI STUDI --- */}
         <TabsContent value="piano" className="space-y-6 outline-none focus-visible:ring-0">
           <div className="bg-card rounded-[1.5rem] overflow-hidden border border-border/40 md:border-none shadow-none transition-all">
-            <div className="bg-role-accent p-8 md:p-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+            <div className="bg-role-accent p-5 md:p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
               <div className="space-y-1">
                 <span className="text-[10px] font-black uppercase tracking-[0.2em] text-role-accent-fg/60">Anno Accademico 2025/2026</span>
                 <h2 className="text-3xl md:text-4xl font-black tracking-tighter text-role-accent-fg leading-none uppercase">Piano di Studi</h2>
@@ -285,7 +285,7 @@ export default function AmministrazionePage() {
               </div>
               <Badge className="bg-role-accent-fg text-role-accent border-none rounded-full px-4 h-8 font-black uppercase tracking-widest text-[10px]">Approvato</Badge>
             </div>
-            <div className="p-8 md:p-10 space-y-8">
+            <div className="p-5 md:p-6 space-y-8">
               <div className="space-y-4">
                 <div className="flex items-center justify-between text-sm">
                   <span className="font-black uppercase tracking-widest text-[10px] text-muted-foreground">Carico Didattico Annuale</span>

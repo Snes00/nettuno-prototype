@@ -94,7 +94,7 @@ export default function DidatticaPage() {
         <TabsContent value="corsi" className="mt-0 focus-visible:outline-none space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {CORSI.map((corso) => (
-              <div key={corso.id} className="bg-card rounded-[2rem] p-8 space-y-8 border border-border/40 md:border-none shadow-none transition-all hover:scale-[1.01]">
+              <div key={corso.id} className="bg-card rounded-[1.25rem] p-8 space-y-8 border border-border/40 md:border-none shadow-none transition-all hover:scale-[1.01]">
                 <div className="space-y-1">
                   <div className="h-12 w-12 rounded-xl flex items-center justify-center shrink-0 mb-4" style={{ background: corso.presenze < corso.soglia ? "var(--role-critical)" : "var(--role-success)" }}>
                     <BookOpen className="h-6 w-6" style={{ color: corso.presenze < corso.soglia ? "var(--role-critical-fg)" : "var(--role-success-fg)" }} />
@@ -132,7 +132,7 @@ export default function DidatticaPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
             {/* Griglia Settimanale */}
-            <div className="lg:col-span-7 bg-card rounded-[2rem] p-8 md:p-10 space-y-8 border border-border/40 md:border-none shadow-none">
+            <div className="lg:col-span-7 bg-card rounded-[1.25rem] p-5 md:p-6 space-y-8 border border-border/40 md:border-none shadow-none">
               <div className="flex items-center justify-between">
                 <h2 className="text-2xl font-black tracking-tight text-foreground uppercase">Settimana Corrente</h2>
                 <div className="flex gap-2">
@@ -166,7 +166,7 @@ export default function DidatticaPage() {
 
             {/* I Tuoi Impegni Oggi */}
             <div className="lg:col-span-5 space-y-6">
-              <div className="bg-card rounded-[2rem] p-8 space-y-6 border border-border/40 md:border-none shadow-none">
+              <div className="bg-card rounded-[1.25rem] p-8 space-y-6 border border-border/40 md:border-none shadow-none">
                 <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">I Tuoi Impegni Oggi</h3>
                 <div className="bg-role-success rounded-2xl p-6 space-y-4">
                   <div className="space-y-1">
@@ -216,7 +216,7 @@ export default function DidatticaPage() {
           {/* Appelli Aperti */}
           <section className="space-y-4">
             <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground px-1">Appelli Aperti</h2>
-            <div className="bg-card rounded-[2rem] overflow-hidden border border-border/40 md:border-none shadow-none">
+            <div className="bg-card rounded-[1.25rem] overflow-hidden border border-border/40 md:border-none shadow-none">
               <div className="divide-y divide-border/20">
                 {APPELLI_APERTI.map((appello) => {
                   const isPrenotato = prenotazioni[appello.id];
@@ -235,7 +235,7 @@ export default function DidatticaPage() {
                                 <Plus className="h-5 w-5 text-primary group-hover:text-primary-foreground" />
                               </button>
                             </DialogTrigger>
-                            <DialogContent className="max-w-md rounded-[2rem] border-none bg-card shadow-none">
+                            <DialogContent className="max-w-md rounded-[1.25rem] border-none bg-card shadow-none">
                               <DialogHeader className="p-8 pb-0">
                                 <DialogTitle className="text-2xl font-black tracking-tighter uppercase">Conferma Prenotazione</DialogTitle>
                               </DialogHeader>
@@ -269,7 +269,7 @@ export default function DidatticaPage() {
                               <Pencil className="h-4 w-4 text-muted-foreground" />
                             </button>
                           </DialogTrigger>
-                          <DialogContent className="max-w-md rounded-[2rem] border-none bg-card shadow-none">
+                          <DialogContent className="max-w-md rounded-[1.25rem] border-none bg-card shadow-none">
                             <DialogHeader className="p-8 pb-0">
                               <DialogTitle className="text-2xl font-black tracking-tighter uppercase">Rinuncia Appello</DialogTitle>
                             </DialogHeader>
@@ -294,7 +294,7 @@ export default function DidatticaPage() {
           {/* Esiti */}
           <section className="space-y-4">
             <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground px-1">Esiti</h2>
-            <div className="bg-card rounded-[2rem] overflow-hidden border border-border/40 md:border-none shadow-none">
+            <div className="bg-card rounded-[1.25rem] overflow-hidden border border-border/40 md:border-none shadow-none">
               <div className="divide-y divide-border/20">
                 {ESITI.map((esito) => (
                   <div key={esito.id} className="flex items-center justify-between p-6 hover:bg-muted/20 transition-colors">
@@ -312,7 +312,7 @@ export default function DidatticaPage() {
                                 <CheckCircle2 className="h-4 w-4 text-role-warning-fg" />
                               </button>
                             </DialogTrigger>
-                            <DialogContent className="max-w-md rounded-[2rem] border-none bg-card shadow-none">
+                            <DialogContent className="max-w-md rounded-[1.25rem] border-none bg-card shadow-none">
                               <DialogHeader className="p-8 pb-0">
                                 <DialogTitle className="text-2xl font-black tracking-tighter uppercase">Accettazione Voto</DialogTitle>
                               </DialogHeader>
@@ -353,7 +353,7 @@ export default function DidatticaPage() {
           {!nuovaRichiesta ? (
             <div className="space-y-10">
               {/* Stato: nessuna tesi avviata o monitoraggio */}
-              <div className="bg-card rounded-[2rem] p-10 md:p-12 space-y-12 border border-border/40 md:border-none shadow-none">
+              <div className="bg-card rounded-[1.25rem] p-6 md:p-8 space-y-12 border border-border/40 md:border-none shadow-none">
                 <div className="flex justify-between items-center">
                   <div className="space-y-2">
                     <span className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/60">Status Laurea</span>
@@ -409,7 +409,7 @@ export default function DidatticaPage() {
               </div>
             </div>
           ) : (
-            <div className="bg-card rounded-[2rem] p-8 md:p-12 space-y-10 border border-border/40 md:border-none shadow-none animate-in slide-in-from-bottom-4 duration-300">
+            <div className="bg-card rounded-[1.25rem] p-6 md:p-8 space-y-10 border border-border/40 md:border-none shadow-none animate-in slide-in-from-bottom-4 duration-300">
               <div className="flex items-center gap-4">
                 <Button variant="ghost" onClick={() => setNuovaRichiesta(false)} className="rounded-xl h-11 px-5 font-black uppercase tracking-widest text-[10px] text-muted-foreground hover:text-foreground hover:bg-muted/40 transition-all">
                   <ChevronLeft className="h-4 w-4 mr-2" /> Torna al Percorso

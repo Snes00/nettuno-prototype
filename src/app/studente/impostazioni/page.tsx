@@ -41,8 +41,8 @@ export default function StudenteImpostazioniPage() {
 
   return (
     <div className="max-w-4xl mx-auto flex flex-col gap-10 pb-16 animate-in fade-in duration-500 pt-6">
-      <div className="bg-card rounded-[2rem] overflow-hidden border border-border/40 md:border-none shadow-none">
-        <div className="p-8 md:p-12">
+      <div className="bg-card rounded-[1.25rem] overflow-hidden border border-border/40 md:border-none shadow-none">
+        <div className="p-6 md:p-8">
           {view === "main" && (
             <div className="grid gap-12">
               {/* Sezione Aspetto */}

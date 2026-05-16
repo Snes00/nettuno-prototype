@@ -31,7 +31,7 @@ export default function DocenteAreaPersonalePage() {
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
 
         {/* Badge Docente - Staff Accademico */}
-        <div className="md:col-span-12 relative bg-primary text-primary-foreground rounded-[2.5rem] p-8 md:p-12 overflow-hidden transition-all hover:scale-[1.005]">
+        <div className="md:col-span-12 relative bg-primary text-primary-foreground rounded-[1.5rem] p-6 md:p-8 overflow-hidden transition-all hover:scale-[1.005]">
           <div className="relative z-10 flex flex-col gap-8">
             <div className="flex justify-between items-start">
               <div className="flex gap-6 md:gap-10 items-center">
@@ -81,7 +81,7 @@ export default function DocenteAreaPersonalePage() {
 
         {/* Dati Personali Editabili */}
         <div className="md:col-span-12">
-          <div className="bg-card rounded-[2.5rem] p-8 md:p-12 space-y-8 border border-border/40 md:border-none shadow-none">
+          <div className="bg-card rounded-[1.5rem] p-6 md:p-8 space-y-8 border border-border/40 md:border-none shadow-none">
             <div className="flex justify-between items-center">
               <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">Dati Personali</h3>
               <button
@@ -134,7 +134,7 @@ export default function DocenteAreaPersonalePage() {
 
         {/* Ricevimento Studenti (Bento Accent - Purple) */}
         <div className="md:col-span-8 space-y-6">
-          <div className="bg-role-accent rounded-[2.5rem] p-8 md:p-10 space-y-10 border border-role-accent-fg/10 transition-all hover:scale-[1.01]">
+          <div className="bg-role-accent rounded-[1.5rem] p-5 md:p-6 space-y-10 border border-role-accent-fg/10 transition-all hover:scale-[1.01]">
             <div className="flex justify-between items-start">
                <div className="space-y-2">
                   <span className="text-[10px] font-black uppercase tracking-[0.2em] text-role-accent-fg/60">Gestione Didattica</span>
@@ -178,7 +178,7 @@ export default function DocenteAreaPersonalePage() {
 
         {/* Supporto & Link */}
         <div className="md:col-span-4 space-y-6">
-          <div className="bg-card rounded-[2.5rem] p-8 md:p-10 space-y-10 border border-border/40 md:border-none shadow-none flex-1 transition-all hover:scale-[1.01]">
+          <div className="bg-card rounded-[1.5rem] p-5 md:p-6 space-y-10 border border-border/40 md:border-none shadow-none flex-1 transition-all hover:scale-[1.01]">
              <div className="space-y-2">
                 <span className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/60">Servizi Docente</span>
                 <h3 className="text-2xl font-black tracking-tight uppercase text-foreground">Help & Risorse</h3>

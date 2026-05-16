@@ -50,9 +50,9 @@
   --color-role-accent: var(--role-accent);
   --color-role-accent-fg: var(--role-accent-fg);
   
-  --radius: 1.5rem;
+  --radius: 1.25rem;
   --radius-inner: 0.75rem;
-  --spacing-bento: 1.5rem;
+  --spacing-bento: 1.25rem;
 }
 
 :root {
@@ -154,6 +154,13 @@
   body {
     @apply bg-background text-foreground transition-all duration-300;
   }
+}
+
+@layer utilities {
+  /* Elevation system — override shadow-none! globale */
+  .shadow-soft    { box-shadow: 0 2px 12px rgba(0,0,0,.07) !important; }
+  .shadow-nav     { box-shadow: 0 2px 20px rgba(0,0,0,.10) !important; }
+  .shadow-colored { box-shadow: 0 8px 32px rgba(75,74,195,.20) !important; }
 }
 
 @layer components {
