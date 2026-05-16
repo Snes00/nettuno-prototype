@@ -17,7 +17,7 @@ import { QuickActionsWidget, type QuickAction } from "@/components/dashboard/Qui
 import { cn } from "@/lib/utils";
 
 const AVVISI = [
-  { id: 1, titolo: "Tassa da pagare", descrizione: "Seconda rata entro il 30 Aprile.", ora: "11:15", icon: AlertCircle, iconColor: "text-role-critical-fg", iconBg: "bg-role-critical" },
+  { id: 1, titolo: "Tassa da pagare", descrizione: "Seconda rata entro il 30 Aprile.", ora: "11:15", icon: AlertCircle, iconColor: "text-role-critical", iconBg: "bg-role-critical/15" },
   { id: 2, titolo: "Seminario Erasmus", descrizione: "Incontro informativo ore 15:00.", ora: "09:31", icon: Bell, iconColor: "text-role-warning-fg", iconBg: "bg-role-warning" },
   { id: 3, titolo: "Esame Anatomia", descrizione: "22 Aprile / 09:00 / Aula 4", ora: "18:10", icon: GraduationCap, iconColor: "text-role-info-fg", iconBg: "bg-role-info" },
   { id: 4, titolo: "Variazione Aula", descrizione: "Pittura I spostata in Aula 4.", ora: "18:10", icon: MapPin, iconColor: "text-role-accent-fg", iconBg: "bg-role-accent" },

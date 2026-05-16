@@ -202,36 +202,36 @@ export default function AmministrazionePage() {
             {tasse.map((tassa) => (
               <div key={tassa.id} className={cn(
                 "rounded-[2rem] p-6 flex flex-col md:flex-row md:items-center gap-6 transition-all border-none",
-                tassa.stato === "success" ? "bg-role-success" : 
-                tassa.stato === "warning" ? "bg-role-critical" : 
+                tassa.stato === "success" ? "bg-role-success" :
+                tassa.stato === "warning" ? "bg-role-critical/10 border border-role-critical/20" :
                 "bg-muted/50"
               )}>
                 <div className={cn(
                   "h-14 w-14 rounded-full flex items-center justify-center shrink-0",
-                  tassa.stato === "success" ? "bg-role-success-fg/10" : 
-                  tassa.stato === "warning" ? "bg-role-critical-fg/10" : 
+                  tassa.stato === "success" ? "bg-role-success-fg/10" :
+                  tassa.stato === "warning" ? "bg-role-critical/15" :
                   "bg-muted/20"
                 )}>
                   <CreditCard className={cn(
                     "h-7 w-7",
-                    tassa.stato === "success" ? "text-role-success-fg" : 
-                    tassa.stato === "warning" ? "text-role-critical-fg" : 
+                    tassa.stato === "success" ? "text-role-success-fg" :
+                    tassa.stato === "warning" ? "text-role-critical" :
                     "text-muted-foreground"
                   )} />
                 </div>
-                
+
                 <div className="flex-1 space-y-1">
                   <div className="flex items-center gap-2">
                     <h3 className={cn(
                       "text-xl font-black tracking-tight",
-                      tassa.stato === "success" ? "text-role-success-fg" : 
-                      tassa.stato === "warning" ? "text-role-critical-fg" : 
+                      tassa.stato === "success" ? "text-role-success-fg" :
+                      tassa.stato === "warning" ? "text-role-critical" :
                       "text-foreground"
                     )}>{tassa.rata}</h3>
                     <Badge className={cn(
                       "text-[9px] font-black uppercase tracking-widest border-none h-5 px-2",
-                      tassa.stato === "success" ? "bg-role-success-fg text-role-success" : 
-                      tassa.stato === "warning" ? "bg-role-critical-fg text-role-critical" : 
+                      tassa.stato === "success" ? "bg-role-success-fg text-role-success" :
+                      tassa.stato === "warning" ? "bg-role-critical/20 text-role-critical" :
                       "bg-muted-foreground/20 text-muted-foreground"
                     )}>
                       {tassa.stato === "success" ? "Pagato" : "Da Pagare"}
@@ -239,8 +239,8 @@ export default function AmministrazionePage() {
                   </div>
                   <p className={cn(
                     "text-sm font-medium",
-                    tassa.stato === "success" ? "text-role-success-fg/70" : 
-                    tassa.stato === "warning" ? "text-role-critical-fg/70" : 
+                    tassa.stato === "success" ? "text-role-success-fg/70" :
+                    tassa.stato === "warning" ? "text-role-critical/70" :
                     "text-muted-foreground"
                   )}>
                     Importo: <span className="font-black text-current">{tassa.importo}</span> • Scadenza: <span className="font-black text-current">{tassa.scadenza}</span>

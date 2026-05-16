@@ -35,7 +35,7 @@ const INITIAL_NOTIFICATIONS = [
     time: "2 ore fa",
     read: false,
     icon: CreditCard,
-    color: "bg-role-critical text-role-critical-fg"
+    color: "bg-role-critical/15 text-role-critical"
   },
   {
     id: 2,

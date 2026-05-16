@@ -102,49 +102,49 @@
 }
 
 .dark {
-  /* --- STRATO DARK --- */
-  --background: #0F0E14;     /* Dark Canvas */
-  --foreground: #E4E2EC;     /* Slate-100 */
-  --card: #1E1C2A;           /* Dark Card */
-  --card-foreground: #E4E2EC;
-  --popover: #1E1C2A;
-  --popover-foreground: #E4E2EC;
-  
-  --primary: #E4E2EC;        /* Bianco/luce — colore principale UI dark */
-  --primary-foreground: #0F0E14;
-  --secondary: #16151E;      /* Dark Surface */
-  --secondary-foreground: #E4E2EC;
-  --muted: #16151E;
-  --muted-foreground: #9E9BAA;/* Slate-400 */
-  --accent: #2A2838;         /* Hover neutro dark */
-  --accent-foreground: #E4E2EC;
-  --destructive: #F56E90;    /* Coral-400 */
-  --destructive-foreground: #0F0E14;
+  /* --- STRATO DARK — grigio neutro, zero cast viola --- */
+  --background: #0D0D0D;
+  --foreground: #EBEBEB;
+  --card: #1A1A1A;
+  --card-foreground: #EBEBEB;
+  --popover: #1A1A1A;
+  --popover-foreground: #EBEBEB;
 
-  --border: #2E2C3A;         /* Slate-800 */
-  --input: #2E2C3A;
-  --ring: #E4E2EC;
+  --primary: #EBEBEB;
+  --primary-foreground: #0D0D0D;
+  --secondary: #151515;
+  --secondary-foreground: #EBEBEB;
+  --muted: #151515;
+  --muted-foreground: #999999;
+  --accent: #252525;
+  --accent-foreground: #EBEBEB;
+  --destructive: #FF6B6B;
+  --destructive-foreground: #0D0D0D;
 
-  /* Semantic Roles (Dark — Strato v2.1) */
-  --role-accent: #1A1A52;     /* Brand Blue deep */
-  --role-accent-fg: #C0C0F8;  /* Brand Blue light */
-  --role-info: #003540;       /* Brand Teal deep */
-  --role-info-fg: #7ECFE0;    /* Teal light */
-  --role-success: #1A2800;    /* Brand Lime deep */
-  --role-success-fg: #D4F520; /* Lime bright */
-  --role-warning: #1A2060;    /* Brand Periwinkle deep */
-  --role-warning-fg: #98B8FF; /* Periwinkle chiaro */
-  --role-critical: #781730;   /* Coral deep */
-  --role-critical-fg: #F99AB4;/* Coral light */
+  --border: #2C2C2C;
+  --input: #2C2C2C;
+  --ring: #EBEBEB;
 
-  --sidebar: #16151E;
-  --sidebar-foreground: #E4E2EC;
-  --sidebar-primary: #E4E2EC;
-  --sidebar-primary-foreground: #0F0E14;
-  --sidebar-accent: #2E2C3A;
-  --sidebar-accent-foreground: #E4E2EC;
-  --sidebar-border: #2E2C3A;
-  --sidebar-ring: #E4E2EC;
+  /* Semantic Roles (Dark) — bg scuri neutri + fg brand vividi */
+  --role-accent: #1C1C4A;     /* Blue-violet deep neutral */
+  --role-accent-fg: #BEBEF5;
+  --role-info: #002E38;       /* Teal deep neutral */
+  --role-info-fg: #7AD4E6;
+  --role-success: #182400;    /* Lime deep neutral */
+  --role-success-fg: #D4F520;
+  --role-warning: #161B52;    /* Periwinkle deep neutral */
+  --role-warning-fg: #98B8FF;
+  --role-critical: #3D0010;   /* Red deep neutral */
+  --role-critical-fg: #FF9AB0;
+
+  --sidebar: #111111;
+  --sidebar-foreground: #EBEBEB;
+  --sidebar-primary: #EBEBEB;
+  --sidebar-primary-foreground: #0D0D0D;
+  --sidebar-accent: #252525;
+  --sidebar-accent-foreground: #EBEBEB;
+  --sidebar-border: #2C2C2C;
+  --sidebar-ring: #EBEBEB;
 }
 
 @layer base {
